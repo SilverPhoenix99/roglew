@@ -1,11 +1,5 @@
 module Roglew
   class RenderContext
-    class << self
-      include Ducktape::Hookable
-
-      def_hook :on_load
-    end
-
     @registered_extensions = {}
 
     def initialize(hdc)
@@ -67,8 +61,7 @@ module Roglew
           old_hrc = @hrc
 
           #HGLRC wglCreateContextAttribsARB(HDC hDC, HGLRC hShareContext, const int* attribList)
-          def_function(:wglCreateContextAttribsARB, *([:pointer]*4)) unless respond_to? :wglCreateContextAttribsARB
-          @hrc = wglCreateContextAttribsARB(@hdc, nil, ptr_attribs)
+          @hrc = function(:wglCreateContextAttribsARB, [:pointer]*3, :pointer).(@hdc, nil, ptr_attribs)
         end
       end
 
@@ -105,7 +98,16 @@ module Roglew
           raise ExtensionError, "no paths registered for extensions: #{ns2.inspect}"
         end
 
-        @loaded_extensions << ns3.first if require paths[ns3.first]
+        ext = ns3.first
+        require paths[ext]
+
+        if Object.const_defined?(ext)
+          ext_module = Object.const_get(ext)
+          ext_module.on_load(self) if ext_module.singleton_class.method_defined?(:on_load)
+        end
+
+        @loaded_extensions << ns3.first
+
       end
 
       self.class.send(:call_hooks, :on_load, self)
@@ -152,7 +154,7 @@ module Roglew
     end
 
     def function(function_name, parameters, return_type)
-      ptr = GL.proc_address(function_name)
+      ptr = GL.proc_address(function_name.to_s)
       return nil if ptr.null?
       return_type = GL.find_type(return_type) || return_type
       parameters = parameters.map { |p| GL.find_type(p) || p }
@@ -161,9 +163,9 @@ module Roglew
 
     def def_function(*args)
       if args.length < 3
-        raise ArgumentError "wrong number of arguments (#{args.length} for 3)"
+        raise ArgumentError, "wrong number of arguments (#{args.length} for 3)"
       elsif args.length > 4
-        raise ArgumentError "wrong number of arguments (#{args.length} for 4)"
+        raise ArgumentError, "wrong number of arguments (#{args.length} for 4)"
       elsif args.length == 3
         function_name, parameters, return_type = args
         method_name = function_name

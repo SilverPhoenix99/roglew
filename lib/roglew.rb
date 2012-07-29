@@ -10,8 +10,6 @@ end
 ffi
 facets/kernel/ergo
 facets/module/module_load
-
-ducktape
 '.each { |f| require f }
 
 %w'ext/ffi_struct_ext
