@@ -1,4 +1,4 @@
 roglew
 ======
 
-Ruby OpenGL and Extensions Wrapper
+Raw Glue - the Ruby OpenGL and Extensions Wrapper
