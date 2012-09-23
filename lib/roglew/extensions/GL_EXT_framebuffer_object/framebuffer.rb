@@ -1,35 +1,24 @@
 module Roglew
-  class Framebuffer
-    attr_reader :context, :id, :status
+  class FramebufferEXT
+    include Roglew::Contextual(FramebufferContextEXT)
+
+    attr_reader :context, :id
 
     def initialize(context)
-      @context, @status = context.bind { |_| @id = @context.gen_framebuffers }, nil
-
-      self.class.finalize(self, @id)
+      @context = context.bind { |c| @id = c.gen_framebuffersEXT }
+      self.class.finalize(self, @context, @id)
     end
 
-    def self.finalize(obj, id)
+    def self.finalize(obj, ctx, id)
       ObjectSpace.define_finalizer(obj, proc do
-        GL.delete_framebuffers(id)
+        puts "releasing framebuffer #{id}"
+        ctx.delete_framebuffersEXT(id)
       end)
     end
 
-    #target: one of GL::DRAW_FRAMEBUFFER, GL::READ_FRAMEBUFFER or GL::FRAMEBUFFER
-    def self.unbind(target)
-      context.bind_framebuffer(target, 0)
-    end
-
-    #target: one of GL::DRAW_FRAMEBUFFER, GL::READ_FRAMEBUFFER or GL::FRAMEBUFFER
+    #target: one of GL::DRAW_FRAMEBUFFER_EXT, GL::READ_FRAMEBUFFER_EXT or GL::FRAMEBUFFER_EXT
     def bind(target, deferred = nil, &block)
-      deferred = [deferred, self.deferred?, self.class.deferred?, GL.deferred?].compact.first
-
-      ctx = (deferred ? DeferredFramebufferContext : ImmediateFramebufferContext).new(self)
-      GL.bind_framebuffer(target, @id) unless deferred
-      return ctx unless block_given?
-      ctx.ergo &block
-      if deferred then ctx.apply else self.class.unbind(target) end
-
-      self
+      create_binding(deferred, target, &block)
     end
   end
 end

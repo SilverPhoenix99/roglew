@@ -1,7 +1,8 @@
 %w'gl_constants
-renderbuffer_contexts
+renderbuffer_context
 renderbuffer
-framebuffer_contexts
+framebuffer_context
 framebuffer
-render_context
+
+on_load
 '.each { |f| require "roglew/extensions/GL_ARB_framebuffer_object/#{f}" }

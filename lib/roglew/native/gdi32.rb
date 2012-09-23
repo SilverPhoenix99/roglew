@@ -171,7 +171,7 @@ module Roglew
 		#int ChoosePixelFormat(
 		#  HDC hdc,
 		#  const PIXELFORMATDESCRIPTOR *ppfd)
-		attach_function :choose_pixel_format, :ChoosePixelFormat, [:HDC, :pointer], :int
+		attach_function :ChoosePixelFormat, [:HDC, :pointer], :int
 
 		#HFONT CreateFont(
 		#  __in  int nHeight,
@@ -188,7 +188,7 @@ module Roglew
 		#  __in  DWORD fdwQuality,
 		#  __in  DWORD fdwPitchAndFamily,
 		#  __in  LPCTSTR lpszFace)
-		attach_function :create_font, "CreateFont#{ENCODING}", [
+		attach_function :CreateFont, "CreateFont#{ENCODING}", [
 				:int, #nHeight
 				:int, #nWidth
 				:int, #nEscapement
@@ -207,33 +207,38 @@ module Roglew
 
 		#BOOL DeleteObject(
 		#  __in  HGDIOBJ hObject)
-		attach_function :delete_object, :DeleteObject, [:pointer], :bool
+		attach_function :DeleteObject, [:pointer], :bool
 
 		#int DescribePixelFormat(
 		#  HDC hdc,
 		#  int iPixelFormat,
 		#  UINT nBytes,
 		#  LPPIXELFORMATDESCRIPTOR ppfd)
-		attach_function :describe_pixel_format, :DescribePixelFormat, [:HDC, :int, :uint, :pointer], :int
+		attach_function :DescribePixelFormat, [:HDC, :int, :uint, :pointer], :int
 
 		#int GetDeviceCaps(
 		#  __in  HDC hdc,
 		#  __in  int nIndex)
-		attach_function :device_caps, :GetDeviceCaps, [:HDC, :int], :int
+		attach_function :GetDeviceCaps, [:HDC, :int], :int
+
+    #int GetPixelFormat(
+    #  HDC hdc
+    #);
+    attach_function :GetPixelFormat, [:HDC], :int
 
 		#HGDIOBJ SelectObject(
 		#  __in  HDC hdc,
 		#  __in  HGDIOBJ hgdiobj)
-		attach_function :select_object, :SelectObject, [:HDC, :pointer], :pointer
+		attach_function :SelectObject, [:HDC, :pointer], :pointer
 
 		#BOOL SetPixelFormat(
 		#  HDC hdc,
 		#  int iPixelFormat,
 		#  const PIXELFORMATDESCRIPTOR *ppfd)
-		attach_function :set_pixel_format, :SetPixelFormat, [:HDC, :int, :pointer], :bool
+		attach_function :SetPixelFormat, [:HDC, :int, :pointer], :bool
 
 		#BOOL SwapBuffers(
 		#  HDC hdc)
-		attach_function :swap_buffers, :SwapBuffers, [:HDC], :bool
+		attach_function :SwapBuffers, [:HDC], :bool
 	end
 end

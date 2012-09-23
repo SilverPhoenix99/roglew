@@ -16,7 +16,7 @@ module Roglew
 		#	__out     HMODULE *phModule)
 		attach_function :GetModuleHandleEx, :GetModuleHandleExW, [GetModuleHandleExFlag, :string, :pointer], :bool
 
-		attach_function :last_error, :GetLastError, [], :DWORD
+		attach_function :GetLastError, [], :DWORD
 
 		def self.module_handle(flags = :none, module_name = nil)
 			hinstance = nil
