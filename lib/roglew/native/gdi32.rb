@@ -4,8 +4,6 @@ module Roglew
 		ffi_lib 'gdi32'
 		ffi_convention :stdcall
 
-		include Win32FFI
-
 		LOGPIXELSX = 88
 		LOGPIXELSY = 90
     ENCODING = 'W' #A or W
@@ -120,32 +118,32 @@ module Roglew
 		class PIXELFORMATDESCRIPTOR < FFI::Struct
 			FLAGS_INV = PFDFlags.to_hash.reduce(Hash.new{ |h,k| h[k] = [] }){ |h,(k,v)| h[v] << k; h }.freeze
 
-			layout :nSize,           :WORD,
-				     :nVersion,        :WORD,
-				     :dwFlags,         :DWORD,
-				     :iPixelType,      :BYTE,
-				     :cColorBits,      :BYTE,
-				     :cRedBits,        :BYTE,
-				     :cRedShift,       :BYTE,
-				     :cGreenBits,      :BYTE,
-				     :cGreenShift,     :BYTE,
-				     :cBlueBits,       :BYTE,
-				     :cBlueShift,      :BYTE,
-				     :cAlphaBits,      :BYTE,
-				     :cAlphaShift,     :BYTE,
-				     :cAccumBits,      :BYTE,
-				     :cAccumRedBits,   :BYTE,
-				     :cAccumGreenBits, :BYTE,
-				     :cAccumBlueBits,  :BYTE,
-				     :cAccumAlphaBits, :BYTE,
-				     :cDepthBits,      :BYTE,
-				     :cStencilBits,    :BYTE,
-				     :cAuxBuffers,     :BYTE,
-				     :iLayerType,      :BYTE,
-				     :bReserved,       :BYTE,
-				     :dwLayerMask,     :DWORD,
-				     :dwVisibleMask,   :DWORD,
-				     :dwDamageMask,    :DWORD
+			layout :nSize,           :uint16,
+				     :nVersion,        :uint16,
+				     :dwFlags,         :uint,
+				     :iPixelType,      :uint8,
+				     :cColorBits,      :uint8,
+				     :cRedBits,        :uint8,
+				     :cRedShift,       :uint8,
+				     :cGreenBits,      :uint8,
+				     :cGreenShift,     :uint8,
+				     :cBlueBits,       :uint8,
+				     :cBlueShift,      :uint8,
+				     :cAlphaBits,      :uint8,
+				     :cAlphaShift,     :uint8,
+				     :cAccumBits,      :uint8,
+				     :cAccumRedBits,   :uint8,
+				     :cAccumGreenBits, :uint8,
+				     :cAccumBlueBits,  :uint8,
+				     :cAccumAlphaBits, :uint8,
+				     :cDepthBits,      :uint8,
+				     :cStencilBits,    :uint8,
+				     :cAuxBuffers,     :uint8,
+				     :iLayerType,      :uint8,
+				     :bReserved,       :uint8,
+				     :dwLayerMask,     :uint,
+				     :dwVisibleMask,   :uint,
+				     :dwDamageMask,    :uint
 
 			undef_method :nSize=
 
@@ -171,7 +169,7 @@ module Roglew
 		#int ChoosePixelFormat(
 		#  HDC hdc,
 		#  const PIXELFORMATDESCRIPTOR *ppfd)
-		attach_function :ChoosePixelFormat, [:HDC, :pointer], :int
+		attach_function :ChoosePixelFormat, [:pointer, :pointer], :int
 
 		#HFONT CreateFont(
 		#  __in  int nHeight,
@@ -194,16 +192,16 @@ module Roglew
 				:int, #nEscapement
 				:int, #nOrientation
 				:int, #fnWeight (Gdi32::FONT_WEIGHTS or number between 0 and 1000)
-				:DWORD, #fdwItalic
-				:DWORD, #fdwUnderline
-				:DWORD, #fdwStrikeOut
-				:DWORD, #fdwCharSet (use Gdi32::FONT_CHARSETS)
-				:DWORD, #fdwOutputPrecision (use Gdi32::FONT_OUTPUT_PRECISION)
-				:DWORD, #fdwClipPrecision (use Gdi32::FONT_CLIP_PRECISION)
-				:DWORD, #fdwQuality (use Gdi32::FONT_QUALITY)
-				:DWORD, #fdwPitchAndFamily (use Gdi32::FONT_FAMILY_PITCH)
+				:uint, #fdwItalic
+				:uint, #fdwUnderline
+				:uint, #fdwStrikeOut
+				:uint, #fdwCharSet (use Gdi32::FONT_CHARSETS)
+				:uint, #fdwOutputPrecision (use Gdi32::FONT_OUTPUT_PRECISION)
+				:uint, #fdwClipPrecision (use Gdi32::FONT_CLIP_PRECISION)
+				:uint, #fdwQuality (use Gdi32::FONT_QUALITY)
+				:uint, #fdwPitchAndFamily (use Gdi32::FONT_FAMILY_PITCH)
 				:string #lpszFace
-			], :HFONT
+			], :pointer
 
 		#BOOL DeleteObject(
 		#  __in  HGDIOBJ hObject)
@@ -214,31 +212,31 @@ module Roglew
 		#  int iPixelFormat,
 		#  UINT nBytes,
 		#  LPPIXELFORMATDESCRIPTOR ppfd)
-		attach_function :DescribePixelFormat, [:HDC, :int, :uint, :pointer], :int
+		attach_function :DescribePixelFormat, [:pointer, :int, :uint, :pointer], :int
 
 		#int GetDeviceCaps(
 		#  __in  HDC hdc,
 		#  __in  int nIndex)
-		attach_function :GetDeviceCaps, [:HDC, :int], :int
+		attach_function :GetDeviceCaps, [:pointer, :int], :int
 
     #int GetPixelFormat(
     #  HDC hdc
     #);
-    attach_function :GetPixelFormat, [:HDC], :int
+    attach_function :GetPixelFormat, [:pointer], :int
 
 		#HGDIOBJ SelectObject(
 		#  __in  HDC hdc,
 		#  __in  HGDIOBJ hgdiobj)
-		attach_function :SelectObject, [:HDC, :pointer], :pointer
+		attach_function :SelectObject, [:pointer, :pointer], :pointer
 
 		#BOOL SetPixelFormat(
 		#  HDC hdc,
 		#  int iPixelFormat,
 		#  const PIXELFORMATDESCRIPTOR *ppfd)
-		attach_function :SetPixelFormat, [:HDC, :int, :pointer], :bool
+		attach_function :SetPixelFormat, [:pointer, :int, :pointer], :bool
 
 		#BOOL SwapBuffers(
 		#  HDC hdc)
-		attach_function :SwapBuffers, [:HDC], :bool
+		attach_function :SwapBuffers, [:pointer], :bool
 	end
 end

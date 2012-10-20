@@ -47,7 +47,7 @@ module Roglew
     end
   end
 
-  def Contextual(context_class)
+  def self.Contextual(context_class)
     Contextual.new(context_class)
   end
 end

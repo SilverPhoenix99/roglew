@@ -17,7 +17,7 @@ module Roglew
   end
 end
 
-require_relative 'gl/constants'
+require_relative 'gl/constants_old'
 require_relative 'gl/functions'
 require_relative 'gl/extensions'
 

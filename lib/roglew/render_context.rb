@@ -1,6 +1,7 @@
 module Roglew
   class RenderContext
-    include Contextual
+    include Roglew::Contextual(nil)
+    include GLObject
 
     GL.functions.each  { |name, *_| class_eval "def gl#{name}(*args) GL.#{name}(*args) end" }
     WGL.functions.each { |name, *_| class_eval "def wgl#{name}(*args) WGL.#{name}(*args) end" }
@@ -8,6 +9,7 @@ module Roglew
     #if version not passed, builds context with latest version
     def initialize(hdc, version = nil)
       @hdc = hdc
+      @attribs = Set[GL::DITHER, GL::MULTISAMPLE]
 
       initialize_pixel_format
 
@@ -63,11 +65,42 @@ module Roglew
       Texture2d.new(self, *args)
     end
 
-    def gen_textures(count = 1)
-      p = FFI::MemoryPointer.new(:uint, count)
-      glGenTextures(count, p)
-      ids = p.read_array_of_uint(count)
-      count == 1 ? ids[0] : ids
+    def_gen :textures, :glGenTextures
+    def_delete :textures, :glDeleteTextures
+
+    def begin(mode, &block)
+      glBegin(mode)
+      return unless block_given?
+      ergo &block
+      glEnd
+    end
+
+    %w'points lines line_strip line_loop triangles triangle_strip triangle_fan quads quad_strip polygon'.each do |v|
+      class_eval("def #{v}(&block) self.begin(GL::#{v.upcase}, &block) end")
+    end
+
+    def clear(*flags)
+      glClear(flags.reduce(&:|))
+    end
+
+    def disable(*caps)
+      caps = Set[*caps] & @attribs
+      caps.each do |cap|
+        glDisable(cap)
+        @attribs.delete(cap)
+      end
+      return unless block_given?
+      yield
+      enable(caps)
+    end
+
+    def enable(*caps)
+      caps = Set[*caps] - @attribs
+      caps.each { |cap| glEnable(cap) }
+      @attribs.merge(caps)
+      return unless block_given?
+      yield
+      disable(*caps)
     end
 
     def get_errors
@@ -85,8 +118,31 @@ module Roglew
       count == 1 ? result[0] : result
     end
 
+    def get_shader(shader, pname)
+      p = FFI::MemoryPointer.new(:int)
+      glGetShaderiv(shader.id, pname, p)
+      result = p.read_int
+      [GL::DELETE_STATUS, GL::COMPILE_STATUS].include?(pname) ? result == GL::TRUE : result
+    end
+
+    def get_shader_info_log(shader)
+      length = shader.info_log_length
+      p = FFI::MemoryPointer.new(:char, length)
+      glGetShaderInfoLog(shader.id, length, nil, p)
+      p.read_string
+    end
+
+    def shader_sources(shader, *srcs)
+      ps = FFI::MemoryPointer.new(:string, srcs.length)
+      ps.write_array_of_pointer(srcs.map { |src| FFI::MemoryPointer.from_string(src) })
+      pl = FFI::MemoryPointer.new(:int, srcs.length)
+      pl.write_array_of_int(srcs.map { |src| src.length })
+      glShaderSource(shader.id, srcs.length, ps, pl)
+      nil
+    end
+
     def swap_buffers
-      Gdi32.swap_buffers(@hdc)
+      Gdi32.SwapBuffers(@hdc)
     end
 
     def tex_parameter(target, pname, *params)
@@ -138,10 +194,11 @@ module Roglew
       ptr_attribs.write_array_of_int(attribs)
 
       #HGLRC wglCreateContextAttribsARB(HDC hDC, HGLRC hShareContext, const int* attribList)
-      create_context_attribs.(@hdc, nil, ptr_attribs)
+       create_context_attribs.(@hdc, nil, ptr_attribs)
     end
 
     def load_core_extensions
+      #TODO load as extension CL_core_*_*
       GL.extensions.select { |name, _| name.is_a?(Array) && (name <=> @version) <= 0 }.
         each do |_, functions|
           functions.each do |name, parameters, ret_type|

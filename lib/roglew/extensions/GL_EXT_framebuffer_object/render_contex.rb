@@ -1,5 +1,15 @@
 module GL_EXT_framebuffer_object
   module RenderContext
+    include GLObject
+
+    def create_framebufferEXT(*args)
+      FramebufferEXT.new(self, *args)
+    end
+
+    def create_renderbufferEXT(*args)
+      RenderbufferEXT.new(self, *args)
+    end
+
     [
       #void glGetFramebufferAttachmentParameterivEXT(enum target, enum attachment, enum pname, int *params);
       [:framebuffer_attachment_parameterEXT, :glGetFramebufferAttachmentParameterivEXT],
@@ -15,39 +25,13 @@ module GL_EXT_framebuffer_object
     end
 
     [
-      #void glGenFramebuffersEXT(GLsizei n, GLuint* framebuffers)
-      [:gen_framebuffersEXT, :glGenFramebuffersEXT],
-      #void glGenRenderbuffersEXT(GLsizei n, GLuint* renderbuffers)
-      [:gen_renderbuffersEXT, :glGenRenderbuffersEXT],
-    ].each do |method_name, function_name|
-      define_method(method_name, ->(count = 1) do
-        ptr = FFI::MemoryPointer.new(:uint, count)
-        public_send(function_name, count, ptr)
-        ids = ptr.read_array_of_uint(count)
-        count == 1 ? ids[0] : ids
-      end)
-    end
+      [:framebuffersEXT, :glGenFramebuffersEXT],   #void glGenFramebuffersEXT(GLsizei n, GLuint* framebuffers)
+      [:renderbuffersEXT, :glGenRenderbuffersEXT], #void glGenRenderbuffersEXT(GLsizei n, GLuint* renderbuffers)
+    ].each { |method_name, function_name| def_gen method_name, function_name }
 
     [
-      #void glDeleteFramebuffersEXT(GLsizei n, const GLuint* framebuffers)
-      [:delete_framebuffersEXT, :glDeleteFramebuffersEXT],
-      #void glDeleteRenderbuffers(GLsizei n, const GLuint* renderbuffers)
-      [:delete_renderbuffersEXT, :glDeleteRenderbuffersEXT],
-    ].each do |method_name, function_name|
-      define_method(method_name) do |*args|
-        args = args.flatten
-        ptr = FFI::MemoryPointer.new(:uint, args.length)
-        ptr.write_array_of_uint(args)
-        public_send(function_name, ptr)
-      end
-    end
-
-    def create_framebufferEXT(*args)
-      FramebufferEXT.new(self, *args)
-    end
-
-    def create_renderbufferEXT(*args)
-      RenderbufferEXT.new(self, *args)
-    end
+      [:framebuffersEXT, :glDeleteFramebuffersEXT],   #void glDeleteFramebuffersEXT(GLsizei n, const GLuint* framebuffers)
+      [:renderbuffersEXT, :glDeleteRenderbuffersEXT], #void glDeleteRenderbuffers(GLsizei n, const GLuint* renderbuffers)
+    ].each { |method_name, function_name| def_delete method_name, function_name }
   end
 end

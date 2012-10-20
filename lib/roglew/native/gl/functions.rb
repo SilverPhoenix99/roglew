@@ -2,7 +2,7 @@ Roglew::GL.instance_eval do
   @functions = [
     [ :Accum, [ :uint, :float ], :void ],
     [ :AlphaFunc, [ :uint, :float ], :void ],
-    [ :AreTexturesResident, [ :int, :pointer, :pointer ], :uchar ],
+    [ :AreTexturesResident, [ :int, :pointer, :pointer ], :bool ],
     [ :ArrayElement, [ :int ], :void ],
     [ :Begin, [ :uint ], :void ],
     [ :BindTexture, [ :uint, :uint ], :void ],
