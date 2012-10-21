@@ -1,0 +1,7 @@
+module Roglew
+  module GL
+    ELEMENT_ARRAY_APPLE         = 0x8A0C
+    ELEMENT_ARRAY_POINTER_APPLE = 0x8A0E
+    ELEMENT_ARRAY_TYPE_APPLE    = 0x8A0D
+  end
+end

@@ -96,7 +96,7 @@ module GL_core_2_0
               [:glVertexAttrib4ubv,         [:uint, :pointer],                                            :void],
               [:glVertexAttrib4uiv,         [:uint, :pointer],                                            :void],
               [:glVertexAttrib4usv,         [:uint, :pointer],                                            :void],
-              [:glVertexAttribPointer,      [:uint, :int, :uint, :bool, :int, :pointer],                 :void]
+              [:glVertexAttribPointer,      [:uint, :int, :uint, :bool, :int, :pointer],                  :void]
 
     def create_program(*args)
       ShaderProgram.new(self, *args)
