@@ -1,2 +1,6 @@
-%w'gl_constants
-'.each { |f| require "roglew/extensions/GL_3DFX_texture_compression_FXT1/#{f}" }
+module Roglew
+  module GL
+    COMPRESSED_RGB_FXT1_3DFX  = 0x86B0
+    COMPRESSED_RGBA_FXT1_3DFX = 0x86B1
+  end
+end

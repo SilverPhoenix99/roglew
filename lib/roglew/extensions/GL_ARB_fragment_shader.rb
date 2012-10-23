@@ -1,0 +1,7 @@
+module Roglew
+  module GL
+    FRAGMENT_SHADER_ARB                 = 0x8B30
+    FRAGMENT_SHADER_DERIVATIVE_HINT_ARB = 0x8B8B
+    MAX_FRAGMENT_UNIFORM_COMPONENTS_ARB = 0x8B49
+  end
+end

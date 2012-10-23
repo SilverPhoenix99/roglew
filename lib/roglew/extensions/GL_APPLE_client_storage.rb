@@ -1,2 +1,5 @@
-%w'gl_constants
-'.each { |f| require "roglew/extensions/GL_APPLE_client_storage/#{f}" }
+module Roglew
+  module GL
+    UNPACK_CLIENT_STORAGE_APPLE = 0x85B2
+  end
+end

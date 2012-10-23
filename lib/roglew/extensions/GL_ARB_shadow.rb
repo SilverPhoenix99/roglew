@@ -1,0 +1,7 @@
+module Roglew
+  module GL
+    COMPARE_R_TO_TEXTURE_ARB = 0x884E
+    TEXTURE_COMPARE_FUNC_ARB = 0x884D
+    TEXTURE_COMPARE_MODE_ARB = 0x884C
+  end
+end

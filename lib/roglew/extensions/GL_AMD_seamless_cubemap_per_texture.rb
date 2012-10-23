@@ -1,2 +1,5 @@
-%w'gl_constants
-'.each { |f| require "roglew/extensions/GL_AMD_seamless_cubemap_per_texture/#{f}" }
+module Roglew
+  module GL
+    TEXTURE_CUBE_MAP_SEAMLESS_ARB = 0x884F
+  end
+end

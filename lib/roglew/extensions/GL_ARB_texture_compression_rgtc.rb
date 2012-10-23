@@ -1,0 +1,8 @@
+module Roglew
+  module GL
+    COMPRESSED_RED_RGTC1        = 0x8DBB
+    COMPRESSED_RG_RGTC2         = 0x8DBD
+    COMPRESSED_SIGNED_RED_RGTC1 = 0x8DBC
+    COMPRESSED_SIGNED_RG_RGTC2  = 0x8DBE
+  end
+end

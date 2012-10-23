@@ -1,19 +1,46 @@
-require 'roglew/extensions/GL_EXT_framebuffer_object/render_context'
-
 module GL_ARB_framebuffer_object
-  def self.on_load(ctx)
-    GL_EXT_framebuffer_object.on_load(ctx)
+  module RenderContext
+    include GLExtension
 
-    [
-      #void glBlitFramebuffer(GLint srcX0, GLint srcY0, GLint srcX1, GLint srcY1, GLint dstX0, GLint dstY0, GLint dstX1, GLint dstY1, GLbitfield mask, GLenum filter)
-      [:blit_framebuffer, :glBlitFramebuffer, [:GLint]*8 << :GLbitfield << :GLenum, :void],
-      #void glFramebufferTextureLayer(GLenum target,GLenum attachment, GLuint texture,GLint level,GLint layer)
-      [:framebuffer_texture_layer, :glFramebufferTextureLayer, ([:GLenum]*2 << :GLuint) + [:GLint]*2, :void],
-      #void glRenderbufferStorageMultisample(GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height)
-      [:renderbuffer_storage_multisample, :glRenderbufferStorageMultisample, [:GLenum, :GLsizei, :GLenum, :GLsizei, :GLsizei], :void],
-    ].each { |f| ctx.def_function *f }
+    functions [:glBindFramebuffer, [ :uint, :uint ], :void],
+              [:glBindRenderbuffer, [ :uint, :uint ], :void],
+              [:glBlitFramebuffer, [ :int, :int, :int, :int, :int, :int, :int, :int, :uint, :uint ], :void],
+              [:glCheckFramebufferStatus, [ :uint ], :uint],
+              [:glDeleteFramebuffers, [ :int, :pointer ], :void],
+              [:glDeleteRenderbuffers, [ :int, :pointer ], :void],
+              [:glFramebufferRenderbuffer, [ :uint, :uint, :uint, :uint ], :void],
+              [:glFramebufferTexture1D, [ :uint, :uint, :uint, :uint, :int ], :void],
+              [:glFramebufferTexture2D, [ :uint, :uint, :uint, :uint, :int ], :void],
+              [:glFramebufferTexture3D, [ :uint, :uint, :uint, :uint, :int, :int ], :void],
+              [:glFramebufferTextureLayer, [ :uint, :uint, :uint, :int, :int ], :void],
+              [:glGenerateMipmap, [ :uint ], :void],
+              [:glGenFramebuffers, [ :int, :pointer ], :void],
+              [:glGenRenderbuffers, [ :int, :pointer ], :void],
+              [:glGetFramebufferAttachmentParameteriv, [ :uint, :uint, :uint, :pointer ], :void],
+              [:glGetRenderbufferParameteriv, [ :uint, :uint, :pointer ], :void],
+              [:glIsFramebuffer, [ :uint ], :uchar],
+              [:glIsRenderbuffer, [ :uint ], :uchar],
+              [:glRenderbufferStorage, [ :uint, :uint, :int, :int ], :void],
+              [:glRenderbufferStorageMultisample, [ :uint, :int, :uint, :int, :int ], :void]
   end
 end
+
+#require 'roglew/extensions/GL_EXT_framebuffer_object/render_context'
+#
+#module GL_ARB_framebuffer_object
+#  def self.on_load(ctx)
+#    GL_EXT_framebuffer_object.on_load(ctx)
+#
+#    [
+#      #void glBlitFramebuffer(GLint srcX0, GLint srcY0, GLint srcX1, GLint srcY1, GLint dstX0, GLint dstY0, GLint dstX1, GLint dstY1, GLbitfield mask, GLenum filter)
+#      [:blit_framebuffer, :glBlitFramebuffer, [:GLint]*8 << :GLbitfield << :GLenum, :void],
+#      #void glFramebufferTextureLayer(GLenum target,GLenum attachment, GLuint texture,GLint level,GLint layer)
+#      [:framebuffer_texture_layer, :glFramebufferTextureLayer, ([:GLenum]*2 << :GLuint) + [:GLint]*2, :void],
+#      #void glRenderbufferStorageMultisample(GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height)
+#      [:renderbuffer_storage_multisample, :glRenderbufferStorageMultisample, [:GLenum, :GLsizei, :GLenum, :GLsizei, :GLsizei], :void],
+#    ].each { |f| ctx.def_function *f }
+#  end
+#end
 
 #module GL_ARB_framebuffer_object
 #  include GL_EXT_framebuffer_object
