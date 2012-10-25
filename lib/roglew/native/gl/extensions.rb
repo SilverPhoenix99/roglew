@@ -113,7 +113,7 @@ module Roglew
         [:glWindowPos3sv, [ :pointer ], :void],	],
       [1, 5] => [	[:glBeginQuery, [ :uint, :uint ], :void],
         [:glBindBuffer, [ :uint, :uint ], :void],
-        [:glBufferData, [ :uint, :int64, :pointer, :uint ], :void],
+        [:glBufferData, [ :uint, :int, :pointer, :uint ], :void],
         [:glBufferSubData, [ :uint, :int64, :int64, :pointer ], :void],
         [:glDeleteBuffers, [ :int, :pointer ], :void],
         [:glDeleteQueries, [ :int, :pointer ], :void],

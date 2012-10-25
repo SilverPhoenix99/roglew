@@ -106,7 +106,7 @@ module Roglew
     def get_errors
       errors = []
       while (error = glGetError) != 0
-        errors << error
+        errors << GL::ERROR[error] || error
       end
       errors
     end
