@@ -39,13 +39,13 @@ module GL_ARB_vertex_buffer_object
     include GLExtension
 
     functions [:glBindBufferARB, [ :uint, :uint ], :void],
-              [:glBufferDataARB, [ :uint, :int64, :pointer, :uint ], :void],
-              [:glBufferSubDataARB, [ :uint, :int64, :int64, :pointer ], :void],
+              [:glBufferDataARB, [ :uint, :size_t, :pointer, :uint ], :void],
+              [:glBufferSubDataARB, [ :uint, :size_t, :size_t, :pointer ], :void],
               [:glDeleteBuffersARB, [ :int, :pointer ], :void],
               [:glGenBuffersARB, [ :int, :pointer ], :void],
               [:glGetBufferParameterivARB, [ :uint, :uint, :pointer ], :void],
               [:glGetBufferPointervARB, [ :uint, :uint, :pointer ], :void],
-              [:glGetBufferSubDataARB, [ :uint, :int64, :int64, :pointer ], :void],
+              [:glGetBufferSubDataARB, [ :uint, :size_t, :size_t, :pointer ], :void],
               [:glIsBufferARB, [ :uint ], :uchar],
               [:glMapBufferARB, [ :uint, :uint ], :pointer],
               [:glUnmapBufferARB, [ :uint ], :uchar]

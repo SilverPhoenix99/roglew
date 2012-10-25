@@ -1,2 +1,8 @@
-%w'gl_constants
-'.each { |f| require "roglew/extensions/GL_core_4_2/#{f}" }
+module Roglew
+  module GL
+    COMPRESSED_RGB_BPTC_SIGNED_FLOAT   = 0x8E8E
+    COMPRESSED_RGB_BPTC_UNSIGNED_FLOAT = 0x8E8F
+    COMPRESSED_RGBA_BPTC_UNORM         = 0x8E8C
+    COMPRESSED_SRGB_ALPHA_BPTC_UNORM   = 0x8E8D
+  end
+end

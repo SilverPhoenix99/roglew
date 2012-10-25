@@ -1,2 +1,6 @@
-%w'gl_constants
-'.each { |f| require "roglew/extensions/GL_core_4_3/#{f}" }
+module Roglew
+  module GL
+    NUM_SHADING_LANGUAGE_VERSIONS = 0x82E9
+    VERTEX_ATTRIB_ARRAY_LONG      = 0x874E
+  end
+end
