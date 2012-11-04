@@ -22,6 +22,7 @@ end
   native/kernel32
   native/gdi32
   contextual
+  gl_extension
   gl_object
   native/native_object
   native/gl

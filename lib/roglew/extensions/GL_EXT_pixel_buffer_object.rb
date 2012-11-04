@@ -6,12 +6,3 @@ module Roglew
     PIXEL_UNPACK_BUFFER_EXT         = 0x88EC
   end
 end
-
-module GL_EXT_pixel_buffer_object
-  module RenderContext
-    include Roglew::GLExtension
-
-    functions
-  end
-end
-

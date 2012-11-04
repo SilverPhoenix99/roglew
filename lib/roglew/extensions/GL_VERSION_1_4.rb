@@ -43,7 +43,7 @@ module Roglew
   end
 end
 
-module GL_core_1_4
+module GL_VERSION_1_4
   module RenderContext
     include Roglew::GLExtension
 

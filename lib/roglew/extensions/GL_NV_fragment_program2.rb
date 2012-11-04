@@ -7,12 +7,3 @@ module Roglew
     MAX_PROGRAM_LOOP_DEPTH_NV        = 0x88F7
   end
 end
-
-module GL_NV_fragment_program2
-  module RenderContext
-    include Roglew::GLExtension
-
-    functions
-  end
-end
-

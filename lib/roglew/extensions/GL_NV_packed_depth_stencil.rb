@@ -4,12 +4,3 @@ module Roglew
     UNSIGNED_INT_24_8_NV = 0x84FA
   end
 end
-
-module GL_NV_packed_depth_stencil
-  module RenderContext
-    include Roglew::GLExtension
-
-    functions
-  end
-end
-

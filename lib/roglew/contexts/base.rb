@@ -47,10 +47,8 @@ module Roglew
 
     def included(c)
       super
-      c.instance_eval do
-        include BaseContextModule
-        alias_method :obj, @obj_type
-      end
+      c.send(:include, BaseContextModule)
+      c.send(:alias_method, @obj_type, :obj)
     end
   end
 

@@ -6,12 +6,3 @@ module Roglew
     TEXTURE_RECTANGLE_NV          = 0x84F5
   end
 end
-
-module GL_NV_texture_rectangle
-  module RenderContext
-    include Roglew::GLExtension
-
-    functions
-  end
-end
-

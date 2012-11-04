@@ -6,12 +6,3 @@ module Roglew
     UNPACK_CMYK_HINT_EXT = 0x800F
   end
 end
-
-module GL_EXT_cmyka
-  module RenderContext
-    include Roglew::GLExtension
-
-    functions
-  end
-end
-

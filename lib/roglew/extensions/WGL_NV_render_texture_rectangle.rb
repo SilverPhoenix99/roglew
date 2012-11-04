@@ -3,6 +3,5 @@ module Roglew
     BIND_TO_TEXTURE_RECTANGLE_RGB_NV  = 0x20A0
     BIND_TO_TEXTURE_RECTANGLE_RGBA_NV = 0x20A1
     TEXTURE_RECTANGLE_NV              = 0x20A2
-
   end
 end

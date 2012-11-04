@@ -2,7 +2,6 @@ module Roglew
   module GL
     TEXTURE_COVERAGE_SAMPLES_NV = 0x9045
     TEXTURE_COLOR_SAMPLES_NV    = 0x9046
-
   end
 end
 

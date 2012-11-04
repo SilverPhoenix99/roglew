@@ -1,8 +1,3 @@
-%w'shader
-shader_program
-render_context
-'.each { |f| require "roglew/extensions/GL_core_2_0/#{f}" }
-
 module Roglew
   module GL
     ACTIVE_ATTRIBUTE_MAX_LENGTH      = 0x8B8A
@@ -11,6 +6,7 @@ module Roglew
     ACTIVE_UNIFORMS                  = 0x8B86
     ATTACHED_SHADERS                 = 0x8B85
     BLEND_EQUATION_ALPHA             = 0x883D
+    BLEND_EQUATION                   = 0x8009
     BLEND_EQUATION_RGB               = BLEND_EQUATION
     BOOL                             = 0x8B56
     BOOL_VEC2                        = 0x8B57
@@ -92,10 +88,17 @@ module Roglew
   end
 end
 
-module GL_core_2_0
+module GL_VERSION_2_0
   module RenderContext
     include Roglew::GLExtension
-    #TODO include GLObject
+
+    def create_program(*args)
+      Roglew::ShaderProgram.new(self, *args)
+    end
+
+    def create_shader(*args)
+      Roglew::Shader.new(self, *args)
+    end
 
     functions	[:glAttachShader,             [:uint, :uint],                                               :void],
               [:glBindAttribLocation,       [:uint, :uint, :string],                                      :void],
@@ -192,3 +195,7 @@ module GL_core_2_0
               [:glVertexAttribPointer,      [:uint, :int, :uint, :bool, :int, :pointer],                  :void]
   end
 end
+
+%w'shader
+shader_program
+'.each { |f| require "#{File.expand_path(__FILE__)[0..-4]}/#{f}" }

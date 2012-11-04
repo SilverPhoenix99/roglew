@@ -1,4 +1,23 @@
 module Roglew
+  module ImmediateRenderbufferContextEXT
+    %w{width
+    height
+    internal_format
+    red_size
+    green_size
+    blue_size
+    alpha_size
+    depth_size
+    stencil_size}.each do |n|
+      class_eval "
+        def #{n}()
+          context.instance_variable_set(
+            :@#{n},
+            context.renderbuffer_parameterEXT(GL::RENDERBUFFER_EXT, GL::RENDERBUFFER_#{n.upcase}_EXT))
+        end"
+    end
+  end
+
   class RenderbufferContextEXT
     include Roglew::BaseContext(:renderbuffer)
 
@@ -19,25 +38,6 @@ module Roglew
 
     def unbind
       context.glBindRenderbufferEXT(GL::RENDERBUFFER_EXT, 0)
-    end
-  end
-
-  module ImmediateRenderbufferContextEXT
-    %w{width
-    height
-    internal_format
-    red_size
-    green_size
-    blue_size
-    alpha_size
-    depth_size
-    stencil_size}.each do |n|
-      class_eval "
-        def #{n}()
-          context.instance_variable_set(
-            :@#{n},
-            context.renderbuffer_parameterEXT(GL::RENDERBUFFER_EXT, GL::RENDERBUFFER_#{n.upcase}_EXT))
-        end"
     end
   end
 end

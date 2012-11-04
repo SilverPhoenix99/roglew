@@ -20,7 +20,7 @@ module Roglew
   end
 end
 
-module GL_core_4_0
+module GL_VERSION_4_0
   module RenderContext
     include Roglew::GLExtension
 

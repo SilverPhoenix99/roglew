@@ -13,6 +13,7 @@ module Roglew
     CLIP_DISTANCE3                                = CLIP_PLANE3
     CLIP_DISTANCE4                                = CLIP_PLANE4
     CLIP_DISTANCE5                                = CLIP_PLANE5
+    COMPARE_R_TO_TEXTURE_ARB                      = 0x884E
     COMPARE_REF_TO_TEXTURE                        = COMPARE_R_TO_TEXTURE_ARB
     COMPRESSED_RED                                = 0x8225
     COMPRESSED_RG                                 = 0x8226
@@ -110,7 +111,7 @@ module Roglew
   end
 end
 
-module GL_core_3_0
+module GL_VERSION_3_0
   module RenderContext
     include Roglew::GLExtension
 

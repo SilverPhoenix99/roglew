@@ -5,13 +5,9 @@ module Roglew
 
     @registered_extensions = {}
 
-    GL.functions.each  { |name, *_| class_eval "def gl#{name}(*args) GL.#{name}(*args) end" }
-    WGL.functions.each { |name, *_| class_eval "def wgl#{name}(*args) WGL.#{name}(*args) end" }
-
     #if version not passed, builds context with latest version
     def initialize(hdc, version = nil)
       @hdc = hdc
-      @attribs = Set[GL::DITHER, GL::MULTISAMPLE]
 
       initialize_pixel_format
 
@@ -25,11 +21,15 @@ module Roglew
         raise ArgumentError, "unsupported version #{version.join('.')}" if version && (max_version <=> version < 0)
 
         @version = version || max_version
+        @loaded_extensions = Set.new
+        core_extension_list.each { |ext| load_extension(ext) }
+
         old_hrc, @hrc = @hrc, upgrade_context if @version[0] > 2
 
-        @loaded_extensions = Set.new
-        (core_extension_list + gl_extension_list + platform_extension_list).each { |ext| load_extension(ext) }
+        (gl_extension_list + platform_extension_list).each { |ext| load_extension(ext) }
       end
+
+      @attribs = Set[GL::DITHER, GL::MULTISAMPLE]
 
       wglDeleteContext(old_hrc) if old_hrc
 
@@ -48,7 +48,8 @@ module Roglew
 
       unless Object.const_defined?(ext)
         reg = self.class.instance_variable_get(:@registered_extensions)
-        require reg[ext] || File.expand_path("../extensions/#{ext}", __FILE__)
+        filename = reg[ext] || File.expand_path("../extensions/#{ext}.rb", __FILE__)
+        require filename if File.exists?(filename)
       end
 
       return unless Object.const_defined?(ext)
@@ -211,8 +212,9 @@ module Roglew
     end
 
     def upgrade_context
-      create_context_attribs = WGL.get_function(:WGL_ARB_create_context, :wglCreateContextAttribsARB)
-      raise 'undefined function wglCreateContextAttribsARB' unless create_context_attribs
+      load_extension(:WGL_ARB_create_context)
+
+      raise 'undefined function wglCreateContextAttribsARB' unless respond_to?(:wglCreateContextAttribsARB)
 
       attribs = [WGL::CONTEXT_MAJOR_VERSION_ARB, @version[0],
                  WGL::CONTEXT_MINOR_VERSION_ARB, @version[1],
@@ -221,14 +223,13 @@ module Roglew
       ptr_attribs = FFI::MemoryPointer.new(:int, attribs.length)
       ptr_attribs.write_array_of_int(attribs)
 
-      #HGLRC wglCreateContextAttribsARB(HDC hDC, HGLRC hShareContext, const int* attribList)
-       create_context_attribs.(@hdc, nil, ptr_attribs)
+      wglCreateContextAttribsARB(@hdc, nil, ptr_attribs)
     end
 
     def core_extension_list
-      Dir["#{File.expand_path('../extensions', __FILE__)}/GL_core_*.rb"].
+      Dir["#{File.expand_path('../extensions', __FILE__)}/GL_VERSION_*.rb"].
         map! { |f| File.basename(f, '.rb') }.
-        select! { |f| (f[8..-1].split('_', 2).map!(&:to_i) <=> @version) <= 0 }
+        select! { |f| (f.gsub('GL_VERSION_', '').split('_', 2).map!(&:to_i) <=> @version) <= 0 }
     end
 
     def gl_extension_list
@@ -240,9 +241,9 @@ module Roglew
     end
 
     def platform_extension_list
-      if (func = WGL.get_function(:WGL_ARB_extensions_string, :wglGetExtensionsStringARB))
+      if (func = WGL.get_function(:wglGetExtensionsStringARB, [:pointer], :string))
         func.(@hdc)
-      elsif (func = WGL.get_function(:WGL_EXT_extensions_string, :wglGetExtensionsStringEXT))
+      elsif (func = WGL.get_function(:wglGetExtensionsStringEXT, [], :string))
         func.()
       else
         ''

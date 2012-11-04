@@ -1,10 +1,3 @@
-%w'renderbuffer_context
-renderbuffer
-framebuffer_context
-framebuffer
-render_context
-'.each { |f| require "roglew/extensions/GL_ARB_framebuffer_object/#{f}" }
-
 module Roglew
   module GL
     COLOR_ATTACHMENT0                            = 0x8CE0
@@ -72,7 +65,7 @@ module Roglew
     RENDERBUFFER_SAMPLES                         = 0x8CAB
     RENDERBUFFER_STENCIL_SIZE                    = 0x8D55
     RENDERBUFFER_WIDTH                           = 0x8D42
-    SRGB                                         = 0x8C40
+    SRGB                                         = 0x8C40 unless const_defined?(:SRGB)
     STENCIL_ATTACHMENT                           = 0x8D20
     STENCIL_INDEX1                               = 0x8D46
     STENCIL_INDEX16                              = 0x8D49
@@ -82,11 +75,18 @@ module Roglew
     UNSIGNED_INT_24_8                            = 0x84FA
     UNSIGNED_NORMALIZED                          = 0x8C17
   end
+
+  class TextureContext
+    def generate_mipmap
+      make_call(:glGenerateMipmap, @target)
+    end
+  end
 end
 
 module GL_ARB_framebuffer_object
   module RenderContext
     include Roglew::GLExtension
+    include Roglew::GLObject
 
     functions [:glBindFramebuffer, [ :uint, :uint ], :void],
               [:glBindRenderbuffer, [ :uint, :uint ], :void],
@@ -108,5 +108,46 @@ module GL_ARB_framebuffer_object
               [:glIsRenderbuffer, [ :uint ], :uchar],
               [:glRenderbufferStorage, [ :uint, :uint, :int, :int ], :void],
               [:glRenderbufferStorageMultisample, [ :uint, :int, :uint, :int, :int ], :void]
+
+    def create_framebuffer(*args)
+      Roglew::FramebufferARB.new(self, *args)
+    end
+
+    def create_renderbuffer(*args)
+      Roglew::RenderbufferARB.new(self, *args)
+    end
+
+    [
+      #void glGetFramebufferAttachmentParameteriv(enum target, enum attachment, enum pname, int *params);
+      [:framebuffer_attachment_parameter, :glGetFramebufferAttachmentParameteriv],
+      #void glGetRenderbufferParameteriv(enum target, enum pname, int *params);
+      [:renderbuffer_parameter, :glGetRenderbufferParameteriv],
+    ].each do |method_name, function_name|
+      #call without pointer parameter (int *params)
+      define_method(method_name) do |*args|
+        ptr = FFI::MemoryPointer.new(:int)
+        public_send(function_name, *(args << ptr))
+        ptr.read_int
+      end
+    end
+
+    [
+      #void glGenFramebuffers(GLsizei n, GLuint* framebuffers)
+      #void glDeleteFramebuffers(GLsizei n, const GLuint* framebuffers)
+      [:framebuffers, :glGenFramebuffers, :glDeleteFramebuffers],
+
+      #void glGenRenderbuffers(GLsizei n, GLuint* renderbuffers)
+      #void glDeleteRenderbuffers(GLsizei n, const GLuint* renderbuffers)
+      [:renderbuffers, :glGenRenderbuffers, :glDeleteRenderbuffers],
+    ].each do |method_name, gen_function_name, del_function_name|
+      def_gen method_name, gen_function_name
+      def_delete method_name, del_function_name
+    end
   end
 end
+
+%w'renderbuffer_context
+renderbuffer
+framebuffer_context
+framebuffer
+'.each { |f| require "#{File.expand_path(__FILE__)[0..-4]}/#{f}" }

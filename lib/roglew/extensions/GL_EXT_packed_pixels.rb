@@ -7,12 +7,3 @@ module Roglew
     UNSIGNED_SHORT_5_5_5_1_EXT  = 0x8034
   end
 end
-
-module GL_EXT_packed_pixels
-  module RenderContext
-    include Roglew::GLExtension
-
-    functions
-  end
-end
-

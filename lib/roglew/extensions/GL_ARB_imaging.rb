@@ -1,7 +1,7 @@
 module Roglew
   module GL
     BLEND_COLOR                         = 0x8005
-    BLEND_EQUATION                      = 0x8009
+    BLEND_EQUATION                      = 0x8009 unless const_defined?(:BLEND_EQUATION)
     COLOR_MATRIX                        = 0x80B1
     COLOR_MATRIX_STACK_DEPTH            = 0x80B2
     COLOR_TABLE                         = 0x80D0

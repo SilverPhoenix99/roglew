@@ -75,12 +75,3 @@ module Roglew
     VIBRANCE_SCALE_NV                         = 0x8713
   end
 end
-
-module GL_NV_texture_shader
-  module RenderContext
-    include Roglew::GLExtension
-
-    functions
-  end
-end
-

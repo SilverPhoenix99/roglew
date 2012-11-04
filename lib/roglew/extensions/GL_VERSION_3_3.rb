@@ -1,4 +1,4 @@
-module GL_core_3_3
+module GL_VERSION_3_3
   module RenderContext
     include Roglew::GLExtension
 

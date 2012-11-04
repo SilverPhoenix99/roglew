@@ -1,7 +1,7 @@
 module Roglew
   module GL
-    COMPRESSED_RED = 0x8225
-    COMPRESSED_RG  = 0x8226
+    COMPRESSED_RED = 0x8225 unless const_defined?(:COMPRESSED_RED)
+    COMPRESSED_RG  = 0x8226 unless const_defined?(:COMPRESSED_RG)
     R16            = 0x822A
     R16F           = 0x822D
     R16I           = 0x8233

@@ -30,12 +30,3 @@ module Roglew
     COMPRESSED_SRGB8_ALPHA8_ASTC_8x8_KHR   = 0x93D7
   end
 end
-
-module GL_KHR_texture_compression_astc_ldr
-  module RenderContext
-    include Roglew::GLExtension
-
-    functions
-  end
-end
-

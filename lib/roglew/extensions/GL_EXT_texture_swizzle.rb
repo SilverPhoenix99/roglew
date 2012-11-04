@@ -7,12 +7,3 @@ module Roglew
     TEXTURE_SWIZZLE_RGBA_EXT = 0x8E46
   end
 end
-
-module GL_EXT_texture_swizzle
-  module RenderContext
-    include Roglew::GLExtension
-
-    functions
-  end
-end
-

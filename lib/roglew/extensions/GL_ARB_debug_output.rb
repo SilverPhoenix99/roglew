@@ -22,18 +22,16 @@ module Roglew
     DEBUG_TYPE_UNDEFINED_BEHAVIOR_ARB    = 0x824E
     MAX_DEBUG_LOGGED_MESSAGES_ARB        = 0x9144
     MAX_DEBUG_MESSAGE_LENGTH_ARB         = 0x9143
+
+    GLDEBUGPROCARB = callback :GLDEBUGPROCARB, [ :uint, :uint, :uint, :uint, :int, :string, :pointer ], :void
   end
 end
 
 module GL_ARB_debug_output
-  include Roglew::GL::Native
-
-  GLDEBUGPROCARB = callback :GLDEBUGPROCARB, [ :uint, :uint, :uint, :uint, :int, :string, :pointer ], :void
-
   module RenderContext
     include Roglew::GLExtension
 
-    functions [:glDebugMessageCallbackARB, [ GLDEBUGPROCARB, :pointer ], :void],
+    functions [:glDebugMessageCallbackARB, [ Roglew::GL::GLDEBUGPROCARB, :pointer ], :void],
               [:glDebugMessageControlARB, [ :uint, :uint, :uint, :int, :pointer, :uchar ], :void],
               [:glDebugMessageInsertARB, [ :uint, :uint, :uint, :uint, :int, :string ], :void],
               [:glGetDebugMessageLogARB, [ :uint, :int, :pointer, :pointer, :pointer, :pointer, :pointer, :string ], :uint]

@@ -4,12 +4,3 @@ module Roglew
     CG_VERTEX_SHADER_EXT   = 0x890E
   end
 end
-
-module GL_EXT_Cg_shader
-  module RenderContext
-    include Roglew::GLExtension
-
-    functions
-  end
-end
-

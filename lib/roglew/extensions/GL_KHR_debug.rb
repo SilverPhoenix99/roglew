@@ -40,18 +40,16 @@ module Roglew
     SHADER                           = 0x82E1
     STACK_OVERFLOW                   = 0x0503
     STACK_UNDERFLOW                  = 0x0504
+
+    GLDEBUGPROC = callback :GLDEBUGPROC, [ :uint, :uint, :uint, :uint, :int, :string, :pointer ], :void
   end
 end
 
 module GL_KHR_debug
-  include Roglew::GL::Native
-
-  GLDEBUGPROC = callback :GLDEBUGPROC, [ :uint, :uint, :uint, :uint, :int, :string, :pointer ], :void
-
   module RenderContext
     include Roglew::GLExtension
 
-    functions [:glDebugMessageCallback, [ GLDEBUGPROC, :pointer ], :void],
+    functions [:glDebugMessageCallback, [ Roglew::GL::GLDEBUGPROC, :pointer ], :void],
               [:glDebugMessageControl, [ :uint, :uint, :uint, :int, :pointer, :uchar ], :void],
               [:glDebugMessageInsert, [ :uint, :uint, :uint, :uint, :int, :string ], :void],
               [:glGetDebugMessageLog, [ :uint, :int, :pointer, :pointer, :pointer, :pointer, :pointer, :string ], :uint],

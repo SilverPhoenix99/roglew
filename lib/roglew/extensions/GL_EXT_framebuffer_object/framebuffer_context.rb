@@ -1,4 +1,14 @@
 module Roglew
+  module ImmediateFramebufferContextEXT
+    def status
+      context.glCheckFramebufferStatusEXT(@target)
+    end
+
+    def attachment_parameter(attachment, pname)
+      context.framebuffer_attachment_parameterEXT(GL::FRAMEBUFFER_EXT, attachment, pname)
+    end
+  end
+
   class FramebufferContextEXT
     include Roglew::BaseContext(:framebuffer)
 
@@ -14,6 +24,7 @@ module Roglew
         when RenderbufferEXT
           make_call(:glFramebufferRenderbufferEXT, GL::FRAMEBUFFER_EXT, attachment, GL::RENDERBUFFER_EXT, target.id)
         when Texture2d
+          #TODO glFramebufferTexture1DEXT glFramebufferTexture3DEXT
           make_call(:glFramebufferTexture2DEXT, GL::FRAMEBUFFER_EXT, attachment, GL::TEXTURE_2D, target.id, level)
         else raise ArgumentError, "first parameter isn't a RenderbufferEXT nor a Texture2d"
       end
@@ -26,17 +37,6 @@ module Roglew
 
     def unbind
       context.glBindFramebufferEXT(@target, 0)
-    end
-  end
-
-  #methods attachment_parameter and status not available in DeferredContext because they require an active bind
-  module ImmediateFramebufferContextEXT
-    def status
-      context.glCheckFramebufferStatusEXT(@target)
-    end
-
-    def attachment_parameter(attachment, pname)
-      context.framebuffer_attachment_parameterEXT(GL::FRAMEBUFFER_EXT, attachment, pname)
     end
   end
 end

@@ -14,18 +14,16 @@ module Roglew
     DEBUG_SEVERITY_MEDIUM_AMD             = 0x9147
     MAX_DEBUG_LOGGED_MESSAGES_AMD         = 0x9144
     MAX_DEBUG_MESSAGE_LENGTH_AMD          = 0x9143
+
+    GLDEBUGPROCAMD = callback :GLDEBUGPROCAMD, [ :uint, :uint, :uint, :int, :string, :pointer ], :void
   end
 end
 
 module GL_AMD_debug_output
-  include Roglew::GL::Native
-
-  GLDEBUGPROCAMD = callback :GLDEBUGPROCAMD, [ :uint, :uint, :uint, :int, :string, :pointer ], :void
-
   module RenderContext
     include Roglew::GLExtension
 
-    functions [:glDebugMessageCallbackAMD, [ GLDEBUGPROCAMD, :pointer ], :void],
+    functions [:glDebugMessageCallbackAMD, [ Roglew::GL::GLDEBUGPROCAMD, :pointer ], :void],
               [:glDebugMessageEnableAMD, [ :uint, :uint, :int, :pointer, :uchar ], :void],
               [:glDebugMessageInsertAMD, [ :uint, :uint, :uint, :int, :string ], :void],
               [:glGetDebugMessageLogAMD, [ :uint, :int, :pointer, :pointer, :pointer, :pointer, :string ], :uint]
