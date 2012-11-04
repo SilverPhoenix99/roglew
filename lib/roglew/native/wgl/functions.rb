@@ -8,14 +8,6 @@ module Roglew
              :right,  :long,
              :bottom, :long
     end
-  
-    class GPU_DEVICE < FFI::Struct
-      layout :cb,              :uint,
-             :DeviceName,      [:char, 32],
-             :DeviceString,    [:char, 128],
-             :Flags,           :uint,
-             :rcVirtualScreen, RECT.by_value
-    end
 
     class POINTFLOAT < FFI::Struct
       layout :x, :float,
