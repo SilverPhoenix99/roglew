@@ -14,7 +14,7 @@ end
 
 module GL_EXT_texture3D
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glTexImage3DEXT, [ :uint, :int, :uint, :int, :int, :int, :int, :uint, :uint, :pointer ], :void]
   end

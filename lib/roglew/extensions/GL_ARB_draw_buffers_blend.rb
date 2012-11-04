@@ -1,6 +1,6 @@
 module GL_ARB_draw_buffers_blend
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glBlendEquationiARB, [ :uint, :uint ], :void],
               [:glBlendEquationSeparateiARB, [ :uint, :uint, :uint ], :void],

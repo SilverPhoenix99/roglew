@@ -18,7 +18,7 @@ end
 
 module GL_ARB_viewport_array
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glDepthRangeArrayv, [ :uint, :int, :pointer ], :void],
               [:glDepthRangeIndexed, [ :uint, :double, :double ], :void],

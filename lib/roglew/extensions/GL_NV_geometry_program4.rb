@@ -8,7 +8,7 @@ end
 
 module GL_NV_geometry_program4
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glProgramVertexLimitNV, [ :uint, :int ], :void]
   end

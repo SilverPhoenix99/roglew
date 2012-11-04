@@ -6,7 +6,7 @@ end
 
 module GL_EXT_x11_sync_object
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glImportSyncEXT, [ :uint, :int64, :uint ], :pointer]
   end

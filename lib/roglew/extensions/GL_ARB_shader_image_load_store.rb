@@ -69,7 +69,7 @@ end
 
 module GL_ARB_shader_image_load_store
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glBindImageTexture, [ :uint, :uint, :int, :uchar, :int, :uint, :uint ], :void],
               [:glMemoryBarrier, [ :uint ], :void]

@@ -9,7 +9,7 @@ end
 
 module GL_NV_transform_feedback2
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glBindTransformFeedbackNV, [ :uint, :uint ], :void],
               [:glDeleteTransformFeedbacksNV, [ :int, :pointer ], :void],

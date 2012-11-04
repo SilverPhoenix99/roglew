@@ -8,7 +8,7 @@ end
 
 module GL_EXT_direct_state_access
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glBindMultiTextureEXT, [ :uint, :uint, :uint ], :void],
               [:glCheckNamedFramebufferStatusEXT, [ :uint, :uint ], :uint],

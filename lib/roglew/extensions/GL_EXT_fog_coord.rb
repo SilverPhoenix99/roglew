@@ -13,7 +13,7 @@ end
 
 module GL_EXT_fog_coord
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glFogCoorddEXT, [ :double ], :void],
               [:glFogCoorddvEXT, [ :pointer ], :void],

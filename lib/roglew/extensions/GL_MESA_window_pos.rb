@@ -1,6 +1,6 @@
 module GL_MESA_window_pos
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glWindowPos2dMESA, [ :double, :double ], :void],
               [:glWindowPos2dvMESA, [ :pointer ], :void],

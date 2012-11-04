@@ -1,6 +1,6 @@
 module GL_ARB_window_pos
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glWindowPos2dARB, [ :double, :double ], :void],
               [:glWindowPos2dvARB, [ :pointer ], :void],

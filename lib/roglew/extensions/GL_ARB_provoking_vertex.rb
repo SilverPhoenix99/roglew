@@ -9,7 +9,7 @@ end
 
 module GL_ARB_provoking_vertex
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glProvokingVertex, [ :uint ], :void]
   end

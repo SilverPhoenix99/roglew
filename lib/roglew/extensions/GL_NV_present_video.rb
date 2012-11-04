@@ -11,7 +11,7 @@ end
 
 module GL_NV_present_video
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glGetVideoi64vNV, [ :uint, :uint, :pointer ], :void],
               [:glGetVideoivNV, [ :uint, :uint, :pointer ], :void],

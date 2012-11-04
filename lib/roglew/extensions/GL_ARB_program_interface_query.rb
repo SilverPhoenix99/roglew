@@ -52,7 +52,7 @@ end
 
 module GL_ARB_program_interface_query
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glGetProgramInterfaceiv, [ :uint, :uint, :uint, :pointer ], :void],
               [:glGetProgramResourceIndex, [ :uint, :uint, :string ], :uint],

@@ -47,7 +47,7 @@ end
 
 module GL_ARB_vertex_blend
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glVertexBlendARB, [ :int ], :void],
               [:glWeightbvARB, [ :int, :pointer ], :void],

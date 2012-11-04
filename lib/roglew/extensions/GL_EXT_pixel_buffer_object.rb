@@ -9,7 +9,7 @@ end
 
 module GL_EXT_pixel_buffer_object
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions
   end

@@ -28,7 +28,7 @@ end
 
 module GL_core_3_2
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glFramebufferTexture, [ :uint, :uint, :uint, :int ], :void],
               [:glGetBufferParameteri64v, [ :uint, :uint, :pointer ], :void],

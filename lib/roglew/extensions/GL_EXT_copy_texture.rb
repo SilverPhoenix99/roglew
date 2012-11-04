@@ -1,6 +1,6 @@
 module GL_EXT_copy_texture
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glCopyTexImage1DEXT, [ :uint, :int, :uint, :int, :int, :int, :int ], :void],
               [:glCopyTexImage2DEXT, [ :uint, :int, :uint, :int, :int, :int, :int, :int ], :void],

@@ -18,7 +18,7 @@ end
 
 module GL_EXT_histogram
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glGetHistogramEXT, [ :uint, :uchar, :uint, :uint, :pointer ], :void],
               [:glGetHistogramParameterfvEXT, [ :uint, :uint, :pointer ], :void],

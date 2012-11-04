@@ -7,7 +7,7 @@ end
 
 module GL_EXT_stencil_two_side
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glActiveStencilFaceEXT, [ :uint ], :void]
   end

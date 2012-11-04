@@ -6,7 +6,7 @@ end
 
 module GL_EXT_separate_shader_objects
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glActiveProgramEXT, [ :uint ], :void],
               [:glCreateShaderProgramEXT, [ :uint, :string ], :uint],

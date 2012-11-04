@@ -6,7 +6,7 @@ end
 
 module GL_ARB_internalformat_query
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glGetInternalformativ, [ :uint, :uint, :uint, :int, :pointer ], :void]
   end

@@ -15,7 +15,7 @@ end
 
 module GL_ARB_matrix_palette
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glCurrentPaletteMatrixARB, [ :int ], :void],
               [:glMatrixIndexPointerARB, [ :int, :uint, :int, :pointer ], :void],

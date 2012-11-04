@@ -10,7 +10,7 @@ end
 
 module GL_NV_fragment_program2
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions
   end

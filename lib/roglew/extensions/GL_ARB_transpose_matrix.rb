@@ -9,7 +9,7 @@ end
 
 module GL_ARB_transpose_matrix
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glLoadTransposeMatrixdARB, [:double] * 16, :void],
               [:glLoadTransposeMatrixfARB, [:float] * 16, :void],

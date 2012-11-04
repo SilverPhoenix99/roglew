@@ -11,7 +11,7 @@ end
 
 module GL_ARB_map_buffer_range
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glFlushMappedBufferRange, [ :uint, :int64, :int64 ], :void],
               [:glMapBufferRange, [ :uint, :int64, :int64, :uint ], :pointer]

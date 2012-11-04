@@ -7,7 +7,7 @@ end
 
 module GL_EXT_compiled_vertex_array
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glLockArraysEXT, [ :int, :int ], :void],
               [:glUnlockArraysEXT, [  ], :void]

@@ -1,6 +1,6 @@
 module GL_NV_texture_barrier
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glTextureBarrierNV, [  ], :void]
   end

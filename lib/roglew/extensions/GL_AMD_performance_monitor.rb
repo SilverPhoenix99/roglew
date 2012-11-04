@@ -12,7 +12,7 @@ end
 
 module GL_AMD_performance_monitor
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glBeginPerfMonitorAMD, [ :uint ], :void],
               [:glDeletePerfMonitorsAMD, [ :int, :pointer ], :void],

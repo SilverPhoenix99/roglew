@@ -9,7 +9,7 @@ end
 
 module GL_EXT_texture_compression_rgtc
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions
   end

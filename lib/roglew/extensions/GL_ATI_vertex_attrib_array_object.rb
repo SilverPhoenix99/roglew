@@ -1,6 +1,6 @@
 module GL_ATI_vertex_attrib_array_object
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glGetVertexAttribArrayObjectfvATI, [ :uint, :uint, :pointer ], :void],
               [:glGetVertexAttribArrayObjectivATI, [ :uint, :uint, :pointer ], :void],

@@ -1,6 +1,6 @@
 module GL_EXT_subtexture
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glTexSubImage1DEXT, [ :uint, :int, :int, :int, :uint, :uint, :pointer ], :void],
               [:glTexSubImage2DEXT, [ :uint, :int, :int, :int, :int, :int, :uint, :uint, :pointer ], :void],

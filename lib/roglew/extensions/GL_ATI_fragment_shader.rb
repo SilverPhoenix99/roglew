@@ -59,7 +59,7 @@ end
 
 module GL_ATI_fragment_shader
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glAlphaFragmentOp1ATI, [ :uint, :uint, :uint, :uint, :uint, :uint ], :void],
               [:glAlphaFragmentOp2ATI, [ :uint, :uint, :uint, :uint, :uint, :uint, :uint, :uint, :uint ], :void],

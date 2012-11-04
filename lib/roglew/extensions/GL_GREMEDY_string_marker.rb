@@ -1,6 +1,6 @@
 module GL_GREMEDY_string_marker
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glStringMarkerGREMEDY, [ :int, :pointer ], :void]
   end

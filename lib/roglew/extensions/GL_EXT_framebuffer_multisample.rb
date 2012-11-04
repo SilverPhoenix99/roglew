@@ -8,7 +8,7 @@ end
 
 module GL_EXT_framebuffer_multisample
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glRenderbufferStorageMultisampleEXT, [ :uint, :int, :uint, :int, :int ], :void]
   end

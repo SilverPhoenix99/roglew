@@ -7,7 +7,7 @@ end
 
 module GL_EXT_Cg_shader
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions
   end

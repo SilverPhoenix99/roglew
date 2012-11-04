@@ -14,7 +14,7 @@ end
 
 module GL_ARB_separate_shader_objects
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glActiveShaderProgram, [ :uint, :uint ], :void],
               [:glBindProgramPipeline, [ :uint ], :void],

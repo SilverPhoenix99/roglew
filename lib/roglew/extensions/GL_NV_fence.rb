@@ -8,7 +8,7 @@ end
 
 module GL_NV_fence
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glDeleteFencesNV, [ :int, :pointer ], :void],
               [:glFinishFenceNV, [ :uint ], :void],

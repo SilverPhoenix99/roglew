@@ -54,7 +54,7 @@ end
 
 module GL_core_1_5
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glBeginQuery, [ :uint, :uint ], :void],
               [:glBindBuffer, [ :uint, :uint ], :void],

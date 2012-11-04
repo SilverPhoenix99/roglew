@@ -88,7 +88,7 @@ end
 
 module GL_NV_vertex_program
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glAreProgramsResidentNV, [ :int, :pointer, :pointer ], :uchar],
               [:glBindProgramNV, [ :uint, :uint ], :void],

@@ -6,7 +6,7 @@ end
 
 module GL_ARB_sampler_objects
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glBindSampler, [ :uint, :uint ], :void],
               [:glDeleteSamplers, [ :int, :pointer ], :void],

@@ -7,7 +7,7 @@ end
 
 module GL_SUN_global_alpha
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glGlobalAlphaFactorbSUN, [ :char ], :void],
               [:glGlobalAlphaFactordSUN, [ :double ], :void],

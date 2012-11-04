@@ -13,7 +13,7 @@ end
 
 module GL_ATI_vertex_array_object
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glArrayObjectATI, [ :uint, :int, :uint, :int, :uint, :uint ], :void],
               [:glFreeObjectBufferATI, [ :uint ], :void],

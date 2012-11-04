@@ -21,7 +21,7 @@ end
 
 module GL_SGIS_multisample
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glSampleMaskSGIS, [ :float, :uchar ], :void],
               [:glSamplePatternSGIS, [ :uint ], :void]

@@ -3,6 +3,8 @@ module Roglew
     include Roglew::Contextual(nil)
     include GLObject
 
+    @registered_extensions = {}
+
     GL.functions.each  { |name, *_| class_eval "def gl#{name}(*args) GL.#{name}(*args) end" }
     WGL.functions.each { |name, *_| class_eval "def wgl#{name}(*args) WGL.#{name}(*args) end" }
 
@@ -26,9 +28,7 @@ module Roglew
         old_hrc, @hrc = @hrc, upgrade_context if @version[0] > 2
 
         @loaded_extensions = Set.new
-        load_core_extensions
-        load_vendor_extensions
-        load_platform_extensions
+        (core_extension_list + gl_extension_list + platform_extension_list).each { |ext| load_extension(ext) }
       end
 
       wglDeleteContext(old_hrc) if old_hrc
@@ -40,6 +40,23 @@ module Roglew
       ObjectSpace.define_finalizer(obj, proc do
         WGL.DeleteContext(hrc) #assumes that context was unbound
       end)
+    end
+
+    def load_extension(ext)
+      ext = ext.to_sym
+      @loaded_extensions << ext
+
+      unless Object.const_defined?(ext)
+        reg = self.class.instance_variable_get(:@registered_extensions)
+        require reg[ext] || File.expand_path("../extensions/#{ext}", __FILE__)
+      end
+
+      return unless Object.const_defined?(ext)
+      mod = Object.const_get(ext)
+      return unless mod.const_defined?(:RenderContext)
+      mod = mod::RenderContext
+
+      singleton_class.send(:include, mod) if mod
     end
 
     def bind(&block)
@@ -153,6 +170,17 @@ module Roglew
       send("glTexParameter#{type[0]}v", target, pname, ptr)
     end
 
+    def self.register_extensions(extensions)
+      extensions = Hash[extensions.map { |k, v| [k.to_sym, v] }]
+      @registered_extensions.merge!(extensions)
+      nil
+    end
+
+    def self.unregister_extensions(*extensions)
+      extensions.map! { |e| e.to_sym }.each { |e| @registered_extensions.delete(e) }
+      nil
+    end
+
     #------
     private
 
@@ -197,27 +225,13 @@ module Roglew
        create_context_attribs.(@hdc, nil, ptr_attribs)
     end
 
-    def load_core_extensions
-      #TODO load as extension CL_core_*_*
-      GL.extensions.select { |name, _| name.is_a?(Array) && (name <=> @version) <= 0 }.
-        each do |_, functions|
-          functions.each do |name, parameters, ret_type|
-            function = GL.get_function(name, parameters, ret_type)
-            define_singleton_method(name) { |*a| function.(*a) } if function
-          end
-        end
-    end
-
-    def load_vendor_extensions
-      load_extensions(GL, core_extension_list)
-    end
-
-    def load_platform_extensions
-      load_extensions(GL, core_extension_list)
-      load_extensions(WGL, platform_extension_list)
-    end
-
     def core_extension_list
+      Dir["#{File.expand_path('../extensions', __FILE__)}/GL_core_*.rb"].
+        map! { |f| File.basename(f, '.rb') }.
+        select! { |f| (f[8..-1].split('_', 2).map!(&:to_i) <=> @version) <= 0 }
+    end
+
+    def gl_extension_list
       if @version[0] < 3
         glGetString(GL::EXTENSIONS).split
       else
@@ -233,21 +247,6 @@ module Roglew
       else
         ''
       end.split.map!(&:to_sym)
-    end
-
-    def load_extensions(mod, extension_list)
-      mod_name = mod.name.split('::').last
-
-      #puts mod_name
-      extension_list.select { |ext| ext =~ /^#{mod_name}_/ }.each do |ext|
-        @loaded_extensions << ext
-        exts = mod.extensions[ext]
-        #puts "    #{ext}" unless exts
-        exts.each do |name, parameters, ret_type|
-          function = mod.get_function(name, parameters, ret_type)
-          define_singleton_method(name) { |*a| function.(*a) } if function
-        end if exts
-      end
     end
   end
 end

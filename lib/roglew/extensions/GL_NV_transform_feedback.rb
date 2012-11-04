@@ -30,7 +30,7 @@ end
 
 module GL_NV_transform_feedback
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glActiveVaryingNV, [ :uint, :string ], :void],
               [:glBeginTransformFeedbackNV, [ :uint ], :void],

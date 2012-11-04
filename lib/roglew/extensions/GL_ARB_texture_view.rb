@@ -10,7 +10,7 @@ end
 
 module GL_ARB_texture_view
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glTextureView, [ :uint, :uint, :uint, :uint, :uint, :uint, :uint, :uint ], :void]
   end

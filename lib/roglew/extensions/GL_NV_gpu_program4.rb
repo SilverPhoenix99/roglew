@@ -13,7 +13,7 @@ end
 
 module GL_NV_gpu_program4
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glProgramEnvParameterI4iNV, [ :uint, :uint, :int, :int, :int, :int ], :void],
               [:glProgramEnvParameterI4ivNV, [ :uint, :uint, :pointer ], :void],

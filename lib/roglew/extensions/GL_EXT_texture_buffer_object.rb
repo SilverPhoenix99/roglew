@@ -10,7 +10,7 @@ end
 
 module GL_EXT_texture_buffer_object
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glTexBufferEXT, [ :uint, :uint, :uint ], :void]
   end

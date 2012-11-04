@@ -30,7 +30,7 @@ end
 
 module GL_NV_vertex_buffer_unified_memory
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glBufferAddressRangeNV, [ :uint, :uint, :uint64, :int64 ], :void],
               [:glColorFormatNV, [ :int, :uint, :int ], :void],

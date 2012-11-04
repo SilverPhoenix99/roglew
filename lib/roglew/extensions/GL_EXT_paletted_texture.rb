@@ -26,7 +26,7 @@ end
 
 module GL_EXT_paletted_texture
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glColorTableEXT, [ :uint, :uint, :int, :uint, :uint, :pointer ], :void],
               [:glGetColorTableEXT, [ :uint, :uint, :uint, :pointer ], :void],

@@ -15,7 +15,7 @@ end
 
 module GL_NV_explicit_multisample
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions
   end

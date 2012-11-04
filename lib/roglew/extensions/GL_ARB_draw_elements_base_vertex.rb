@@ -1,6 +1,6 @@
 module GL_ARB_draw_elements_base_vertex
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glDrawElementsBaseVertex, [ :uint, :int, :uint, :pointer, :int ], :void],
               [:glDrawElementsInstancedBaseVertex, [ :uint, :int, :uint, :pointer, :int, :int ], :void],

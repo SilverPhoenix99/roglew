@@ -21,7 +21,7 @@ end
 
 module GL_SGI_color_table
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glColorTableParameterfvSGI, [ :uint, :uint, :pointer ], :void],
               [:glColorTableParameterivSGI, [ :uint, :uint, :pointer ], :void],

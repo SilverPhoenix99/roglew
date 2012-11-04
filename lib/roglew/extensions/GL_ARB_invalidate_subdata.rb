@@ -1,6 +1,6 @@
 module GL_ARB_invalidate_subdata
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glInvalidateBufferData, [ :uint ], :void],
               [:glInvalidateBufferSubData, [ :uint, :int64, :int64 ], :void],

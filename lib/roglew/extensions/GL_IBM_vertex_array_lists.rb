@@ -21,7 +21,7 @@ end
 
 module GL_IBM_vertex_array_lists
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glColorPointerListIBM, [ :int, :uint, :int, :pointer, :int ], :void],
               [:glEdgeFlagPointerListIBM, [ :int, :pointer, :int ], :void],

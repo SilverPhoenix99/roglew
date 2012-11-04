@@ -1,6 +1,6 @@
 module GL_HP_image_transform
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glGetImageTransformParameterfvHP, [ :uint, :uint, :pointer ], :void],
               [:glGetImageTransformParameterivHP, [ :uint, :uint, :pointer ], :void],

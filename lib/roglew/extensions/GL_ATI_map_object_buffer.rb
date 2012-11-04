@@ -1,6 +1,6 @@
 module GL_ATI_map_object_buffer
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glMapObjectBufferATI, [ :uint ], :pointer],
               [:glUnmapObjectBufferATI, [ :uint ], :void]

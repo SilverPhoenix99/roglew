@@ -18,7 +18,7 @@ end
 
 module GL_EXT_vertex_weighting
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glVertexWeightfEXT, [ :float ], :void],
               [:glVertexWeightfvEXT, [ :pointer ], :void],

@@ -10,7 +10,7 @@ end
 
 module GL_EXT_packed_pixels
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions
   end

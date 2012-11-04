@@ -1,6 +1,6 @@
 module GL_EXT_draw_buffers2
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glColorMaskIndexedEXT, [ :uint, :uchar, :uchar, :uchar, :uchar ], :void],
               [:glDisableIndexedEXT, [ :uint, :uint ], :void],

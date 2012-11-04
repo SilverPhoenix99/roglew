@@ -7,7 +7,7 @@ end
 
 module GL_EXT_draw_range_elements
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glDrawRangeElementsEXT, [ :uint, :uint, :uint, :int, :uint, :pointer ], :void]
   end

@@ -8,7 +8,7 @@ end
 
 module GL_ARB_texture_buffer_range
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glTexBufferRange, [ :uint, :uint, :uint, :int64, :int64 ], :void],
               [:glTextureBufferRangeEXT, [ :uint, :uint, :uint, :uint, :int64, :int64 ], :void]

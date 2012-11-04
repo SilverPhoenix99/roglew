@@ -9,7 +9,7 @@ end
 
 module GL_KTX_buffer_region
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glBufferRegionEnabled, [  ], :uint],
               [:glDeleteBufferRegion, [ :uint ], :void],

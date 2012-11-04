@@ -15,7 +15,7 @@ end
 
 module GL_APPLE_vertex_program_evaluators
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glDisableVertexAttribAPPLE, [ :uint, :uint ], :void],
               [:glEnableVertexAttribAPPLE, [ :uint, :uint ], :void],

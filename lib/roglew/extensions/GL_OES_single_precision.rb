@@ -1,6 +1,6 @@
 module GL_OES_single_precision
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glClearDepthfOES, [ :double ], :void],
               [:glClipPlanefOES, [ :uint, :pointer ], :void],

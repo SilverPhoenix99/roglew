@@ -9,7 +9,7 @@ end
 
 module GL_ATI_separate_stencil
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glStencilFuncSeparateATI, [ :uint, :uint, :int, :uint ], :void],
               [:glStencilOpSeparateATI, [ :uint, :uint, :uint, :uint ], :void]

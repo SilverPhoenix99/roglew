@@ -22,7 +22,7 @@ end
 
 module GL_core_4_0
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glBlendEquationi, [ :uint, :uint ], :void],
               [:glBlendEquationSeparatei, [ :uint, :uint, :uint ], :void],

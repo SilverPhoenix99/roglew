@@ -13,7 +13,7 @@ end
 
 module GL_APPLE_vertex_array_range
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glFlushVertexArrayRangeAPPLE, [ :int, :pointer ], :void],
               [:glVertexArrayParameteriAPPLE, [ :uint, :int ], :void],

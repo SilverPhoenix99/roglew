@@ -9,7 +9,7 @@ end
 
 module GL_EXT_cmyka
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions
   end

@@ -21,7 +21,7 @@ end
 
 module GL_ARB_ES2_compatibility
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glClearDepthf, [ :float ], :void],
               [:glDepthRangef, [ :float, :float ], :void],

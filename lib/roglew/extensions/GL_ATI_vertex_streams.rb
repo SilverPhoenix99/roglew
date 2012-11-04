@@ -15,7 +15,7 @@ end
 
 module GL_ATI_vertex_streams
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glClientActiveVertexStreamATI, [ :uint ], :void],
               [:glNormalStream3bATI, [ :uint, :char, :char, :char ], :void],

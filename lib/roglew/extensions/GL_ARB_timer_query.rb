@@ -7,7 +7,7 @@ end
 
 module GL_ARB_timer_query
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glGetQueryObjecti64v, [ :uint, :uint, :pointer ], :void],
               [:glGetQueryObjectui64v, [ :uint, :uint, :pointer ], :void],

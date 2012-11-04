@@ -1,6 +1,6 @@
 module GL_SGIS_sharpen_texture
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glGetSharpenTexFuncSGIS, [ :uint, :pointer ], :void],
               [:glSharpenTexFuncSGIS, [ :uint, :int, :pointer ], :void]

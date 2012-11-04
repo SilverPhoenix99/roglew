@@ -1,6 +1,6 @@
 module GL_SGIX_sprite
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glSpriteParameterfSGIX, [ :uint, :float ], :void],
               [:glSpriteParameterfvSGIX, [ :uint, :pointer ], :void],

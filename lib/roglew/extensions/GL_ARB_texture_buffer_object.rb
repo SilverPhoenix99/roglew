@@ -10,7 +10,7 @@ end
 
 module GL_ARB_texture_buffer_object
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glTexBufferARB, [ :uint, :uint, :uint ], :void]
   end

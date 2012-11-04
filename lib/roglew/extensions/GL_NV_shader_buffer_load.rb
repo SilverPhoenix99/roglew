@@ -8,7 +8,7 @@ end
 
 module GL_NV_shader_buffer_load
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glGetBufferParameterui64vNV, [ :uint, :uint, :pointer ], :void],
               [:glGetIntegerui64vNV, [ :uint, :pointer ], :void],

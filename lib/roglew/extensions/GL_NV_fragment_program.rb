@@ -11,7 +11,7 @@ end
 
 module GL_NV_fragment_program
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glGetProgramNamedParameterdvNV, [ :uint, :int, :pointer, :pointer ], :void],
               [:glGetProgramNamedParameterfvNV, [ :uint, :int, :pointer, :pointer ], :void],

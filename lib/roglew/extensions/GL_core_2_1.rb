@@ -28,7 +28,7 @@ end
 
 module GL_core_2_1
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glUniformMatrix2x3fv, [ :int, :int, :uchar, :pointer ], :void],
               [:glUniformMatrix2x4fv, [ :int, :int, :uchar, :pointer ], :void],

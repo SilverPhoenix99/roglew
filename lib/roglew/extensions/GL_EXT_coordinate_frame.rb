@@ -19,7 +19,7 @@ end
 
 module GL_EXT_coordinate_frame
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glBinormalPointerEXT, [ :uint, :int, :pointer ], :void],
               [:glTangentPointerEXT, [ :uint, :int, :pointer ], :void]

@@ -112,7 +112,7 @@ end
 
 module GL_core_3_0
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glBeginConditionalRender, [ :uint, :uint ], :void],
               [:glBeginTransformFeedback, [ :uint ], :void],

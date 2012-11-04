@@ -20,7 +20,7 @@ end
 
 module GL_ARB_sync
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glClientWaitSync, [ :pointer, :uint, :uint64 ], :uint],
               [:glDeleteSync, [ :pointer ], :void],

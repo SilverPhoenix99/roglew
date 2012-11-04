@@ -9,7 +9,7 @@ end
 
 module GL_NV_texture_rectangle
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions
   end

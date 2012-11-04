@@ -7,7 +7,7 @@ end
 
 module GL_EXT_depth_bounds_test
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glDepthBoundsEXT, [ :double, :double ], :void]
   end

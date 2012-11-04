@@ -31,7 +31,7 @@ end
 
 module GL_EXT_gpu_shader4
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glBindFragDataLocationEXT, [ :uint, :uint, :string ], :void],
               [:glGetFragDataLocationEXT, [ :uint, :string ], :int],

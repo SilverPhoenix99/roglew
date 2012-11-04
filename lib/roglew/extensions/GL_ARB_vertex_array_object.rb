@@ -6,7 +6,7 @@ end
 
 module GL_ARB_vertex_array_object
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glBindVertexArray, [ :uint ], :void],
               [:glDeleteVertexArrays, [ :int, :pointer ], :void],

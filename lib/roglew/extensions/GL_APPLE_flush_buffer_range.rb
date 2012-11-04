@@ -7,7 +7,7 @@ end
 
 module GL_APPLE_flush_buffer_range
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glBufferParameteriAPPLE, [ :uint, :uint, :int ], :void],
               [:glFlushMappedBufferRangeAPPLE, [ :uint, :int64, :int64 ], :void]

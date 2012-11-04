@@ -7,7 +7,7 @@ end
 
 module GL_ARB_transform_feedback3
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glBeginQueryIndexed, [ :uint, :uint, :uint ], :void],
               [:glDrawTransformFeedbackStream, [ :uint, :uint, :uint ], :void],

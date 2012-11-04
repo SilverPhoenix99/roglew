@@ -1,6 +1,6 @@
 module GL_AMD_draw_buffers_blend
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glBlendEquationIndexedAMD, [ :uint, :uint ], :void],
               [:glBlendEquationSeparateIndexedAMD, [ :uint, :uint, :uint ], :void],

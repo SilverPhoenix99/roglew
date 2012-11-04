@@ -7,7 +7,7 @@ end
 
 module GL_EXT_blend_equation_separate
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glBlendEquationSeparateEXT, [ :uint, :uint ], :void]
   end

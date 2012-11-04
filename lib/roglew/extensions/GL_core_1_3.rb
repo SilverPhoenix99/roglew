@@ -101,7 +101,7 @@ end
 
 module GL_core_1_3
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glActiveTexture, [ :uint ], :void],
               [:glClientActiveTexture,  [ :uint ], :void],

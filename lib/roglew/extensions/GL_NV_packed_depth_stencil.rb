@@ -7,7 +7,7 @@ end
 
 module GL_NV_packed_depth_stencil
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions
   end

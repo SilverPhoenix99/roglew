@@ -1,6 +1,6 @@
 module GL_SUN_vertex
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glColor3fVertex3fSUN, [ :float, :float, :float, :float, :float, :float ], :void],
               [:glColor3fVertex3fvSUN, [ :pointer, :pointer ], :void],

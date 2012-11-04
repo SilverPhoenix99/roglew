@@ -8,7 +8,7 @@ end
 
 module GL_ARB_shading_language_include
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glCompileShaderIncludeARB, [ :uint, :int, :pointer, :pointer ], :void],
               [:glDeleteNamedStringARB, [ :int, :string ], :void],

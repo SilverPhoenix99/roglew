@@ -1,20 +1,18 @@
 module Roglew
   module GL
-    extend FFI::Library
-    ffi_lib 'opengl32'
-    ffi_convention :stdcall
-
-    extend NativeObject
-
-    class << self
-      attr_reader :extensions
-      attr_reader :functions
+    module Native
+      def self.included(m)
+        m.instance_eval do
+          extend FFI::Library
+          ffi_lib 'opengl32'
+          ffi_convention :stdcall
+        end
+      end
     end
 
-    callback :GLDEBUGPROC,    [ :uint, :uint, :uint, :uint, :int, :string, :pointer ], :void
-    callback :GLDEBUGPROCAMD, [ :uint, :uint, :uint, :int, :string, :pointer ], :void
-    callback :GLDEBUGPROCARB, [ :uint, :uint, :uint, :uint, :int, :string, :pointer ], :void
-	
+    include Native
+    extend NativeObject
+
     ERROR = {
       1280 => :INVALID_ENUM,
       1281 => :INVALID_VALUE,
@@ -25,9 +23,5 @@ module Roglew
     }.freeze
   end
 end
-
-require_relative 'gl/constants_old'
-require_relative 'gl/functions'
-require_relative 'gl/extensions'
 
 require_relative 'wgl' #TODO platforms

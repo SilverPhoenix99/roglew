@@ -11,7 +11,7 @@ end
 
 module GL_EXT_bindable_uniform
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glGetUniformBufferSizeEXT, [ :uint, :int ], :int],
               [:glGetUniformOffsetEXT, [ :uint, :int ], :int64],

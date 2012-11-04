@@ -8,7 +8,7 @@ end
 
 module GL_ATI_element_array
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glDrawElementArrayATI, [ :uint, :int ], :void],
               [:glDrawRangeElementArrayATI, [ :uint, :uint, :uint, :int ], :void],

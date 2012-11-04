@@ -33,7 +33,7 @@ end
 
 module GL_KHR_texture_compression_astc_ldr
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions
   end

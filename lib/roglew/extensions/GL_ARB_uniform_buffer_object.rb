@@ -38,7 +38,7 @@ end
 
 module GL_ARB_uniform_buffer_object
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glBindBufferBase, [ :uint, :uint, :uint ], :void],
               [:glBindBufferRange, [ :uint, :uint, :uint, :int64, :int64 ], :void],

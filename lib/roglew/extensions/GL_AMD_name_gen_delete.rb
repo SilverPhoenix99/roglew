@@ -10,7 +10,7 @@ end
 
 module GL_AMD_name_gen_delete
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glDeleteNamesAMD, [ :uint, :uint, :pointer ], :void],
               [:glGenNamesAMD, [ :uint, :uint, :pointer ], :void],

@@ -12,7 +12,7 @@ end
 
 module GL_ARB_robustness
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glGetGraphicsResetStatusARB, [  ], :uint],
               [:glGetnColorTableARB, [ :uint, :uint, :uint, :int, :pointer ], :void],

@@ -1,6 +1,6 @@
 module GL_EXT_draw_instanced
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glDrawArraysInstancedEXT, [ :uint, :int, :int, :int ], :void],
               [:glDrawElementsInstancedEXT, [ :uint, :int, :uint, :pointer, :int ], :void]

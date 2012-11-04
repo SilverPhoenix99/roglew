@@ -12,7 +12,7 @@ end
 
 module GL_EXT_secondary_color
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glSecondaryColor3bEXT, [ :char, :char, :char ], :void],
               [:glSecondaryColor3bvEXT, [ :pointer ], :void],

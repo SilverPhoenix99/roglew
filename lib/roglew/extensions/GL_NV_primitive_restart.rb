@@ -7,7 +7,7 @@ end
 
 module GL_NV_primitive_restart
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glPrimitiveRestartIndexNV, [ :uint ], :void],
               [:glPrimitiveRestartNV, [  ], :void]

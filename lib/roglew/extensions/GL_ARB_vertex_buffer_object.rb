@@ -36,7 +36,7 @@ end
 
 module GL_ARB_vertex_buffer_object
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glBindBufferARB, [ :uint, :uint ], :void],
               [:glBufferDataARB, [ :uint, :size_t, :pointer, :uint ], :void],

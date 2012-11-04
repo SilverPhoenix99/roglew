@@ -82,7 +82,7 @@ end
 
 module GL_ARB_imaging
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glColorSubTable,             [ :uint, :int, :int, :uint, :uint, :pointer ],                  :void],
               [:glColorTable,                [ :uint, :uint, :int, :uint, :uint, :pointer ],                 :void],

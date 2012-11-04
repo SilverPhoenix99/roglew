@@ -1,6 +1,6 @@
 module GL_SGIX_fragment_specular_lighting
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glFragmentColorMaterialSGIX, [ :uint, :uint ], :void],
               [:glFragmentLightfSGIX, [ :uint, :uint, :float ], :void],

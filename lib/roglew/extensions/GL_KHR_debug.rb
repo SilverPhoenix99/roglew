@@ -44,10 +44,14 @@ module Roglew
 end
 
 module GL_KHR_debug
-  module RenderContext
-    include GLExtension
+  include Roglew::GL::Native
 
-    functions [:glDebugMessageCallback, [ :GLDEBUGPROC, :pointer ], :void],
+  GLDEBUGPROC = callback :GLDEBUGPROC, [ :uint, :uint, :uint, :uint, :int, :string, :pointer ], :void
+
+  module RenderContext
+    include Roglew::GLExtension
+
+    functions [:glDebugMessageCallback, [ GLDEBUGPROC, :pointer ], :void],
               [:glDebugMessageControl, [ :uint, :uint, :uint, :int, :pointer, :uchar ], :void],
               [:glDebugMessageInsert, [ :uint, :uint, :uint, :uint, :int, :string ], :void],
               [:glGetDebugMessageLog, [ :uint, :int, :pointer, :pointer, :pointer, :pointer, :pointer, :string ], :uint],

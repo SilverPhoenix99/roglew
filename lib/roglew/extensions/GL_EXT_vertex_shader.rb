@@ -115,7 +115,7 @@ end
 
 module GL_EXT_vertex_shader
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glBeginVertexShaderEXT, [  ], :void],
               [:glBindLightParameterEXT, [ :uint, :uint ], :uint],

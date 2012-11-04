@@ -52,7 +52,7 @@ end
 
 module GL_EXT_texture_integer
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glClearColorIiEXT, [ :int, :int, :int, :int ], :void],
               [:glClearColorIuiEXT, [ :uint, :uint, :uint, :uint ], :void],

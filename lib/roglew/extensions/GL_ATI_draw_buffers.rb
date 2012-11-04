@@ -22,7 +22,7 @@ end
 
 module GL_ATI_draw_buffers
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glDrawBuffersATI, [ :int, :pointer ], :void]
   end

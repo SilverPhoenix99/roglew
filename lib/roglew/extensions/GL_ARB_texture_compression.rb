@@ -16,7 +16,7 @@ end
 
 module GL_ARB_texture_compression
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glCompressedTexImage1DARB, [ :uint, :int, :uint, :int, :int, :int, :pointer ], :void],
               [:glCompressedTexImage2DARB, [ :uint, :int, :uint, :int, :int, :int, :int, :pointer ], :void],

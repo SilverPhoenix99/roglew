@@ -84,7 +84,7 @@ end
 
 module GL_ARB_vertex_program
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glBindProgramARB, [ :uint, :uint ], :void],
               [:glDeleteProgramsARB, [ :int, :pointer ], :void],

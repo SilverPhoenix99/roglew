@@ -1,6 +1,6 @@
 module GL_ARB_clear_buffer_object
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glClearBufferData, [ :uint, :uint, :uint, :uint, :pointer ], :void],
               [:glClearBufferSubData, [ :uint, :uint, :int64, :int64, :uint, :uint, :pointer ], :void],

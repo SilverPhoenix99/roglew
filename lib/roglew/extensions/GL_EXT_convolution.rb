@@ -25,7 +25,7 @@ end
 
 module GL_EXT_convolution
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glConvolutionFilter1DEXT, [ :uint, :uint, :int, :uint, :uint, :pointer ], :void],
               [:glConvolutionFilter2DEXT, [ :uint, :uint, :int, :int, :uint, :uint, :pointer ], :void],

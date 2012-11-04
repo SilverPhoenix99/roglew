@@ -6,7 +6,7 @@ end
 
 module GL_APPLE_vertex_array_object
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glBindVertexArrayAPPLE, [ :uint ], :void],
               [:glDeleteVertexArraysAPPLE, [ :int, :pointer ], :void],

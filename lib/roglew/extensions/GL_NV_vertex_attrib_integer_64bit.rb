@@ -7,7 +7,7 @@ end
 
 module GL_NV_vertex_attrib_integer_64bit
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glGetVertexAttribLi64vNV, [ :uint, :uint, :pointer ], :void],
               [:glGetVertexAttribLui64vNV, [ :uint, :uint, :pointer ], :void],

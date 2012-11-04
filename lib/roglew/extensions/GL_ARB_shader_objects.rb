@@ -39,7 +39,7 @@ end
 
 module GL_ARB_shader_objects
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glAttachObjectARB, [ :uint, :uint ], :void],
               [:glCompileShaderARB, [ :uint ], :void],

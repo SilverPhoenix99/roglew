@@ -1,6 +1,6 @@
 module GL_EXT_debug_marker
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glInsertEventMarkerEXT, [ :int, :string ], :void],
               [:glPopGroupMarkerEXT, [  ], :void],

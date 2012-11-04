@@ -9,7 +9,7 @@ end
 
 module GL_ARB_point_parameters
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glPointParameterfARB, [ :uint, :float ], :void],
               [:glPointParameterfvARB, [ :uint, :pointer ], :void]

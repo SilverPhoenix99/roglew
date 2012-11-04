@@ -7,7 +7,7 @@ end
 
 module GL_ARB_sample_shading
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glMinSampleShadingARB, [ :float ], :void]
   end

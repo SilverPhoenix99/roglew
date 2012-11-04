@@ -56,7 +56,7 @@ end
 
 module GL_NV_register_combiners
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glCombinerInputNV, [ :uint, :uint, :uint, :uint, :uint, :uint ], :void],
               [:glCombinerOutputNV, [ :uint, :uint, :uint, :uint, :uint, :uint, :uint, :uchar, :uchar, :uchar ], :void],

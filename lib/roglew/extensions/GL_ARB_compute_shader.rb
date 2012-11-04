@@ -23,7 +23,7 @@ end
 
 module GL_ARB_compute_shader
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glDispatchCompute, [ :uint, :uint, :uint ], :void],
               [:glDispatchComputeIndirect, [ :int64 ], :void]

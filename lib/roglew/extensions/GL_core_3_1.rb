@@ -39,7 +39,7 @@ end
 
 module GL_core_3_1
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glDrawArraysInstanced, [ :uint, :int, :int, :int ], :void],
               [:glDrawElementsInstanced, [ :uint, :int, :uint, :pointer, :int ], :void],

@@ -40,7 +40,7 @@ end
 
 module GL_ARB_multitexture
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glActiveTextureARB, [ :uint ], :void],
               [:glClientActiveTextureARB, [ :uint ], :void],

@@ -9,7 +9,7 @@ end
 
 module GL_NV_conditional_render
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glBeginConditionalRenderNV, [ :uint, :uint ], :void],
               [:glEndConditionalRenderNV, [  ], :void]

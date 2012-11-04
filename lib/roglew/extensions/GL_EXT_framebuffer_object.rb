@@ -16,7 +16,7 @@ end
 
 module GL_EXT_framebuffer_object
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glBindFramebufferEXT, [ :uint, :uint ], :void],
               [:glBindRenderbufferEXT, [ :uint, :uint ], :void],

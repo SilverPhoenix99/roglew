@@ -12,7 +12,7 @@ end
 
 module GL_ARB_vertex_attrib_binding
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glBindVertexBuffer, [ :uint, :uint, :int64, :int ], :void],
               [:glVertexAttribBinding, [ :uint, :uint ], :void],

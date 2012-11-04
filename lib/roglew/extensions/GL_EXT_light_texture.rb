@@ -14,7 +14,7 @@ end
 
 module GL_EXT_light_texture
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glApplyTextureEXT, [ :uint ], :void],
               [:glTextureLightEXT, [ :uint ], :void],

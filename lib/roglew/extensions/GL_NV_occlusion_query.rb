@@ -9,7 +9,7 @@ end
 
 module GL_NV_occlusion_query
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glBeginOcclusionQueryNV, [ :uint ], :void],
               [:glDeleteOcclusionQueriesNV, [ :int, :pointer ], :void],

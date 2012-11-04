@@ -10,7 +10,7 @@ end
 
 module GL_ARB_occlusion_query
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glBeginQueryARB, [ :uint, :uint ], :void],
               [:glDeleteQueriesARB, [ :int, :pointer ], :void],

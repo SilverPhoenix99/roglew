@@ -10,7 +10,7 @@ end
 
 module GL_NV_parameter_buffer_object
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glProgramBufferParametersfvNV, [ :uint, :uint, :uint, :int, :pointer ], :void],
               [:glProgramBufferParametersIivNV, [ :uint, :uint, :uint, :int, :pointer ], :void],

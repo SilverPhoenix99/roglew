@@ -78,7 +78,7 @@ end
 
 module GL_NV_texture_shader
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions
   end

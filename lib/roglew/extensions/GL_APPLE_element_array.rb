@@ -8,7 +8,7 @@ end
 
 module GL_APPLE_element_array
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glDrawElementArrayAPPLE, [ :uint, :int, :int ], :void],
               [:glDrawRangeElementArrayAPPLE, [ :uint, :uint, :uint, :int, :int ], :void],

@@ -9,7 +9,7 @@ end
 
 module GL_ARB_get_program_binary
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glGetProgramBinary, [ :uint, :int, :pointer, :pointer, :pointer ], :void],
               [:glProgramBinary, [ :uint, :uint, :pointer, :int ], :void],

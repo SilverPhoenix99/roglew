@@ -20,7 +20,7 @@ end
 
 module GL_EXT_transform_feedback
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glBeginTransformFeedbackEXT, [ :uint ], :void],
               [:glBindBufferBaseEXT, [ :uint, :uint, :uint ], :void],

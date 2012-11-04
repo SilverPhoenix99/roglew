@@ -38,7 +38,7 @@ end
 
 module GL_EXT_vertex_array
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glArrayElementEXT, [ :int ], :void],
               [:glColorPointerEXT, [ :int, :uint, :int, :int, :pointer ], :void],

@@ -8,7 +8,7 @@ end
 
 module GL_NV_point_sprite
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glPointParameteriNV, [ :uint, :int ], :void],
               [:glPointParameterivNV, [ :uint, :pointer ], :void]

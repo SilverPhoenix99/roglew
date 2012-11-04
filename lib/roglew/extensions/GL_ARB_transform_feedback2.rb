@@ -9,7 +9,7 @@ end
 
 module GL_ARB_transform_feedback2
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glBindTransformFeedback, [ :uint, :uint ], :void],
               [:glDeleteTransformFeedbacks, [ :int, :pointer ], :void],

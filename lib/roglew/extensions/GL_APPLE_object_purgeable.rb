@@ -11,7 +11,7 @@ end
 
 module GL_APPLE_object_purgeable
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glGetObjectParameterivAPPLE, [ :uint, :uint, :uint, :pointer ], :void],
               [:glObjectPurgeableAPPLE, [ :uint, :uint, :uint ], :uint],

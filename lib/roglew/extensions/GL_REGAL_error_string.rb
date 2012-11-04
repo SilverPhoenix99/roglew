@@ -1,6 +1,6 @@
 module GL_REGAL_error_string
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glErrorStringREGAL, [ :uint ], :char]
   end

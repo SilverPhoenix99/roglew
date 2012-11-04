@@ -10,7 +10,7 @@ end
 
 module GL_ARB_color_buffer_float
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glClampColorARB, [ :uint, :uint ], :void]
   end

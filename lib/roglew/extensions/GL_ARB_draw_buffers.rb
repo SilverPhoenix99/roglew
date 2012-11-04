@@ -22,7 +22,7 @@ end
 
 module GL_ARB_draw_buffers
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glDrawBuffersARB, [ :int, :pointer ], :void]
   end

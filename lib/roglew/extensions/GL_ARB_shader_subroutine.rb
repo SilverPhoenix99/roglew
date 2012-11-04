@@ -14,7 +14,7 @@ end
 
 module GL_ARB_shader_subroutine
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glGetActiveSubroutineName, [ :uint, :uint, :uint, :int, :pointer, :string ], :void],
               [:glGetActiveSubroutineUniformiv, [ :uint, :uint, :uint, :uint, :pointer ], :void],

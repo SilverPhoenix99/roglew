@@ -6,7 +6,7 @@ end
 
 module GL_NV_register_combiners2
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glCombinerStageParameterfvNV, [ :uint, :uint, :pointer ], :void],
               [:glGetCombinerStageParameterfvNV, [ :uint, :uint, :pointer ], :void]

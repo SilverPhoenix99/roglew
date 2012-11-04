@@ -29,7 +29,7 @@ end
 
 module GL_NV_evaluators
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glEvalMapsNV, [ :uint, :uint ], :void],
               [:glGetMapAttribParameterfvNV, [ :uint, :uint, :uint, :pointer ], :void],

@@ -18,14 +18,12 @@ module Roglew
 end
 
 module GL_AMD_debug_output
-  extend FFI::Library
-  ffi_lib 'opengl32'
-  ffi_convention :stdcall
+  include Roglew::GL::Native
 
   GLDEBUGPROCAMD = callback :GLDEBUGPROCAMD, [ :uint, :uint, :uint, :int, :string, :pointer ], :void
 
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glDebugMessageCallbackAMD, [ GLDEBUGPROCAMD, :pointer ], :void],
               [:glDebugMessageEnableAMD, [ :uint, :uint, :int, :pointer, :uchar ], :void],

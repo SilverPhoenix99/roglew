@@ -9,7 +9,7 @@ end
 
 module GL_NV_framebuffer_multisample_coverage
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glRenderbufferStorageMultisampleCoverageNV, [ :uint, :int, :int, :uint, :int, :int ], :void]
   end

@@ -1,6 +1,6 @@
 module GL_EXT_index_func
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glIndexFuncEXT, [ :uint, :float ], :void]
   end

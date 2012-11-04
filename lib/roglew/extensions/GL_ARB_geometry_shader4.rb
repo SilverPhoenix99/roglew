@@ -24,7 +24,7 @@ end
 
 module GL_ARB_geometry_shader4
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glFramebufferTextureARB, [ :uint, :uint, :uint, :int ], :void],
               [:glFramebufferTextureFaceARB, [ :uint, :uint, :uint, :int, :uint ], :void],

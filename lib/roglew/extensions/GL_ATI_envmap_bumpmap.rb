@@ -13,7 +13,7 @@ end
 
 module GL_ATI_envmap_bumpmap
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glGetTexBumpParameterfvATI, [ :uint, :pointer ], :void],
               [:glGetTexBumpParameterivATI, [ :uint, :pointer ], :void],

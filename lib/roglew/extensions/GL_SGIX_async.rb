@@ -6,7 +6,7 @@ end
 
 module GL_SGIX_async
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glAsyncMarkerSGIX, [ :uint ], :void],
               [:glDeleteAsyncMarkersSGIX, [ :uint, :int ], :void],

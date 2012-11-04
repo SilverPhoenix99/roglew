@@ -46,7 +46,7 @@ end
 
 module GL_core_1_2
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glCopyTexSubImage3D, [:uint, :int, :int, :int, :int, :int, :int, :int, :int],                   :void],
               [:glDrawRangeElements, [:uint, :uint, :uint, :int, :uint, :pointer],                              :void],

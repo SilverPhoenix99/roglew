@@ -9,7 +9,7 @@ end
 
 module GL_NV_depth_buffer_float
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glClearDepthdNV, [ :double ], :void],
               [:glDepthBoundsdNV, [ :double, :double ], :void],

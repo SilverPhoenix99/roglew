@@ -14,7 +14,7 @@ end
 
 module GL_ARB_framebuffer_no_attachments
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glFramebufferParameteri, [ :uint, :uint, :int ], :void],
               [:glGetFramebufferParameteriv, [ :uint, :uint, :pointer ], :void],

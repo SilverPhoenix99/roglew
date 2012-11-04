@@ -34,7 +34,7 @@ end
 
 module GL_NV_video_capture
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glBeginVideoCaptureNV, [ :uint ], :void],
               [:glBindVideoCaptureStreamBufferNV, [ :uint, :uint, :uint, :int64 ], :void],

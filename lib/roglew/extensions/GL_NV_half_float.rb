@@ -6,7 +6,7 @@ end
 
 module GL_NV_half_float
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glColor3hNV, [ :ushort, :ushort, :ushort ], :void],
               [:glColor3hvNV, [ :pointer ], :void],

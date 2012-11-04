@@ -17,7 +17,7 @@ end
 
 module GL_ARB_gpu_shader_fp64
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glGetUniformdv, [ :uint, :int, :pointer ], :void],
               [:glUniform1d, [ :int, :double ], :void],

@@ -9,7 +9,7 @@ end
 
 module GL_NV_vdpau_interop
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glVDPAUFiniNV, [  ], :void],
               [:glVDPAUGetSurfaceivNV, [ :int64, :uint, :int, :pointer, :pointer ], :void],

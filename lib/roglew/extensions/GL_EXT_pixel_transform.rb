@@ -14,7 +14,7 @@ end
 
 module GL_EXT_pixel_transform
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glGetPixelTransformParameterfvEXT, [ :uint, :uint, :pointer ], :void],
               [:glGetPixelTransformParameterivEXT, [ :uint, :uint, :pointer ], :void],

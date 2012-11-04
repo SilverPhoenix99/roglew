@@ -37,7 +37,7 @@ end
 
 module GL_ARB_tessellation_shader
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glPatchParameterfv, [ :uint, :pointer ], :void],
               [:glPatchParameteri, [ :uint, :int ], :void]

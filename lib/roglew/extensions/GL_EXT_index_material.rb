@@ -1,6 +1,6 @@
 module GL_EXT_index_material
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glIndexMaterialEXT, [ :uint, :uint ], :void]
   end

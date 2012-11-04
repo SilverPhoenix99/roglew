@@ -8,7 +8,7 @@ end
 
 module GL_NV_texture_multisample
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glTexImage2DMultisampleCoverageNV, [ :uint, :int, :int, :int, :int, :int, :uchar ], :void],
               [:glTexImage3DMultisampleCoverageNV, [ :uint, :int, :int, :int, :int, :int, :int, :uchar ], :void],

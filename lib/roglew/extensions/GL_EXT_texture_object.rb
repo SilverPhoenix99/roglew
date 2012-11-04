@@ -10,7 +10,7 @@ end
 
 module GL_EXT_texture_object
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glAreTexturesResidentEXT, [ :int, :pointer, :pointer ], :uchar],
               [:glBindTextureEXT, [ :uint, :uint ], :void],

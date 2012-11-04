@@ -7,7 +7,7 @@ end
 
 module GL_APPLE_fence
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glDeleteFencesAPPLE, [ :int, :pointer ], :void],
               [:glFinishFenceAPPLE, [ :uint ], :void],

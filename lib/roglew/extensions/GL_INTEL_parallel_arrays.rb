@@ -10,7 +10,7 @@ end
 
 module GL_INTEL_parallel_arrays
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glColorPointervINTEL, [ :int, :uint, :pointer ], :void],
               [:glNormalPointervINTEL, [ :uint, :pointer ], :void],

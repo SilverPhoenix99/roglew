@@ -9,7 +9,7 @@ end
 
 module GL_EXT_provoking_vertex
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glProvokingVertexEXT, [ :uint ], :void]
   end

@@ -22,7 +22,7 @@ end
 
 module GL_EXT_multisample
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glSampleMaskEXT, [ :float, :uchar ], :void],
               [:glSamplePatternEXT, [ :uint ], :void]

@@ -1,6 +1,6 @@
 module GL_NV_bindless_texture
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glGetImageHandleNV, [ :uint, :int, :uchar, :int, :uint ], :uint64],
               [:glGetTextureHandleNV, [ :uint ], :uint64],

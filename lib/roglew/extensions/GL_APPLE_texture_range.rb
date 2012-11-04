@@ -11,7 +11,7 @@ end
 
 module GL_APPLE_texture_range
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glGetTexParameterPointervAPPLE, [ :uint, :uint, :pointer ], :void],
               [:glTextureRangeAPPLE, [ :uint, :int, :pointer ], :void]

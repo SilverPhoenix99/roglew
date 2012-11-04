@@ -7,7 +7,7 @@ end
 
 module GL_ARB_vertex_type_2_10_10_10_rev
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glColorP3ui, [ :uint, :uint ], :void],
               [:glColorP3uiv, [ :uint, :pointer ], :void],

@@ -22,7 +22,7 @@ end
 
 module GL_SUN_triangle_list
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glReplacementCodePointerSUN, [ :uint, :int, :pointer ], :void],
               [:glReplacementCodeubSUN, [ :uchar ], :void],

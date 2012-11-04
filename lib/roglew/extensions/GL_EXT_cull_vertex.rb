@@ -8,7 +8,7 @@ end
 
 module GL_EXT_cull_vertex
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glCullParameterdvEXT, [ :uint, :pointer ], :void],
               [:glCullParameterfvEXT, [ :uint, :pointer ], :void]

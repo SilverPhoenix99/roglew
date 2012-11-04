@@ -14,7 +14,7 @@ end
 
 module GL_ARB_multisample
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glSampleCoverageARB, [ :float, :uchar ], :void]
   end

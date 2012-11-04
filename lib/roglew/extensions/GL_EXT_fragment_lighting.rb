@@ -19,7 +19,7 @@ end
 
 module GL_EXT_fragment_lighting
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glFragmentColorMaterialEXT, [ :uint, :uint ], :void],
               [:glFragmentLightfEXT, [ :uint, :uint, :float ], :void],

@@ -7,7 +7,7 @@ end
 
 module GL_SUNX_constant_data
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glFinishTextureSUNX, [  ], :void]
   end

@@ -6,7 +6,7 @@ end
 
 module GL_ARB_texture_storage
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glTexStorage1D, [ :uint, :int, :uint, :int ], :void],
               [:glTexStorage2D, [ :uint, :int, :uint, :int, :int ], :void],

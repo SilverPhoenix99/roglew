@@ -26,7 +26,7 @@ end
 
 module GL_ARB_texture_multisample
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glGetMultisamplefv, [ :uint, :uint, :pointer ], :void],
               [:glSampleMaski, [ :uint, :uint ], :void],

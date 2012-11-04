@@ -135,7 +135,7 @@ end
 
 module GL_NV_path_rendering
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glCopyPathNV, [ :uint, :uint ], :void],
               [:glCoverFillPathInstancedNV, [ :int, :uint, :pointer, :uint, :uint, :uint, :pointer ], :void],

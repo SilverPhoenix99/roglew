@@ -6,7 +6,7 @@ end
 
 module GL_SGIX_framezoom
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glFrameZoomSGIX, [ :int ], :void]
   end

@@ -11,7 +11,7 @@ end
 
 module GL_ARB_vertex_attrib_64bit
   module RenderContext
-    include GLExtension
+    include Roglew::GLExtension
 
     functions [:glGetVertexAttribLdv, [ :uint, :uint, :pointer ], :void],
               [:glVertexAttribL1d, [ :uint, :double ], :void],
