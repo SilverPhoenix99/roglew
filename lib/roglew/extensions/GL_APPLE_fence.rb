@@ -1,7 +1,7 @@
 module Roglew
   module GL
-    DRAW_PIXELS_APPLE = 0x8A0A
-    FENCE_APPLE       = 0x8A0B
+    DRAW_PIXELS_APPLE = 0x8A0A unless const_defined? :DRAW_PIXELS_APPLE
+    FENCE_APPLE       = 0x8A0B unless const_defined? :FENCE_APPLE
   end
 end
 

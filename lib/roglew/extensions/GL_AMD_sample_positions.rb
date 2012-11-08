@@ -1,6 +1,6 @@
 module Roglew
   module GL
-    SUBSAMPLE_DISTANCE_AMD = 0x883F
+    SUBSAMPLE_DISTANCE_AMD = 0x883F unless const_defined? :SUBSAMPLE_DISTANCE_AMD
   end
 end
 

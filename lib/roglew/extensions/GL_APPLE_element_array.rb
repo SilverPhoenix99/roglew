@@ -1,8 +1,8 @@
 module Roglew
   module GL
-    ELEMENT_ARRAY_APPLE         = 0x8A0C
-    ELEMENT_ARRAY_POINTER_APPLE = 0x8A0E
-    ELEMENT_ARRAY_TYPE_APPLE    = 0x8A0D
+    ELEMENT_ARRAY_APPLE         = 0x8A0C unless const_defined? :ELEMENT_ARRAY_APPLE
+    ELEMENT_ARRAY_POINTER_APPLE = 0x8A0E unless const_defined? :ELEMENT_ARRAY_POINTER_APPLE
+    ELEMENT_ARRAY_TYPE_APPLE    = 0x8A0D unless const_defined? :ELEMENT_ARRAY_TYPE_APPLE
   end
 end
 

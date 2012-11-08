@@ -1,7 +1,7 @@
 module Roglew
   module GL
-    TIME_ELAPSED = 0x88BF
-    TIMESTAMP    = 0x8E28
+    TIME_ELAPSED = 0x88BF unless const_defined? :TIME_ELAPSED
+    TIMESTAMP    = 0x8E28 unless const_defined? :TIMESTAMP
   end
 end
 

@@ -1,9 +1,9 @@
 module Roglew
   module GL
-    MAX_DUAL_SOURCE_DRAW_BUFFERS = 0x88FC
-    ONE_MINUS_SRC1_ALPHA         = 0x88FB
-    ONE_MINUS_SRC1_COLOR         = 0x88FA
-    SRC1_COLOR                   = 0x88F9
+    MAX_DUAL_SOURCE_DRAW_BUFFERS = 0x88FC unless const_defined? :MAX_DUAL_SOURCE_DRAW_BUFFERS
+    ONE_MINUS_SRC1_ALPHA         = 0x88FB unless const_defined? :ONE_MINUS_SRC1_ALPHA
+    ONE_MINUS_SRC1_COLOR         = 0x88FA unless const_defined? :ONE_MINUS_SRC1_COLOR
+    SRC1_COLOR                   = 0x88F9 unless const_defined? :SRC1_COLOR
   end
 end
 

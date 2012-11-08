@@ -1,6 +1,6 @@
 module Roglew
   module GL
-    VERTEX_ATTRIB_ARRAY_DIVISOR_ARB = 0x88FE
+    VERTEX_ATTRIB_ARRAY_DIVISOR_ARB = 0x88FE unless const_defined? :VERTEX_ATTRIB_ARRAY_DIVISOR_ARB
   end
 end
 

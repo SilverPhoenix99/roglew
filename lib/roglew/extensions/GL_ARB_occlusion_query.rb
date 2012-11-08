@@ -1,10 +1,10 @@
 module Roglew
   module GL
-    CURRENT_QUERY_ARB          = 0x8865
-    QUERY_COUNTER_BITS_ARB     = 0x8864
-    QUERY_RESULT_ARB           = 0x8866
-    QUERY_RESULT_AVAILABLE_ARB = 0x8867
-    SAMPLES_PASSED_ARB         = 0x8914
+    CURRENT_QUERY_ARB          = 0x8865 unless const_defined? :CURRENT_QUERY_ARB
+    QUERY_COUNTER_BITS_ARB     = 0x8864 unless const_defined? :QUERY_COUNTER_BITS_ARB
+    QUERY_RESULT_ARB           = 0x8866 unless const_defined? :QUERY_RESULT_ARB
+    QUERY_RESULT_AVAILABLE_ARB = 0x8867 unless const_defined? :QUERY_RESULT_AVAILABLE_ARB
+    SAMPLES_PASSED_ARB         = 0x8914 unless const_defined? :SAMPLES_PASSED_ARB
   end
 end
 

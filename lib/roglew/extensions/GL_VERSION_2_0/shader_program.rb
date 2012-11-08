@@ -13,6 +13,8 @@ module Roglew
       #TODO
     end
 
+
+
     private
     def as_shader(type, s)
       s.is_a?(String) ? Shader.new(@context, type, s) : s

@@ -1,7 +1,7 @@
 module Roglew
   module GL
-    MAX_ELEMENTS_INDICES_EXT  = 0x80E9
-    MAX_ELEMENTS_VERTICES_EXT = 0x80E8
+    MAX_ELEMENTS_INDICES_EXT  = 0x80E9 unless const_defined? :MAX_ELEMENTS_INDICES_EXT
+    MAX_ELEMENTS_VERTICES_EXT = 0x80E8 unless const_defined? :MAX_ELEMENTS_VERTICES_EXT
   end
 end
 

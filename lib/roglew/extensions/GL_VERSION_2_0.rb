@@ -92,13 +92,13 @@ module GL_VERSION_2_0
   module RenderContext
     include Roglew::GLExtension
 
-    def create_program(*args)
-      Roglew::ShaderProgram.new(self, *args)
-    end
-
-    def create_shader(*args)
-      Roglew::Shader.new(self, *args)
-    end
+    #def create_program(*args)
+    #  Roglew::ShaderProgram.new(self, *args)
+    #end
+    #
+    #def create_shader(*args)
+    #  Roglew::Shader.new(self, *args)
+    #end
 
     functions	[:glAttachShader,             [:uint, :uint],                                               :void],
               [:glBindAttribLocation,       [:uint, :uint, :string],                                      :void],

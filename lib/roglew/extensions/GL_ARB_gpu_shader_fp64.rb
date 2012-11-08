@@ -1,17 +1,17 @@
 module Roglew
   module GL
-    DOUBLE_MAT2   = 0x8F46
-    DOUBLE_MAT2x3 = 0x8F49
-    DOUBLE_MAT2x4 = 0x8F4A
-    DOUBLE_MAT3   = 0x8F47
-    DOUBLE_MAT3x2 = 0x8F4B
-    DOUBLE_MAT3x4 = 0x8F4C
-    DOUBLE_MAT4   = 0x8F48
-    DOUBLE_MAT4x2 = 0x8F4D
-    DOUBLE_MAT4x3 = 0x8F4E
-    DOUBLE_VEC2   = 0x8FFC
-    DOUBLE_VEC3   = 0x8FFD
-    DOUBLE_VEC4   = 0x8FFE
+    DOUBLE_MAT2   = 0x8F46 unless const_defined? :DOUBLE_MAT2
+    DOUBLE_MAT2x3 = 0x8F49 unless const_defined? :DOUBLE_MAT2x3
+    DOUBLE_MAT2x4 = 0x8F4A unless const_defined? :DOUBLE_MAT2x4
+    DOUBLE_MAT3   = 0x8F47 unless const_defined? :DOUBLE_MAT3
+    DOUBLE_MAT3x2 = 0x8F4B unless const_defined? :DOUBLE_MAT3x2
+    DOUBLE_MAT3x4 = 0x8F4C unless const_defined? :DOUBLE_MAT3x4
+    DOUBLE_MAT4   = 0x8F48 unless const_defined? :DOUBLE_MAT4
+    DOUBLE_MAT4x2 = 0x8F4D unless const_defined? :DOUBLE_MAT4x2
+    DOUBLE_MAT4x3 = 0x8F4E unless const_defined? :DOUBLE_MAT4x3
+    DOUBLE_VEC2   = 0x8FFC unless const_defined? :DOUBLE_VEC2
+    DOUBLE_VEC3   = 0x8FFD unless const_defined? :DOUBLE_VEC3
+    DOUBLE_VEC4   = 0x8FFE unless const_defined? :DOUBLE_VEC4
   end
 end
 

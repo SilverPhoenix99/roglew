@@ -1,15 +1,15 @@
 module Roglew
   module GL
-    MAX_VERTEX_STREAMS_ATI = 0x876B
-    VERTEX_SOURCE_ATI      = 0x876C
-    VERTEX_STREAM0_ATI     = 0x876D
-    VERTEX_STREAM1_ATI     = 0x876E
-    VERTEX_STREAM2_ATI     = 0x876F
-    VERTEX_STREAM3_ATI     = 0x8770
-    VERTEX_STREAM4_ATI     = 0x8771
-    VERTEX_STREAM5_ATI     = 0x8772
-    VERTEX_STREAM6_ATI     = 0x8773
-    VERTEX_STREAM7_ATI     = 0x8774
+    MAX_VERTEX_STREAMS_ATI = 0x876B unless const_defined? :MAX_VERTEX_STREAMS_ATI
+    VERTEX_SOURCE_ATI      = 0x876C unless const_defined? :VERTEX_SOURCE_ATI
+    VERTEX_STREAM0_ATI     = 0x876D unless const_defined? :VERTEX_STREAM0_ATI
+    VERTEX_STREAM1_ATI     = 0x876E unless const_defined? :VERTEX_STREAM1_ATI
+    VERTEX_STREAM2_ATI     = 0x876F unless const_defined? :VERTEX_STREAM2_ATI
+    VERTEX_STREAM3_ATI     = 0x8770 unless const_defined? :VERTEX_STREAM3_ATI
+    VERTEX_STREAM4_ATI     = 0x8771 unless const_defined? :VERTEX_STREAM4_ATI
+    VERTEX_STREAM5_ATI     = 0x8772 unless const_defined? :VERTEX_STREAM5_ATI
+    VERTEX_STREAM6_ATI     = 0x8773 unless const_defined? :VERTEX_STREAM6_ATI
+    VERTEX_STREAM7_ATI     = 0x8774 unless const_defined? :VERTEX_STREAM7_ATI
   end
 end
 
