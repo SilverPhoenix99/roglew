@@ -1,6 +1,6 @@
 module Roglew
   module GL
-    TEXTURE_IMMUTABLE_FORMAT = 0x912F unless const_defined? :TEXTURE_IMMUTABLE_FORMAT
+    TEXTURE_IMMUTABLE_FORMAT ||= 0x912F
   end
 end
 

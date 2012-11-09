@@ -1,8 +1,8 @@
 module Roglew
   module GL
-    CULL_VERTEX_EXT                 = 0x81AA unless const_defined? :CULL_VERTEX_EXT
-    CULL_VERTEX_EYE_POSITION_EXT    = 0x81AB unless const_defined? :CULL_VERTEX_EYE_POSITION_EXT
-    CULL_VERTEX_OBJECT_POSITION_EXT = 0x81AC unless const_defined? :CULL_VERTEX_OBJECT_POSITION_EXT
+    CULL_VERTEX_EXT                 ||= 0x81AA
+    CULL_VERTEX_EYE_POSITION_EXT    ||= 0x81AB
+    CULL_VERTEX_OBJECT_POSITION_EXT ||= 0x81AC
   end
 end
 

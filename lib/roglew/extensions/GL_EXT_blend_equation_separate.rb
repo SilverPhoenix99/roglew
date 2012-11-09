@@ -1,7 +1,7 @@
 module Roglew
   module GL
-    BLEND_EQUATION_ALPHA_EXT = 0x883D unless const_defined? :BLEND_EQUATION_ALPHA_EXT
-    BLEND_EQUATION_RGB_EXT   = 0x8009 unless const_defined? :BLEND_EQUATION_RGB_EXT
+    BLEND_EQUATION_ALPHA_EXT ||= 0x883D
+    BLEND_EQUATION_RGB_EXT   ||= 0x8009
   end
 end
 

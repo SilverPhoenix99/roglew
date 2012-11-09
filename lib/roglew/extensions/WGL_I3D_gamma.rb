@@ -1,7 +1,7 @@
 module Roglew
   module WGL
-    GAMMA_EXCLUDE_DESKTOP_I3D = 0x204F
-    GAMMA_TABLE_SIZE_I3D      = 0x204E
+    GAMMA_EXCLUDE_DESKTOP_I3D ||= 0x204F
+    GAMMA_TABLE_SIZE_I3D      ||= 0x204E
   end
 end
 

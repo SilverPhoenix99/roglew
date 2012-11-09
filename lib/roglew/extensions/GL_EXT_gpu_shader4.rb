@@ -1,31 +1,31 @@
 module Roglew
   module GL
-    INT_SAMPLER_1D_ARRAY_EXT          = 0x8DCE unless const_defined? :INT_SAMPLER_1D_ARRAY_EXT
-    INT_SAMPLER_1D_EXT                = 0x8DC9 unless const_defined? :INT_SAMPLER_1D_EXT
-    INT_SAMPLER_2D_ARRAY_EXT          = 0x8DCF unless const_defined? :INT_SAMPLER_2D_ARRAY_EXT
-    INT_SAMPLER_2D_EXT                = 0x8DCA unless const_defined? :INT_SAMPLER_2D_EXT
-    INT_SAMPLER_2D_RECT_EXT           = 0x8DCD unless const_defined? :INT_SAMPLER_2D_RECT_EXT
-    INT_SAMPLER_3D_EXT                = 0x8DCB unless const_defined? :INT_SAMPLER_3D_EXT
-    INT_SAMPLER_BUFFER_EXT            = 0x8DD0 unless const_defined? :INT_SAMPLER_BUFFER_EXT
-    INT_SAMPLER_CUBE_EXT              = 0x8DCC unless const_defined? :INT_SAMPLER_CUBE_EXT
-    SAMPLER_1D_ARRAY_EXT              = 0x8DC0 unless const_defined? :SAMPLER_1D_ARRAY_EXT
-    SAMPLER_1D_ARRAY_SHADOW_EXT       = 0x8DC3 unless const_defined? :SAMPLER_1D_ARRAY_SHADOW_EXT
-    SAMPLER_2D_ARRAY_EXT              = 0x8DC1 unless const_defined? :SAMPLER_2D_ARRAY_EXT
-    SAMPLER_2D_ARRAY_SHADOW_EXT       = 0x8DC4 unless const_defined? :SAMPLER_2D_ARRAY_SHADOW_EXT
-    SAMPLER_BUFFER_EXT                = 0x8DC2 unless const_defined? :SAMPLER_BUFFER_EXT
-    SAMPLER_CUBE_SHADOW_EXT           = 0x8DC5 unless const_defined? :SAMPLER_CUBE_SHADOW_EXT
-    UNSIGNED_INT_SAMPLER_1D_ARRAY_EXT = 0x8DD6 unless const_defined? :UNSIGNED_INT_SAMPLER_1D_ARRAY_EXT
-    UNSIGNED_INT_SAMPLER_1D_EXT       = 0x8DD1 unless const_defined? :UNSIGNED_INT_SAMPLER_1D_EXT
-    UNSIGNED_INT_SAMPLER_2D_ARRAY_EXT = 0x8DD7 unless const_defined? :UNSIGNED_INT_SAMPLER_2D_ARRAY_EXT
-    UNSIGNED_INT_SAMPLER_2D_EXT       = 0x8DD2 unless const_defined? :UNSIGNED_INT_SAMPLER_2D_EXT
-    UNSIGNED_INT_SAMPLER_2D_RECT_EXT  = 0x8DD5 unless const_defined? :UNSIGNED_INT_SAMPLER_2D_RECT_EXT
-    UNSIGNED_INT_SAMPLER_3D_EXT       = 0x8DD3 unless const_defined? :UNSIGNED_INT_SAMPLER_3D_EXT
-    UNSIGNED_INT_SAMPLER_BUFFER_EXT   = 0x8DD8 unless const_defined? :UNSIGNED_INT_SAMPLER_BUFFER_EXT
-    UNSIGNED_INT_SAMPLER_CUBE_EXT     = 0x8DD4 unless const_defined? :UNSIGNED_INT_SAMPLER_CUBE_EXT
-    UNSIGNED_INT_VEC2_EXT             = 0x8DC6 unless const_defined? :UNSIGNED_INT_VEC2_EXT
-    UNSIGNED_INT_VEC3_EXT             = 0x8DC7 unless const_defined? :UNSIGNED_INT_VEC3_EXT
-    UNSIGNED_INT_VEC4_EXT             = 0x8DC8 unless const_defined? :UNSIGNED_INT_VEC4_EXT
-    VERTEX_ATTRIB_ARRAY_INTEGER_EXT   = 0x88FD unless const_defined? :VERTEX_ATTRIB_ARRAY_INTEGER_EXT
+    INT_SAMPLER_1D_ARRAY_EXT          ||= 0x8DCE
+    INT_SAMPLER_1D_EXT                ||= 0x8DC9
+    INT_SAMPLER_2D_ARRAY_EXT          ||= 0x8DCF
+    INT_SAMPLER_2D_EXT                ||= 0x8DCA
+    INT_SAMPLER_2D_RECT_EXT           ||= 0x8DCD
+    INT_SAMPLER_3D_EXT                ||= 0x8DCB
+    INT_SAMPLER_BUFFER_EXT            ||= 0x8DD0
+    INT_SAMPLER_CUBE_EXT              ||= 0x8DCC
+    SAMPLER_1D_ARRAY_EXT              ||= 0x8DC0
+    SAMPLER_1D_ARRAY_SHADOW_EXT       ||= 0x8DC3
+    SAMPLER_2D_ARRAY_EXT              ||= 0x8DC1
+    SAMPLER_2D_ARRAY_SHADOW_EXT       ||= 0x8DC4
+    SAMPLER_BUFFER_EXT                ||= 0x8DC2
+    SAMPLER_CUBE_SHADOW_EXT           ||= 0x8DC5
+    UNSIGNED_INT_SAMPLER_1D_ARRAY_EXT ||= 0x8DD6
+    UNSIGNED_INT_SAMPLER_1D_EXT       ||= 0x8DD1
+    UNSIGNED_INT_SAMPLER_2D_ARRAY_EXT ||= 0x8DD7
+    UNSIGNED_INT_SAMPLER_2D_EXT       ||= 0x8DD2
+    UNSIGNED_INT_SAMPLER_2D_RECT_EXT  ||= 0x8DD5
+    UNSIGNED_INT_SAMPLER_3D_EXT       ||= 0x8DD3
+    UNSIGNED_INT_SAMPLER_BUFFER_EXT   ||= 0x8DD8
+    UNSIGNED_INT_SAMPLER_CUBE_EXT     ||= 0x8DD4
+    UNSIGNED_INT_VEC2_EXT             ||= 0x8DC6
+    UNSIGNED_INT_VEC3_EXT             ||= 0x8DC7
+    UNSIGNED_INT_VEC4_EXT             ||= 0x8DC8
+    VERTEX_ATTRIB_ARRAY_INTEGER_EXT   ||= 0x88FD
   end
 end
 

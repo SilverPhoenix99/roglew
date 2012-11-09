@@ -1,6 +1,6 @@
 module Roglew
   module GL
-    SYNC_X11_FENCE_EXT = 0x90E1
+    SYNC_X11_FENCE_EXT ||= 0x90E1
   end
 end
 

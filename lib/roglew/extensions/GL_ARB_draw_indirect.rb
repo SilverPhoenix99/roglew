@@ -1,7 +1,7 @@
 module Roglew
   module GL
-    DRAW_INDIRECT_BUFFER         = 0x8F3F unless const_defined? :DRAW_INDIRECT_BUFFER
-    DRAW_INDIRECT_BUFFER_BINDING = 0x8F43 unless const_defined? :DRAW_INDIRECT_BUFFER_BINDING
+    DRAW_INDIRECT_BUFFER         ||= 0x8F3F
+    DRAW_INDIRECT_BUFFER_BINDING ||= 0x8F43
   end
 end
 

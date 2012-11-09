@@ -1,7 +1,7 @@
 module Roglew
   module GL
-    GLOBAL_ALPHA_SUN        = 0x81D9
-    GLOBAL_ALPHA_FACTOR_SUN = 0x81DA
+    GLOBAL_ALPHA_SUN        ||= 0x81D9
+    GLOBAL_ALPHA_FACTOR_SUN ||= 0x81DA
   end
 end
 

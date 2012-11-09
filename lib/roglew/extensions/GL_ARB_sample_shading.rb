@@ -1,7 +1,7 @@
 module Roglew
   module GL
-    MIN_SAMPLE_SHADING_VALUE_ARB = 0x8C37 unless const_defined? :MIN_SAMPLE_SHADING_VALUE_ARB
-    SAMPLE_SHADING_ARB           = 0x8C36 unless const_defined? :SAMPLE_SHADING_ARB
+    MIN_SAMPLE_SHADING_VALUE_ARB ||= 0x8C37
+    SAMPLE_SHADING_ARB           ||= 0x8C36
   end
 end
 

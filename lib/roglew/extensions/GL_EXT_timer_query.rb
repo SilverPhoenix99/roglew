@@ -1,6 +1,6 @@
 module Roglew
   module GL
-    TIME_ELAPSED_EXT = 0x88BF
+    TIME_ELAPSED_EXT ||= 0x88BF
   end
 end
 

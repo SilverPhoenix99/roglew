@@ -1,8 +1,8 @@
 module Roglew
   module GL
-    COORD_REPLACE_NV       = 0x8862
-    POINT_SPRITE_NV        = 0x8861
-    POINT_SPRITE_R_MODE_NV = 0x8863
+    COORD_REPLACE_NV       ||= 0x8862
+    POINT_SPRITE_NV        ||= 0x8861
+    POINT_SPRITE_R_MODE_NV ||= 0x8863
   end
 end
 

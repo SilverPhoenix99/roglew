@@ -1,7 +1,7 @@
 module Roglew
   module GL
-    DEPTH_BOUNDS_EXT      = 0x8891 unless const_defined? :DEPTH_BOUNDS_EXT
-    DEPTH_BOUNDS_TEST_EXT = 0x8890 unless const_defined? :DEPTH_BOUNDS_TEST_EXT
+    DEPTH_BOUNDS_EXT      ||= 0x8891
+    DEPTH_BOUNDS_TEST_EXT ||= 0x8890
   end
 end
 

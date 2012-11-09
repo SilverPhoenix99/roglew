@@ -1,6 +1,6 @@
 module Roglew
   module GL
-    VERTEX_ARRAY_BINDING = 0x85B5 unless const_defined? :VERTEX_ARRAY_BINDING
+    VERTEX_ARRAY_BINDING ||= 0x85B5
   end
 end
 

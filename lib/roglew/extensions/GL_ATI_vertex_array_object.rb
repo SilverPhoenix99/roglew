@@ -1,13 +1,13 @@
 module Roglew
   module GL
-    ARRAY_OBJECT_BUFFER_ATI = 0x8766 unless const_defined? :ARRAY_OBJECT_BUFFER_ATI
-    ARRAY_OBJECT_OFFSET_ATI = 0x8767 unless const_defined? :ARRAY_OBJECT_OFFSET_ATI
-    DISCARD_ATI             = 0x8763 unless const_defined? :DISCARD_ATI
-    DYNAMIC_ATI             = 0x8761 unless const_defined? :DYNAMIC_ATI
-    OBJECT_BUFFER_SIZE_ATI  = 0x8764 unless const_defined? :OBJECT_BUFFER_SIZE_ATI
-    OBJECT_BUFFER_USAGE_ATI = 0x8765 unless const_defined? :OBJECT_BUFFER_USAGE_ATI
-    PRESERVE_ATI            = 0x8762 unless const_defined? :PRESERVE_ATI
-    STATIC_ATI              = 0x8760 unless const_defined? :STATIC_ATI
+    ARRAY_OBJECT_BUFFER_ATI ||= 0x8766
+    ARRAY_OBJECT_OFFSET_ATI ||= 0x8767
+    DISCARD_ATI             ||= 0x8763
+    DYNAMIC_ATI             ||= 0x8761
+    OBJECT_BUFFER_SIZE_ATI  ||= 0x8764
+    OBJECT_BUFFER_USAGE_ATI ||= 0x8765
+    PRESERVE_ATI            ||= 0x8762
+    STATIC_ATI              ||= 0x8760
   end
 end
 

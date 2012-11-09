@@ -1,11 +1,11 @@
 module Roglew
   module GL
-    CURRENT_TIME_NV     = 0x8E28
-    FIELDS_NV           = 0x8E27
-    FRAME_NV            = 0x8E26
-    NUM_FILL_STREAMS_NV = 0x8E29
-    PRESENT_DURATION_NV = 0x8E2B
-    PRESENT_TIME_NV     = 0x8E2A
+    CURRENT_TIME_NV     ||= 0x8E28
+    FIELDS_NV           ||= 0x8E27
+    FRAME_NV            ||= 0x8E26
+    NUM_FILL_STREAMS_NV ||= 0x8E29
+    PRESENT_DURATION_NV ||= 0x8E2B
+    PRESENT_TIME_NV     ||= 0x8E2A
   end
 end
 

@@ -1,6 +1,6 @@
 module Roglew
   module GL
-    PER_STAGE_CONSTANTS_NV = 0x8535
+    PER_STAGE_CONSTANTS_NV ||= 0x8535
   end
 end
 

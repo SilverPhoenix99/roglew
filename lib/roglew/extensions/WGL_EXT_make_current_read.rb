@@ -1,6 +1,6 @@
 module Roglew
   module WGL
-    ERROR_INVALID_PIXEL_TYPE_EXT = 0x2043
+    ERROR_INVALID_PIXEL_TYPE_EXT ||= 0x2043
   end
 end
 

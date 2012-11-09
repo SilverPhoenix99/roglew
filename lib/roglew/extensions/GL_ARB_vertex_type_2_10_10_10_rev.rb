@@ -1,7 +1,7 @@
 module Roglew
   module GL
-    INT_2_10_10_10_REV          = 0x8D9F unless const_defined? :INT_2_10_10_10_REV
-    UNSIGNED_INT_2_10_10_10_REV = 0x8368 unless const_defined? :UNSIGNED_INT_2_10_10_10_REV
+    INT_2_10_10_10_REV          ||= 0x8D9F
+    UNSIGNED_INT_2_10_10_10_REV ||= 0x8368
   end
 end
 

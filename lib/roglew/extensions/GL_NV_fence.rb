@@ -1,8 +1,8 @@
 module Roglew
   module GL
-    ALL_COMPLETED_NV   = 0x84F2
-    FENCE_CONDITION_NV = 0x84F4
-    FENCE_STATUS_NV    = 0x84F3
+    ALL_COMPLETED_NV   ||= 0x84F2
+    FENCE_CONDITION_NV ||= 0x84F4
+    FENCE_STATUS_NV    ||= 0x84F3
   end
 end
 

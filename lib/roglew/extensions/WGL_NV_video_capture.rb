@@ -1,7 +1,7 @@
 module Roglew
   module WGL
-    UNIQUE_ID_NV               = 0x20CE
-    NUM_VIDEO_CAPTURE_SLOTS_NV = 0x20CF
+    UNIQUE_ID_NV               ||= 0x20CE
+    NUM_VIDEO_CAPTURE_SLOTS_NV ||= 0x20CF
   end
 end
 

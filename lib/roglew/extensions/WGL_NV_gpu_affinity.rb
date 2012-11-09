@@ -1,7 +1,7 @@
 module Roglew
   module WGL
-    ERROR_INCOMPATIBLE_AFFINITY_MASKS_NV = 0x20D0
-    ERROR_MISSING_AFFINITY_MASK_NV       = 0x20D1
+    ERROR_INCOMPATIBLE_AFFINITY_MASKS_NV ||= 0x20D0
+    ERROR_MISSING_AFFINITY_MASK_NV       ||= 0x20D1
 
     class GPU_DEVICE < FFI::Struct
       layout :cb,              :uint,

@@ -1,7 +1,7 @@
 module Roglew
   module GL
-    COPY_READ_BUFFER  = 0x8F36 unless const_defined? :COPY_READ_BUFFER
-    COPY_WRITE_BUFFER = 0x8F37 unless const_defined? :COPY_WRITE_BUFFER
+    COPY_READ_BUFFER  ||= 0x8F36
+    COPY_WRITE_BUFFER ||= 0x8F37
   end
 end
 

@@ -1,8 +1,8 @@
 module Roglew
   module WGL
-    ACCESS_READ_ONLY_NV     = 0x0000
-    ACCESS_READ_WRITE_NV    = 0x0001
-    ACCESS_WRITE_DISCARD_NV = 0x0002
+    ACCESS_READ_ONLY_NV     ||= 0x0000
+    ACCESS_READ_WRITE_NV    ||= 0x0001
+    ACCESS_WRITE_DISCARD_NV ||= 0x0002
   end
 end
 

@@ -1,7 +1,7 @@
 module Roglew
   module GL
-    PERTURB_EXT        = 0x85AE
-    TEXTURE_NORMAL_EXT = 0x85AF
+    PERTURB_EXT        ||= 0x85AE
+    TEXTURE_NORMAL_EXT ||= 0x85AF
   end
 end
 

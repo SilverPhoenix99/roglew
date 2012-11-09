@@ -1,11 +1,11 @@
 module Roglew
   module GL
-    DOUBLE_MAT2 = 0x8F46 unless const_defined? :DOUBLE_MAT2
-    DOUBLE_MAT3 = 0x8F47 unless const_defined? :DOUBLE_MAT3
-    DOUBLE_MAT4 = 0x8F48 unless const_defined? :DOUBLE_MAT4
-    DOUBLE_VEC2 = 0x8FFC unless const_defined? :DOUBLE_VEC2
-    DOUBLE_VEC3 = 0x8FFD unless const_defined? :DOUBLE_VEC3
-    DOUBLE_VEC4 = 0x8FFE unless const_defined? :DOUBLE_VEC4
+    DOUBLE_MAT2 ||= 0x8F46
+    DOUBLE_MAT3 ||= 0x8F47
+    DOUBLE_MAT4 ||= 0x8F48
+    DOUBLE_VEC2 ||= 0x8FFC
+    DOUBLE_VEC3 ||= 0x8FFD
+    DOUBLE_VEC4 ||= 0x8FFE
   end
 end
 

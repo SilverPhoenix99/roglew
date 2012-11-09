@@ -1,9 +1,9 @@
 module Roglew
   module GL
-    CURRENT_OCCLUSION_QUERY_ID_NV = 0x8865
-    PIXEL_COUNT_AVAILABLE_NV      = 0x8867
-    PIXEL_COUNT_NV                = 0x8866
-    PIXEL_COUNTER_BITS_NV         = 0x8864
+    CURRENT_OCCLUSION_QUERY_ID_NV ||= 0x8865
+    PIXEL_COUNT_AVAILABLE_NV      ||= 0x8867
+    PIXEL_COUNT_NV                ||= 0x8866
+    PIXEL_COUNTER_BITS_NV         ||= 0x8864
   end
 end
 

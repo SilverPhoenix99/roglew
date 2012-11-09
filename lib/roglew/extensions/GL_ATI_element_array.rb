@@ -1,8 +1,8 @@
 module Roglew
   module GL
-    ELEMENT_ARRAY_ATI         = 0x8768 unless const_defined? :ELEMENT_ARRAY_ATI
-    ELEMENT_ARRAY_POINTER_ATI = 0x876A unless const_defined? :ELEMENT_ARRAY_POINTER_ATI
-    ELEMENT_ARRAY_TYPE_ATI    = 0x8769 unless const_defined? :ELEMENT_ARRAY_TYPE_ATI
+    ELEMENT_ARRAY_ATI         ||= 0x8768
+    ELEMENT_ARRAY_POINTER_ATI ||= 0x876A
+    ELEMENT_ARRAY_TYPE_ATI    ||= 0x8769
   end
 end
 

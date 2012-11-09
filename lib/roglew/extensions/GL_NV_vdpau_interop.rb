@@ -1,9 +1,9 @@
 module Roglew
   module GL
-    SURFACE_MAPPED_NV     = 0x8700
-    SURFACE_REGISTERED_NV = 0x86FD
-    SURFACE_STATE_NV      = 0x86EB
-    WRITE_DISCARD_NV      = 0x88BE
+    SURFACE_MAPPED_NV     ||= 0x8700
+    SURFACE_REGISTERED_NV ||= 0x86FD
+    SURFACE_STATE_NV      ||= 0x86EB
+    WRITE_DISCARD_NV      ||= 0x88BE
   end
 end
 

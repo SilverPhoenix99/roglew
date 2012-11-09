@@ -1,7 +1,7 @@
 module Roglew
   module GL
-    INT64_NV          = 0x140E
-    UNSIGNED_INT64_NV = 0x140F
+    INT64_NV          ||= 0x140E
+    UNSIGNED_INT64_NV ||= 0x140F
   end
 end
 

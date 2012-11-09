@@ -1,6 +1,6 @@
 module Roglew
   module GL
-    ASYNC_MARKER_SGIX = 0x8329
+    ASYNC_MARKER_SGIX ||= 0x8329
   end
 end
 

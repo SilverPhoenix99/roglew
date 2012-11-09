@@ -1,7 +1,7 @@
 module Roglew
   module GL
-    SYNC_CL_EVENT_ARB          = 0x8240 unless const_defined? :SYNC_CL_EVENT_ARB
-    SYNC_CL_EVENT_COMPLETE_ARB = 0x8241 unless const_defined? :SYNC_CL_EVENT_COMPLETE_ARB
+    SYNC_CL_EVENT_ARB          ||= 0x8240
+    SYNC_CL_EVENT_COMPLETE_ARB ||= 0x8241
   end
 end
 

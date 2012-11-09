@@ -1,6 +1,6 @@
 module Roglew
   module WGL
-    NUM_VIDEO_SLOTS_NV = 0x20F0
+    NUM_VIDEO_SLOTS_NV ||= 0x20F0
   end
 end
 

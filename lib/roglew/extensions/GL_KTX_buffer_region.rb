@@ -1,9 +1,9 @@
 module Roglew
   module GL
-    KTX_BACK_REGION    = 0x1
-    KTX_FRONT_REGION   = 0x0
-    KTX_STENCIL_REGION = 0x3
-    KTX_Z_REGION       = 0x2
+    KTX_BACK_REGION    ||= 0x1
+    KTX_FRONT_REGION   ||= 0x0
+    KTX_STENCIL_REGION ||= 0x3
+    KTX_Z_REGION       ||= 0x2
   end
 end
 

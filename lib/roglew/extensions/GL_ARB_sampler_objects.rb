@@ -1,6 +1,6 @@
 module Roglew
   module GL
-    SAMPLER_BINDING = 0x8919 unless const_defined? :SAMPLER_BINDING
+    SAMPLER_BINDING ||= 0x8919
   end
 end
 

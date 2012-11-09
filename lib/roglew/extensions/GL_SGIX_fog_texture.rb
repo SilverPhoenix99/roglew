@@ -1,8 +1,8 @@
 module Roglew
   module GL
-    TEXTURE_FOG_SGIX       = 0
-    FOG_PATCHY_FACTOR_SGIX = 0
-    FRAGMENT_FOG_SGIX      = 0
+    TEXTURE_FOG_SGIX       ||= 0
+    FOG_PATCHY_FACTOR_SGIX ||= 0
+    FRAGMENT_FOG_SGIX      ||= 0
   end
 end
 

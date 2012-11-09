@@ -1,6 +1,6 @@
 module Roglew
   module GL
-    NUM_SAMPLE_COUNTS = 0x9380 unless const_defined? :NUM_SAMPLE_COUNTS
+    NUM_SAMPLE_COUNTS ||= 0x9380
   end
 end
 

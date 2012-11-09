@@ -1,6 +1,6 @@
 module Roglew
   module GL
-	ACTIVE_PROGRAM_EXT = 0x8B8D
+	ACTIVE_PROGRAM_EXT ||= 0x8B8D
   end
 end
 

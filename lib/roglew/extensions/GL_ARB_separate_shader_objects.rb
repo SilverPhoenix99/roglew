@@ -1,14 +1,14 @@
 module Roglew
   module GL
-    ACTIVE_PROGRAM             = 0x8259 unless const_defined? :ACTIVE_PROGRAM
-    ALL_SHADER_BITS            = 0xFFFFFFFF unless const_defined? :ALL_SHADER_BITS
-    FRAGMENT_SHADER_BIT        = 0x00000002 unless const_defined? :FRAGMENT_SHADER_BIT
-    GEOMETRY_SHADER_BIT        = 0x00000004 unless const_defined? :GEOMETRY_SHADER_BIT
-    PROGRAM_PIPELINE_BINDING   = 0x825A unless const_defined? :PROGRAM_PIPELINE_BINDING
-    PROGRAM_SEPARABLE          = 0x8258 unless const_defined? :PROGRAM_SEPARABLE
-    TESS_CONTROL_SHADER_BIT    = 0x00000008 unless const_defined? :TESS_CONTROL_SHADER_BIT
-    TESS_EVALUATION_SHADER_BIT = 0x00000010 unless const_defined? :TESS_EVALUATION_SHADER_BIT
-    VERTEX_SHADER_BIT          = 0x00000001 unless const_defined? :VERTEX_SHADER_BIT
+    ACTIVE_PROGRAM             ||= 0x8259
+    ALL_SHADER_BITS            ||= 0xFFFFFFFF
+    FRAGMENT_SHADER_BIT        ||= 0x00000002
+    GEOMETRY_SHADER_BIT        ||= 0x00000004
+    PROGRAM_PIPELINE_BINDING   ||= 0x825A
+    PROGRAM_SEPARABLE          ||= 0x8258
+    TESS_CONTROL_SHADER_BIT    ||= 0x00000008
+    TESS_EVALUATION_SHADER_BIT ||= 0x00000010
+    VERTEX_SHADER_BIT          ||= 0x00000001
   end
 end
 

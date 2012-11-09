@@ -1,10 +1,10 @@
 module Roglew
   module GL
-    BLEND_COLOR_EXT              = 0x8005 unless const_defined? :BLEND_COLOR_EXT
-    CONSTANT_ALPHA_EXT           = 0x8003 unless const_defined? :CONSTANT_ALPHA_EXT
-    CONSTANT_COLOR_EXT           = 0x8001 unless const_defined? :CONSTANT_COLOR_EXT
-    ONE_MINUS_CONSTANT_ALPHA_EXT = 0x8004 unless const_defined? :ONE_MINUS_CONSTANT_ALPHA_EXT
-    ONE_MINUS_CONSTANT_COLOR_EXT = 0x8002 unless const_defined? :ONE_MINUS_CONSTANT_COLOR_EXT
+    BLEND_COLOR_EXT              ||= 0x8005
+    CONSTANT_ALPHA_EXT           ||= 0x8003
+    CONSTANT_COLOR_EXT           ||= 0x8001
+    ONE_MINUS_CONSTANT_ALPHA_EXT ||= 0x8004
+    ONE_MINUS_CONSTANT_COLOR_EXT ||= 0x8002
   end
 end
 

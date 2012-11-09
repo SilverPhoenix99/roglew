@@ -1,8 +1,8 @@
 module Roglew
   module GL
-    NAMED_STRING_LENGTH_ARB = 0x8DE9 unless const_defined? :NAMED_STRING_LENGTH_ARB
-    NAMED_STRING_TYPE_ARB   = 0x8DEA unless const_defined? :NAMED_STRING_TYPE_ARB
-    SHADER_INCLUDE_ARB      = 0x8DAE unless const_defined? :SHADER_INCLUDE_ARB
+    NAMED_STRING_LENGTH_ARB ||= 0x8DE9
+    NAMED_STRING_TYPE_ARB   ||= 0x8DEA
+    SHADER_INCLUDE_ARB      ||= 0x8DAE
   end
 end
 

@@ -1,6 +1,6 @@
 module Roglew
   module GL
-    HALF_FLOAT_NV = 0x140B
+    HALF_FLOAT_NV ||= 0x140B
   end
 end
 

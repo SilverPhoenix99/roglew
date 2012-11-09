@@ -1,8 +1,8 @@
 module Roglew
   module GL
-    PROGRAM_MATRIX_EXT             = 0x8E2D unless const_defined? :PROGRAM_MATRIX_EXT
-    PROGRAM_MATRIX_STACK_DEPTH_EXT = 0x8E2F unless const_defined? :PROGRAM_MATRIX_STACK_DEPTH_EXT
-    TRANSPOSE_PROGRAM_MATRIX_EXT   = 0x8E2E unless const_defined? :TRANSPOSE_PROGRAM_MATRIX_EXT
+    PROGRAM_MATRIX_EXT             ||= 0x8E2D
+    PROGRAM_MATRIX_STACK_DEPTH_EXT ||= 0x8E2F
+    TRANSPOSE_PROGRAM_MATRIX_EXT   ||= 0x8E2E
   end
 end
 
