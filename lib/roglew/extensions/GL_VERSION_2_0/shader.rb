@@ -3,13 +3,13 @@ module Roglew
     attr_reader :context, :id, :type
 
     def initialize(context, type, src = nil)
-      @context = context.bind { |c| @id = c.glCreateShader(type) }
+      @context = context.bind { @id = context.glCreateShader(type) }
       @type = type
       raise OpenGLError, "couldn't create a shader of type #{type.to_s(16)}" if @id == 0
 
       if src
         src = File.read(src) if File.file? src
-        @context.bind { |_| compile(src) }
+        @context.bind { compile(src) }
       end
 
       self.class.finalize(self, @id, @context)

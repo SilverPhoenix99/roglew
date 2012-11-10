@@ -1,7 +1,7 @@
 #Raw Glue - the Ruby OpenGL and Extensions Wrapper
 
 module Roglew
-  VERSION = '0.1.2'
+  VERSION = '0.1.3'
 end
 
 #external dependencies

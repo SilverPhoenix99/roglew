@@ -103,10 +103,10 @@ module GL_VERSION_2_0
       else
         raise ArgumentError, "It must be Hash or Array. Given: #{shaders.class}"
       end
-      bind { |_|
+      bind do
         program.attach(*shaders)
         program.link
-      }
+      end
       program
     end
 

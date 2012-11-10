@@ -5,7 +5,7 @@ module Roglew
                 :shaders
 
     def initialize(context)
-      @context = context.bind { |c| @id = c.glCreateProgram() }
+      @context = context.bind { @id = context.glCreateProgram() }
     end
 
     def attach(*shaders)
