@@ -14,7 +14,7 @@ module GL_ARB_vertex_array_object
               [:glGenVertexArrays, [ :int, :pointer ], :void],
               [:glIsVertexArray, [ :uint ], :uchar]
 
-    def_object :VertexArray
+    def_object :VertexArrays
 
   end
 end
