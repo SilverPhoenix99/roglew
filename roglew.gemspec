@@ -13,4 +13,7 @@ Gem::Specification.new do |s|
   s.homepage      = 'https://github.com/SilverPhoenix99/roglew'
   s.require_paths = %w'lib'
   s.files         = Dir['{lib/**/*.rb,*.md}']
+  s.add_dependency('ducktape', '>= 0.3.0')
+  s.add_dependency('facets', '>= 2.9.3')
+  s.add_dependency('ffi', '>= 1.1.5')
 end

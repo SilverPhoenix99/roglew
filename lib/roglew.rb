@@ -1,14 +1,13 @@
 #Raw Glue - the Ruby OpenGL and Extensions Wrapper
 
 module Roglew
-  VERSION = '0.1.1'
+  VERSION = '0.1.2'
 end
 
 #external dependencies
 %w'
   set
   ffi
-  facets/kernel/ergo
   facets/module/module_load
   facets/string/camelcase
   facets/string/snakecase

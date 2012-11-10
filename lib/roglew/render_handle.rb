@@ -14,7 +14,7 @@ module Roglew
       ctx = @context_class.new(self, deferred)
       GL.make_current(@hdc, @hrc) unless deferred
       return ctx unless block_given?
-      ctx.ergo &block
+      yield
       if deferred then ctx.apply else self.class.unbind end
 
       self

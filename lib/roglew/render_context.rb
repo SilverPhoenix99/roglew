@@ -60,10 +60,10 @@ module Roglew
       singleton_class.send(:include, mod) if mod
     end
 
-    def bind(&block)
+    def bind
       wglMakeCurrent(@hdc, @hrc)
       if block_given?
-        ergo &block
+        yield
         unbind
       end
       self
@@ -85,10 +85,10 @@ module Roglew
 
     def_object :Textures
 
-    def begin(mode, &block)
+    def begin(mode)
       glBegin(mode)
       return unless block_given?
-      ergo &block
+      yield
       glEnd
     end
 

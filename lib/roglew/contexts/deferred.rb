@@ -18,9 +18,9 @@ module Roglew
       nil
     end
 
-    def run(&block)
+    def run
       return unless block_given?
-      ergo &block
+      yield
       finished
     end
   end

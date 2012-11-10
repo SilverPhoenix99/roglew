@@ -9,10 +9,10 @@ module Roglew
       context.send(method, *args)
     end
 
-    def run(&block)
+    def run
       bind
       return unless block_given?
-      ergo &block
+      yield
       finished
     end
   end
