@@ -83,8 +83,7 @@ module Roglew
       Texture2d.new(self, *args)
     end
 
-    def_gen :textures, :glGenTextures
-    def_delete :textures, :glDeleteTextures
+    def_object :Textures
 
     def begin(mode, &block)
       glBegin(mode)
@@ -134,29 +133,6 @@ module Roglew
       glGetIntegerv(pname, p)
       result = p.read_array_of_int(count)
       count == 1 ? result[0] : result
-    end
-
-    def get_shader(shader, pname)
-      p = FFI::MemoryPointer.new(:int)
-      glGetShaderiv(shader.id, pname, p)
-      result = p.read_int
-      [GL::DELETE_STATUS, GL::COMPILE_STATUS].include?(pname) ? result == GL::TRUE : result
-    end
-
-    def get_shader_info_log(shader)
-      length = shader.info_log_length
-      p = FFI::MemoryPointer.new(:char, length)
-      glGetShaderInfoLog(shader.id, length, nil, p)
-      p.read_string
-    end
-
-    def shader_sources(shader, *srcs)
-      ps = FFI::MemoryPointer.new(:string, srcs.length)
-      ps.write_array_of_pointer(srcs.map { |src| FFI::MemoryPointer.from_string(src) })
-      pl = FFI::MemoryPointer.new(:int, srcs.length)
-      pl.write_array_of_int(srcs.map { |src| src.length })
-      glShaderSource(shader.id, srcs.length, ps, pl)
-      nil
     end
 
     def swap_buffers

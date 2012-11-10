@@ -10,6 +10,8 @@ end
   ffi
   facets/kernel/ergo
   facets/module/module_load
+  facets/string/camelcase
+  facets/string/snakecase
 '.each { |f| require f }
 
 #internal files

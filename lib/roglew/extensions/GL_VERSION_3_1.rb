@@ -47,3 +47,7 @@ module GL_VERSION_3_1
               [:glTexBuffer, [ :uint, :uint, :uint ], :void]
   end
 end
+
+#GL_VERSION_4_0 implicit requires
+#GL_ARB_uniform_buffer_object
+#GL_ARB_copy_buffer
