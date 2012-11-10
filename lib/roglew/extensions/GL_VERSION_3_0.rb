@@ -172,3 +172,7 @@ module GL_VERSION_3_0
               [:glVertexAttribIPointer, [ :uint, :int, :uint, :int, :pointer ], :void]
   end
 end
+#GL_VERSION_4_0 implicit requires
+#GL_ARB_framebuffer_object
+#GL_ARB_map_buffer_range
+#GL_ARB_vertex_array_object

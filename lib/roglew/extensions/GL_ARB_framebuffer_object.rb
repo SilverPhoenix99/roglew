@@ -134,14 +134,13 @@ module GL_ARB_framebuffer_object
     [
       #void glGenFramebuffers(GLsizei n, GLuint* framebuffers)
       #void glDeleteFramebuffers(GLsizei n, const GLuint* framebuffers)
-      [:framebuffers, :glGenFramebuffers, :glDeleteFramebuffers],
+      :Framebuffers,
 
       #void glGenRenderbuffers(GLsizei n, GLuint* renderbuffers)
       #void glDeleteRenderbuffers(GLsizei n, const GLuint* renderbuffers)
-      [:renderbuffers, :glGenRenderbuffers, :glDeleteRenderbuffers],
-    ].each do |method_name, gen_function_name, del_function_name|
-      def_gen method_name, gen_function_name
-      def_delete method_name, del_function_name
+      :Renderbuffers
+    ].each do |name|
+      def_object name
     end
   end
 end

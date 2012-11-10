@@ -35,3 +35,9 @@ module GL_VERSION_3_2
               [:glGetInteger64i_v, [ :uint, :uint, :pointer ], :void]
   end
 end
+
+#GL_VERSION_4_0 implicit requires
+#GL_ARB_draw_elements_base_vertex
+#GL_ARB_provoking_vertex
+#GL_ARB_sync
+#GL_ARB_texture_multisample

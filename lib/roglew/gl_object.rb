@@ -18,6 +18,11 @@ module Roglew
           nil
         end
       end
+
+      def def_object(name)
+        def_gen(name.to_s.snakecase, "glGen#{name}")
+        def_delete(name.to_s.snakecase, "glDelete#{name}")
+      end
     end
 
     def self.included(c)

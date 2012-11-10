@@ -92,13 +92,27 @@ module GL_VERSION_2_0
   module RenderContext
     include Roglew::GLExtension
 
-    #def create_program(*args)
-    #  Roglew::ShaderProgram.new(self, *args)
-    #end
-    #
-    #def create_shader(*args)
-    #  Roglew::Shader.new(self, *args)
-    #end
+    def create_program(shaders = nil)
+      program = Roglew::ShaderProgram.new(self)
+      return program unless shaders
+      shaders = case shaders
+      when Hash
+        shaders.map { |type, source| create_shader(type, source) }
+      when Array
+        shaders
+      else
+        raise ArgumentError, "It must be Hash or Array. Given: #{shaders.class}"
+      end
+      bind { |_|
+        program.attach(*shaders)
+        program.link
+      }
+      program
+    end
+
+    def create_shader(*args)
+      Roglew::Shader.new(self, *args)
+    end
 
     functions	[:glAttachShader,             [:uint, :uint],                                               :void],
               [:glBindAttribLocation,       [:uint, :uint, :string],                                      :void],
@@ -193,6 +207,42 @@ module GL_VERSION_2_0
               [:glVertexAttrib4uiv,         [:uint, :pointer],                                            :void],
               [:glVertexAttrib4usv,         [:uint, :pointer],                                            :void],
               [:glVertexAttribPointer,      [:uint, :int, :uint, :bool, :int, :pointer],                  :void]
+
+    def get_program(program, pname)
+      p = FFI::MemoryPointer.new(:int)
+      glGetProgramiv(program, pname, p)
+      result = p.read_int
+      [Roglew::GL::DELETE_STATUS, Roglew::GL::COMPILE_STATUS].include?(pname) ? result == Roglew::GL::TRUE : result
+    end
+
+    def get_program_info_log(program)
+      length = get_program(program, Roglew::GL::INFO_LOG_LENGTH)
+      p = FFI::MemoryPointer.new(:char, length)
+      glGetProgramInfoLog(program, length, nil, p)
+      p.read_string
+    end
+
+    def get_shader(shader, pname)
+      p = FFI::MemoryPointer.new(:int)
+      glGetShaderiv(shader, pname, p)
+      result = p.read_int
+      [Roglew::GL::DELETE_STATUS, Roglew::GL::COMPILE_STATUS].include?(pname) ? result == Roglew::GL::TRUE : result
+    end
+
+    def get_shader_info_log(shader)
+      length = get_shader(shader, Roglew::GL::INFO_LOG_LENGTH)
+      p = FFI::MemoryPointer.new(:char, length)
+      glGetShaderInfoLog(shader, length, nil, p)
+      p.read_string
+    end
+
+    def shader_sources(shader, *srcs)
+      ps = FFI::MemoryPointer.new(:string, srcs.length)
+      ps.write_array_of_pointer(srcs.map { |src| FFI::MemoryPointer.from_string(src) })
+      pl = FFI::MemoryPointer.new(:int, srcs.length)
+      pl.write_array_of_int(srcs.map { |src| src.length })
+      glShaderSource(shader, srcs.length, ps, pl)
+    end
   end
 end
 

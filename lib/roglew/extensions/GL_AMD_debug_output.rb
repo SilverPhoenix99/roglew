@@ -24,8 +24,14 @@ module GL_AMD_debug_output
     include Roglew::GLExtension
 
     functions [:glDebugMessageCallbackAMD, [ Roglew::GL::GLDEBUGPROCAMD, :pointer ], :void],
-              [:glDebugMessageEnableAMD, [ :uint, :uint, :int, :pointer, :uchar ], :void],
+              [:glDebugMessageEnableAMD, [ :uint, :uint, :int, :pointer, :bool ], :void],
               [:glDebugMessageInsertAMD, [ :uint, :uint, :uint, :int, :string ], :void],
               [:glGetDebugMessageLogAMD, [ :uint, :int, :pointer, :pointer, :pointer, :pointer, :string ], :uint]
+
+    def debug_message_enableAMD(category, severity, ids, enabled)
+      pids = FFI::MemoryPointer.new(:uint, ids.count)
+      pids.write_array_of_uint(ids)
+      glDebugMessageEnableAMD(category, severity, ids.count, pids, enabled)
+    end
   end
 end
