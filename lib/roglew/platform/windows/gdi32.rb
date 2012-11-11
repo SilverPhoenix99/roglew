@@ -145,7 +145,7 @@ module Roglew
 				     :dwVisibleMask,   :uint,
 				     :dwDamageMask,    :uint
 
-			undef_method :nSize=
+			#undef_method :nSize=
 
 			def initialize
 				super

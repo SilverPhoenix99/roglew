@@ -1,7 +1,6 @@
 module Roglew
   module WGL
     include GL::Native
-    extend NativeObject
 
     ENCODING = 'W'
 
