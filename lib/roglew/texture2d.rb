@@ -5,7 +5,8 @@ module Roglew
     attr_reader :context, :id
 
     def initialize(context)
-      @context = context.bind { |c| @id = c.gen_textures }
+      @context = context
+      @id = context.gen_textures
       self.class.finalize(self, @context, @id)
     end
 

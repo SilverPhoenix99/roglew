@@ -7,7 +7,10 @@ end
 module GL_ARB_vertex_array_object
   module RenderContext
     include Roglew::GLExtension
-    include Roglew::GLObject
+
+    def create_vertex_array
+      Roglew::VertexArray.new(self)
+    end
 
     functions [:glBindVertexArray, [ :uint ], :void],
               [:glDeleteVertexArrays, [ :int, :pointer ], :void],
@@ -19,3 +22,6 @@ module GL_ARB_vertex_array_object
   end
 end
 
+%w'
+vertex_array
+'.each { |f| require "#{File.expand_path(__FILE__)[0..-4]}/#{f}" }

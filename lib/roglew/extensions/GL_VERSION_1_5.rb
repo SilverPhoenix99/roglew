@@ -56,6 +56,14 @@ module GL_VERSION_1_5
   module RenderContext
     include Roglew::GLExtension
 
+    def create_buffer
+      Roglew::Buffer.new(self)
+    end
+
+    def create_query
+      Roglew::Query.new(context)
+    end
+
     functions [:glBeginQuery, [ :uint, :uint ], :void],
               [:glBindBuffer, [ :uint, :uint ], :void],
               [:glBufferData, [ :uint, :size_t, :pointer, :uint ], :void],
@@ -75,5 +83,24 @@ module GL_VERSION_1_5
               [:glIsQuery, [ :uint ], :uchar],
               [:glMapBuffer, [ :uint, :uint ], :pointer],
               [:glUnmapBuffer, [ :uint ], :uchar]
+
+    def_object :Buffers
+    def_object :Queries
+
+    def buffer_data(target, usage, type = nil, buffer = nil)
+      glBufferData(target, *if buffer && buffer.size > 0
+        p = FFI::MemoryPointer.new(type, buffer.size)
+        p.write_array_of_float(buffer)
+        [p.size, p]
+      else
+        [0, nil]
+      end, usage)
+    end
   end
 end
+
+%w'
+buffer_context
+buffer
+query
+'.each { |f| require "#{File.expand_path(__FILE__)[0..-4]}/#{f}" }

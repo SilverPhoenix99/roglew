@@ -12,7 +12,7 @@ module Roglew
     def run
       bind
       return unless block_given?
-      yield
+      yield self
       finished
     end
   end

@@ -103,10 +103,8 @@ module GL_VERSION_2_0
       else
         raise ArgumentError, "It must be Hash or Array. Given: #{shaders.class}"
       end
-      bind do
-        program.attach(*shaders)
-        program.link
-      end
+      program.attach(*shaders)
+      program.link
       program
     end
 
@@ -206,7 +204,7 @@ module GL_VERSION_2_0
               [:glVertexAttrib4ubv,         [:uint, :pointer],                                            :void],
               [:glVertexAttrib4uiv,         [:uint, :pointer],                                            :void],
               [:glVertexAttrib4usv,         [:uint, :pointer],                                            :void],
-              [:glVertexAttribPointer,      [:uint, :int, :uint, :bool, :int, :pointer],                  :void]
+              [:glVertexAttribPointer,      [:uint, :int, :uint, :bool, :int, :size_t],                   :void]
 
     def get_program(program, pname)
       p = FFI::MemoryPointer.new(:int)

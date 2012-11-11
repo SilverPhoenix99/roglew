@@ -5,7 +5,8 @@ module Roglew
     attr_reader :context, :id
 
     def initialize(context)
-      @context = context.bind { @id = context.gen_framebuffers }
+      @context = context
+      @id = context.gen_framebuffers
       self.class.finalize(self, @context, @id)
     end
 

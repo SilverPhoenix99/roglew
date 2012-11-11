@@ -20,7 +20,7 @@ module Roglew
 
     def run
       return unless block_given?
-      yield
+      yield self
       finished
     end
   end

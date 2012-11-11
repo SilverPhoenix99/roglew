@@ -16,6 +16,7 @@ module Roglew
 
     def self.included(c)
       c.extend ClassMethods
+      c.extend GLObject::ClassMethods
     end
   end
 end

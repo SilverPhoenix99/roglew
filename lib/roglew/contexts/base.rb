@@ -16,11 +16,11 @@ module Roglew
     attr_reader :obj
 
     def initialize(obj, deferred, &block)
-      @obj, @deferred = obj, @obj.is_deferred?(deferred)
+      @obj, @deferred = obj, obj.is_deferred?(deferred)
       singleton_class.send(:include, @deferred ? DeferredContext : ImmediateContext)
-      mod = self.class.instance_variable_get(@deferred ? :@deferred_mod : @immediate_mod)
+      mod = self.class.instance_variable_get(@deferred ? :@deferred_mod : :@immediate_mod)
       singleton_class.send(:include, mod) if mod
-      run(&block) if block_given? && respond_to?(:run)
+      run(&block) if block_given? && respond_to?(:run, true)
     end
 
     def self.included(c)

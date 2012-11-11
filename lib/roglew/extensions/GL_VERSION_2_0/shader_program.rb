@@ -5,7 +5,8 @@ module Roglew
                 :shaders
 
     def initialize(context)
-      @context = context.bind { @id = context.glCreateProgram() }
+      @context = context
+      @id = context.glCreateProgram()
     end
 
     def attach(*shaders)
@@ -25,6 +26,10 @@ module Roglew
 
     def use_program
       @context.glUseProgram(@id)
+    end
+
+    def uniform_locations(*names)
+      names.map { |name| @context.glGetUniformLocation(@id, name) }
     end
 
     alias_method :link, :link_program
