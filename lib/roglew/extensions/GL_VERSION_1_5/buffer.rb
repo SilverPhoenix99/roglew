@@ -7,6 +7,7 @@ module Roglew
     def initialize(context)
       @context = context
       @id = context.gen_buffers
+
       self.class.finalize(self, @context, @id)
     end
 

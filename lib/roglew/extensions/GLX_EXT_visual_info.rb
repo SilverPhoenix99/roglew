@@ -1,0 +1,20 @@
+module Roglew
+  module GLX
+    DIRECT_COLOR_EXT            = 0x8003
+    GRAY_SCALE_EXT              = 0x8006
+    NONE_EXT                    = 0x8000
+    PSEUDO_COLOR_EXT            = 0x8004
+    STATIC_COLOR_EXT            = 0x8005
+    STATIC_GRAY_EXT             = 0x8007
+    TRANSPARENT_ALPHA_VALUE_EXT = 0x28
+    TRANSPARENT_BLUE_VALUE_EXT  = 0x27
+    TRANSPARENT_GREEN_VALUE_EXT = 0x26
+    TRANSPARENT_INDEX_EXT       = 0x8009
+    TRANSPARENT_INDEX_VALUE_EXT = 0x24
+    TRANSPARENT_RED_VALUE_EXT   = 0x25
+    TRANSPARENT_RGB_EXT         = 0x8008
+    TRANSPARENT_TYPE_EXT        = 0x23
+    TRUE_COLOR_EXT              = 0x8002
+    X_VISUAL_TYPE_EXT           = 0x22
+  end
+end

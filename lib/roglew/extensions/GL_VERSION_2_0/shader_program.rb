@@ -7,6 +7,14 @@ module Roglew
     def initialize(context)
       @context = context
       @id = context.glCreateProgram()
+
+      self.class.finalize(self, @id, @context)
+    end
+
+    def self.finalize(obj, id, ctx)
+      ObjectSpace.define_finalizer(obj, proc do
+        ctx.glDeleteProgram(id)
+      end)
     end
 
     def attach(*shaders)

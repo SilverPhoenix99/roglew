@@ -1,0 +1,6 @@
+module Roglew
+  module GLX
+    MULTISAMPLE_SUB_RECT_HEIGHT_SGIS = 0x8027
+    MULTISAMPLE_SUB_RECT_WIDTH_SGIS  = 0x8026
+  end
+end
