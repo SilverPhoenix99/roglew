@@ -2,43 +2,12 @@ module Roglew
   class RenderContext; end
 
   module GL
-    LIBRARY ||= case
-                  when Platform.local.windows? then 'opengl32'
-                  when Platform.local.linux? then 'libGL'
-                  else raise 'Unknown OpenGL system'
-                end.freeze
-
-    PLATFORM ||= case
-                   when Platform.local.windows? then 'windows'
-                   when Platform.local.linux? then 'linux'
-                   else raise 'Unknown OpenGL platform'
-                 end.freeze
-
     module Native
-      module ClassMethods
-        def get_function(function_name, parameters, return_type)
-
-          @mod = case
-                   when Platform.local.windows? then WGL
-                   when Platform.local.linux?   then GLX
-                   else raise 'Unknown OpenGL platform'
-                 end
-
-          ptr = @mod.GetProcAddress(function_name.to_s)
-
-          return nil if ptr.null?
-          return_type = GL.find_type(return_type) || return_type
-          parameters = parameters.map { |p| GL.find_type(p) || p }
-          FFI::Function.new(return_type, parameters, ptr, convention: :stdcall)
-        end
-      end
-
       def self.included(m)
         m.instance_eval do
           extend FFI::Library
           ffi_convention :stdcall
           ffi_lib GL::LIBRARY
-          extend ClassMethods
         end
       end
     end
@@ -930,7 +899,5 @@ module Roglew
       attach_function name, "gl#{name}", args, ret
       RenderContext.class_eval "def gl#{name}(*args) GL.#{name}(*args) end"
     end
-
-    require_relative "platform/#{PLATFORM}"
   end
 end

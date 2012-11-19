@@ -130,8 +130,12 @@ module Roglew
       [ :UseFontOutlines, "wglUseFontOutlines#{ENCODING}", [:pointer, :uint, :uint, :uint, :float, :float, :int, GLYPHMETRICSFLOAT.ptr], :bool ]
     ].each do |args|
       args[1, 0] = "wgl#{args[0]}" if args.length == 3
-      attach_function *args
-      RenderContext.class_eval "def wgl#{args[0]}(*args) WGL.#{args[0]}(*args) end"
+      func = attach_function *args
+      RenderContext.send(:define_method, args[1]) { |*parms| func.call(*parms) }
+    end
+
+    class << self
+      alias_method :delete_context, :DeleteContext
     end
   end
 end

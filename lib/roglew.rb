@@ -1,9 +1,5 @@
 #Raw Glue - the Ruby OpenGL and Extensions Wrapper
 
-module Roglew
-  VERSION = '0.2.0'
-end
-
 #external dependencies
 %w'set
    ffi
@@ -13,8 +9,18 @@ end
    facets/platform
 '.each { |f| require f }
 
+module Roglew
+  VERSION = '0.3.0'
+
+  PLATFORM = case
+               when Platform.local.windows? then 'windows'
+               when Platform.local.linux?   then 'linux'
+               else raise 'Unknown platform'
+             end
+end
+
 #internal files
-%w'ext/ffi_struct_ext
+%W'ext/ffi_struct_ext
    contexts/base
    contexts/deferred
    contexts/immediate
@@ -22,14 +28,8 @@ end
    contextual
    gl_extension
    gl_object
+   platform/#{Roglew::PLATFORM}/gl
    gl
+   platform/#{Roglew::PLATFORM}
    render_context
 '.each { |f| require "roglew/#{f}" }
-
-dir = case
-        when Platform.local.windows? then 'windows'
-        when Platform.local.linux?   then 'linux'
-        else raise 'Unknown platform'
-      end
-
-require "roglew/platform/#{dir}"

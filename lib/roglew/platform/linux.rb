@@ -1,2 +1,4 @@
-%w'glx
+%w'x11
+   glx
+   render_context
 '.each { |f| require "roglew/platform/linux/#{f}" }

@@ -5,85 +5,23 @@ module Roglew
 
     @registered_extensions = {}
 
-    #if version not passed, builds context with latest version
-    def initialize(hdc, version = nil)
-      @hdc = hdc
-
-      initialize_pixel_format
-
-      @hrc, old_hrc = wglCreateContext(@hdc), nil
-
-      bind do
-        #check version
-        max_version = glGetString(GL::VERSION).split('.', 2).map!(&:to_i)
-
-        #if max OpelGL version is less than requested, give error
-        raise ArgumentError, "unsupported version #{version.join('.')}" if version && (max_version <=> version < 0)
-
-        @version = version || max_version
-        @loaded_extensions = Set.new
-        core_extension_list.each { |ext| load_extension(ext) }
-
-        old_hrc, @hrc = @hrc, upgrade_context if @version[0] > 2
-
-        (gl_extension_list + platform_extension_list).each { |ext| load_extension(ext) }
-      end
-
-      @attribs = Set[GL::DITHER, GL::MULTISAMPLE]
-
-      wglDeleteContext(old_hrc) if old_hrc
-
-      self.class.finalize(self, @hrc)
-    end
-
-    def self.finalize(obj, hrc)
+    def self.finalize(obj, *args)
       ObjectSpace.define_finalizer(obj, proc do
-        WGL.DeleteContext(hrc) #assumes that context was unbound
+        puts 'releasing a render context'
+        GL.platform_module.delete_context(*args)
       end)
     end
 
-    def load_extension(ext)
-      ext = ext.to_sym
-      @loaded_extensions << ext
-
-      unless Object.const_defined?(ext)
-        reg = self.class.instance_variable_get(:@registered_extensions)
-        filename = reg[ext] || File.expand_path("../extensions/#{ext}.rb", __FILE__)
-        require filename if File.exists?(filename)
-      end
-
-      return unless Object.const_defined?(ext)
-      mod = Object.const_get(ext)
-      return unless mod.const_defined?(:RenderContext)
-      mod = mod::RenderContext
-
-      singleton_class.send(:include, mod) if mod
+    def self.register_extensions(extensions)
+      extensions = Hash[extensions.map { |k, v| [k.to_sym, v] }]
+      @registered_extensions.merge!(extensions)
+      nil
     end
 
-    def bind
-      wglMakeCurrent(@hdc, @hrc)
-      if block_given?
-        yield
-        unbind
-      end
-      self
+    def self.unregister_extensions(*extensions)
+      extensions.map! { |e| e.to_sym }.each { |e| @registered_extensions.delete(e) }
+      nil
     end
-
-    def unbind
-      wglMakeCurrent(nil, nil)
-    end
-
-    def version; @version.dup end
-
-    def loaded_extensions; @loaded_extensions.dup end
-
-    def supports?(extension); !!@loaded_extensions[extension] end
-
-    def create_texture2d(*args)
-      Texture2d.new(self, *args)
-    end
-
-    def_object :Textures
 
     def begin(mode)
       glBegin(mode)
@@ -96,9 +34,24 @@ module Roglew
       class_eval("def #{v}(&block) self.begin(GL::#{v.upcase}, &block) end")
     end
 
+    def bind
+      make_current
+      if block_given?
+        yield
+        unbind
+      end
+      self
+    end
+
     def clear(*flags)
       glClear(flags.reduce(&:|))
     end
+
+    def create_texture2d(*args)
+      Texture2d.new(self, *args)
+    end
+
+    def_object :Textures
 
     def disable(*caps)
       caps = Set[*caps] & @attribs
@@ -120,12 +73,10 @@ module Roglew
       disable(*caps)
     end
 
-    def get_errors
-      errors = []
-      while (error = glGetError) != 0
-        errors << GL::ERROR[error] || error
-      end
-      errors
+    def extension_list(*types)
+      list = types.flat_map { |type| send("extension_list_#{type}") }
+      list.uniq!
+      list
     end
 
     def get_integers(pname, count = 1)
@@ -135,9 +86,50 @@ module Roglew
       count == 1 ? result[0] : result
     end
 
-    def swap_buffers
-      Gdi32.SwapBuffers(@hdc)
+    def get_errors
+      errors = []
+      while (error = glGetError) != 0
+        errors << GL::ERROR[error] || error
+      end
+      errors
     end
+
+    def get_function(function_name, parameters, return_type)
+      ptr = get_proc_address(function_name.to_s)
+      return nil if ptr.null?
+      return_type = GL.find_type(return_type) || return_type
+      parameters = parameters.map { |p| GL.find_type(p) || p }
+      FFI::Function.new(return_type, parameters, ptr, convention: :stdcall)
+    end
+
+    def load_extension(ext)
+      ext = ext.to_sym
+      @loaded_extensions << ext
+
+      unless Object.const_defined?(ext)
+        reg = self.class.instance_variable_get(:@registered_extensions)
+        filename = reg[ext] || File.expand_path("../extensions/#{ext}.rb", __FILE__)
+        require filename if File.exists?(filename)
+      end
+
+      return unless Object.const_defined?(ext)
+      mod = Object.const_get(ext)
+      return unless mod.const_defined?(:RenderContext)
+      mod = mod::RenderContext
+      return unless mod
+
+      singleton_class.send(:include, mod)
+
+      return unless mod.respond_to? :functions
+      mod.functions.each do |name, parameters, ret_type|
+        function = get_function(name, parameters, ret_type)
+        define_singleton_method(name) { |*a| function.call(*a) } if function
+      end
+    end
+
+    def loaded_extensions; @loaded_extensions.dup end
+
+    def supports?(extension); !!@loaded_extensions[extension] end
 
     def tex_parameter(target, pname, *params)
       params.flatten!
@@ -147,83 +139,23 @@ module Roglew
       send("glTexParameter#{type[0]}v", target, pname, ptr)
     end
 
-    def self.register_extensions(extensions)
-      extensions = Hash[extensions.map { |k, v| [k.to_sym, v] }]
-      @registered_extensions.merge!(extensions)
-      nil
+    def unbind
+      wglMakeCurrent(nil, nil)
     end
 
-    def self.unregister_extensions(*extensions)
-      extensions.map! { |e| e.to_sym }.each { |e| @registered_extensions.delete(e) }
-      nil
-    end
+    def version; @version.dup end
 
-    #------
     private
-
-    def initialize_pixel_format
-      pfd = Gdi32::PIXELFORMATDESCRIPTOR.new
-      pfd.dwFlags = [:DOUBLEBUFFER, :SUPPORT_OPENGL, :DRAW_TO_WINDOW]
-      pfd.cColorBits = 24
-      pfd.cAlphaBits = 8
-      pfd.cDepthBits = 32
-
-      pxfmt = Gdi32.ChoosePixelFormat(@hdc, pfd)
-      raise InvalidPixelFormatError,
-            "(ChoosePixelFormat) GetLastError returned #{Kernel32.GetLastError}" if pxfmt == 0
-
-      #Can't use DescribePixelFormat. Blows up remote desktop
-      #
-      #max_pfd = Gdi32.DescribePixelFormat(@hdc, pxfmt, Gdi32::PIXELFORMATDESCRIPTOR.size, pfd)
-      #puts "#\t" + Gdi32::PIXELFORMATDESCRIPTOR.members.select { |x| x != :nSize }.join("\t")
-      #max_pfd.times do |i|
-      #	pfd2 = Gdi32::PIXELFORMATDESCRIPTOR.new
-      #	Gdi32.DescribePixelFormat(@hdc, i+1, Gdi32::PIXELFORMATDESCRIPTOR.size, pfd2)
-      #	puts "#{i + 1}\t" + Gdi32::PIXELFORMATDESCRIPTOR.
-      #      members.select { |x| x != :nSize }.map { |x| pfd2.send(x).inspect }.join("\t")
-      #end
-
-      raise InvalidPixelFormatError,
-            "(SetPixelFormat) GetLastError returned #{Kernel32.GetLastError}" unless Gdi32.SetPixelFormat(@hdc, pxfmt, pfd)
-    end
-
-    def upgrade_context
-      load_extension(:WGL_ARB_create_context)
-
-      raise 'undefined function wglCreateContextAttribsARB' unless respond_to?(:wglCreateContextAttribsARB)
-
-      attribs = [WGL::CONTEXT_MAJOR_VERSION_ARB, @version[0],
-                 WGL::CONTEXT_MINOR_VERSION_ARB, @version[1],
-                 WGL::CONTEXT_FLAGS_ARB,         WGL::CONTEXT_FORWARD_COMPATIBLE_BIT_ARB,
-                 0]
-      ptr_attribs = FFI::MemoryPointer.new(:int, attribs.length)
-      ptr_attribs.write_array_of_int(attribs)
-
-      wglCreateContextAttribsARB(@hdc, nil, ptr_attribs)
-    end
-
-    def core_extension_list
+    def extension_list_core
       Dir["#{File.expand_path('../extensions', __FILE__)}/GL_VERSION_*.rb"].
         map! { |f| File.basename(f, '.rb') }.
         select! { |f| (f.gsub('GL_VERSION_', '').split('_', 2).map!(&:to_i) <=> @version) <= 0 }
     end
 
-    def gl_extension_list
-      if @version[0] < 3
-        glGetString(GL::EXTENSIONS).split
-      else
-        get_integers(GL::NUM_EXTENSIONS).times.map { |i| glGetStringi(GL::EXTENSIONS, i) }
-      end.map!(&:to_sym)
-    end
-
-    def platform_extension_list
-      if (func = WGL.get_function(:wglGetExtensionsStringARB, [:pointer], :string))
-        func.(@hdc)
-      elsif (func = WGL.get_function(:wglGetExtensionsStringEXT, [], :string))
-        func.()
-      else
-        ''
-      end.split.map!(&:to_sym)
+    def extension_list_gl
+      (@version[0] < 3 ?
+        glGetString(GL::EXTENSIONS).split :
+        get_integers(GL::NUM_EXTENSIONS).times.map { |i| glGetStringi(GL::EXTENSIONS, i) }).map!(&:to_sym)
     end
   end
 end
