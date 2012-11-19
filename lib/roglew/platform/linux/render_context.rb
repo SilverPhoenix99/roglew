@@ -1,8 +1,8 @@
 module Roglew
   class RenderContext
     #if version not passed, builds context with latest version
-    def initialize(dpy, screen, version = nil)
-      @dpy = dpy
+    def initialize(dpy, screen, window, version = nil)
+      @dpy, @window = dpy, window
 
       major, minor = FFI::MemoryPointer.new(:int), FFI::MemoryPointer.new(:int)
       glXQueryVersion(@dpy, major, minor)
@@ -18,7 +18,6 @@ module Roglew
                                   ])
       @visual = glXChooseVisual(@dpy, screen, attrList)
       @context = glXCreateContext(@dpy, @visual, nil, true)
-
 
       self.class.finalize(self, @dpy, @context)
     end
@@ -45,6 +44,6 @@ module Roglew
   end
 
   def make_current
-    glXMakeCurrent(@context)
+    glXMakeCurrent(@dpy, @window, @context)
   end
 end
