@@ -139,10 +139,6 @@ module Roglew
       send("glTexParameter#{type[0]}v", target, pname, ptr)
     end
 
-    def unbind
-      wglMakeCurrent(nil, nil)
-    end
-
     def version; @version.dup end
 
     private

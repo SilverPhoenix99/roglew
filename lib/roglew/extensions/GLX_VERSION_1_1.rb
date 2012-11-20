@@ -6,13 +6,13 @@ module Roglew
 
 	[
       #const char* glXGetClientString (Display *dpy, int name)
-      [ :GetClientString, [Display *dpy, int name], :string ],
+      [ :GetClientString, [:pointer, :int], :string ],
 
       #const char* glXQueryExtensionsString (Display *dpy, int screen)
-      [ :QueryExtensionsString, [Display *dpy, int screen], :string ],
+      [ :QueryExtensionsString, [:pointer, :int], :string ],
 
       #const char* glXQueryServerString (Display *dpy, int screen, int name)
-      [ :QueryServerString, [Display *dpy, int screen, int name], :string ]
+      [ :QueryServerString, [:pointer, :int, :int], :string ]
 	].each do |args|
       args[1, 0] = "glX#{args[0]}"
       func = attach_function *args

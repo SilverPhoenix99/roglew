@@ -17,8 +17,7 @@ module Roglew
 
         @version = version || max_version
         @loaded_extensions = Set.new
-        list = extension_list(:core)
-        list.each { |ext| load_extension(ext) }
+        extension_list(:core).each { |ext| load_extension(ext) }
         old_hrc, @hrc = @hrc, upgrade_context if @version[0] > 2
         extension_list(:gl, :platform).each { |ext| load_extension(ext) }
       end
@@ -34,6 +33,10 @@ module Roglew
 
     def swap_buffers
       Gdi32.SwapBuffers(@hdc)
+    end
+
+    def unbind
+      wglMakeCurrent(nil, nil)
     end
 
     #------
@@ -66,7 +69,7 @@ module Roglew
     end
 
     def upgrade_context
-      load_extension(:WGL_ARB_create_context)
+      load_extension :WGL_ARB_create_context
 
       raise 'undefined function wglCreateContextAttribsARB' unless respond_to?(:wglCreateContextAttribsARB)
 

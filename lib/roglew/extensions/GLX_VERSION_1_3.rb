@@ -61,7 +61,7 @@ end
 
 module GLX_VERSION_1_3
   module RenderContext
-    include GL::Extension
+    include Roglew::GLExtension
 
               #GLXFBConfig* glXChooseFBConfig (Display *dpy, int screen, const int *attrib_list, int *nelements)
     functions [ :glXChooseFBConfig, [:pointer, :int, :pointer, :pointer], :pointer ],
@@ -100,7 +100,7 @@ module GLX_VERSION_1_3
               [ :glXGetSelectedEvent, [:pointer, :int, :pointer], :void ],
 
               #XVisualInfo* glXGetVisualFromFBConfig (Display *dpy, GLXFBConfig config)
-              [ :glXGetVisualFromFBConfig, [:pointer, :pointer], XVisualInfo.ptr ],
+              [ :glXGetVisualFromFBConfig, [:pointer, :pointer], Roglew::GLX::XVisualInfo.ptr ],
 
               #Bool glXMakeContextCurrent (Display *display, GLXDrawable draw, GLXDrawable read, GLXContext ctx)
               [ :glXMakeContextCurrent, [:pointer, :int, :int, :pointer], :bool ],
