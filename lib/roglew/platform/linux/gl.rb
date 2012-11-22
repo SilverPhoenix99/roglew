@@ -1,6 +1,8 @@
 module Roglew
   module GL
-    LIBRARY = 'libGL.so.1'.freeze
+    LIBRARY ||= begin
+      `ldconfig -p | grep -i libgl.so`.split("\n").map { |s| s.gsub(/^.+=>/, '').strip }.first
+    end
 
     def self.platform_module
       GLX

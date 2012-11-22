@@ -30,6 +30,6 @@ end
    gl_object
    platform/#{Roglew::PLATFORM}/gl
    gl
-   render_context
    platform/#{Roglew::PLATFORM}
+   render_context
 '.each { |f| require "roglew/#{f}" }
