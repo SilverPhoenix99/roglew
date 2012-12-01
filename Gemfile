@@ -1,2 +1,2 @@
-gem 'facets'
-gem 'ffi'
+source 'https://rubygems.org'
+gemspec
