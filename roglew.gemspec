@@ -21,7 +21,8 @@ Gem::Specification.new do |s|
 
   =================================================
   #{Roglew::VERSION} Changes:
-    - Added missing references to texture2d.rb.
+    - Removed parameter `border` from
+        TextureContext#tex_image_2d.
   =================================================
 
   If you like what you see, support us on Pledgie:

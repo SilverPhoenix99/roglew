@@ -30,8 +30,8 @@ module Roglew
       make_call(:tex_parameter, @target, GL::TEXTURE_BORDER_COLOR, r, g, b, a)
     end
 
-    def tex_image_2d(width, height, border, internalFormat, format, type, data)
-      make_call(:glTexImage2D, @target, 0, internalFormat, width, height, border, format, type, data)
+    def tex_image_2d(width, height, internalFormat, format, type, data)
+      make_call(:glTexImage2D, @target, 0, internalFormat, width, height, 0, format, type, data)
     end
 
     private
