@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
 
   =================================================
   #{Roglew::VERSION} Changes:
-    - Added support for X11 and GLX extensions.
+    - Added missing references to texture2d.rb.
   =================================================
 
   If you like what you see, support us on Pledgie:
