@@ -6,14 +6,14 @@ module Roglew
     def initialize(context)
       @context = context
       @id = context.gen_queries
-      self.class.finalize(self, @context, @id)
+      ObjectSpace.define_finalizer(self, self.class.finalize(@context, @id))
     end
 
-    def self.finalize(obj, ctx, id)
-      ObjectSpace.define_finalizer(obj, proc do
+    def self.finalize(ctx, id)
+      proc do
         puts "releasing query #{id}"
         ctx.delete_queries(id)
-      end)
+      end
     end
   end
 end

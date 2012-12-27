@@ -20,7 +20,7 @@ module Roglew
       singleton_class.send(:include, @deferred ? DeferredContext : ImmediateContext)
       mod = self.class.instance_variable_get(@deferred ? :@deferred_mod : :@immediate_mod)
       singleton_class.send(:include, mod) if mod
-      run(&block) if block_given? && respond_to?(:run, true)
+      run(&block) if respond_to?(:run, true)
     end
 
     def self.included(c)

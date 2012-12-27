@@ -7,14 +7,14 @@ module Roglew
     def initialize(context)
       @context = context
       @id = context.gen_framebuffersEXT
-      self.class.finalize(self, @context, @id)
+      ObjectSpace.define_finalizer(self, self.class.finalize(@context, @id))
     end
 
-    def self.finalize(obj, ctx, id)
-      ObjectSpace.define_finalizer(obj, proc do
+    def self.finalize(ctx, id)
+      proc do
         puts "releasing framebuffer #{id}"
         ctx.delete_framebuffersEXT(id)
-      end)
+      end
     end
 
     #target: one of GL::DRAW_FRAMEBUFFER_EXT, GL::READ_FRAMEBUFFER_EXT or GL::FRAMEBUFFER_EXT

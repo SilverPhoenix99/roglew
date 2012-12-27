@@ -13,13 +13,14 @@ module Roglew
         compile(src)
       end
 
-      self.class.finalize(self, @id, @context)
+      ObjectSpace.define_finalizer(self, self.class.finalize(@id, @context))
     end
 
-    def self.finalize(obj, id, ctx)
-      ObjectSpace.define_finalizer(obj, proc do
+    def self.finalize(id, ctx)
+      proc do
+        puts "releasing shader #{id}"
         ctx.glDeleteShader(id)
-      end)
+      end
     end
 
     def compile(src)

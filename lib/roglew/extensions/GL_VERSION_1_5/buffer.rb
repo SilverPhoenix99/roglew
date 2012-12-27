@@ -8,14 +8,14 @@ module Roglew
       @context = context
       @id = context.gen_buffers
 
-      self.class.finalize(self, @context, @id)
+      ObjectSpace.define_finalizer(self, self.class.finalize(@context, @id))
     end
 
-    def self.finalize(obj, ctx, id)
-      ObjectSpace.define_finalizer(obj, proc do
+    def self.finalize(ctx, id)
+      proc do
         puts "releasing buffer #{id}"
         ctx.delete_buffers(id)
-      end)
+      end
     end
 
     def bind(target, deferred = nil, &block)

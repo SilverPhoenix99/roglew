@@ -7,14 +7,16 @@ module Roglew
     def initialize(context)
       @context = context
       @id = context.glCreateProgram()
+      @attribs, @uniforms = {}, {}
 
-      self.class.finalize(self, @id, @context)
+      ObjectSpace.define_finalizer(self, self.class.finalize(@id, @context))
     end
 
-    def self.finalize(obj, id, ctx)
-      ObjectSpace.define_finalizer(obj, proc do
+    def self.finalize(id, ctx)
+      proc do
+        puts "releasing program #{id}"
         ctx.glDeleteProgram(id)
-      end)
+      end
     end
 
     def attach(*shaders)
@@ -34,10 +36,36 @@ module Roglew
 
     def use_program
       @context.glUseProgram(@id)
+      if block_given?
+        yield
+        @context.glUseProgram(0)
+      end
+    end
+
+    def attrib_location(name)
+      name = name.to_sym
+      loc = @attribs[name]
+      return loc if loc
+      loc = @context.glGetAttribLocation(@id, name.to_s)
+      return nil if loc < 0
+      @attribs[name] = loc
+    end
+
+    def attrib_locations(*names)
+      names.map { |name| attrib_location(name) }
+    end
+
+    def uniform_location(name)
+      name = name.to_sym
+      loc = @uniforms[name]
+      return loc if loc
+      loc = @context.glGetUniformLocation(@id, name.to_s)
+      return nil if loc < 0
+      @uniforms[name] = loc
     end
 
     def uniform_locations(*names)
-      names.map { |name| @context.glGetUniformLocation(@id, name) }
+      names.map { |name| uniform_location(name) }
     end
 
     alias_method :link, :link_program

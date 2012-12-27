@@ -87,14 +87,28 @@ module GL_VERSION_1_5
     def_object :Buffers
     def_object :Queries
 
-    def buffer_data(target, usage, type = nil, buffer = nil)
-      glBufferData(target, *if buffer && buffer.size > 0
+    def buffer_data(target, usage, buffer = nil, type = nil)
+      glBufferData(target, *if buffer.is_a?(Array) && buffer.size > 0
         p = FFI::MemoryPointer.new(type, buffer.size)
-        p.write_array_of_float(buffer)
+        p.send("write_array_of_#{type}", buffer)
         [p.size, p]
       else
-        [0, nil]
+        size = buffer.respond_to?(:to_i) ? buffer.to_i : 0
+        size *= if size > 0 && type
+          type = FFI.find_type(type) if type.is_a?(Symbol)
+          type.size
+        else
+          1
+        end
+
+        [size, nil]
       end, usage)
+    end
+
+    def buffer_sub_data(target, offset, type, buffer)
+      pointer = FFI::MemoryPointer.new(type, buffer.size)
+      pointer.send("write_array_of_#{type}", buffer)
+      glBufferSubData(target, offset, buffer.size, pointer)
     end
   end
 end

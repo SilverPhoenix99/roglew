@@ -17,8 +17,8 @@ module Roglew
       end)
     end
 
-    def bind(deferred = nil, &block)
-      create_binding(deferred, GL::TEXTURE_2D, &block)
+    def bind(level = 0, deferred = nil, &block)
+      create_binding(deferred, GL::TEXTURE_2D, level, &block)
     end
   end
 end

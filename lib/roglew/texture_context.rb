@@ -2,8 +2,10 @@ module Roglew
   class TextureContext
     include Roglew::BaseContext(:texture)
 
-    def initialize(texture, deferred, target, &block)
-      @target = target
+    attr_accessor :level
+
+    def initialize(texture, deferred, target, level, &block)
+      @target, @level = target, level
       super(texture, deferred, &block)
     end
 
@@ -30,8 +32,12 @@ module Roglew
       make_call(:tex_parameter, @target, GL::TEXTURE_BORDER_COLOR, r, g, b, a)
     end
 
-    def tex_image_2d(width, height, internalFormat, format, type, data)
-      make_call(:glTexImage2D, @target, 0, internalFormat, width, height, 0, format, type, data)
+    def tex_image_2d(width, height, internalFormat, format, type, data = nil)
+      make_call(:glTexImage2D, @target, @level, internalFormat, width, height, 0, format, type, data)
+    end
+
+    def tex_subimage_2d(x, y, width, height, format, type, data = nil)
+      make_call(:glTexSubImage2D, @target, @level, x, y, width, height, format, type, data)
     end
 
     private
