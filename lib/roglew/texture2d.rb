@@ -1,6 +1,6 @@
 module Roglew
   class Texture2d
-    include Roglew::Contextual(TextureContext)
+    include Roglew::Contextual(Texture2dContext)
 
     attr_reader :context, :id
 

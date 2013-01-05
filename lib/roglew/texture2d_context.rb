@@ -1,5 +1,5 @@
 module Roglew
-  class TextureContext
+  class Texture2dContext
     include Roglew::BaseContext(:texture)
 
     attr_accessor :level

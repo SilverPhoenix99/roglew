@@ -31,7 +31,7 @@ end
    platform/#{Roglew::PLATFORM}/gl
    gl
    platform/#{Roglew::PLATFORM}
-   texture_context
+   texture2d_context
    texture2d
    render_context
 '.each { |f| require "roglew/#{f}" }
