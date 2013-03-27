@@ -1,15 +1,14 @@
 module Roglew
   class RenderContext
-    include Roglew::Contextual(nil)
-    include GLObject
+    include GLObject, Roglew::Contextual(nil)
 
     @registered_extensions = {}
 
-    def self.finalize(obj, *args)
-      ObjectSpace.define_finalizer(obj, proc do
+    def self.finalize(*args)
+      proc do
         puts 'releasing a render context'
         GL.platform_module.delete_context(*args)
-      end)
+      end
     end
 
     def self.register_extensions(extensions)

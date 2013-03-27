@@ -26,7 +26,7 @@ module Roglew
 
       wglDeleteContext(old_hrc) if old_hrc
 
-      self.class.finalize(self, @hrc)
+      ObjectSpace.define_finalizer(self, self.class.finalize(@hrc))
     end
 
     alias_method :get_proc_address, :wglGetProcAddress
