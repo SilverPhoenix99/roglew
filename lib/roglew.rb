@@ -10,7 +10,7 @@
 '.each { |f| require f }
 
 module Roglew
-  VERSION = '0.2.6'.freeze
+  VERSION = '0.2.7'.freeze
 
   PLATFORM = case
                when Platform.local.windows? then 'windows'
