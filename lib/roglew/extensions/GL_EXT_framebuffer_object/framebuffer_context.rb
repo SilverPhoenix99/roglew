@@ -19,13 +19,13 @@ module Roglew
       super(framebuffer, deferred, &block)
     end
 
-    def attach(target, attachment, level = 0)
-      case target
+    def attach(obj, attachment, level = 0)
+      case obj
         when RenderbufferEXT
-          make_call(:glFramebufferRenderbufferEXT, GL::FRAMEBUFFER_EXT, attachment, GL::RENDERBUFFER_EXT, target.id)
+          make_call(:glFramebufferRenderbufferEXT, @target, attachment, GL::RENDERBUFFER_EXT, obj.id)
         when Texture2d
           #TODO glFramebufferTexture1DEXT glFramebufferTexture3DEXT
-          make_call(:glFramebufferTexture2DEXT, GL::FRAMEBUFFER_EXT, attachment, GL::TEXTURE_2D, target.id, level)
+          make_call(:glFramebufferTexture2DEXT, @target, attachment, GL::TEXTURE_2D, obj.id, level)
         else raise ArgumentError, "first parameter isn't a RenderbufferEXT nor a Texture2d"
       end
     end

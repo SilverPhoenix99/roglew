@@ -17,10 +17,14 @@ module Roglew
     end
 
     def is_deferred?(deferred)
-      class_deferred = self.class.respond_to?(:deferred?) && self.class.deferred?
-      context_deferred = @context.respond_to?(:deferred?) && @context.deferred?
-      context_class_deferred = @context.class.respond_to?(:deferred?) && @context.class.deferred?
-      [deferred, self.deferred?, class_deferred, context_deferred, context_class_deferred].compact.first
+      [
+        deferred,
+        self.deferred?,
+        self.class.respond_to?(:deferred?) && self.class.deferred?,
+        @context.respond_to?(:deferred?) && @context.deferred?,
+        @context.class.respond_to?(:deferred?) && @context.class.deferred?,
+        false
+      ].compact.first
     end
 
     private
