@@ -53,7 +53,7 @@ module Roglew
 
     checks_current
     def clear(*flags)
-      glClear(flags.reduce(&:|))
+      @rh.glClear(flags.reduce(&:|))
     end
 
     checks_current
@@ -74,7 +74,7 @@ module Roglew
 
       caps = Set[*caps] & attribs
       caps.each do |cap|
-        glDisable(cap)
+        @rh.glDisable(cap)
         attribs.delete(cap)
       end
       return unless block_given?
@@ -90,7 +90,7 @@ module Roglew
       a1 = attribs.dup
 
       caps = Set[*caps] - attribs
-      caps.each { |cap| glEnable(cap) }
+      caps.each { |cap| @rh.glEnable(cap) }
       attribs.merge(caps)
       return unless block_given?
       yield
@@ -114,7 +114,7 @@ module Roglew
     checks_current
     def get_errors
       errors = []
-      while (error = glGetError) != 0
+      while (error = @rh.glGetError) != 0
         errors << GL::ERROR[error] || error
       end
       errors
@@ -132,7 +132,7 @@ module Roglew
     checks_current
     def get_integers(pname, count = 1)
       p = FFI::MemoryPointer.new(:int, count)
-      glGetIntegerv(pname, p)
+      @rh.glGetIntegerv(pname, p)
       result = p.read_array_of_int(count)
       count == 1 ? result[0] : result
     end
@@ -157,7 +157,7 @@ module Roglew
       type = params.all? { |param| param.is_a? Integer } ? 'int' : 'float'
       ptr = FFI::MemoryPointer.new(type.to_sym, params.length)
       ptr.send("write_array_of_#{type}", params)
-      send("glTexParameter#{type[0]}v", target, pname, ptr)
+      @rh.send("glTexParameter#{type[0]}v", target, pname, ptr)
     end
   end
 end
