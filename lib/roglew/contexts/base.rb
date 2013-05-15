@@ -1,5 +1,5 @@
 module Roglew
-  #classes/modules that include BaseContextModule must implement methods :bind and :unbind
+  #classes/modules that include BaseContextModule must implement methods #bind and #unbind
   module BaseContextModule
     module ClassMethods
       def immediate_module(mod)
@@ -10,6 +10,13 @@ module Roglew
       def deferred_module(mod)
         raise ArgumentError, 'not a module' unless mod.is_a?(Module)
         @deferred_mod = mod
+      end
+
+      def make_calls(*names)
+        names.map(&:to_sym).each do |name|
+          define_method(name) { |*args| make_call(name, *args) }
+          protected name
+        end
       end
     end
 

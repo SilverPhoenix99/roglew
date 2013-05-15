@@ -96,12 +96,15 @@ module GL_VERSION_2_0
       program = Roglew::ShaderProgram.new(self)
       return program unless shaders
       shaders = case shaders
-      when Hash
-        shaders.map { |type, source| create_shader(type, source) }
-      when Array
-        shaders
-      else
-        raise ArgumentError, "It must be Hash or Array. Given: #{shaders.class}"
+        when Hash
+          shaders.map do |type, source|
+
+            create_shader(type, source)
+          end
+        when Array
+          shaders
+        else
+          raise ArgumentError, "It must be Hash or Array. Given: #{shaders.class}"
       end
       program.attach(*shaders)
       program.link

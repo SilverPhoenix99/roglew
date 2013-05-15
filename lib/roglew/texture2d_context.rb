@@ -4,6 +4,10 @@ module Roglew
 
     attr_accessor :level
 
+    make_calls :tex_parameter,
+               :glTexImage2D,
+               :glTexSubImage2D
+
     def initialize(texture, deferred, target, level, &block)
       @target, @level = target, level
       super(texture, deferred, &block)
@@ -25,19 +29,27 @@ module Roglew
       :depth_mode   => :DEPTH_TEXTURE_MODE,
       :mipmap       => :GENERATE_MIPMAP
     }.each do |name, cnst|
-      class_eval "def #{name}=(v) make_call(:tex_parameter, @target, GL::#{cnst}, v) end"
+      class_eval "def #{name}=(v) tex_parameter(@target, GL::#{cnst}, v) end"
     end
 
     def border_color(r, g, b, a)
-      make_call(:tex_parameter, @target, GL::TEXTURE_BORDER_COLOR, r, g, b, a)
+      tex_parameter(@target, GL::TEXTURE_BORDER_COLOR, r, g, b, a)
+    end
+
+    def no_mipmaps!
+      self.mag_filter = Roglew::GL::NEAREST
+      self.min_filter = Roglew::GL::NEAREST
+      self.base_level = 0
+      self.max_level  = 0
+      nil
     end
 
     def tex_image_2d(width, height, internalFormat, format, type, data = nil)
-      make_call(:glTexImage2D, @target, @level, internalFormat, width, height, 0, format, type, data)
+      glTexImage2D(@target, @level, internalFormat, width, height, 0, format, type, data)
     end
 
     def tex_subimage_2d(x, y, width, height, format, type, data = nil)
-      make_call(:glTexSubImage2D, @target, @level, x, y, width, height, format, type, data)
+      glTexSubImage2D(@target, @level, x, y, width, height, format, type, data)
     end
 
     private

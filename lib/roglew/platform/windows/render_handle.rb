@@ -1,6 +1,5 @@
 module Roglew
-  class RenderContext
-    #if version not passed, builds context with latest version
+  class RenderHandle
     def initialize(hdc, version = nil)
       @hdc = hdc
 
@@ -13,7 +12,7 @@ module Roglew
         max_version = glGetString(GL::VERSION).split('.', 2).map!(&:to_i)
 
         #if max OpelGL version is less than requested, give error
-        raise ArgumentError, "unsupported version #{version.join('.')}" if version && (max_version <=> version < 0)
+        raise ArgumentError, "unsupported version: #{version.join('.')}" if version && (max_version <=> version < 0)
 
         @version = version || max_version
         @loaded_extensions = Set.new
@@ -22,25 +21,27 @@ module Roglew
         extension_list(:gl, :platform).each { |ext| load_extension(ext) }
       end
 
-      @attribs = Set[GL::DITHER, GL::MULTISAMPLE]
+      @attribs = Set[GL::DITHER]
+      @attribs << GL::MULTISAMPLE if @version <=> [1, 3] >= 0
 
       wglDeleteContext(old_hrc) if old_hrc
 
       ObjectSpace.define_finalizer(self, self.class.finalize(@hrc))
     end
 
+    private #-------------------------------------------------------------------------
+
+    def extension_list_platform
+      if (func = get_function(:wglGetExtensionsStringARB, [:pointer], :string))
+        func.(@hdc)
+      elsif (func = get_function(:wglGetExtensionsStringEXT, [], :string))
+        func.()
+      else
+        ''
+      end.split.map!(&:to_sym)
+    end
+
     alias_method :get_proc_address, :wglGetProcAddress
-
-    def swap_buffers
-      Gdi32.SwapBuffers(@hdc)
-    end
-
-    def unbind
-      wglMakeCurrent(nil, nil)
-    end
-
-    #------
-    private
 
     def initialize_pixel_format
       pfd = Gdi32::PIXELFORMATDESCRIPTOR.new
@@ -53,19 +54,22 @@ module Roglew
       raise InvalidPixelFormatError,
             "(ChoosePixelFormat) GetLastError returned #{Kernel32.GetLastError}" if pxfmt == 0
 
-      #Can't use DescribePixelFormat. Blows up remote desktop
-      #
-      #max_pfd = Gdi32.DescribePixelFormat(@hdc, pxfmt, Gdi32::PIXELFORMATDESCRIPTOR.size, pfd)
-      #puts "#\t" + Gdi32::PIXELFORMATDESCRIPTOR.members.select { |x| x != :nSize }.join("\t")
-      #max_pfd.times do |i|
-      #	pfd2 = Gdi32::PIXELFORMATDESCRIPTOR.new
-      #	Gdi32.DescribePixelFormat(@hdc, i+1, Gdi32::PIXELFORMATDESCRIPTOR.size, pfd2)
-      #	puts "#{i + 1}\t" + Gdi32::PIXELFORMATDESCRIPTOR.
-      #      members.select { |x| x != :nSize }.map { |x| pfd2.send(x).inspect }.join("\t")
-      #end
+      #NOTE: Don't use DescribePixelFormat.
 
       raise InvalidPixelFormatError,
             "(SetPixelFormat) GetLastError returned #{Kernel32.GetLastError}" unless Gdi32.SetPixelFormat(@hdc, pxfmt, pfd)
+    end
+
+    def make_current
+      wglMakeCurrent(@hdc, @hrc)
+    end
+
+    def remove_current
+      wglMakeCurrent(nil, nil)
+    end
+
+    def swap_buffers
+      Gdi32.SwapBuffers(@hdc)
     end
 
     def upgrade_context
@@ -81,20 +85,6 @@ module Roglew
       ptr_attribs.write_array_of_int(attribs)
 
       wglCreateContextAttribsARB(@hdc, nil, ptr_attribs)
-    end
-
-    def extension_list_platform
-      if (func = get_function(:wglGetExtensionsStringARB, [:pointer], :string))
-        func.(@hdc)
-      elsif (func = get_function(:wglGetExtensionsStringEXT, [], :string))
-        func.()
-      else
-        ''
-      end.split.map!(&:to_sym)
-    end
-
-    def make_current
-      wglMakeCurrent(@hdc, @hrc)
     end
   end
 end

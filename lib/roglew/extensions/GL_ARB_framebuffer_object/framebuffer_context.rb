@@ -35,7 +35,7 @@ module Roglew
     end
 
     def texture_layer(target, attachment, texture, level, layer)
-      raise ArgumentError, "third parameter isn't of type Texture2d" unless texture.is_a? Texture2d
+      raise ArgumentError, "third parameter isn't of type Texture3d" unless texture.is_a? Texture2d
       make_call(:glFramebufferTextureLayer, target, attachment, texture.id, level, layer)
     end
 

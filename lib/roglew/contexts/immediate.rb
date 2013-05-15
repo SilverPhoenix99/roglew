@@ -6,7 +6,7 @@ module Roglew
 
     private
     def make_call(method, *args)
-      context.send(method, *args)
+      context.public_send(method, *args)
     end
 
     def run

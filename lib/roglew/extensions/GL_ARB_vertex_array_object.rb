@@ -18,7 +18,6 @@ module GL_ARB_vertex_array_object
               [:glIsVertexArray, [ :uint ], :uchar]
 
     def_object :VertexArrays
-
   end
 end
 

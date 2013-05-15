@@ -1,6 +1,5 @@
 module Roglew
-  class RenderContext
-    #if version not passed, builds context with latest version
+  class RenderHandle
     def initialize(display, screen, window, version = nil)
       @display, @screen, @window = display, screen, window
       @loaded_extensions = Set.new
@@ -18,7 +17,6 @@ module Roglew
       @visual = glXChooseVisual(@display, screen, attrList)
       @context = glXCreateContext(@display, @visual, nil, true)
 
-
       bind do
         #check version
         max_version = glGetString(GL::VERSION).split('.', 2).map!(&:to_i)
@@ -35,6 +33,24 @@ module Roglew
       self.class.finalize(self, @display, @context)
     end
 
+    private #-------------------------------------------------------------------------
+
+    def extension_list_glx
+      major, minor = FFI::MemoryPointer.new(:int), FFI::MemoryPointer.new(:int)
+      glXQueryVersion(@display, major, minor)
+      version = major.read_int, minor.read_int
+      puts "GLX Version #{version.join('.')}"
+
+      list = Dir["#{File.expand_path('../../../extensions', __FILE__)}/GLX_VERSION_*.rb"].
+          map! { |f| File.basename(f, '.rb') }
+      list.select! { |f| (f.gsub('GLX_VERSION_', '').split('_', 2).map!(&:to_i) <=> version) <= 0 }
+      list
+    end
+
+    def extension_list_platform
+      (respond_to?(:glXQueryExtensionsString) ? glXQueryExtensionsString(@display, @screen) : '').split.map!(&:to_sym)
+    end
+
     def get_proc_address(name)
       func = begin
         GLX.attach_function :glXGetProcAddress, [:string], :pointer
@@ -45,17 +61,18 @@ module Roglew
       send(:get_proc_address, name)
     end
 
+    def make_current
+      glXMakeCurrent(@display, @window, @context)
+    end
+
+    def remove_current
+      glXMakeCurrent(@display, 0, nil)
+    end
+
     def swap_buffers
       #TODO
       raise NotImplementedError
     end
-
-    def unbind
-      glXMakeCurrent(@display, 0, nil)
-    end
-
-    #------
-    private
 
     def upgrade_context
       load_extension :GLX_ARB_create_context
@@ -69,26 +86,6 @@ module Roglew
       ptr_attribs = FFI::MemoryPointer.new(:int, attribs.length)
       ptr_attribs.write_array_of_int(attribs)
       glXCreateContextAttribsARB(@context, nil, ptr_attribs)
-    end
-
-    def extension_list_glx
-      major, minor = FFI::MemoryPointer.new(:int), FFI::MemoryPointer.new(:int)
-      glXQueryVersion(@display, major, minor)
-      version = major.read_int, minor.read_int
-      puts "GLX Version #{version.join('.')}"
-
-      list = Dir["#{File.expand_path('../../../extensions', __FILE__)}/GLX_VERSION_*.rb"].
-             map! { |f| File.basename(f, '.rb') }
-      list.select! { |f| (f.gsub('GLX_VERSION_', '').split('_', 2).map!(&:to_i) <=> version) <= 0 }
-      list
-    end
-
-    def extension_list_platform
-      (respond_to?(:glXQueryExtensionsString) ? glXQueryExtensionsString(@display, @screen) : '').split.map!(&:to_sym)
-    end
-
-    def make_current
-      glXMakeCurrent(@display, @window, @context)
     end
   end
 end
