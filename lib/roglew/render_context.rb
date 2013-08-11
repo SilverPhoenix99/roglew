@@ -43,7 +43,14 @@ module Roglew
 
     checks_current
     def clear(*flags)
-      @rh.glClear(flags.reduce(&:|))
+      @rh.glClear(flags
+        .map { |f| f.is_a?(Integer) ? f : GL.const_get("#{f.to_s.upcase}_BUFFER_BIT") }
+        .reduce(&:|))
+    end
+
+    checks_current
+    def clear_color
+      get_floats(GL::COLOR_CLEAR_VALUE, 4)
     end
 
     checks_current
@@ -125,6 +132,14 @@ module Roglew
         errors << GL::ERROR[error] || error
       end
       errors
+    end
+
+    checks_current
+    def get_floats(pname, count = 1)
+      p = FFI::MemoryPointer.new(:float, count)
+      @rh.glGetFloatv(pname, p)
+      result = p.read_array_of_float(count)
+      count == 1 ? result[0] : result
     end
 
     checks_current

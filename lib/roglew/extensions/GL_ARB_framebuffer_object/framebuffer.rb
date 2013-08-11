@@ -6,14 +6,14 @@ module Roglew
 
     def initialize(handle)
       @handle = handle
-      @id = context.gen_framebuffers
+      @id = handle.bind { |context| context.gen_framebuffers }
       ObjectSpace.define_finalizer(self, self.class.finalize(@handle, @id))
     end
 
-    def self.finalize(ctx, id)
+    def self.finalize(handle, id)
       proc do
         puts "releasing framebuffer #{id}"
-        ctx.delete_framebuffers(id)
+        handle.bind { |context| context.delete_framebuffers(id) }
       end
     end
 

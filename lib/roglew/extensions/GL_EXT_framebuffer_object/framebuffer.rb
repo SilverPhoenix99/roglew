@@ -5,7 +5,7 @@ module Roglew
     attr_reader :handle, :id
 
     def initialize(handle)
-      @handle = context
+      @handle = handle
       @id = handle.bind { |context| context.gen_framebuffersEXT }
       ObjectSpace.define_finalizer(self, self.class.finalize(@handle, @id))
     end
