@@ -8,9 +8,11 @@ module Roglew
 end
 
 module GL_ARB_provoking_vertex
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glProvokingVertex, [ :uint ], :void]
+    functions [
+        [:glProvokingVertex, [ :uint ], :void]
+    ]
   end
 end

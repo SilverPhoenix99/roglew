@@ -55,22 +55,24 @@ module Roglew
 end
 
 module GL_NV_register_combiners
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glCombinerInputNV, [ :uint, :uint, :uint, :uint, :uint, :uint ], :void],
-              [:glCombinerOutputNV, [ :uint, :uint, :uint, :uint, :uint, :uint, :uint, :uchar, :uchar, :uchar ], :void],
-              [:glCombinerParameterfNV, [ :uint, :float ], :void],
-              [:glCombinerParameterfvNV, [ :uint, :pointer ], :void],
-              [:glCombinerParameteriNV, [ :uint, :int ], :void],
-              [:glCombinerParameterivNV, [ :uint, :pointer ], :void],
-              [:glFinalCombinerInputNV, [ :uint, :uint, :uint, :uint ], :void],
-              [:glGetCombinerInputParameterfvNV, [ :uint, :uint, :uint, :uint, :pointer ], :void],
-              [:glGetCombinerInputParameterivNV, [ :uint, :uint, :uint, :uint, :pointer ], :void],
-              [:glGetCombinerOutputParameterfvNV, [ :uint, :uint, :uint, :pointer ], :void],
-              [:glGetCombinerOutputParameterivNV, [ :uint, :uint, :uint, :pointer ], :void],
-              [:glGetFinalCombinerInputParameterfvNV, [ :uint, :uint, :pointer ], :void],
-              [:glGetFinalCombinerInputParameterivNV, [ :uint, :uint, :pointer ], :void]
+    functions [
+        [:glCombinerInputNV, [ :uint, :uint, :uint, :uint, :uint, :uint ], :void],
+        [:glCombinerOutputNV, [ :uint, :uint, :uint, :uint, :uint, :uint, :uint, :uchar, :uchar, :uchar ], :void],
+        [:glCombinerParameterfNV, [ :uint, :float ], :void],
+        [:glCombinerParameterfvNV, [ :uint, :pointer ], :void],
+        [:glCombinerParameteriNV, [ :uint, :int ], :void],
+        [:glCombinerParameterivNV, [ :uint, :pointer ], :void],
+        [:glFinalCombinerInputNV, [ :uint, :uint, :uint, :uint ], :void],
+        [:glGetCombinerInputParameterfvNV, [ :uint, :uint, :uint, :uint, :pointer ], :void],
+        [:glGetCombinerInputParameterivNV, [ :uint, :uint, :uint, :uint, :pointer ], :void],
+        [:glGetCombinerOutputParameterfvNV, [ :uint, :uint, :uint, :pointer ], :void],
+        [:glGetCombinerOutputParameterivNV, [ :uint, :uint, :uint, :pointer ], :void],
+        [:glGetFinalCombinerInputParameterfvNV, [ :uint, :uint, :pointer ], :void],
+        [:glGetFinalCombinerInputParameterivNV, [ :uint, :uint, :pointer ], :void]
+    ]
   end
 end
 

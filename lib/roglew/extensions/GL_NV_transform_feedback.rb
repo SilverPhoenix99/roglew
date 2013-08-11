@@ -29,20 +29,22 @@ module Roglew
 end
 
 module GL_NV_transform_feedback
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glActiveVaryingNV, [ :uint, :string ], :void],
-              [:glBeginTransformFeedbackNV, [ :uint ], :void],
-              [:glBindBufferBaseNV, [ :uint, :uint, :uint ], :void],
-              [:glBindBufferOffsetNV, [ :uint, :uint, :uint, :int64 ], :void],
-              [:glBindBufferRangeNV, [ :uint, :uint, :uint, :int64, :int64 ], :void],
-              [:glEndTransformFeedbackNV, [  ], :void],
-              [:glGetActiveVaryingNV, [ :uint, :uint, :int, :pointer, :pointer, :pointer, :string ], :void],
-              [:glGetTransformFeedbackVaryingNV, [ :uint, :uint, :pointer ], :void],
-              [:glGetVaryingLocationNV, [ :uint, :string ], :int],
-              [:glTransformFeedbackAttribsNV, [ :uint, :pointer, :uint ], :void],
-              [:glTransformFeedbackVaryingsNV, [ :uint, :int, :pointer, :uint ], :void]
+    functions [
+        [:glActiveVaryingNV, [ :uint, :string ], :void],
+        [:glBeginTransformFeedbackNV, [ :uint ], :void],
+        [:glBindBufferBaseNV, [ :uint, :uint, :uint ], :void],
+        [:glBindBufferOffsetNV, [ :uint, :uint, :uint, :int64 ], :void],
+        [:glBindBufferRangeNV, [ :uint, :uint, :uint, :int64, :int64 ], :void],
+        [:glEndTransformFeedbackNV, [  ], :void],
+        [:glGetActiveVaryingNV, [ :uint, :uint, :int, :pointer, :pointer, :pointer, :string ], :void],
+        [:glGetTransformFeedbackVaryingNV, [ :uint, :uint, :pointer ], :void],
+        [:glGetVaryingLocationNV, [ :uint, :string ], :int],
+        [:glTransformFeedbackAttribsNV, [ :uint, :pointer, :uint ], :void],
+        [:glTransformFeedbackVaryingsNV, [ :uint, :int, :pointer, :uint ], :void]
+    ]
   end
 end
 

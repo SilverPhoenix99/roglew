@@ -11,15 +11,17 @@ module Roglew
 end
 
 module GL_ARB_vertex_attrib_binding
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glBindVertexBuffer, [ :uint, :uint, :int64, :int ], :void],
-              [:glVertexAttribBinding, [ :uint, :uint ], :void],
-              [:glVertexAttribFormat, [ :uint, :int, :uint, :uchar, :uint ], :void],
-              [:glVertexAttribIFormat, [ :uint, :int, :uint, :uint ], :void],
-              [:glVertexAttribLFormat, [ :uint, :int, :uint, :uint ], :void],
-              [:glVertexBindingDivisor, [ :uint, :uint ], :void]
+    functions [
+        [:glBindVertexBuffer, [ :uint, :uint, :int64, :int ], :void],
+        [:glVertexAttribBinding, [ :uint, :uint ], :void],
+        [:glVertexAttribFormat, [ :uint, :int, :uint, :uchar, :uint ], :void],
+        [:glVertexAttribIFormat, [ :uint, :int, :uint, :uint ], :void],
+        [:glVertexAttribLFormat, [ :uint, :int, :uint, :uint ], :void],
+        [:glVertexBindingDivisor, [ :uint, :uint ], :void]
+    ]
   end
 end
 

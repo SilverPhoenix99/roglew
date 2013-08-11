@@ -2,12 +2,12 @@ module Roglew
   class FramebufferARB
     include Roglew::Contextual(FramebufferContextARB)
 
-    attr_reader :context, :id
+    attr_reader :handle, :id
 
-    def initialize(context)
-      @context = context
+    def initialize(handle)
+      @handle = handle
       @id = context.gen_framebuffers
-      ObjectSpace.define_finalizer(self, self.class.finalize(@context, @id))
+      ObjectSpace.define_finalizer(self, self.class.finalize(@handle, @id))
     end
 
     def self.finalize(ctx, id)

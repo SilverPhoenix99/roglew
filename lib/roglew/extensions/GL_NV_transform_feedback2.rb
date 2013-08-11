@@ -8,16 +8,18 @@ module Roglew
 end
 
 module GL_NV_transform_feedback2
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glBindTransformFeedbackNV, [ :uint, :uint ], :void],
-              [:glDeleteTransformFeedbacksNV, [ :int, :pointer ], :void],
-              [:glDrawTransformFeedbackNV, [ :uint, :uint ], :void],
-              [:glGenTransformFeedbacksNV, [ :int, :pointer ], :void],
-              [:glIsTransformFeedbackNV, [ :uint ], :uchar],
-              [:glPauseTransformFeedbackNV, [  ], :void],
-              [:glResumeTransformFeedbackNV, [  ], :void]
+    functions [
+        [:glBindTransformFeedbackNV, [ :uint, :uint ], :void],
+        [:glDeleteTransformFeedbacksNV, [ :int, :pointer ], :void],
+        [:glDrawTransformFeedbackNV, [ :uint, :uint ], :void],
+        [:glGenTransformFeedbacksNV, [ :int, :pointer ], :void],
+        [:glIsTransformFeedbackNV, [ :uint ], :uchar],
+        [:glPauseTransformFeedbackNV, [], :void],
+        [:glResumeTransformFeedbackNV, [], :void]
+    ]
   end
 end
 

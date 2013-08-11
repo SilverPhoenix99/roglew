@@ -32,43 +32,45 @@ module Roglew
 end
 
 module GL_NV_gpu_shader5
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glGetUniformi64vNV, [ :uint, :int, :pointer ], :void],
-              [:glGetUniformui64vNV, [ :uint, :int, :pointer ], :void],
-              [:glProgramUniform1i64NV, [ :uint, :int, :int64 ], :void],
-              [:glProgramUniform1i64vNV, [ :uint, :int, :int, :pointer ], :void],
-              [:glProgramUniform1ui64NV, [ :uint, :int, :uint64 ], :void],
-              [:glProgramUniform1ui64vNV, [ :uint, :int, :int, :pointer ], :void],
-              [:glProgramUniform2i64NV, [ :uint, :int, :int64, :int64 ], :void],
-              [:glProgramUniform2i64vNV, [ :uint, :int, :int, :pointer ], :void],
-              [:glProgramUniform2ui64NV, [ :uint, :int, :uint64, :uint64 ], :void],
-              [:glProgramUniform2ui64vNV, [ :uint, :int, :int, :pointer ], :void],
-              [:glProgramUniform3i64NV, [ :uint, :int, :int64, :int64, :int64 ], :void],
-              [:glProgramUniform3i64vNV, [ :uint, :int, :int, :pointer ], :void],
-              [:glProgramUniform3ui64NV, [ :uint, :int, :uint64, :uint64, :uint64 ], :void],
-              [:glProgramUniform3ui64vNV, [ :uint, :int, :int, :pointer ], :void],
-              [:glProgramUniform4i64NV, [ :uint, :int, :int64, :int64, :int64, :int64 ], :void],
-              [:glProgramUniform4i64vNV, [ :uint, :int, :int, :pointer ], :void],
-              [:glProgramUniform4ui64NV, [ :uint, :int, :uint64, :uint64, :uint64, :uint64 ], :void],
-              [:glProgramUniform4ui64vNV, [ :uint, :int, :int, :pointer ], :void],
-              [:glUniform1i64NV, [ :int, :int64 ], :void],
-              [:glUniform1i64vNV, [ :int, :int, :pointer ], :void],
-              [:glUniform1ui64NV, [ :int, :uint64 ], :void],
-              [:glUniform1ui64vNV, [ :int, :int, :pointer ], :void],
-              [:glUniform2i64NV, [ :int, :int64, :int64 ], :void],
-              [:glUniform2i64vNV, [ :int, :int, :pointer ], :void],
-              [:glUniform2ui64NV, [ :int, :uint64, :uint64 ], :void],
-              [:glUniform2ui64vNV, [ :int, :int, :pointer ], :void],
-              [:glUniform3i64NV, [ :int, :int64, :int64, :int64 ], :void],
-              [:glUniform3i64vNV, [ :int, :int, :pointer ], :void],
-              [:glUniform3ui64NV, [ :int, :uint64, :uint64, :uint64 ], :void],
-              [:glUniform3ui64vNV, [ :int, :int, :pointer ], :void],
-              [:glUniform4i64NV, [ :int, :int64, :int64, :int64, :int64 ], :void],
-              [:glUniform4i64vNV, [ :int, :int, :pointer ], :void],
-              [:glUniform4ui64NV, [ :int, :uint64, :uint64, :uint64, :uint64 ], :void],
-              [:glUniform4ui64vNV, [ :int, :int, :pointer ], :void]
+    functions [
+        [:glGetUniformi64vNV, [ :uint, :int, :pointer ], :void],
+        [:glGetUniformui64vNV, [ :uint, :int, :pointer ], :void],
+        [:glProgramUniform1i64NV, [ :uint, :int, :int64 ], :void],
+        [:glProgramUniform1i64vNV, [ :uint, :int, :int, :pointer ], :void],
+        [:glProgramUniform1ui64NV, [ :uint, :int, :uint64 ], :void],
+        [:glProgramUniform1ui64vNV, [ :uint, :int, :int, :pointer ], :void],
+        [:glProgramUniform2i64NV, [ :uint, :int, :int64, :int64 ], :void],
+        [:glProgramUniform2i64vNV, [ :uint, :int, :int, :pointer ], :void],
+        [:glProgramUniform2ui64NV, [ :uint, :int, :uint64, :uint64 ], :void],
+        [:glProgramUniform2ui64vNV, [ :uint, :int, :int, :pointer ], :void],
+        [:glProgramUniform3i64NV, [ :uint, :int, :int64, :int64, :int64 ], :void],
+        [:glProgramUniform3i64vNV, [ :uint, :int, :int, :pointer ], :void],
+        [:glProgramUniform3ui64NV, [ :uint, :int, :uint64, :uint64, :uint64 ], :void],
+        [:glProgramUniform3ui64vNV, [ :uint, :int, :int, :pointer ], :void],
+        [:glProgramUniform4i64NV, [ :uint, :int, :int64, :int64, :int64, :int64 ], :void],
+        [:glProgramUniform4i64vNV, [ :uint, :int, :int, :pointer ], :void],
+        [:glProgramUniform4ui64NV, [ :uint, :int, :uint64, :uint64, :uint64, :uint64 ], :void],
+        [:glProgramUniform4ui64vNV, [ :uint, :int, :int, :pointer ], :void],
+        [:glUniform1i64NV, [ :int, :int64 ], :void],
+        [:glUniform1i64vNV, [ :int, :int, :pointer ], :void],
+        [:glUniform1ui64NV, [ :int, :uint64 ], :void],
+        [:glUniform1ui64vNV, [ :int, :int, :pointer ], :void],
+        [:glUniform2i64NV, [ :int, :int64, :int64 ], :void],
+        [:glUniform2i64vNV, [ :int, :int, :pointer ], :void],
+        [:glUniform2ui64NV, [ :int, :uint64, :uint64 ], :void],
+        [:glUniform2ui64vNV, [ :int, :int, :pointer ], :void],
+        [:glUniform3i64NV, [ :int, :int64, :int64, :int64 ], :void],
+        [:glUniform3i64vNV, [ :int, :int, :pointer ], :void],
+        [:glUniform3ui64NV, [ :int, :uint64, :uint64, :uint64 ], :void],
+        [:glUniform3ui64vNV, [ :int, :int, :pointer ], :void],
+        [:glUniform4i64NV, [ :int, :int64, :int64, :int64, :int64 ], :void],
+        [:glUniform4i64vNV, [ :int, :int, :pointer ], :void],
+        [:glUniform4ui64NV, [ :int, :uint64, :uint64, :uint64, :uint64 ], :void],
+        [:glUniform4ui64vNV, [ :int, :int, :pointer ], :void]
+    ]
   end
 end
 

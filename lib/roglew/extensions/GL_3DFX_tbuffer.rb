@@ -1,8 +1,10 @@
 module GL_3DFX_tbuffer
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glTbufferMask3DFX, [ :uint ], :void]
+    functions [
+        [ :glTbufferMask3DFX, [ :uint ], :void ]
+    ]
 
   end
 end

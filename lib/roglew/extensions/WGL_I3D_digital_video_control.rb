@@ -8,10 +8,12 @@ module Roglew
 end
 
 module WGL_I3D_digital_video_control
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:wglGetDigitalVideoParametersI3D, [ :pointer, :int, :pointer ], :bool ],
-              [:wglSetDigitalVideoParametersI3D, [ :pointer, :int, :pointer ], :bool ]
+    functions [
+      [:wglGetDigitalVideoParametersI3D, [ :pointer, :int, :pointer ], :bool ],
+      [:wglSetDigitalVideoParametersI3D, [ :pointer, :int, :pointer ], :bool ]
+    ]
   end
 end

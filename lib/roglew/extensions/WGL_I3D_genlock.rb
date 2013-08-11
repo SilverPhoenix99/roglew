@@ -13,20 +13,22 @@ module Roglew
 end
 
 module WGL_I3D_genlock
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:wglDisableGenlockI3D, [ :pointer ], :bool ],
-              [:wglEnableGenlockI3D, [ :pointer ], :bool ],
-              [:wglGenlockSampleRateI3D, [ :pointer, :uint ], :bool ],
-              [:wglGenlockSourceDelayI3D, [ :pointer, :uint ], :bool ],
-              [:wglGenlockSourceEdgeI3D, [ :pointer, :uint ], :bool ],
-              [:wglGenlockSourceI3D, [ :pointer, :uint ], :bool ],
-              [:wglGetGenlockSampleRateI3D, [ :pointer, :pointer ], :bool ],
-              [:wglGetGenlockSourceDelayI3D, [ :pointer, :pointer ], :bool ],
-              [:wglGetGenlockSourceEdgeI3D, [ :pointer, :pointer ], :bool ],
-              [:wglGetGenlockSourceI3D, [ :pointer, :pointer ], :bool ],
-              [:wglIsEnabledGenlockI3D, [ :pointer, :pointer ], :bool ],
-              [:wglQueryGenlockMaxSourceDelayI3D, [ :pointer, :pointer, :pointer ], :bool ]
+    functions [
+      [:wglDisableGenlockI3D, [ :pointer ], :bool ],
+      [:wglEnableGenlockI3D, [ :pointer ], :bool ],
+      [:wglGenlockSampleRateI3D, [ :pointer, :uint ], :bool ],
+      [:wglGenlockSourceDelayI3D, [ :pointer, :uint ], :bool ],
+      [:wglGenlockSourceEdgeI3D, [ :pointer, :uint ], :bool ],
+      [:wglGenlockSourceI3D, [ :pointer, :uint ], :bool ],
+      [:wglGetGenlockSampleRateI3D, [ :pointer, :pointer ], :bool ],
+      [:wglGetGenlockSourceDelayI3D, [ :pointer, :pointer ], :bool ],
+      [:wglGetGenlockSourceEdgeI3D, [ :pointer, :pointer ], :bool ],
+      [:wglGetGenlockSourceI3D, [ :pointer, :pointer ], :bool ],
+      [:wglIsEnabledGenlockI3D, [ :pointer, :pointer ], :bool ],
+      [:wglQueryGenlockMaxSourceDelayI3D, [ :pointer, :pointer, :pointer ], :bool ]
+    ]
   end
 end

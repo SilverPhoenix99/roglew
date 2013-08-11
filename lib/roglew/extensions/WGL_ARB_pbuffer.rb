@@ -12,13 +12,15 @@ module Roglew
 end
 
 module WGL_ARB_pbuffer
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:wglCreatePbufferARB, [ :pointer, :int, :int, :int, :pointer ], :pointer ],
-              [:wglDestroyPbufferARB, [ :pointer ], :bool ],
-              [:wglGetPbufferDCARB, [ :pointer ], :pointer ],
-              [:wglQueryPbufferARB, [ :pointer, :int, :pointer ], :bool ],
-              [:wglReleasePbufferDCARB, [ :pointer, :pointer ], :int ]
+    functions [
+      [:wglCreatePbufferARB, [ :pointer, :int, :int, :int, :pointer ], :pointer ],
+      [:wglDestroyPbufferARB, [ :pointer ], :bool ],
+      [:wglGetPbufferDCARB, [ :pointer ], :pointer ],
+      [:wglQueryPbufferARB, [ :pointer, :int, :pointer ], :bool ],
+      [:wglReleasePbufferDCARB, [ :pointer, :pointer ], :int ]
+    ]
   end
 end

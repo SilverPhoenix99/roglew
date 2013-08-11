@@ -6,12 +6,14 @@ module Roglew
 end
 
 module WGL_I3D_gamma
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:wglGetGammaTableI3D, [ :pointer, :int, :pointer, :pointer, :pointer ], :bool ],
-              [:wglGetGammaTableParametersI3D, [ :pointer, :int, :pointer ], :bool ],
-              [:wglSetGammaTableI3D, [ :pointer, :int, :pointer, :pointer, :pointer ], :bool ],
-              [:wglSetGammaTableParametersI3D, [ :pointer, :int, :pointer ], :bool ]
+    functions [
+      [:wglGetGammaTableI3D, [ :pointer, :int, :pointer, :pointer, :pointer ], :bool ],
+      [:wglGetGammaTableParametersI3D, [ :pointer, :int, :pointer ], :bool ],
+      [:wglSetGammaTableI3D, [ :pointer, :int, :pointer, :pointer, :pointer ], :bool ],
+      [:wglSetGammaTableParametersI3D, [ :pointer, :int, :pointer ], :bool ]
+    ]
   end
 end

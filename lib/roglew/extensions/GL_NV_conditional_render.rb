@@ -8,11 +8,13 @@ module Roglew
 end
 
 module GL_NV_conditional_render
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glBeginConditionalRenderNV, [ :uint, :uint ], :void],
-              [:glEndConditionalRenderNV, [  ], :void]
+    functions [
+        [:glBeginConditionalRenderNV, [ :uint, :uint ], :void],
+        [:glEndConditionalRenderNV, [], :void]
+    ]
   end
 end
 

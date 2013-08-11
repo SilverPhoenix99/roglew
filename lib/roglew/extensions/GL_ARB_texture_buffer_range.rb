@@ -7,11 +7,13 @@ module Roglew
 end
 
 module GL_ARB_texture_buffer_range
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glTexBufferRange, [ :uint, :uint, :uint, :int64, :int64 ], :void],
-              [:glTextureBufferRangeEXT, [ :uint, :uint, :uint, :uint, :int64, :int64 ], :void]
+    functions [
+        [:glTexBufferRange, [ :uint, :uint, :uint, :int64, :int64 ], :void],
+        [:glTextureBufferRangeEXT, [ :uint, :uint, :uint, :uint, :int64, :int64 ], :void]
+    ]
   end
 end
 

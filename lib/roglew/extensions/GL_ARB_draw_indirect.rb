@@ -6,10 +6,12 @@ module Roglew
 end
 
 module GL_ARB_draw_indirect
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glDrawArraysIndirect, [ :uint, :pointer ], :void],
-              [:glDrawElementsIndirect, [ :uint, :uint, :pointer ], :void]
+    functions [
+        [:glDrawArraysIndirect, [ :uint, :pointer ], :void],
+        [:glDrawElementsIndirect, [ :uint, :uint, :pointer ], :void]
+    ]
   end
 end

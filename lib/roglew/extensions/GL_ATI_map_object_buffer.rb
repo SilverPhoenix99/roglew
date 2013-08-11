@@ -1,9 +1,11 @@
 module GL_ATI_map_object_buffer
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glMapObjectBufferATI, [ :uint ], :pointer],
-              [:glUnmapObjectBufferATI, [ :uint ], :void]
+    functions [
+        [:glMapObjectBufferATI, [ :uint ], :pointer],
+        [:glUnmapObjectBufferATI, [ :uint ], :void]
+    ]
   end
 end
 

@@ -1,8 +1,10 @@
 module GLX_SGI_swap_control
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-              #int glXSwapIntervalSGI(int interval)
-    functions [:glXSwapIntervalSGI, [:int], :int]
+    functions [
+      #int glXSwapIntervalSGI(int interval)
+      [:glXSwapIntervalSGI, [:int], :int]
+    ]
   end
 end

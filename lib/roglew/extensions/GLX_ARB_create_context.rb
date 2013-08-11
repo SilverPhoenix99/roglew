@@ -9,8 +9,8 @@ module Roglew
 end
 
 module GLX_ARB_create_context
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
               #GLXContext glXCreateContextAttribsARB(
               #   Display* dpy,
@@ -18,6 +18,8 @@ module GLX_ARB_create_context
               #   GLXContext share_context,
               #   Bool direct,
               #   const int *attrib_list)
-    functions [:glXCreateContextAttribsARB, [:pointer, :pointer, :pointer, :bool, :pointer], :pointer]
+    functions [
+      [ :glXCreateContextAttribsARB, [:pointer, :pointer, :pointer, :bool, :pointer], :pointer ]
+    ]
   end
 end

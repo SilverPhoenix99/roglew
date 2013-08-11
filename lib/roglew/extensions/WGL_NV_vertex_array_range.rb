@@ -1,8 +1,10 @@
 module WGL_NV_vertex_array_range
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:wglAllocateMemoryNV, [ :int, :float, :float, :float ], :pointer ],
-              [:wglFreeMemoryNV, [ :pointer ], :void ]
+    functions [
+      [:wglAllocateMemoryNV, [ :int, :float, :float, :float ], :pointer ],
+      [:wglFreeMemoryNV, [ :pointer ], :void ]
+    ]
   end
 end

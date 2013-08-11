@@ -1,8 +1,10 @@
 module GL_SGIX_pixel_texture
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glPixelTexGenSGIX, [ :uint ], :void]
+    functions [
+      [:glPixelTexGenSGIX, [ :uint ], :void]
+    ]
   end
 end
 

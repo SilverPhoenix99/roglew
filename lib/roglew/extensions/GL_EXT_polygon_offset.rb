@@ -7,10 +7,12 @@ module Roglew
 end
 
 module GL_EXT_polygon_offset
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glPolygonOffsetEXT, [ :float, :float ], :void]
+    functions [
+        [:glPolygonOffsetEXT, [ :float, :float ], :void]
+    ]
   end
 end
 

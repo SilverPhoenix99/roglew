@@ -13,12 +13,14 @@ module Roglew
 end
 
 module GL_ARB_framebuffer_no_attachments
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glFramebufferParameteri, [ :uint, :uint, :int ], :void],
-              [:glGetFramebufferParameteriv, [ :uint, :uint, :pointer ], :void],
-              [:glGetNamedFramebufferParameterivEXT, [ :uint, :uint, :pointer ], :void],
-              [:glNamedFramebufferParameteriEXT, [ :uint, :uint, :int ], :void]
+    functions [
+        [:glFramebufferParameteri, [ :uint, :uint, :int ], :void],
+        [:glGetFramebufferParameteriv, [ :uint, :uint, :pointer ], :void],
+        [:glGetNamedFramebufferParameterivEXT, [ :uint, :uint, :pointer ], :void],
+        [:glNamedFramebufferParameteriEXT, [ :uint, :uint, :int ], :void]
+    ]
   end
 end

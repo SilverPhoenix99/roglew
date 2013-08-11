@@ -28,18 +28,20 @@ module Roglew
 end
 
 module GL_NV_evaluators
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glEvalMapsNV, [ :uint, :uint ], :void],
-              [:glGetMapAttribParameterfvNV, [ :uint, :uint, :uint, :pointer ], :void],
-              [:glGetMapAttribParameterivNV, [ :uint, :uint, :uint, :pointer ], :void],
-              [:glGetMapControlPointsNV, [ :uint, :uint, :uint, :int, :int, :uchar, :pointer ], :void],
-              [:glGetMapParameterfvNV, [ :uint, :uint, :pointer ], :void],
-              [:glGetMapParameterivNV, [ :uint, :uint, :pointer ], :void],
-              [:glMapControlPointsNV, [ :uint, :uint, :uint, :int, :int, :int, :int, :uchar, :pointer ], :void],
-              [:glMapParameterfvNV, [ :uint, :uint, :pointer ], :void],
-              [:glMapParameterivNV, [ :uint, :uint, :pointer ], :void]
+    functions [
+        [:glEvalMapsNV, [ :uint, :uint ], :void],
+        [:glGetMapAttribParameterfvNV, [ :uint, :uint, :uint, :pointer ], :void],
+        [:glGetMapAttribParameterivNV, [ :uint, :uint, :uint, :pointer ], :void],
+        [:glGetMapControlPointsNV, [ :uint, :uint, :uint, :int, :int, :uchar, :pointer ], :void],
+        [:glGetMapParameterfvNV, [ :uint, :uint, :pointer ], :void],
+        [:glGetMapParameterivNV, [ :uint, :uint, :pointer ], :void],
+        [:glMapControlPointsNV, [ :uint, :uint, :uint, :int, :int, :int, :int, :uchar, :pointer ], :void],
+        [:glMapParameterfvNV, [ :uint, :uint, :pointer ], :void],
+        [:glMapParameterivNV, [ :uint, :uint, :pointer ], :void]
+    ]
   end
 end
 

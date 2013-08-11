@@ -58,23 +58,25 @@ module Roglew
 end
 
 module GL_ATI_fragment_shader
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glAlphaFragmentOp1ATI, [ :uint, :uint, :uint, :uint, :uint, :uint ], :void],
-              [:glAlphaFragmentOp2ATI, [ :uint, :uint, :uint, :uint, :uint, :uint, :uint, :uint, :uint ], :void],
-              [:glAlphaFragmentOp3ATI, [ :uint, :uint, :uint, :uint, :uint, :uint, :uint, :uint, :uint, :uint, :uint, :uint ], :void],
-              [:glBeginFragmentShaderATI, [  ], :void],
-              [:glBindFragmentShaderATI, [ :uint ], :void],
-              [:glColorFragmentOp1ATI, [ :uint, :uint, :uint, :uint, :uint, :uint, :uint ], :void],
-              [:glColorFragmentOp2ATI, [ :uint, :uint, :uint, :uint, :uint, :uint, :uint, :uint, :uint, :uint ], :void],
-              [:glColorFragmentOp3ATI, [ :uint, :uint, :uint, :uint, :uint, :uint, :uint, :uint, :uint, :uint, :uint, :uint, :uint ], :void],
-              [:glDeleteFragmentShaderATI, [ :uint ], :void],
-              [:glEndFragmentShaderATI, [  ], :void],
-              [:glGenFragmentShadersATI, [ :uint ], :uint],
-              [:glPassTexCoordATI, [ :uint, :uint, :uint ], :void],
-              [:glSampleMapATI, [ :uint, :uint, :uint ], :void],
-              [:glSetFragmentShaderConstantATI, [ :uint, :pointer ], :void]
+    functions [
+        [:glAlphaFragmentOp1ATI, [ :uint, :uint, :uint, :uint, :uint, :uint ], :void],
+        [:glAlphaFragmentOp2ATI, [ :uint, :uint, :uint, :uint, :uint, :uint, :uint, :uint, :uint ], :void],
+        [:glAlphaFragmentOp3ATI, [ :uint, :uint, :uint, :uint, :uint, :uint, :uint, :uint, :uint, :uint, :uint, :uint ], :void],
+        [:glBeginFragmentShaderATI, [  ], :void],
+        [:glBindFragmentShaderATI, [ :uint ], :void],
+        [:glColorFragmentOp1ATI, [ :uint, :uint, :uint, :uint, :uint, :uint, :uint ], :void],
+        [:glColorFragmentOp2ATI, [ :uint, :uint, :uint, :uint, :uint, :uint, :uint, :uint, :uint, :uint ], :void],
+        [:glColorFragmentOp3ATI, [ :uint, :uint, :uint, :uint, :uint, :uint, :uint, :uint, :uint, :uint, :uint, :uint, :uint ], :void],
+        [:glDeleteFragmentShaderATI, [ :uint ], :void],
+        [:glEndFragmentShaderATI, [  ], :void],
+        [:glGenFragmentShadersATI, [ :uint ], :uint],
+        [:glPassTexCoordATI, [ :uint, :uint, :uint ], :void],
+        [:glSampleMapATI, [ :uint, :uint, :uint ], :void],
+        [:glSetFragmentShaderConstantATI, [ :uint, :pointer ], :void]
+    ]
   end
 end
 

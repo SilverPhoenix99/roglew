@@ -6,13 +6,15 @@ module Roglew
 end
 
 module GL_ARB_transform_feedback3
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glBeginQueryIndexed, [ :uint, :uint, :uint ], :void],
-              [:glDrawTransformFeedbackStream, [ :uint, :uint, :uint ], :void],
-              [:glEndQueryIndexed, [ :uint, :uint ], :void],
-              [:glGetQueryIndexediv, [ :uint, :uint, :uint, :pointer ], :void]
+    functions [
+        [:glBeginQueryIndexed, [ :uint, :uint, :uint ], :void],
+        [:glDrawTransformFeedbackStream, [ :uint, :uint, :uint ], :void],
+        [:glEndQueryIndexed, [ :uint, :uint ], :void],
+        [:glGetQueryIndexediv, [ :uint, :uint, :uint, :pointer ], :void]
+    ]
   end
 end
 

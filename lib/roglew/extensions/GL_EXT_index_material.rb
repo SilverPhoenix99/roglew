@@ -1,7 +1,9 @@
 module GL_EXT_index_material
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glIndexMaterialEXT, [ :uint, :uint ], :void]
+    functions [
+        [:glIndexMaterialEXT, [ :uint, :uint ], :void]
+    ]
   end
 end

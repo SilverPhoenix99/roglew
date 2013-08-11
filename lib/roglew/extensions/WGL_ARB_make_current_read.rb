@@ -6,10 +6,12 @@ module Roglew
 end
 
 module WGL_ARB_make_current_read
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:wglGetCurrentReadDCARB, [ ], :pointer ],
-              [:wglMakeContextCurrentARB, [ :pointer, :pointer, :pointer ], :bool ]
+    functions [
+      [:wglGetCurrentReadDCARB, [ ], :pointer ],
+      [:wglMakeContextCurrentARB, [ :pointer, :pointer, :pointer ], :bool ]
+    ]
   end
 end

@@ -10,11 +10,13 @@ module Roglew
 end
 
 module GL_APPLE_object_purgeable
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glGetObjectParameterivAPPLE, [ :uint, :uint, :uint, :pointer ], :void],
-              [:glObjectPurgeableAPPLE, [ :uint, :uint, :uint ], :uint],
-              [:glObjectUnpurgeableAPPLE, [ :uint, :uint, :uint ], :uint]
+    functions [
+        [:glGetObjectParameterivAPPLE, [ :uint, :uint, :uint, :pointer ], :void],
+        [:glObjectPurgeableAPPLE, [ :uint, :uint, :uint ], :uint],
+        [:glObjectUnpurgeableAPPLE, [ :uint, :uint, :uint ], :uint]
+    ]
   end
 end

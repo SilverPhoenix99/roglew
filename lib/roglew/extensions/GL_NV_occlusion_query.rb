@@ -8,16 +8,18 @@ module Roglew
 end
 
 module GL_NV_occlusion_query
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glBeginOcclusionQueryNV, [ :uint ], :void],
-              [:glDeleteOcclusionQueriesNV, [ :int, :pointer ], :void],
-              [:glEndOcclusionQueryNV, [  ], :void],
-              [:glGenOcclusionQueriesNV, [ :int, :pointer ], :void],
-              [:glGetOcclusionQueryivNV, [ :uint, :uint, :pointer ], :void],
-              [:glGetOcclusionQueryuivNV, [ :uint, :uint, :pointer ], :void],
-              [:glIsOcclusionQueryNV, [ :uint ], :uchar]
+    functions [
+        [:glBeginOcclusionQueryNV, [ :uint ], :void],
+        [:glDeleteOcclusionQueriesNV, [ :int, :pointer ], :void],
+        [:glEndOcclusionQueryNV, [  ], :void],
+        [:glGenOcclusionQueriesNV, [ :int, :pointer ], :void],
+        [:glGetOcclusionQueryivNV, [ :uint, :uint, :pointer ], :void],
+        [:glGetOcclusionQueryuivNV, [ :uint, :uint, :pointer ], :void],
+        [:glIsOcclusionQueryNV, [ :uint ], :uchar]
+    ]
   end
 end
 

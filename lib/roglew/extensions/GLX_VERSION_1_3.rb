@@ -60,58 +60,60 @@ module Roglew
 end
 
 module GLX_VERSION_1_3
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-              #GLXFBConfig* glXChooseFBConfig (Display *dpy, int screen, const int *attrib_list, int *nelements)
-    functions [ :glXChooseFBConfig, [:pointer, :int, :pointer, :pointer], :pointer ],
+    functions [
+      #GLXFBConfig* glXChooseFBConfig (Display *dpy, int screen, const int *attrib_list, int *nelements)
+      [ :glXChooseFBConfig, [:pointer, :int, :pointer, :pointer], :pointer ],
 
-              #GLXContext glXCreateNewContext (Display *dpy, GLXFBConfig config, int render_type, GLXContext share_list, Bool direct)
-              [ :glXCreateNewContext, [:pointer, :pointer, :int, :pointer, :bool], :pointer ],
+      #GLXContext glXCreateNewContext (Display *dpy, GLXFBConfig config, int render_type, GLXContext share_list, Bool direct)
+      [ :glXCreateNewContext, [:pointer, :pointer, :int, :pointer, :bool], :pointer ],
 
-              #GLXPbuffer glXCreatePbuffer (Display *dpy, GLXFBConfig config, const int *attrib_list)
-              [ :glXCreatePbuffer, [:pointer, :pointer, :pointer], :int ],
+      #GLXPbuffer glXCreatePbuffer (Display *dpy, GLXFBConfig config, const int *attrib_list)
+      [ :glXCreatePbuffer, [:pointer, :pointer, :pointer], :int ],
 
-              #GLXPixmap glXCreatePixmap (Display *dpy, GLXFBConfig config, Pixmap pixmap, const int *attrib_list)
-              [ :glXCreatePixmap, [:pointer, :pointer, :int, :pointer], :int ],
+      #GLXPixmap glXCreatePixmap (Display *dpy, GLXFBConfig config, Pixmap pixmap, const int *attrib_list)
+      [ :glXCreatePixmap, [:pointer, :pointer, :int, :pointer], :int ],
 
-              #GLXWindow glXCreateWindow (Display *dpy, GLXFBConfig config, Window win, const int *attrib_list)
-              [ :glXCreateWindow, [:pointer, :pointer, :int, :pointer], :int ],
+      #GLXWindow glXCreateWindow (Display *dpy, GLXFBConfig config, Window win, const int *attrib_list)
+      [ :glXCreateWindow, [:pointer, :pointer, :int, :pointer], :int ],
 
-              #void glXDestroyPbuffer (Display *dpy, GLXPbuffer pbuf)
-              [ :glXDestroyPbuffer, [:pointer, :int], :void ],
+      #void glXDestroyPbuffer (Display *dpy, GLXPbuffer pbuf)
+      [ :glXDestroyPbuffer, [:pointer, :int], :void ],
 
-              #void glXDestroyPixmap (Display *dpy, GLXPixmap pixmap)
-              [ :glXDestroyPixmap, [:pointer, :int], :void ],
+      #void glXDestroyPixmap (Display *dpy, GLXPixmap pixmap)
+      [ :glXDestroyPixmap, [:pointer, :int], :void ],
 
-              #void glXDestroyWindow (Display *dpy, GLXWindow win)
-              [ :glXDestroyWindow, [:pointer, :int], :void ],
+      #void glXDestroyWindow (Display *dpy, GLXWindow win)
+      [ :glXDestroyWindow, [:pointer, :int], :void ],
 
-              #GLXDrawable glXGetCurrentReadDrawable (void)
-              [ :glXGetCurrentReadDrawable, [], :int ],
+      #GLXDrawable glXGetCurrentReadDrawable (void)
+      [ :glXGetCurrentReadDrawable, [], :int ],
 
-              #int glXGetFBConfigAttrib (Display *dpy, GLXFBConfig config, int attribute, int *value)
-              [ :glXGetFBConfigAttrib, [:pointer, :pointer, :int, :pointer], :int ],
+      #int glXGetFBConfigAttrib (Display *dpy, GLXFBConfig config, int attribute, int *value)
+      [ :glXGetFBConfigAttrib, [:pointer, :pointer, :int, :pointer], :int ],
 
-              #GLXFBConfig* glXGetFBConfigs (Display *dpy, int screen, int *nelements)
-              [ :glXGetFBConfigs, [:pointer, :int, :pointer], :pointer ],
+      #GLXFBConfig* glXGetFBConfigs (Display *dpy, int screen, int *nelements)
+      [ :glXGetFBConfigs, [:pointer, :int, :pointer], :pointer ],
 
-              #void glXGetSelectedEvent (Display *dpy, GLXDrawable draw, unsigned long *event_mask)
-              [ :glXGetSelectedEvent, [:pointer, :int, :pointer], :void ],
+      #void glXGetSelectedEvent (Display *dpy, GLXDrawable draw, unsigned long *event_mask)
+      [ :glXGetSelectedEvent, [:pointer, :int, :pointer], :void ],
 
-              #XVisualInfo* glXGetVisualFromFBConfig (Display *dpy, GLXFBConfig config)
-              [ :glXGetVisualFromFBConfig, [:pointer, :pointer], Roglew::GLX::XVisualInfo.ptr ],
+      #XVisualInfo* glXGetVisualFromFBConfig (Display *dpy, GLXFBConfig config)
+      [ :glXGetVisualFromFBConfig, [:pointer, :pointer], Roglew::GLX::XVisualInfo.ptr ],
 
-              #Bool glXMakeContextCurrent (Display *display, GLXDrawable draw, GLXDrawable read, GLXContext ctx)
-              [ :glXMakeContextCurrent, [:pointer, :int, :int, :pointer], :bool ],
+      #Bool glXMakeContextCurrent (Display *display, GLXDrawable draw, GLXDrawable read, GLXContext ctx)
+      [ :glXMakeContextCurrent, [:pointer, :int, :int, :pointer], :bool ],
 
-              #int glXQueryContext (Display *dpy, GLXContext ctx, int attribute, int *value)
-              [ :glXQueryContext, [:pointer, :pointer, :int, :pointer], :int ],
+      #int glXQueryContext (Display *dpy, GLXContext ctx, int attribute, int *value)
+      [ :glXQueryContext, [:pointer, :pointer, :int, :pointer], :int ],
 
-              #void glXQueryDrawable (Display *dpy, GLXDrawable draw, int attribute, unsigned int *value)
-              [ :glXQueryDrawable, [:pointer, :int, :int, :pointer], :void ],
+      #void glXQueryDrawable (Display *dpy, GLXDrawable draw, int attribute, unsigned int *value)
+      [ :glXQueryDrawable, [:pointer, :int, :int, :pointer], :void ],
 
-              #void glXSelectEvent (Display *dpy, GLXDrawable draw, unsigned long event_mask)
-              [ :glXSelectEvent, [:pointer, :int, :uint], :void ]
+      #void glXSelectEvent (Display *dpy, GLXDrawable draw, unsigned long event_mask)
+      [ :glXSelectEvent, [:pointer, :int, :uint], :void ]
+    ]
   end
 end

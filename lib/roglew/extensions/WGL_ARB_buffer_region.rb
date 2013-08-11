@@ -8,12 +8,14 @@ module Roglew
 end
 
 module WGL_ARB_buffer_region
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:wglCreateBufferRegionARB, [ :pointer, :int, :uint ], :pointer ],
-              [:wglDeleteBufferRegionARB, [ :pointer ], :void ],
-              [:wglRestoreBufferRegionARB, [ :pointer, :int, :int, :int, :int, :int, :int ], :bool ],
-              [:wglSaveBufferRegionARB, [ :pointer, :int, :int, :int, :int ], :bool ]
+    functions [
+      [:wglCreateBufferRegionARB, [ :pointer, :int, :uint ], :pointer ],
+      [:wglDeleteBufferRegionARB, [ :pointer ], :void ],
+      [:wglRestoreBufferRegionARB, [ :pointer, :int, :int, :int, :int, :int, :int ], :bool ],
+      [:wglSaveBufferRegionARB, [ :pointer, :int, :int, :int, :int ], :bool ]
+    ]
   end
 end

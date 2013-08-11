@@ -37,19 +37,21 @@ module Roglew
 end
 
 module GL_ARB_uniform_buffer_object
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glBindBufferBase, [ :uint, :uint, :uint ], :void],
-              [:glBindBufferRange, [ :uint, :uint, :uint, :int64, :int64 ], :void],
-              [:glGetActiveUniformBlockiv, [ :uint, :uint, :uint, :pointer ], :void],
-              [:glGetActiveUniformBlockName, [ :uint, :uint, :int, :pointer, :string ], :void],
-              [:glGetActiveUniformName, [ :uint, :uint, :int, :pointer, :string ], :void],
-              [:glGetActiveUniformsiv, [ :uint, :int, :pointer, :uint, :pointer ], :void],
-              [:glGetIntegeri_v, [ :uint, :uint, :pointer ], :void],
-              [:glGetUniformBlockIndex, [ :uint, :string ], :uint],
-              [:glGetUniformIndices, [ :uint, :int, :pointer, :pointer ], :void],
-              [:glUniformBlockBinding, [ :uint, :uint, :uint ], :void]
+    functions [
+        [:glBindBufferBase, [ :uint, :uint, :uint ], :void],
+        [:glBindBufferRange, [ :uint, :uint, :uint, :int64, :int64 ], :void],
+        [:glGetActiveUniformBlockiv, [ :uint, :uint, :uint, :pointer ], :void],
+        [:glGetActiveUniformBlockName, [ :uint, :uint, :int, :pointer, :string ], :void],
+        [:glGetActiveUniformName, [ :uint, :uint, :int, :pointer, :string ], :void],
+        [:glGetActiveUniformsiv, [ :uint, :int, :pointer, :uint, :pointer ], :void],
+        [:glGetIntegeri_v, [ :uint, :uint, :pointer ], :void],
+        [:glGetUniformBlockIndex, [ :uint, :string ], :uint],
+        [:glGetUniformIndices, [ :uint, :int, :pointer, :pointer ], :void],
+        [:glUniformBlockBinding, [ :uint, :uint, :uint ], :void]
+    ]
   end
 end
 

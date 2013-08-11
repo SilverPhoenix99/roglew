@@ -2,18 +2,18 @@ module Roglew
   class Texture2d
     include Roglew::Contextual(Texture2dContext)
 
-    attr_reader :context, :id
+    attr_reader :handle, :id
 
-    def initialize(context)
-      @context = context
-      @id = context.gen_textures
-      ObjectSpace.define_finalizer(self, self.class.finalize(@context, @id))
+    def initialize(handle)
+      @handle = handle
+      @id = handle.bind { |context| context.gen_textures }
+      ObjectSpace.define_finalizer(self, self.class.finalize(@handle, @id))
     end
 
-    def self.finalize(ctx, id)
+    def self.finalize(handle, id)
       proc do
         puts "releasing texture #{id}"
-        ctx.glDeleteTextures(id)
+        handle.glDeleteTextures(id)
       end
     end
 

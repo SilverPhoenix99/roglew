@@ -21,16 +21,18 @@ module Roglew
 end
 
 module GL_SUN_triangle_list
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glReplacementCodePointerSUN, [ :uint, :int, :pointer ], :void],
-              [:glReplacementCodeubSUN, [ :uchar ], :void],
-              [:glReplacementCodeubvSUN, [ :pointer ], :void],
-              [:glReplacementCodeuiSUN, [ :uint ], :void],
-              [:glReplacementCodeuivSUN, [ :pointer ], :void],
-              [:glReplacementCodeusSUN, [ :ushort ], :void],
-              [:glReplacementCodeusvSUN, [ :pointer ], :void]
+    functions [
+      [:glReplacementCodePointerSUN, [ :uint, :int, :pointer ], :void],
+      [:glReplacementCodeubSUN, [ :uchar ], :void],
+      [:glReplacementCodeubvSUN, [ :pointer ], :void],
+      [:glReplacementCodeuiSUN, [ :uint ], :void],
+      [:glReplacementCodeuivSUN, [ :pointer ], :void],
+      [:glReplacementCodeusSUN, [ :ushort ], :void],
+      [:glReplacementCodeusvSUN, [ :pointer ], :void]
+    ]
   end
 end
 

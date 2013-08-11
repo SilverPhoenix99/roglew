@@ -21,26 +21,28 @@ module Roglew
 end
 
 module GL_VERSION_4_0
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glBlendEquationi, [ :uint, :uint ], :void],
-              [:glBlendEquationSeparatei, [ :uint, :uint, :uint ], :void],
-              [:glBlendFunci, [ :uint, :uint, :uint ], :void],
-              [:glBlendFuncSeparatei, [ :uint, :uint, :uint, :uint, :uint ], :void],
-              [:glMinSampleShading, [ :float ], :void]
+    functions [
+        [ :glBlendEquationi, [ :uint, :uint ], :void],
+        [ :glBlendEquationSeparatei, [ :uint, :uint, :uint ], :void],
+        [ :glBlendFunci, [ :uint, :uint, :uint ], :void],
+        [ :glBlendFuncSeparatei, [ :uint, :uint, :uint, :uint, :uint ], :void],
+        [ :glMinSampleShading, [ :float ], :void]
+    ]
   end
 end
 
-#GL_VERSION_4_0 implicit requires
-#GL_ARB_texture_query_lod
-#GL_ARB_texture_buffer_object_rgb32
-#GL_ARB_transform_feedback3
-#GL_ARB_draw_indirect
-#GL_ARB_gpu_shader5
-#GL_ARB_gpu_shader_fp64
-#GL_ARB_shader_subroutine
-#GL_ARB_tessellation_shader
-#GL_ARB_texture_cube_map_array
-#GL_ARB_texture_gather
-#GL_ARB_transform_feedback2
+#GL_VERSION_4_0 implicitly requires:
+#  GL_ARB_texture_query_lod
+#  GL_ARB_texture_buffer_object_rgb32
+#  GL_ARB_transform_feedback3
+#  GL_ARB_draw_indirect
+#  GL_ARB_gpu_shader5
+#  GL_ARB_gpu_shader_fp64
+#  GL_ARB_shader_subroutine
+#  GL_ARB_tessellation_shader
+#  GL_ARB_texture_cube_map_array
+#  GL_ARB_texture_gather
+#  GL_ARB_transform_feedback2

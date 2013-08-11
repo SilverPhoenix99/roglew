@@ -8,14 +8,16 @@ module Roglew
 
       attrList = FFI::MemoryPointer.new(:int, 11)
       attrList.write_array_of_int([
-                                    Roglew::GLX::RGBA,       Roglew::GLX::DOUBLEBUFFER,
-                                    Roglew::GLX::RED_SIZE,   4,
-                                    Roglew::GLX::GREEN_SIZE, 4,
-                                    Roglew::GLX::BLUE_SIZE,  4,
-                                    Roglew::GLX::DEPTH_SIZE, 16
-                                  ])
-      @visual = glXChooseVisual(@display, screen, attrList)
-      @context = glXCreateContext(@display, @visual, nil, true)
+        GLX::RGBA,       GLX::DOUBLEBUFFER,
+        GLX::RED_SIZE,   4,
+        GLX::GREEN_SIZE, 4,
+        GLX::BLUE_SIZE,  4,
+        GLX::DEPTH_SIZE, 16
+      ])
+      @visual = GLX.ChooseVisual(@display, screen, attrList)
+      @context = GLX.CreateContext(@display, @visual, nil, true)
+
+      old_context = nil
 
       bind do
         #check version
@@ -30,6 +32,8 @@ module Roglew
         extension_list(:gl, :platform).each { |ext| load_extension(ext) }
       end
 
+      GLX.delete_context(display, old_context) if old_context
+
       self.class.finalize(self, @display, @context)
     end
 
@@ -37,7 +41,7 @@ module Roglew
 
     def extension_list_glx
       major, minor = FFI::MemoryPointer.new(:int), FFI::MemoryPointer.new(:int)
-      glXQueryVersion(@display, major, minor)
+      GLX.QueryVersion(@display, major, minor)
       version = major.read_int, minor.read_int
       puts "GLX Version #{version.join('.')}"
 
@@ -62,11 +66,11 @@ module Roglew
     end
 
     def make_current
-      glXMakeCurrent(@display, @window, @context)
+      GLX.MakeCurrent(@display, @window, @context)
     end
 
     def remove_current
-      glXMakeCurrent(@display, 0, nil)
+      GLX.MakeCurrent(@display, 0, nil)
     end
 
     def swap_buffers

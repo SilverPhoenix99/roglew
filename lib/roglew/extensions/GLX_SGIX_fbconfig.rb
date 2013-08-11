@@ -15,30 +15,32 @@ module Roglew
 end
 
 module GLX_SGIX_fbconfig
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-              #GLXFBConfigSGIX* glXChooseFBConfigSGIX(Display *dpy, int screen, const int *attrib_list, int *nelements)
-    functions [:glXChooseFBConfigSGIX, [:pointer, :int, :pointer, :pointer], :pointer],
+    functions [
+      #GLXFBConfigSGIX* glXChooseFBConfigSGIX(Display *dpy, int screen, const int *attrib_list, int *nelements)
+      [:glXChooseFBConfigSGIX, [:pointer, :int, :pointer, :pointer], :pointer],
 
-              #GLXContext glXCreateContextWithConfigSGIX(
-              #   Display* dpy,
-              #   GLXFBConfig config,
-              #   int render_type,
-              #   GLXContext share_list,
-              #   Bool direct)
-              [:glXCreateContextWithConfigSGIX, [:pointer, :pointer, :int, :pointer, :bool], :pointer],
+      #GLXContext glXCreateContextWithConfigSGIX(
+      #   Display* dpy,
+      #   GLXFBConfig config,
+      #   int render_type,
+      #   GLXContext share_list,
+      #   Bool direct)
+      [:glXCreateContextWithConfigSGIX, [:pointer, :pointer, :int, :pointer, :bool], :pointer],
 
-              #GLXPixmap glXCreateGLXPixmapWithConfigSGIX(Display* dpy, GLXFBConfig config, Pixmap pixmap)
-              [:glXCreateGLXPixmapWithConfigSGIX, [:pointer, :pointer, :int], :int],
+      #GLXPixmap glXCreateGLXPixmapWithConfigSGIX(Display* dpy, GLXFBConfig config, Pixmap pixmap)
+      [:glXCreateGLXPixmapWithConfigSGIX, [:pointer, :pointer, :int], :int],
 
-              #int glXGetFBConfigAttribSGIX(Display* dpy, GLXFBConfigSGIX config, int attribute, int *value)
-              [:glXGetFBConfigAttribSGIX, [:pointer, :pointer, :int, :pointer], :int],
+      #int glXGetFBConfigAttribSGIX(Display* dpy, GLXFBConfigSGIX config, int attribute, int *value)
+      [:glXGetFBConfigAttribSGIX, [:pointer, :pointer, :int, :pointer], :int],
 
-              #GLXFBConfigSGIX glXGetFBConfigFromVisualSGIX(Display* dpy, XVisualInfo *vis)
-              [:glXGetFBConfigFromVisualSGIX, [:pointer, Roglew::GLX::XVisualInfo.ptr], :pointer],
+      #GLXFBConfigSGIX glXGetFBConfigFromVisualSGIX(Display* dpy, XVisualInfo *vis)
+      [:glXGetFBConfigFromVisualSGIX, [:pointer, Roglew::GLX::XVisualInfo.ptr], :pointer],
 
-              #XVisualInfo* glXGetVisualFromFBConfigSGIX(Display *dpy, GLXFBConfig config)
-              [:glXGetVisualFromFBConfigSGIX, [:pointer, :pointer], Roglew::GLX::XVisualInfo.ptr]
+      #XVisualInfo* glXGetVisualFromFBConfigSGIX(Display *dpy, GLXFBConfig config)
+      [:glXGetVisualFromFBConfigSGIX, [:pointer, :pointer], Roglew::GLX::XVisualInfo.ptr]
+    ]
   end
 end

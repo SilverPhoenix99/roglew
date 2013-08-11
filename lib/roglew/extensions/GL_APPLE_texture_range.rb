@@ -10,10 +10,12 @@ module Roglew
 end
 
 module GL_APPLE_texture_range
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glGetTexParameterPointervAPPLE, [ :uint, :uint, :pointer ], :void],
-              [:glTextureRangeAPPLE, [ :uint, :int, :pointer ], :void]
+    functions [
+        [:glGetTexParameterPointervAPPLE, [ :uint, :uint, :pointer ], :void],
+        [:glTextureRangeAPPLE, [ :uint, :int, :pointer ], :void]
+    ]
   end
 end

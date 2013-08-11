@@ -21,11 +21,13 @@ module Roglew
 end
 
 module GL_EXT_multisample
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glSampleMaskEXT, [ :float, :uchar ], :void],
-              [:glSamplePatternEXT, [ :uint ], :void]
+    functions [
+        [:glSampleMaskEXT, [ :float, :uchar ], :void],
+        [:glSamplePatternEXT, [ :uint ], :void]
+    ]
   end
 end
 

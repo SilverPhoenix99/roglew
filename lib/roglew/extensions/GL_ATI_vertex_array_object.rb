@@ -12,21 +12,23 @@ module Roglew
 end
 
 module GL_ATI_vertex_array_object
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glArrayObjectATI, [ :uint, :int, :uint, :int, :uint, :uint ], :void],
-              [:glFreeObjectBufferATI, [ :uint ], :void],
-              [:glGetArrayObjectfvATI, [ :uint, :uint, :pointer ], :void],
-              [:glGetArrayObjectivATI, [ :uint, :uint, :pointer ], :void],
-              [:glGetObjectBufferfvATI, [ :uint, :uint, :pointer ], :void],
-              [:glGetObjectBufferivATI, [ :uint, :uint, :pointer ], :void],
-              [:glGetVariantArrayObjectfvATI, [ :uint, :uint, :pointer ], :void],
-              [:glGetVariantArrayObjectivATI, [ :uint, :uint, :pointer ], :void],
-              [:glIsObjectBufferATI, [ :uint ], :uchar],
-              [:glNewObjectBufferATI, [ :int, :pointer, :uint ], :uint],
-              [:glUpdateObjectBufferATI, [ :uint, :uint, :int, :pointer, :uint ], :void],
-              [:glVariantArrayObjectATI, [ :uint, :uint, :int, :uint, :uint ], :void]
+    functions [
+        [:glArrayObjectATI, [ :uint, :int, :uint, :int, :uint, :uint ], :void],
+        [:glFreeObjectBufferATI, [ :uint ], :void],
+        [:glGetArrayObjectfvATI, [ :uint, :uint, :pointer ], :void],
+        [:glGetArrayObjectivATI, [ :uint, :uint, :pointer ], :void],
+        [:glGetObjectBufferfvATI, [ :uint, :uint, :pointer ], :void],
+        [:glGetObjectBufferivATI, [ :uint, :uint, :pointer ], :void],
+        [:glGetVariantArrayObjectfvATI, [ :uint, :uint, :pointer ], :void],
+        [:glGetVariantArrayObjectivATI, [ :uint, :uint, :pointer ], :void],
+        [:glIsObjectBufferATI, [ :uint ], :uchar],
+        [:glNewObjectBufferATI, [ :int, :pointer, :uint ], :uint],
+        [:glUpdateObjectBufferATI, [ :uint, :uint, :int, :pointer, :uint ], :void],
+        [:glVariantArrayObjectATI, [ :uint, :uint, :int, :uint, :uint ], :void]
+    ]
   end
 end
 

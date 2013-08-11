@@ -13,13 +13,15 @@ module Roglew
 end
 
 module WGL_EXT_pbuffer
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:wglCreatePbufferEXT, [ :pointer, :int, :int, :int, :pointer ], :pointer ],
-              [:wglDestroyPbufferEXT, [ :pointer ], :bool ],
-              [:wglGetPbufferDCEXT, [ :pointer ], :pointer ],
-              [:wglQueryPbufferEXT, [ :pointer, :int, :pointer ], :bool ],
-              [:wglReleasePbufferDCEXT, [ :pointer, :pointer ], :int ]
+    functions [
+      [:wglCreatePbufferEXT, [ :pointer, :int, :int, :int, :pointer ], :pointer ],
+      [:wglDestroyPbufferEXT, [ :pointer ], :bool ],
+      [:wglGetPbufferDCEXT, [ :pointer ], :pointer ],
+      [:wglQueryPbufferEXT, [ :pointer, :int, :pointer ], :bool ],
+      [:wglReleasePbufferDCEXT, [ :pointer, :pointer ], :int ]
+    ]
   end
 end

@@ -39,16 +39,19 @@ module Roglew
 end
 
 module GLX_ATI_render_texture
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-              #void glXBindTexImageATI(Display *dpy, GLXPbuffer pbuf, int buffer)
-    functions [:glXBindTexImageATI, [:pointer, :int, :int], :void],
 
-              #void glXBindTexImageATI(Display *dpy, GLXDrawable draw, const int *attrib_list)
-              [:glXBindTexImageATI, [:pointer, :int, :pointer], :void],
+    functions [
+      #void glXBindTexImageATI(Display *dpy, GLXPbuffer pbuf, int buffer)
+      [:glXBindTexImageATI, [:pointer, :int, :int], :void],
 
-              #void glXReleaseTexImageATI(Display *dpy, GLXPbuffer pbuf, int buffer)
-              [:glXReleaseTexImageATI, [:pointer, :int, :int], :void]
+      #void glXBindTexImageATI(Display *dpy, GLXDrawable draw, const int *attrib_list)
+      [:glXBindTexImageATI, [:pointer, :int, :pointer], :void],
+
+      #void glXReleaseTexImageATI(Display *dpy, GLXPbuffer pbuf, int buffer)
+      [:glXReleaseTexImageATI, [:pointer, :int, :int], :void]
+    ]
   end
 end

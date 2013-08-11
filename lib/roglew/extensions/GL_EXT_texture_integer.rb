@@ -51,15 +51,17 @@ module Roglew
 end
 
 module GL_EXT_texture_integer
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glClearColorIiEXT, [ :int, :int, :int, :int ], :void],
-              [:glClearColorIuiEXT, [ :uint, :uint, :uint, :uint ], :void],
-              [:glGetTexParameterIivEXT, [ :uint, :uint, :pointer ], :void],
-              [:glGetTexParameterIuivEXT, [ :uint, :uint, :pointer ], :void],
-              [:glTexParameterIivEXT, [ :uint, :uint, :pointer ], :void],
-              [:glTexParameterIuivEXT, [ :uint, :uint, :pointer ], :void]
+    functions [
+        [:glClearColorIiEXT, [ :int, :int, :int, :int ], :void],
+        [:glClearColorIuiEXT, [ :uint, :uint, :uint, :uint ], :void],
+        [:glGetTexParameterIivEXT, [ :uint, :uint, :pointer ], :void],
+        [:glGetTexParameterIuivEXT, [ :uint, :uint, :pointer ], :void],
+        [:glTexParameterIivEXT, [ :uint, :uint, :pointer ], :void],
+        [:glTexParameterIuivEXT, [ :uint, :uint, :pointer ], :void]
+    ]
   end
 end
 

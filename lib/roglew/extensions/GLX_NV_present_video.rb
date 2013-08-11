@@ -5,13 +5,15 @@ module Roglew
 end
 
 module GLX_NV_present_video
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-              #int glXBindVideoDeviceNV(Display* dpy, unsigned int video_slot, unsigned int video_device, const int *attrib_list)
-    functions [:glXBindVideoDeviceNV, [:pointer, :uint, :uint, :pointer], :int],
+    functions [
+      #int glXBindVideoDeviceNV(Display* dpy, unsigned int video_slot, unsigned int video_device, const int *attrib_list)
+      [:glXBindVideoDeviceNV, [:pointer, :uint, :uint, :pointer], :int],
 
-              #unsigned int* glXEnumerateVideoDevicesNV(Display *dpy, int screen, int *nelements)
-              [:glXEnumerateVideoDevicesNV, [:pointer, :int, :pointer], :pointer]
+      #unsigned int* glXEnumerateVideoDevicesNV(Display *dpy, int screen, int *nelements)
+      [:glXEnumerateVideoDevicesNV, [:pointer, :int, :pointer], :pointer]
+    ]
   end
 end

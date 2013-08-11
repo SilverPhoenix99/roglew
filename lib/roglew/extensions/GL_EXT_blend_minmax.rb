@@ -8,10 +8,12 @@ module Roglew
 end
 
 module GL_EXT_blend_minmax
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glBlendEquationEXT, [ :uint ], :void]
+    functions [
+        [:glBlendEquationEXT, [ :uint ], :void]
+    ]
   end
 end
 

@@ -5,9 +5,11 @@ module Roglew
 end
 
 module GL_AMD_sample_positions
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glSetMultisamplefvAMD, [ :uint, :uint, :pointer ], :void]
+    functions [
+        [:glSetMultisamplefvAMD, [ :uint, :uint, :pointer ], :void]
+    ]
   end
 end

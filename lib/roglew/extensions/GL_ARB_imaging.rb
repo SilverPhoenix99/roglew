@@ -81,40 +81,42 @@ module Roglew
 end
 
 module GL_ARB_imaging
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glColorSubTable,             [ :uint, :int, :int, :uint, :uint, :pointer ],                  :void],
-              [:glColorTable,                [ :uint, :uint, :int, :uint, :uint, :pointer ],                 :void],
-              [:glColorTableParameterfv,     [ :uint, :uint, :pointer ],                                     :void],
-              [:glColorTableParameteriv,     [ :uint, :uint, :pointer ],                                     :void],
-              [:glConvolutionFilter1D,       [ :uint, :uint, :int, :uint, :uint, :pointer ],                 :void],
-              [:glConvolutionFilter2D,       [ :uint, :uint, :int, :int, :uint, :uint, :pointer ],           :void],
-              [:glConvolutionParameterf,     [ :uint, :uint, :float ],                                       :void],
-              [:glConvolutionParameterfv,    [ :uint, :uint, :pointer ],                                     :void],
-              [:glConvolutionParameteri,     [ :uint, :uint, :int ],                                         :void],
-              [:glConvolutionParameteriv,    [ :uint, :uint, :pointer ],                                     :void],
-              [:glCopyColorSubTable,         [ :uint, :int, :int, :int, :int ],                              :void],
-              [:glCopyColorTable,            [ :uint, :uint, :int, :int, :int ],                             :void],
-              [:glCopyConvolutionFilter1D,   [ :uint, :uint, :int, :int, :int ],                             :void],
-              [:glCopyConvolutionFilter2D,   [ :uint, :uint, :int, :int, :int, :int ],                       :void],
-              [:glGetColorTable,             [ :uint, :uint, :uint, :pointer ],                              :void],
-              [:glGetColorTableParameterfv,  [ :uint, :uint, :pointer ],                                     :void],
-              [:glGetColorTableParameteriv,  [ :uint, :uint, :pointer ],                                     :void],
-              [:glGetConvolutionFilter,      [ :uint, :uint, :uint, :pointer ],                              :void],
-              [:glGetConvolutionParameterfv, [ :uint, :uint, :pointer ],                                     :void],
-              [:glGetConvolutionParameteriv, [ :uint, :uint, :pointer ],                                     :void],
-              [:glGetHistogram,              [ :uint, :uchar, :uint, :uint, :pointer ],                      :void],
-              [:glGetHistogramParameterfv,   [ :uint, :uint, :pointer ],                                     :void],
-              [:glGetHistogramParameteriv,   [ :uint, :uint, :pointer ],                                     :void],
-              [:glGetMinmax,                 [ :uint, :uchar, :uint, :uint, :pointer ],                      :void],
-              [:glGetMinmaxParameterfv,      [ :uint, :uint, :pointer ],                                     :void],
-              [:glGetMinmaxParameteriv,      [ :uint, :uint, :pointer ],                                     :void],
-              [:glGetSeparableFilter,        [ :uint, :uint, :uint, :pointer, :pointer, :pointer ],          :void],
-              [:glHistogram,                 [ :uint, :int, :uint, :uchar ],                                 :void],
-              [:glMinmax,                    [ :uint, :uint, :uchar ],                                       :void],
-              [:glResetHistogram,            [ :uint ],                                                      :void],
-              [:glResetMinmax,               [ :uint ],                                                      :void],
-              [:glSeparableFilter2D,         [ :uint, :uint, :int, :int, :uint, :uint, :pointer, :pointer ], :void]
+    functions [
+        [:glColorSubTable, [ :uint, :int, :int, :uint, :uint, :pointer ], :void],
+        [:glColorTable, [ :uint, :uint, :int, :uint, :uint, :pointer ], :void],
+        [:glColorTableParameterfv, [ :uint, :uint, :pointer ], :void],
+        [:glColorTableParameteriv, [ :uint, :uint, :pointer ], :void],
+        [:glConvolutionFilter1D, [ :uint, :uint, :int, :uint, :uint, :pointer ], :void],
+        [:glConvolutionFilter2D, [ :uint, :uint, :int, :int, :uint, :uint, :pointer ], :void],
+        [:glConvolutionParameterf, [ :uint, :uint, :float ], :void],
+        [:glConvolutionParameterfv, [ :uint, :uint, :pointer ], :void],
+        [:glConvolutionParameteri, [ :uint, :uint, :int ], :void],
+        [:glConvolutionParameteriv, [ :uint, :uint, :pointer ], :void],
+        [:glCopyColorSubTable, [ :uint, :int, :int, :int, :int ], :void],
+        [:glCopyColorTable, [ :uint, :uint, :int, :int, :int ], :void],
+        [:glCopyConvolutionFilter1D, [ :uint, :uint, :int, :int, :int ], :void],
+        [:glCopyConvolutionFilter2D, [ :uint, :uint, :int, :int, :int, :int ], :void],
+        [:glGetColorTable, [ :uint, :uint, :uint, :pointer ], :void],
+        [:glGetColorTableParameterfv, [ :uint, :uint, :pointer ], :void],
+        [:glGetColorTableParameteriv, [ :uint, :uint, :pointer ], :void],
+        [:glGetConvolutionFilter, [ :uint, :uint, :uint, :pointer ], :void],
+        [:glGetConvolutionParameterfv, [ :uint, :uint, :pointer ], :void],
+        [:glGetConvolutionParameteriv, [ :uint, :uint, :pointer ], :void],
+        [:glGetHistogram, [ :uint, :uchar, :uint, :uint, :pointer ], :void],
+        [:glGetHistogramParameterfv, [ :uint, :uint, :pointer ], :void],
+        [:glGetHistogramParameteriv, [ :uint, :uint, :pointer ], :void],
+        [:glGetMinmax, [ :uint, :uchar, :uint, :uint, :pointer ], :void],
+        [:glGetMinmaxParameterfv, [ :uint, :uint, :pointer ], :void],
+        [:glGetMinmaxParameteriv, [ :uint, :uint, :pointer ], :void],
+        [:glGetSeparableFilter, [ :uint, :uint, :uint, :pointer, :pointer, :pointer ], :void],
+        [:glHistogram, [ :uint, :int, :uint, :uchar ], :void],
+        [:glMinmax, [ :uint, :uint, :uchar ], :void],
+        [:glResetHistogram, [ :uint ], :void],
+        [:glResetMinmax, [ :uint ], :void],
+        [:glSeparableFilter2D, [ :uint, :uint, :int, :int, :uint, :uint, :pointer, :pointer ], :void]
+    ]
   end
 end

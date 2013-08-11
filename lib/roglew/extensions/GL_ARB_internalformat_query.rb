@@ -5,9 +5,11 @@ module Roglew
 end
 
 module GL_ARB_internalformat_query
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glGetInternalformativ, [ :uint, :uint, :uint, :int, :pointer ], :void]
+    functions [
+        [:glGetInternalformativ, [ :uint, :uint, :uint, :int, :pointer ], :void]
+    ]
   end
 end

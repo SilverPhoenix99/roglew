@@ -38,16 +38,18 @@ module Roglew
 end
 
 module GL_VERSION_3_1
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glDrawArraysInstanced, [ :uint, :int, :int, :int ], :void],
-              [:glDrawElementsInstanced, [ :uint, :int, :uint, :pointer, :int ], :void],
-              [:glPrimitiveRestartIndex, [ :uint ], :void],
-              [:glTexBuffer, [ :uint, :uint, :uint ], :void]
+    functions [
+        [ :glDrawArraysInstanced, [ :uint, :int, :int, :int ], :void],
+        [ :glDrawElementsInstanced, [ :uint, :int, :uint, :pointer, :int ], :void],
+        [ :glPrimitiveRestartIndex, [ :uint ], :void],
+        [ :glTexBuffer, [ :uint, :uint, :uint ], :void]
+    ]
   end
 end
 
-#GL_VERSION_4_0 implicit requires
-#GL_ARB_uniform_buffer_object
-#GL_ARB_copy_buffer
+#GL_VERSION_3_1 implicitly requires:
+#  GL_ARB_uniform_buffer_object
+#  GL_ARB_copy_buffer

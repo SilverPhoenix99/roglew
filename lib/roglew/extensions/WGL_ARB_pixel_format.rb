@@ -53,11 +53,13 @@ module Roglew
 end
 
 module WGL_ARB_pixel_format
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:wglChoosePixelFormatARB, [ :pointer, :pointer, :pointer, :uint, :pointer, :pointer ], :bool ],
-              [:wglGetPixelFormatAttribfvARB, [ :pointer, :int, :int, :uint, :pointer, :pointer ], :bool ],
-              [:wglGetPixelFormatAttribivARB, [ :pointer, :int, :int, :uint, :pointer, :pointer ], :bool ]
+    functions [
+      [:wglChoosePixelFormatARB, [ :pointer, :pointer, :pointer, :uint, :pointer, :pointer ], :bool ],
+      [:wglGetPixelFormatAttribfvARB, [ :pointer, :int, :int, :uint, :pointer, :pointer ], :bool ],
+      [:wglGetPixelFormatAttribivARB, [ :pointer, :int, :int, :uint, :pointer, :pointer ], :bool ]
+    ]
   end
 end

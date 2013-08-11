@@ -12,9 +12,11 @@ module Roglew
 end
 
 module WGL_ARB_create_context
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:wglCreateContextAttribsARB, [ :pointer, :pointer, :pointer ], :pointer ]
+    functions [
+      [:wglCreateContextAttribsARB, [ :pointer, :pointer, :pointer ], :pointer ]
+    ]
   end
 end

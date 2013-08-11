@@ -35,13 +35,15 @@ module Roglew
 end
 
 module GLX_EXT_texture_from_pixmap
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-              #void glXBindTexImageEXT(Display* display, GLXDrawable drawable, int buffer, const int *attrib_list)
-    functions [:glXBindTexImageEXT, [:pointer, :int, :int, :pointer], :void],
+    functions [
+      #void glXBindTexImageEXT(Display* display, GLXDrawable drawable, int buffer, const int *attrib_list)
+      [:glXBindTexImageEXT, [:pointer, :int, :int, :pointer], :void],
 
-              #void glXReleaseTexImageEXT(Display* display, GLXDrawable drawable, int buffer)
-              [:glXReleaseTexImageEXT, [:pointer, :int, :int], :void]
+      #void glXReleaseTexImageEXT(Display* display, GLXDrawable drawable, int buffer)
+      [:glXReleaseTexImageEXT, [:pointer, :int, :int], :void]
+    ]
   end
 end

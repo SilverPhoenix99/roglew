@@ -2,9 +2,16 @@ module Roglew
   module GLX
     SAMPLE_BUFFERS ||= 100000
     SAMPLES        ||= 100001
+  end
+end
 
-    #void ( * glXGetProcAddress (const GLubyte *procName)) (void)
-    func = attach_function :GetProcAddress, :glXGetProcAddress, [:string], :pointer
-    RenderContext.send(:define_method, :glXGetProcAddress) { |*parms| func.call(*parms) }
+module GLX_VERSION_1_4
+  module RenderHandle
+    include Roglew::RenderHandleExtension
+
+    functions :ffi, [
+        #void ( * glXGetProcAddress (const GLubyte *procName)) (void)
+        [:glXGetProcAddress, [:string], :pointer]
+    ]
   end
 end

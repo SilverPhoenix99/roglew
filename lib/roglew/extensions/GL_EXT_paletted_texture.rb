@@ -25,13 +25,15 @@ module Roglew
 end
 
 module GL_EXT_paletted_texture
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glColorTableEXT, [ :uint, :uint, :int, :uint, :uint, :pointer ], :void],
-              [:glGetColorTableEXT, [ :uint, :uint, :uint, :pointer ], :void],
-              [:glGetColorTableParameterfvEXT, [ :uint, :uint, :pointer ], :void],
-              [:glGetColorTableParameterivEXT, [ :uint, :uint, :pointer ], :void]
+    functions [
+        [:glColorTableEXT, [ :uint, :uint, :int, :uint, :uint, :pointer ], :void],
+        [:glGetColorTableEXT, [ :uint, :uint, :uint, :pointer ], :void],
+        [:glGetColorTableParameterfvEXT, [ :uint, :uint, :pointer ], :void],
+        [:glGetColorTableParameterivEXT, [ :uint, :uint, :pointer ], :void]
+    ]
   end
 end
 

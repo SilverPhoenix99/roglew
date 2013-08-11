@@ -25,13 +25,15 @@ module Roglew
 end
 
 module GL_ARB_texture_multisample
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glGetMultisamplefv, [ :uint, :uint, :pointer ], :void],
-              [:glSampleMaski, [ :uint, :uint ], :void],
-              [:glTexImage2DMultisample, [ :uint, :int, :int, :int, :int, :uchar ], :void],
-              [:glTexImage3DMultisample, [ :uint, :int, :int, :int, :int, :int, :uchar ], :void]
+    functions [
+        [:glGetMultisamplefv, [ :uint, :uint, :pointer ], :void],
+        [:glSampleMaski, [ :uint, :uint ], :void],
+        [:glTexImage2DMultisample, [ :uint, :int, :int, :int, :int, :uchar ], :void],
+        [:glTexImage3DMultisample, [ :uint, :int, :int, :int, :int, :int, :uchar ], :void]
+    ]
   end
 end
 

@@ -7,11 +7,13 @@ module Roglew
 end
 
 module GL_NV_point_sprite
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glPointParameteriNV, [ :uint, :int ], :void],
-              [:glPointParameterivNV, [ :uint, :pointer ], :void]
+    functions [
+        [:glPointParameteriNV, [ :uint, :int ], :void],
+        [:glPointParameterivNV, [ :uint, :pointer ], :void]
+    ]
   end
 end
 

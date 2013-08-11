@@ -59,11 +59,13 @@ module Roglew
 end
 
 module GL_EXT_shader_image_load_store
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glBindImageTextureEXT, [ :uint, :uint, :int, :uchar, :int, :uint, :int ], :void],
-              [:glMemoryBarrierEXT, [ :uint ], :void]
+    functions [
+        [:glBindImageTextureEXT, [ :uint, :uint, :int, :uchar, :int, :uint, :int ], :void],
+        [:glMemoryBarrierEXT, [ :uint ], :void]
+    ]
   end
 end
 

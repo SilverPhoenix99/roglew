@@ -9,11 +9,13 @@ module Roglew
 end
 
 module GL_NV_vertex_array_range
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glFlushVertexArrayRangeNV, [  ], :void],
-              [:glVertexArrayRangeNV, [ :int, :pointer ], :void]
+    functions [
+        [:glFlushVertexArrayRangeNV, [], :void],
+        [:glVertexArrayRangeNV, [ :int, :pointer ], :void]
+    ]
   end
 end
 

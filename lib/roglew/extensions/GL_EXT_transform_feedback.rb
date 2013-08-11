@@ -19,16 +19,18 @@ module Roglew
 end
 
 module GL_EXT_transform_feedback
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glBeginTransformFeedbackEXT, [ :uint ], :void],
-              [:glBindBufferBaseEXT, [ :uint, :uint, :uint ], :void],
-              [:glBindBufferOffsetEXT, [ :uint, :uint, :uint, :int64 ], :void],
-              [:glBindBufferRangeEXT, [ :uint, :uint, :uint, :int64, :int64 ], :void],
-              [:glEndTransformFeedbackEXT, [  ], :void],
-              [:glGetTransformFeedbackVaryingEXT, [ :uint, :uint, :int, :pointer, :pointer, :pointer, :string ], :void],
-              [:glTransformFeedbackVaryingsEXT, [ :uint, :int, :pointer, :uint ], :void]
+    functions [
+        [:glBeginTransformFeedbackEXT, [ :uint ], :void],
+        [:glBindBufferBaseEXT, [ :uint, :uint, :uint ], :void],
+        [:glBindBufferOffsetEXT, [ :uint, :uint, :uint, :int64 ], :void],
+        [:glBindBufferRangeEXT, [ :uint, :uint, :uint, :int64, :int64 ], :void],
+        [:glEndTransformFeedbackEXT, [  ], :void],
+        [:glGetTransformFeedbackVaryingEXT, [ :uint, :uint, :int, :pointer, :pointer, :pointer, :string ], :void],
+        [:glTransformFeedbackVaryingsEXT, [ :uint, :int, :pointer, :uint ], :void]
+    ]
   end
 end
 

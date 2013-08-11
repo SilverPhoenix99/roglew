@@ -6,10 +6,12 @@ module Roglew
 end
 
 module GL_EXT_stencil_two_side
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glActiveStencilFaceEXT, [ :uint ], :void]
+    functions [
+        [:glActiveStencilFaceEXT, [ :uint ], :void]
+    ]
   end
 end
 

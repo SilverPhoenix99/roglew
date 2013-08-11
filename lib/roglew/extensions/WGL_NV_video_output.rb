@@ -17,14 +17,16 @@ module Roglew
 end
 
 module WGL_NV_video_output
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:wglBindVideoImageNV, [ :pointer, :pointer, :int ], :bool ],
-              [:wglGetVideoDeviceNV, [ :pointer, :int, :pointer ], :bool ],
-              [:wglGetVideoInfoNV, [ :pointer, :pointer, :pointer ], :bool ],
-              [:wglReleaseVideoDeviceNV, [ :pointer ], :bool ],
-              [:wglReleaseVideoImageNV, [ :pointer, :int ], :bool ],
-              [:wglSendPbufferToVideoNV, [ :pointer, :int, :pointer, :bool ], :bool ]
+    functions [
+      [:wglBindVideoImageNV, [ :pointer, :pointer, :int ], :bool ],
+      [:wglGetVideoDeviceNV, [ :pointer, :int, :pointer ], :bool ],
+      [:wglGetVideoInfoNV, [ :pointer, :pointer, :pointer ], :bool ],
+      [:wglReleaseVideoDeviceNV, [ :pointer ], :bool ],
+      [:wglReleaseVideoImageNV, [ :pointer, :int ], :bool ],
+      [:wglSendPbufferToVideoNV, [ :pointer, :int, :pointer, :bool ], :bool ]
+    ]
   end
 end

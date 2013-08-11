@@ -12,9 +12,9 @@ module Roglew
         @deferred_mod = mod
       end
 
-      def make_calls(*names)
+      def make_calls(target, *names)
         names.map(&:to_sym).each do |name|
-          define_method(name) { |*args| make_call(name, *args) }
+          define_method(name) { |*args| make_call(target, name, *args) }
           protected name
         end
       end
@@ -23,10 +23,16 @@ module Roglew
     attr_reader :obj
 
     def initialize(obj, deferred, &block)
-      @obj, @deferred = obj, obj.is_deferred?(deferred)
-      singleton_class.send(:include, @deferred ? DeferredContext : ImmediateContext)
-      mod = self.class.instance_variable_get(@deferred ? :@deferred_mod : :@immediate_mod)
-      singleton_class.send(:include, mod) if mod
+      @obj, deferred = obj, obj.is_deferred?(deferred)
+      c = singleton_class
+      c.send(:include, deferred ? DeferredContext : ImmediateContext)
+      mod = c.instance_variable_get(deferred ? :@deferred_mod : :@immediate_mod)
+      c.send(:include, mod) if mod
+
+      #handle.loaded_extensions.each do |ext|
+      #  #TODO ???
+      #end
+
       run(&block) if respond_to?(:run, true)
     end
 
@@ -34,16 +40,13 @@ module Roglew
       c.extend ClassMethods
     end
 
-    def deferred?
-      @deferred
+    def handle
+      @obj.handle
     end
 
-    def immediate?
-      !@deferred
-    end
-
+    private
     def context
-      @obj.context
+      RenderContext.current
     end
   end
 

@@ -8,14 +8,16 @@ module Roglew
 end
 
 module GL_KTX_buffer_region
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glBufferRegionEnabled, [  ], :uint],
-              [:glDeleteBufferRegion, [ :uint ], :void],
-              [:glDrawBufferRegion, [ :uint, :int, :int, :int, :int, :int, :int ], :void],
-              [:glNewBufferRegion, [ :uint ], :uint],
-              [:glReadBufferRegion, [ :uint, :int, :int, :int, :int ], :void]
+    functions [
+        [:glBufferRegionEnabled, [  ], :uint],
+        [:glDeleteBufferRegion, [ :uint ], :void],
+        [:glDrawBufferRegion, [ :uint, :int, :int, :int, :int, :int, :int ], :void],
+        [:glNewBufferRegion, [ :uint ], :uint],
+        [:glReadBufferRegion, [ :uint, :int, :int, :int, :int ], :void]
+    ]
   end
 end
 

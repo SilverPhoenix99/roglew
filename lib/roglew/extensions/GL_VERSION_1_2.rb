@@ -45,18 +45,27 @@ module Roglew
 end
 
 module GL_VERSION_1_2
+  module RenderHandle
+    include Roglew::RenderHandleExtension
+
+    functions [
+        [ :glBlendColor, [ :float, :float, :float, :float ], :void ],
+        [ :glBlendEquation, [ :uint ], :void ],
+        [ :glCopyTexSubImage3D, [ :uint, :int, :int, :int, :int, :int, :int, :int, :int ], :void ],
+        [ :glDrawRangeElements, [ :uint, :uint, :uint, :int, :uint, :pointer ], :void ],
+        [ :glTexImage3D, [ :uint, :int, :int, :int, :int, :int, :int, :uint, :uint, :pointer ], :void ],
+        [ :glTexSubImage3D, [ :uint, :int, :int, :int, :int, :int, :int, :int, :uint, :uint, :pointer ], :void ]
+    ]
+  end
+
   module RenderContext
-    include Roglew::GLExtension
+    include Roglew::RenderContextExtension
 
-    functions [:glCopyTexSubImage3D, [:uint, :int, :int, :int, :int, :int, :int, :int, :int],                   :void],
-              [:glDrawRangeElements, [:uint, :uint, :uint, :int, :uint, :pointer],                              :void],
-              [:glTexImage3D,        [:uint, :int, :int, :int, :int, :int, :int, :uint, :uint, :pointer],       :void],
-              [:glTexSubImage3D,     [:uint, :int, :int, :int, :int, :int, :int, :int, :uint, :uint, :pointer], :void]
-
+    checks_current
     def draw_range_elements(mode, indices)
       p = FFI::MemoryPointer.new(:uint, indices.count)
       p.write_array_of_uint(indices)
-      glDrawRangeElements(mode, 0, indices.count - 1, indices.count, GL::UNSIGNED_INT, p)
+      @rh.glDrawRangeElements(mode, 0, indices.count - 1, indices.count, GL::UNSIGNED_INT, p)
     end
   end
 end

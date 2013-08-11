@@ -1,7 +1,9 @@
 module GL_GREMEDY_string_marker
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glStringMarkerGREMEDY, [ :int, :pointer ], :void]
+    functions [
+        [:glStringMarkerGREMEDY, [ :int, :pointer ], :void]
+    ]
   end
 end

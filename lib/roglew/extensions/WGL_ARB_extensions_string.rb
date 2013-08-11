@@ -1,7 +1,9 @@
 module WGL_ARB_extensions_string
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:wglGetExtensionsStringARB, [ :pointer ], :string ]
+    functions [
+      [:wglGetExtensionsStringARB, [ :pointer ], :string ]
+    ]
   end
 end

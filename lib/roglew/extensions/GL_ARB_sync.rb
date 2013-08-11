@@ -19,16 +19,18 @@ module Roglew
 end
 
 module GL_ARB_sync
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glClientWaitSync, [ :pointer, :uint, :uint64 ], :uint],
-              [:glDeleteSync, [ :pointer ], :void],
-              [:glFenceSync, [ :uint, :uint ], :pointer],
-              [:glGetInteger64v, [ :uint, :pointer ], :void],
-              [:glGetSynciv, [ :pointer, :uint, :int, :pointer, :pointer ], :void],
-              [:glIsSync, [ :pointer ], :uchar],
-              [:glWaitSync, [ :pointer, :uint, :uint64 ], :void]
+    functions [
+        [:glClientWaitSync, [ :pointer, :uint, :uint64 ], :uint],
+        [:glDeleteSync, [ :pointer ], :void],
+        [:glFenceSync, [ :uint, :uint ], :pointer],
+        [:glGetInteger64v, [ :uint, :pointer ], :void],
+        [:glGetSynciv, [ :pointer, :uint, :int, :pointer, :pointer ], :void],
+        [:glIsSync, [ :pointer ], :uchar],
+        [:glWaitSync, [ :pointer, :uint, :uint64 ], :void]
+    ]
   end
 end
 

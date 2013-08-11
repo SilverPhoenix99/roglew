@@ -10,15 +10,17 @@ module Roglew
 end
 
 module GL_NV_present_video
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glGetVideoi64vNV, [ :uint, :uint, :pointer ], :void],
-              [:glGetVideoivNV, [ :uint, :uint, :pointer ], :void],
-              [:glGetVideoui64vNV, [ :uint, :uint, :pointer ], :void],
-              [:glGetVideouivNV, [ :uint, :uint, :pointer ], :void],
-              [:glPresentFrameDualFillNV, [ :uint, :uint64, :uint, :uint, :uint, :uint, :uint, :uint, :uint, :uint, :uint, :uint, :uint ], :void],
-              [:glPresentFrameKeyedNV, [ :uint, :uint64, :uint, :uint, :uint, :uint, :uint, :uint, :uint, :uint, :uint ], :void]
+    functions [
+        [:glGetVideoi64vNV, [ :uint, :uint, :pointer ], :void],
+        [:glGetVideoivNV, [ :uint, :uint, :pointer ], :void],
+        [:glGetVideoui64vNV, [ :uint, :uint, :pointer ], :void],
+        [:glGetVideouivNV, [ :uint, :uint, :pointer ], :void],
+        [:glPresentFrameDualFillNV, [ :uint, :uint64, :uint, :uint, :uint, :uint, :uint, :uint, :uint, :uint, :uint, :uint, :uint ], :void],
+        [:glPresentFrameKeyedNV, [ :uint, :uint64, :uint, :uint, :uint, :uint, :uint, :uint, :uint, :uint, :uint ], :void]
+    ]
   end
 end
 

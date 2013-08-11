@@ -75,45 +75,45 @@ module Roglew
     UNSIGNED_INT_24_8                            ||= 0x84FA
     UNSIGNED_NORMALIZED                          ||= 0x8C17
   end
-
-  class TextureContext
-    def generate_mipmap
-      make_call(:glGenerateMipmap, @target)
-    end
-  end
 end
 
 module GL_ARB_framebuffer_object
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glBindFramebuffer, [ :uint, :uint ], :void],
-              [:glBindRenderbuffer, [ :uint, :uint ], :void],
-              [:glBlitFramebuffer, [ :int, :int, :int, :int, :int, :int, :int, :int, :uint, :uint ], :void],
-              [:glCheckFramebufferStatus, [ :uint ], :uint],
-              [:glDeleteFramebuffers, [ :int, :pointer ], :void],
-              [:glDeleteRenderbuffers, [ :int, :pointer ], :void],
-              [:glFramebufferRenderbuffer, [ :uint, :uint, :uint, :uint ], :void],
-              [:glFramebufferTexture1D, [ :uint, :uint, :uint, :uint, :int ], :void],
-              [:glFramebufferTexture2D, [ :uint, :uint, :uint, :uint, :int ], :void],
-              [:glFramebufferTexture3D, [ :uint, :uint, :uint, :uint, :int, :int ], :void],
-              [:glFramebufferTextureLayer, [ :uint, :uint, :uint, :int, :int ], :void],
-              [:glGenerateMipmap, [ :uint ], :void],
-              [:glGenFramebuffers, [ :int, :pointer ], :void],
-              [:glGenRenderbuffers, [ :int, :pointer ], :void],
-              [:glGetFramebufferAttachmentParameteriv, [ :uint, :uint, :uint, :pointer ], :void],
-              [:glGetRenderbufferParameteriv, [ :uint, :uint, :pointer ], :void],
-              [:glIsFramebuffer, [ :uint ], :uchar],
-              [:glIsRenderbuffer, [ :uint ], :uchar],
-              [:glRenderbufferStorage, [ :uint, :uint, :int, :int ], :void],
-              [:glRenderbufferStorageMultisample, [ :uint, :int, :uint, :int, :int ], :void]
+    functions [
+        [:glBindFramebuffer, [ :uint, :uint ], :void],
+        [:glBindRenderbuffer, [ :uint, :uint ], :void],
+        [:glBlitFramebuffer, [ :int, :int, :int, :int, :int, :int, :int, :int, :uint, :uint ], :void],
+        [:glCheckFramebufferStatus, [ :uint ], :uint],
+        [:glDeleteFramebuffers, [ :int, :pointer ], :void],
+        [:glDeleteRenderbuffers, [ :int, :pointer ], :void],
+        [:glFramebufferRenderbuffer, [ :uint, :uint, :uint, :uint ], :void],
+        [:glFramebufferTexture1D, [ :uint, :uint, :uint, :uint, :int ], :void],
+        [:glFramebufferTexture2D, [ :uint, :uint, :uint, :uint, :int ], :void],
+        [:glFramebufferTexture3D, [ :uint, :uint, :uint, :uint, :int, :int ], :void],
+        [:glFramebufferTextureLayer, [ :uint, :uint, :uint, :int, :int ], :void],
+        [:glGenerateMipmap, [ :uint ], :void],
+        [:glGenFramebuffers, [ :int, :pointer ], :void],
+        [:glGenRenderbuffers, [ :int, :pointer ], :void],
+        [:glGetFramebufferAttachmentParameteriv, [ :uint, :uint, :uint, :pointer ], :void],
+        [:glGetRenderbufferParameteriv, [ :uint, :uint, :pointer ], :void],
+        [:glIsFramebuffer, [ :uint ], :uchar],
+        [:glIsRenderbuffer, [ :uint ], :uchar],
+        [:glRenderbufferStorage, [ :uint, :uint, :int, :int ], :void],
+        [:glRenderbufferStorageMultisample, [ :uint, :int, :uint, :int, :int ], :void]
+    ]
+  end
+
+  module RenderContext
+    include Roglew::RenderContextExtension
 
     def create_framebuffer(*args)
-      Roglew::FramebufferARB.new(self, *args)
+      Roglew::FramebufferARB.new(@rh, *args)
     end
 
     def create_renderbuffer(*args)
-      Roglew::RenderbufferARB.new(self, *args)
+      Roglew::RenderbufferARB.new(@rh, *args)
     end
 
     [
@@ -123,6 +123,7 @@ module GL_ARB_framebuffer_object
       [:renderbuffer_parameter, :glGetRenderbufferParameteriv],
     ].each do |method_name, function_name|
       #call without pointer parameter (int *params)
+      checks_current
       define_method(method_name) do |*args|
         ptr = FFI::MemoryPointer.new(:int)
         public_send(function_name, *(args << ptr))
@@ -130,22 +131,29 @@ module GL_ARB_framebuffer_object
       end
     end
 
-    [
-      #void glGenFramebuffers(GLsizei n, GLuint* framebuffers)
-      #void glDeleteFramebuffers(GLsizei n, const GLuint* framebuffers)
-      :Framebuffers,
+    #void glGenFramebuffers(GLsizei n, GLuint* framebuffers)
+    #void glDeleteFramebuffers(GLsizei n, const GLuint* framebuffers)
+    def_object :Framebuffers
 
-      #void glGenRenderbuffers(GLsizei n, GLuint* renderbuffers)
-      #void glDeleteRenderbuffers(GLsizei n, const GLuint* renderbuffers)
-      :Renderbuffers
-    ].each do |name|
-      def_object name
+    #void glGenRenderbuffers(GLsizei n, GLuint* renderbuffers)
+    #void glDeleteRenderbuffers(GLsizei n, const GLuint* renderbuffers)
+    def_object :Renderbuffers
+  end
+
+  module TextureContext
+    include Roglew::BaseContext(:texture)
+
+    make_calls :handle, :glGenerateMipmap
+
+    def generate_mipmap
+      glGenerateMipmap(@target)
     end
   end
 end
 
-%w'renderbuffer_context
-renderbuffer
-framebuffer_context
-framebuffer
+%w'
+  renderbuffer_context
+  renderbuffer
+  framebuffer_context
+  framebuffer
 '.each { |f| require "#{File.expand_path(__FILE__)[0..-4]}/#{f}" }

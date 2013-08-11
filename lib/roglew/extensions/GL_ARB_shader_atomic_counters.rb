@@ -33,10 +33,12 @@ module Roglew
 end
 
 module GL_ARB_shader_atomic_counters
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glGetActiveAtomicCounterBufferiv, [ :uint, :uint, :uint, :pointer ], :void]
+    functions [
+        [:glGetActiveAtomicCounterBufferiv, [ :uint, :uint, :uint, :pointer ], :void]
+    ]
   end
 end
 

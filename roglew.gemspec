@@ -16,13 +16,19 @@ Gem::Specification.new do |s|
   s.files         = Dir['{lib/**/*.rb,*.md}']
   s.add_dependency('facets', '~> 2.9')
   s.add_dependency('ffi', '~> 1.2')
+  s.add_dependency('method_decorators', '~> 0.9')
   s.post_install_message = <<-eos
 +----------------------------------------------------------------------------+
-  Thanks for choosing Roglew.
+  Thank you for choosing Roglew.
 
   ==========================================================================
-  #{Roglew::VERSION} Changes:
-    - Fixed a few finalizers.
+  #{Roglew::VERSION} Codename #{Roglew::VERSION_CODENAME}
+
+  Changes:
+    - Separated rendering into RenderHandle (native layer) and RenderContext
+      (Ruby layer).
+    - WARNING: Ruby layer is incompatible with previous versions. Native
+      layer can still be called through RenderHandle.
   ==========================================================================
 
   If you like what you see, support us on Pledgie:

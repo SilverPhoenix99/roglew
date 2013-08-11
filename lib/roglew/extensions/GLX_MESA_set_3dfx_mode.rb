@@ -6,10 +6,12 @@ module Roglew
 end
 
 module GLX_MESA_set_3dfx_mode
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-              #GLboolean glXSet3DfxModeMESA(GLint mode)
-    functions [:glXSet3DfxModeMESA, [:int], :bool]
+    functions [
+      #GLboolean glXSet3DfxModeMESA(GLint mode)
+      [:glXSet3DfxModeMESA, [:int], :bool]
+    ]
   end
 end

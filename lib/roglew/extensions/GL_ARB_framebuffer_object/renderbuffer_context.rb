@@ -1,5 +1,9 @@
 module Roglew
   module ImmediateRenderbufferContextARB
+    def included(c)
+      c.make_calls :context, :renderbuffer_parameter
+    end
+
     %w{width
     height
     internal_format
@@ -10,12 +14,7 @@ module Roglew
     depth_size
     stencil_size
     samples}.each do |n|
-      class_eval "
-        def #{n}()
-          context.instance_variable_set(
-            :@#{n},
-            context.renderbuffer_parameter(GL::RENDERBUFFER, GL::RENDERBUFFER_#{n.upcase}))
-        end"
+      class_eval "def #{n}() renderbuffer_parameter(GL::RENDERBUFFER, GL::RENDERBUFFER_#{n.upcase}) end"
     end
   end
 
@@ -24,25 +23,30 @@ module Roglew
 
     immediate_module ImmediateRenderbufferContextARB
 
+    make_calls :handle,
+               :glBindRenderbuffer,
+               :glRenderbufferStorage,
+               :glRenderbufferStorageMultisample
+
     def initialize(renderbuffer, deferred, &block)
       super
     end
 
     def storage(width, height, internal_format)
-      make_call(:glRenderbufferStorage, GL::RENDERBUFFER, internal_format, width, height)
+      glRenderbufferStorage(GL::RENDERBUFFER, internal_format, width, height)
     end
 
     def storage_multisample(width, height, samples, internal_format)
-      make_call(:glRenderbufferStorageMultisample, GL::RENDERBUFFER, samples, internal_format, width, height)
+      glRenderbufferStorageMultisample(GL::RENDERBUFFER, samples, internal_format, width, height)
     end
 
     private
     def bind
-      context.glBindRenderbuffer(GL::RENDERBUFFER, renderbuffer.id)
+      glBindRenderbuffer(GL::RENDERBUFFER, renderbuffer.id)
     end
 
     def unbind
-      context.glBindRenderbuffer(GL::RENDERBUFFER, 0)
+      glBindRenderbuffer(GL::RENDERBUFFER, 0)
     end
   end
 end

@@ -14,15 +14,17 @@ module Roglew
 end
 
 module GL_APPLE_vertex_program_evaluators
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glDisableVertexAttribAPPLE, [ :uint, :uint ], :void],
-              [:glEnableVertexAttribAPPLE, [ :uint, :uint ], :void],
-              [:glIsVertexAttribEnabledAPPLE, [ :uint, :uint ], :uchar],
-              [:glMapVertexAttrib1dAPPLE, [ :uint, :uint, :double, :double, :int, :int, :pointer ], :void],
-              [:glMapVertexAttrib1fAPPLE, [ :uint, :uint, :float, :float, :int, :int, :pointer ], :void],
-              [:glMapVertexAttrib2dAPPLE, [ :uint, :uint, :double, :double, :int, :int, :double, :double, :int, :int, :pointer ], :void],
-              [:glMapVertexAttrib2fAPPLE, [ :uint, :uint, :float, :float, :int, :int, :float, :float, :int, :int, :pointer ], :void]
+    functions [
+        [:glDisableVertexAttribAPPLE, [ :uint, :uint ], :void],
+        [:glEnableVertexAttribAPPLE, [ :uint, :uint ], :void],
+        [:glIsVertexAttribEnabledAPPLE, [ :uint, :uint ], :uchar],
+        [:glMapVertexAttrib1dAPPLE, [ :uint, :uint, :double, :double, :int, :int, :pointer ], :void],
+        [:glMapVertexAttrib1fAPPLE, [ :uint, :uint, :float, :float, :int, :int, :pointer ], :void],
+        [:glMapVertexAttrib2dAPPLE, [ :uint, :uint, :double, :double, :int, :int, :double, :double, :int, :int, :pointer ], :void],
+        [:glMapVertexAttrib2fAPPLE, [ :uint, :uint, :float, :float, :int, :int, :float, :float, :int, :int, :pointer ], :void]
+    ]
   end
 end

@@ -28,12 +28,14 @@ module Roglew
 end
 
 module GL_ARB_debug_output
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glDebugMessageCallbackARB, [ Roglew::GL::GLDEBUGPROCARB, :pointer ], :void],
-              [:glDebugMessageControlARB, [ :uint, :uint, :uint, :int, :pointer, :uchar ], :void],
-              [:glDebugMessageInsertARB, [ :uint, :uint, :uint, :uint, :int, :string ], :void],
-              [:glGetDebugMessageLogARB, [ :uint, :int, :pointer, :pointer, :pointer, :pointer, :pointer, :string ], :uint]
+    functions [
+        [:glDebugMessageCallbackARB, [ Roglew::GL::GLDEBUGPROCARB, :pointer ], :void],
+        [:glDebugMessageControlARB, [ :uint, :uint, :uint, :int, :pointer, :uchar ], :void],
+        [:glDebugMessageInsertARB, [ :uint, :uint, :uint, :uint, :int, :string ], :void],
+        [:glGetDebugMessageLogARB, [ :uint, :int, :pointer, :pointer, :pointer, :pointer, :pointer, :string ], :uint]
+    ]
   end
 end

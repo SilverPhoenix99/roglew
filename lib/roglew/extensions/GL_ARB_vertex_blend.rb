@@ -46,19 +46,21 @@ module Roglew
 end
 
 module GL_ARB_vertex_blend
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glVertexBlendARB, [ :int ], :void],
-              [:glWeightbvARB, [ :int, :pointer ], :void],
-              [:glWeightdvARB, [ :int, :pointer ], :void],
-              [:glWeightfvARB, [ :int, :pointer ], :void],
-              [:glWeightivARB, [ :int, :pointer ], :void],
-              [:glWeightPointerARB, [ :int, :uint, :int, :pointer ], :void],
-              [:glWeightsvARB, [ :int, :pointer ], :void],
-              [:glWeightubvARB, [ :int, :pointer ], :void],
-              [:glWeightuivARB, [ :int, :pointer ], :void],
-              [:glWeightusvARB, [ :int, :pointer ], :void]
+    functions [
+        [:glVertexBlendARB, [ :int ], :void],
+        [:glWeightbvARB, [ :int, :pointer ], :void],
+        [:glWeightdvARB, [ :int, :pointer ], :void],
+        [:glWeightfvARB, [ :int, :pointer ], :void],
+        [:glWeightivARB, [ :int, :pointer ], :void],
+        [:glWeightPointerARB, [ :int, :uint, :int, :pointer ], :void],
+        [:glWeightsvARB, [ :int, :pointer ], :void],
+        [:glWeightubvARB, [ :int, :pointer ], :void],
+        [:glWeightuivARB, [ :int, :pointer ], :void],
+        [:glWeightusvARB, [ :int, :pointer ], :void]
+    ]
   end
 end
 

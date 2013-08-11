@@ -10,15 +10,17 @@ module Roglew
 end
 
 module GL_NV_fragment_program
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glGetProgramNamedParameterdvNV, [ :uint, :int, :pointer, :pointer ], :void],
-              [:glGetProgramNamedParameterfvNV, [ :uint, :int, :pointer, :pointer ], :void],
-              [:glProgramNamedParameter4dNV, [ :uint, :int, :pointer, :double, :double, :double, :double ], :void],
-              [:glProgramNamedParameter4dvNV, [ :uint, :int, :pointer, :double ], :void],
-              [:glProgramNamedParameter4fNV, [ :uint, :int, :pointer, :float, :float, :float, :float ], :void],
-              [:glProgramNamedParameter4fvNV, [ :uint, :int, :pointer, :float ], :void]
+    functions [
+        [:glGetProgramNamedParameterdvNV, [ :uint, :int, :pointer, :pointer ], :void],
+        [:glGetProgramNamedParameterfvNV, [ :uint, :int, :pointer, :pointer ], :void],
+        [:glProgramNamedParameter4dNV, [ :uint, :int, :pointer, :double, :double, :double, :double ], :void],
+        [:glProgramNamedParameter4dvNV, [ :uint, :int, :pointer, :double ], :void],
+        [:glProgramNamedParameter4fNV, [ :uint, :int, :pointer, :float, :float, :float, :float ], :void],
+        [:glProgramNamedParameter4fvNV, [ :uint, :int, :pointer, :float ], :void]
+    ]
   end
 end
 

@@ -12,21 +12,23 @@ module Roglew
 end
 
 module GL_NV_gpu_program4
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glProgramEnvParameterI4iNV, [ :uint, :uint, :int, :int, :int, :int ], :void],
-              [:glProgramEnvParameterI4ivNV, [ :uint, :uint, :pointer ], :void],
-              [:glProgramEnvParameterI4uiNV, [ :uint, :uint, :uint, :uint, :uint, :uint ], :void],
-              [:glProgramEnvParameterI4uivNV, [ :uint, :uint, :pointer ], :void],
-              [:glProgramEnvParametersI4ivNV, [ :uint, :uint, :int, :pointer ], :void],
-              [:glProgramEnvParametersI4uivNV, [ :uint, :uint, :int, :pointer ], :void],
-              [:glProgramLocalParameterI4iNV, [ :uint, :uint, :int, :int, :int, :int ], :void],
-              [:glProgramLocalParameterI4ivNV, [ :uint, :uint, :pointer ], :void],
-              [:glProgramLocalParameterI4uiNV, [ :uint, :uint, :uint, :uint, :uint, :uint ], :void],
-              [:glProgramLocalParameterI4uivNV, [ :uint, :uint, :pointer ], :void],
-              [:glProgramLocalParametersI4ivNV, [ :uint, :uint, :int, :pointer ], :void],
-              [:glProgramLocalParametersI4uivNV, [ :uint, :uint, :int, :pointer ], :void]
+    functions [
+        [:glProgramEnvParameterI4iNV, [ :uint, :uint, :int, :int, :int, :int ], :void],
+        [:glProgramEnvParameterI4ivNV, [ :uint, :uint, :pointer ], :void],
+        [:glProgramEnvParameterI4uiNV, [ :uint, :uint, :uint, :uint, :uint, :uint ], :void],
+        [:glProgramEnvParameterI4uivNV, [ :uint, :uint, :pointer ], :void],
+        [:glProgramEnvParametersI4ivNV, [ :uint, :uint, :int, :pointer ], :void],
+        [:glProgramEnvParametersI4uivNV, [ :uint, :uint, :int, :pointer ], :void],
+        [:glProgramLocalParameterI4iNV, [ :uint, :uint, :int, :int, :int, :int ], :void],
+        [:glProgramLocalParameterI4ivNV, [ :uint, :uint, :pointer ], :void],
+        [:glProgramLocalParameterI4uiNV, [ :uint, :uint, :uint, :uint, :uint, :uint ], :void],
+        [:glProgramLocalParameterI4uivNV, [ :uint, :uint, :pointer ], :void],
+        [:glProgramLocalParametersI4ivNV, [ :uint, :uint, :int, :pointer ], :void],
+        [:glProgramLocalParametersI4uivNV, [ :uint, :uint, :int, :pointer ], :void]
+    ]
   end
 end
 

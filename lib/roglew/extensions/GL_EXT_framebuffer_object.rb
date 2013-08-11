@@ -53,34 +53,43 @@ module Roglew
     RENDERBUFFER_STENCIL_SIZE_EXT                    ||= 0x8D55
   end
 
-  class TextureContext
+  #TODO refactor this to only exist by using RenderContext#create_texture2d
+  class Texture2dContext
+    make_calls :glGenerateMipmapEXT
+
     def generate_mipmapEXT
-      make_call(:glGenerateMipmapEXT, @target)
+      glGenerateMipmapEXT(@target)
     end
   end
 end
 
 module GL_EXT_framebuffer_object
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glBindFramebufferEXT, [ :uint, :uint ], :void],
-              [:glBindRenderbufferEXT, [ :uint, :uint ], :void],
-              [:glCheckFramebufferStatusEXT, [ :uint ], :uint],
-              [:glDeleteFramebuffersEXT, [ :int, :pointer ], :void],
-              [:glDeleteRenderbuffersEXT, [ :int, :pointer ], :void],
-              [:glFramebufferRenderbufferEXT, [ :uint, :uint, :uint, :uint ], :void],
-              [:glFramebufferTexture1DEXT, [ :uint, :uint, :uint, :uint, :int ], :void],
-              [:glFramebufferTexture2DEXT, [ :uint, :uint, :uint, :uint, :int ], :void],
-              [:glFramebufferTexture3DEXT, [ :uint, :uint, :uint, :uint, :int, :int ], :void],
-              [:glGenerateMipmapEXT, [ :uint ], :void],
-              [:glGenFramebuffersEXT, [ :int, :pointer ], :void],
-              [:glGenRenderbuffersEXT, [ :int, :pointer ], :void],
-              [:glGetFramebufferAttachmentParameterivEXT, [ :uint, :uint, :uint, :pointer ], :void],
-              [:glGetRenderbufferParameterivEXT, [ :uint, :uint, :pointer ], :void],
-              [:glIsFramebufferEXT, [ :uint ], :uchar],
-              [:glIsRenderbufferEXT, [ :uint ], :uchar],
-              [:glRenderbufferStorageEXT, [ :uint, :uint, :int, :int ], :void]
+    functions [
+        [:glBindFramebufferEXT, [ :uint, :uint ], :void],
+        [:glBindRenderbufferEXT, [ :uint, :uint ], :void],
+        [:glCheckFramebufferStatusEXT, [ :uint ], :uint],
+        [:glDeleteFramebuffersEXT, [ :int, :pointer ], :void],
+        [:glDeleteRenderbuffersEXT, [ :int, :pointer ], :void],
+        [:glFramebufferRenderbufferEXT, [ :uint, :uint, :uint, :uint ], :void],
+        [:glFramebufferTexture1DEXT, [ :uint, :uint, :uint, :uint, :int ], :void],
+        [:glFramebufferTexture2DEXT, [ :uint, :uint, :uint, :uint, :int ], :void],
+        [:glFramebufferTexture3DEXT, [ :uint, :uint, :uint, :uint, :int, :int ], :void],
+        [:glGenerateMipmapEXT, [ :uint ], :void],
+        [:glGenFramebuffersEXT, [ :int, :pointer ], :void],
+        [:glGenRenderbuffersEXT, [ :int, :pointer ], :void],
+        [:glGetFramebufferAttachmentParameterivEXT, [ :uint, :uint, :uint, :pointer ], :void],
+        [:glGetRenderbufferParameterivEXT, [ :uint, :uint, :pointer ], :void],
+        [:glIsFramebufferEXT, [ :uint ], :uchar],
+        [:glIsRenderbufferEXT, [ :uint ], :uchar],
+        [:glRenderbufferStorageEXT, [ :uint, :uint, :int, :int ], :void]
+    ]
+  end
+
+  module RenderContext
+    include Roglew::RenderContextExtension
 
     def create_framebufferEXT(*args)
       Roglew::FramebufferEXT.new(self, *args)
@@ -97,6 +106,7 @@ module GL_EXT_framebuffer_object
       [:renderbuffer_parameterEXT, :glGetRenderbufferParameterivEXT],
     ].each do |method_name, function_name|
       #call without pointer parameter (int *params)
+      checks_current
       define_method(method_name) do |*args|
         ptr = FFI::MemoryPointer.new(:int)
         public_send(function_name, *(args << ptr))
@@ -119,8 +129,9 @@ module GL_EXT_framebuffer_object
   end
 end
 
-%w'renderbuffer_context
-renderbuffer
-framebuffer_context
-framebuffer
+%w'
+  renderbuffer_context
+  renderbuffer
+  framebuffer_context
+  framebuffer
 '.each { |f| require "#{File.expand_path(__FILE__)[0..-4]}/#{f}" }

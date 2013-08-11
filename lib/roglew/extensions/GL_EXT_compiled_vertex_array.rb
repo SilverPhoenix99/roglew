@@ -6,11 +6,13 @@ module Roglew
 end
 
 module GL_EXT_compiled_vertex_array
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glLockArraysEXT, [ :int, :int ], :void],
-              [:glUnlockArraysEXT, [  ], :void]
+    functions [
+        [:glLockArraysEXT, [ :int, :int ], :void],
+        [:glUnlockArraysEXT, [  ], :void]
+    ]
   end
 end
 

@@ -5,10 +5,12 @@ module Roglew
 end
 
 module WGL_EXT_make_current_read
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:wglGetCurrentReadDCEXT, [ ], :pointer ],
-              [:wglMakeContextCurrentEXT, [ :pointer, :pointer, :pointer ], :bool ]
+    functions [
+      [:wglGetCurrentReadDCEXT, [ ], :pointer ],
+      [:wglMakeContextCurrentEXT, [ :pointer, :pointer, :pointer ], :bool ]
+    ]
   end
 end

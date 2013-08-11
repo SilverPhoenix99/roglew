@@ -6,10 +6,12 @@ module Roglew
 end
 
 module GL_EXT_texture_perturb_normal
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glTextureNormalEXT, [ :uint ], :void]
+    functions [
+        [:glTextureNormalEXT, [ :uint ], :void]
+    ]
   end
 end
 

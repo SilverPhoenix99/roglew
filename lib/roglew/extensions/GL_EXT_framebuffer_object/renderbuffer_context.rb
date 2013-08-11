@@ -1,5 +1,9 @@
 module Roglew
   module ImmediateRenderbufferContextEXT
+    def included(c)
+      c.make_calls :context, :renderbuffer_parameterEXT
+    end
+
     %w{width
     height
     internal_format
@@ -9,12 +13,7 @@ module Roglew
     alpha_size
     depth_size
     stencil_size}.each do |n|
-      class_eval "
-        def #{n}()
-          context.instance_variable_set(
-            :@#{n},
-            context.renderbuffer_parameterEXT(GL::RENDERBUFFER_EXT, GL::RENDERBUFFER_#{n.upcase}_EXT))
-        end"
+      class_eval "def #{n}() renderbuffer_parameterEXT(GL::RENDERBUFFER_EXT, GL::RENDERBUFFER_#{n.upcase}_EXT) end"
     end
   end
 
@@ -23,21 +22,25 @@ module Roglew
 
     immediate_module ImmediateRenderbufferContextEXT
 
+    make_calls :handle,
+               :glBindRenderbufferEXT,
+               :glRenderbufferStorageEXT
+
     def initialize(renderbuffer, deferred, &block)
       super
     end
 
     def storage(width, height, internal_format)
-      make_call(:glRenderbufferStorageEXT, GL::RENDERBUFFER_EXT, internal_format, width, height)
+      glRenderbufferStorageEXT(GL::RENDERBUFFER_EXT, internal_format, width, height)
     end
 
     private
     def bind
-      context.glBindRenderbufferEXT(GL::RENDERBUFFER_EXT, renderbuffer.id)
+      glBindRenderbufferEXT(GL::RENDERBUFFER_EXT, renderbuffer.id)
     end
 
     def unbind
-      context.glBindRenderbufferEXT(GL::RENDERBUFFER_EXT, 0)
+      glBindRenderbufferEXT(GL::RENDERBUFFER_EXT, 0)
     end
   end
 end

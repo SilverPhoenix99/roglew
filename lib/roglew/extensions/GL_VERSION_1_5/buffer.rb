@@ -2,19 +2,19 @@ module Roglew
   class Buffer
     include Roglew::Contextual(BufferContext)
 
-    attr_reader :context, :id
+    attr_reader :handle, :id
 
-    def initialize(context)
-      @context = context
-      @id = context.gen_buffers
+    def initialize(handle)
+      @handle = handle
+      @id = handle.bind { |context| context.gen_buffers }
 
-      ObjectSpace.define_finalizer(self, self.class.finalize(@context, @id))
+      ObjectSpace.define_finalizer(self, self.class.finalize(@handle, @id))
     end
 
-    def self.finalize(ctx, id)
+    def self.finalize(handle, id)
       proc do
         puts "releasing buffer #{id}"
-        ctx.delete_buffers(id)
+        handle.bind { |context| context.delete_buffers(id) }
       end
     end
 

@@ -8,6 +8,10 @@ module Roglew
       end
 
       private
+      def def_function(name, func)
+        define_method(name) { |*args| func.(*args) }
+      end
+
       def finalize(*args)
         proc do
           puts 'releasing a render context'
@@ -16,7 +20,7 @@ module Roglew
       end
 
       def peek
-        stack.peek
+        stack.last
       end
 
       def push(rh, rc)
@@ -56,15 +60,15 @@ module Roglew
       else
         stack = self.class.send(:stack)
         i = stack.rindex { |rh, _| rh == self }
-        ctx = i ? stack[i].last : RenderContext.new(self)
+        ctx = i ? stack[i].last : create_context
         make_current
       end
       self.class.send(:push, self, ctx)
 
       return ctx unless block_given?
-      yield ctx
+      result = yield ctx
       ctx.finished
-      self
+      result
     end
 
     def extension_list(*types)
@@ -78,6 +82,7 @@ module Roglew
     end
 
     def load_extension(ext)
+      #puts "load_extension: #{ext}"
       ext = ext.to_sym
       @loaded_extensions << ext
 
@@ -89,19 +94,29 @@ module Roglew
 
       return unless Object.const_defined?(ext)
       mod = Object.const_get(ext)
-      return unless mod.const_defined?(:RenderContext)
-      mod = mod::RenderContext
-      return unless mod
+      if mod.const_defined?(:RenderHandle)
+        modrh = mod.const_get(:RenderHandle)
+        singleton_class.send(:include, modrh)
 
-      singleton_class.send(:include, mod)
-
-      return unless mod.respond_to? :functions
-      bind do |rc|
-        mod.functions.each do |name, parameters, ret_type|
-          function = rc.get_function(name, parameters, ret_type)
-          define_singleton_method(name) { |*a| function.call(*a) } if function
+        bind do |rc|
+          modrh.functions.each do |options, list|
+            list.each do |name, parameters, ret_type|
+              function = if options.include?(:ffi)
+                if name =~ /^(glX|wgl)/
+                  GL.platform_module.attach_function(name[3..-1], name, parameters, ret_type)
+                else
+                  GL.attach_function(name[2..-1], name, parameters, ret_type)
+                end
+              else
+                rc.get_function(name, parameters, ret_type)
+              end
+              define_singleton_method(name) { |*a| function.(*a) } if function
+            end if !options.include?(:compatibility) || ((@version <=> [3, 0]) <= 0)
+          end if modrh.respond_to?(:functions)
         end
       end
+
+      nil
     end
 
     def loaded_extensions
@@ -117,6 +132,10 @@ module Roglew
     end
 
     private
+    def create_context
+      RenderContext.new(self)
+    end
+
     def extension_list_core
       Dir["#{File.expand_path('../extensions', __FILE__)}/GL_VERSION_*.rb"].
           map! { |f| File.basename(f, '.rb') }.
@@ -124,9 +143,11 @@ module Roglew
     end
 
     def extension_list_gl
-      (@version[0] < 3 ?
-          glGetString(GL::EXTENSIONS).split :
-          get_integers(GL::NUM_EXTENSIONS).times.map { |i| glGetStringi(GL::EXTENSIONS, i) }).map!(&:to_sym)
+      if @version[0] < 3
+        glGetString(GL::EXTENSIONS).split
+      else
+        RenderContext.current.num_extensions.times.map { |i| glGetStringi(GL::EXTENSIONS, i) }
+      end.map!(&:to_sym)
     end
   end
 end

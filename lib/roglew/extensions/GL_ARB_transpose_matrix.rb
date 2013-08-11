@@ -8,13 +8,15 @@ module Roglew
 end
 
 module GL_ARB_transpose_matrix
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glLoadTransposeMatrixdARB, [:double] * 16, :void],
-              [:glLoadTransposeMatrixfARB, [:float] * 16, :void],
-              [:glMultTransposeMatrixdARB, [:double] * 16, :void],
-              [:glMultTransposeMatrixfARB, [:float] * 16, :void]
+    functions [
+        [:glLoadTransposeMatrixdARB, [:double] * 16, :void],
+        [:glLoadTransposeMatrixfARB, [:float] * 16, :void],
+        [:glMultTransposeMatrixdARB, [:double] * 16, :void],
+        [:glMultTransposeMatrixfARB, [:float] * 16, :void]
+    ]
   end
 end
 

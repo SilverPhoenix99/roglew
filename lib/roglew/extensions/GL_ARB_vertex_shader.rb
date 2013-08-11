@@ -11,12 +11,14 @@ module Roglew
 end
 
 module GL_ARB_vertex_shader
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glBindAttribLocationARB, [ :uint, :uint, :string ], :void],
-              [:glGetActiveAttribARB, [ :uint, :uint, :int, :pointer, :pointer, :pointer, :string ], :void],
-              [:glGetAttribLocationARB, [ :uint, :string ], :int]
+    functions [
+        [:glBindAttribLocationARB, [ :uint, :uint, :string ], :void],
+        [:glGetActiveAttribARB, [ :uint, :uint, :int, :pointer, :pointer, :pointer, :string ], :void],
+        [:glGetAttribLocationARB, [ :uint, :string ], :int]
+    ]
   end
 end
 

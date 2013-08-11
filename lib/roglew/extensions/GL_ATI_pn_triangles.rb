@@ -13,11 +13,13 @@ module Roglew
 end
 
 module GL_ATI_pn_triangles
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glPNTrianglesfATI, [ :uint, :float ], :void],
-              [:glPNTrianglesiATI, [ :uint, :int ], :void]
+    functions [
+        [:glPNTrianglesfATI, [ :uint, :float ], :void],
+        [:glPNTrianglesiATI, [ :uint, :int ], :void]
+    ]
   end
 end
 

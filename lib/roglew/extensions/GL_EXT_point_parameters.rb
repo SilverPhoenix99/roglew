@@ -8,11 +8,13 @@ module Roglew
 end
 
 module GL_EXT_point_parameters
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glPointParameterfEXT, [ :uint, :float ], :void],
-              [:glPointParameterfvEXT, [ :uint, :pointer ], :void]
+    functions [
+        [:glPointParameterfEXT, [ :uint, :float ], :void],
+        [:glPointParameterfvEXT, [ :uint, :pointer ], :void]
+    ]
   end
 end
 

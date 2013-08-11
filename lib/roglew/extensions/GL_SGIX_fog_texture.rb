@@ -7,10 +7,12 @@ module Roglew
 end
 
 module GL_SGIX_fog_texture
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glTextureFogSGIX, [ :uint ], :void]
+    functions [
+      [:glTextureFogSGIX, [ :uint ], :void]
+    ]
   end
 end
 

@@ -14,12 +14,14 @@ module Roglew
 end
 
 module GL_NV_explicit_multisample
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glGetMultisamplefvNV, [:uint, :uint, :pointer], :void],
-              [:glSampleMaskIndexedNV, [:uint, :uint], :void],
-              [:glTexRenderbufferNV, [:uint, :uint], :void]
+    functions [
+        [:glGetMultisamplefvNV, [:uint, :uint, :pointer], :void],
+        [:glSampleMaskIndexedNV, [:uint, :uint], :void],
+        [:glTexRenderbufferNV, [:uint, :uint], :void]
+    ]
   end
 end
 

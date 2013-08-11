@@ -1,12 +1,20 @@
 module Roglew
   module ImmediateContext
+    def deferred?
+      false
+    end
+
     def finished
       unbind
     end
 
+    def immediate?
+      true
+    end
+
     private
-    def make_call(method, *args)
-      context.public_send(method, *args)
+    def make_call(target, method, *args)
+      send(target).public_send(method, *args)
     end
 
     def run

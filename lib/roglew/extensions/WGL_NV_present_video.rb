@@ -5,11 +5,13 @@ module Roglew
 end
 
 module WGL_NV_present_video
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:wglBindVideoDeviceNV, [ :pointer, :uint, :pointer, :pointer ], :bool ],
-              [:wglEnumerateVideoDevicesNV, [ :pointer, :pointer ], :int ],
-              [:wglQueryCurrentContextNV, [ :int, :pointer ], :bool ]
+    functions [
+      [:wglBindVideoDeviceNV, [ :pointer, :uint, :pointer, :pointer ], :bool ],
+      [:wglEnumerateVideoDevicesNV, [ :pointer, :pointer ], :int ],
+      [:wglQueryCurrentContextNV, [ :int, :pointer ], :bool ]
+    ]
   end
 end

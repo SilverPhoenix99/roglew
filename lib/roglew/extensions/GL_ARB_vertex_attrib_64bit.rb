@@ -10,19 +10,21 @@ module Roglew
 end
 
 module GL_ARB_vertex_attrib_64bit
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glGetVertexAttribLdv, [ :uint, :uint, :pointer ], :void],
-              [:glVertexAttribL1d, [ :uint, :double ], :void],
-              [:glVertexAttribL1dv, [ :uint, :pointer ], :void],
-              [:glVertexAttribL2d, [ :uint, :double, :double ], :void],
-              [:glVertexAttribL2dv, [ :uint, :pointer ], :void],
-              [:glVertexAttribL3d, [ :uint, :double, :double, :double ], :void],
-              [:glVertexAttribL3dv, [ :uint, :pointer ], :void],
-              [:glVertexAttribL4d, [ :uint, :double, :double, :double, :double ], :void],
-              [:glVertexAttribL4dv, [ :uint, :pointer ], :void],
-              [:glVertexAttribLPointer, [ :uint, :int, :uint, :int, :pointer ], :void]
+    functions [
+        [:glGetVertexAttribLdv, [ :uint, :uint, :pointer ], :void],
+        [:glVertexAttribL1d, [ :uint, :double ], :void],
+        [:glVertexAttribL1dv, [ :uint, :pointer ], :void],
+        [:glVertexAttribL2d, [ :uint, :double, :double ], :void],
+        [:glVertexAttribL2dv, [ :uint, :pointer ], :void],
+        [:glVertexAttribL3d, [ :uint, :double, :double, :double ], :void],
+        [:glVertexAttribL3dv, [ :uint, :pointer ], :void],
+        [:glVertexAttribL4d, [ :uint, :double, :double, :double, :double ], :void],
+        [:glVertexAttribL4dv, [ :uint, :pointer ], :void],
+        [:glVertexAttribLPointer, [ :uint, :int, :uint, :int, :pointer ], :void]
+    ]
   end
 end
 

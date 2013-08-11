@@ -13,17 +13,19 @@ module Roglew
 end
 
 module GL_ARB_shader_subroutine
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glGetActiveSubroutineName, [ :uint, :uint, :uint, :int, :pointer, :string ], :void],
-              [:glGetActiveSubroutineUniformiv, [ :uint, :uint, :uint, :uint, :pointer ], :void],
-              [:glGetActiveSubroutineUniformName, [ :uint, :uint, :uint, :int, :pointer, :string ], :void],
-              [:glGetProgramStageiv, [ :uint, :uint, :uint, :pointer ], :void],
-              [:glGetSubroutineIndex, [ :uint, :uint, :string ], :uint],
-              [:glGetSubroutineUniformLocation, [ :uint, :uint, :string ], :int],
-              [:glGetUniformSubroutineuiv, [ :uint, :int, :pointer ], :void],
-              [:glUniformSubroutinesuiv, [ :uint, :int, :pointer ], :void]
+    functions [
+        [:glGetActiveSubroutineName, [ :uint, :uint, :uint, :int, :pointer, :string ], :void],
+        [:glGetActiveSubroutineUniformiv, [ :uint, :uint, :uint, :uint, :pointer ], :void],
+        [:glGetActiveSubroutineUniformName, [ :uint, :uint, :uint, :int, :pointer, :string ], :void],
+        [:glGetProgramStageiv, [ :uint, :uint, :uint, :pointer ], :void],
+        [:glGetSubroutineIndex, [ :uint, :uint, :string ], :uint],
+        [:glGetSubroutineUniformLocation, [ :uint, :uint, :string ], :int],
+        [:glGetUniformSubroutineuiv, [ :uint, :int, :pointer ], :void],
+        [:glUniformSubroutinesuiv, [ :uint, :int, :pointer ], :void]
+    ]
   end
 end
 

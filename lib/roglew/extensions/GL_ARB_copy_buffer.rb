@@ -6,9 +6,11 @@ module Roglew
 end
 
 module GL_ARB_copy_buffer
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glCopyBufferSubData, [ :uint, :uint, :int64, :int64, :int64 ], :void]
+    functions [
+        [:glCopyBufferSubData, [ :uint, :uint, :int64, :int64, :int64 ], :void]
+    ]
   end
 end

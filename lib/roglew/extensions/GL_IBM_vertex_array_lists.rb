@@ -20,17 +20,19 @@ module Roglew
 end
 
 module GL_IBM_vertex_array_lists
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glColorPointerListIBM, [ :int, :uint, :int, :pointer, :int ], :void],
-              [:glEdgeFlagPointerListIBM, [ :int, :pointer, :int ], :void],
-              [:glFogCoordPointerListIBM, [ :uint, :int, :pointer, :int ], :void],
-              [:glIndexPointerListIBM, [ :uint, :int, :pointer, :int ], :void],
-              [:glNormalPointerListIBM, [ :uint, :int, :pointer, :int ], :void],
-              [:glSecondaryColorPointerListIBM, [ :int, :uint, :int, :pointer, :int ], :void],
-              [:glTexCoordPointerListIBM, [ :int, :uint, :int, :pointer, :int ], :void],
-              [:glVertexPointerListIBM, [ :int, :uint, :int, :pointer, :int ], :void]
+    functions [
+        [:glColorPointerListIBM, [ :int, :uint, :int, :pointer, :int ], :void],
+        [:glEdgeFlagPointerListIBM, [ :int, :pointer, :int ], :void],
+        [:glFogCoordPointerListIBM, [ :uint, :int, :pointer, :int ], :void],
+        [:glIndexPointerListIBM, [ :uint, :int, :pointer, :int ], :void],
+        [:glNormalPointerListIBM, [ :uint, :int, :pointer, :int ], :void],
+        [:glSecondaryColorPointerListIBM, [ :int, :uint, :int, :pointer, :int ], :void],
+        [:glTexCoordPointerListIBM, [ :int, :uint, :int, :pointer, :int ], :void],
+        [:glVertexPointerListIBM, [ :int, :uint, :int, :pointer, :int ], :void]
+    ]
   end
 end
 

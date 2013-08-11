@@ -8,9 +8,11 @@ module Roglew
 end
 
 module GL_AMD_stencil_operation_extended
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glStencilOpValueAMD, [ :uint, :uint ], :void]
+    functions [
+        [:glStencilOpValueAMD, [ :uint, :uint ], :void]
+    ]
   end
 end

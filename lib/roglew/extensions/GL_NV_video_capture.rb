@@ -33,21 +33,23 @@ module Roglew
 end
 
 module GL_NV_video_capture
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glBeginVideoCaptureNV, [ :uint ], :void],
-              [:glBindVideoCaptureStreamBufferNV, [ :uint, :uint, :uint, :int64 ], :void],
-              [:glBindVideoCaptureStreamTextureNV, [ :uint, :uint, :uint, :uint, :uint ], :void],
-              [:glEndVideoCaptureNV, [ :uint ], :void],
-              [:glGetVideoCaptureivNV, [ :uint, :uint, :pointer ], :void],
-              [:glGetVideoCaptureStreamdvNV, [ :uint, :uint, :uint, :pointer ], :void],
-              [:glGetVideoCaptureStreamfvNV, [ :uint, :uint, :uint, :pointer ], :void],
-              [:glGetVideoCaptureStreamivNV, [ :uint, :uint, :uint, :pointer ], :void],
-              [:glVideoCaptureNV, [ :uint, :pointer, :pointer ], :uint],
-              [:glVideoCaptureStreamParameterdvNV, [ :uint, :uint, :uint, :pointer ], :void],
-              [:glVideoCaptureStreamParameterfvNV, [ :uint, :uint, :uint, :pointer ], :void],
-              [:glVideoCaptureStreamParameterivNV, [ :uint, :uint, :uint, :pointer ], :void]
+    functions [
+        [:glBeginVideoCaptureNV, [ :uint ], :void],
+        [:glBindVideoCaptureStreamBufferNV, [ :uint, :uint, :uint, :int64 ], :void],
+        [:glBindVideoCaptureStreamTextureNV, [ :uint, :uint, :uint, :uint, :uint ], :void],
+        [:glEndVideoCaptureNV, [ :uint ], :void],
+        [:glGetVideoCaptureivNV, [ :uint, :uint, :pointer ], :void],
+        [:glGetVideoCaptureStreamdvNV, [ :uint, :uint, :uint, :pointer ], :void],
+        [:glGetVideoCaptureStreamfvNV, [ :uint, :uint, :uint, :pointer ], :void],
+        [:glGetVideoCaptureStreamivNV, [ :uint, :uint, :uint, :pointer ], :void],
+        [:glVideoCaptureNV, [ :uint, :pointer, :pointer ], :uint],
+        [:glVideoCaptureStreamParameterdvNV, [ :uint, :uint, :uint, :pointer ], :void],
+        [:glVideoCaptureStreamParameterfvNV, [ :uint, :uint, :uint, :pointer ], :void],
+        [:glVideoCaptureStreamParameterivNV, [ :uint, :uint, :uint, :pointer ], :void]
+    ]
   end
 end
 

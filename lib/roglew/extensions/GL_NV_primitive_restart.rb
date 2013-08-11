@@ -6,11 +6,13 @@ module Roglew
 end
 
 module GL_NV_primitive_restart
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glPrimitiveRestartIndexNV, [ :uint ], :void],
-              [:glPrimitiveRestartNV, [  ], :void]
+    functions [
+        [:glPrimitiveRestartIndexNV, [ :uint ], :void],
+        [:glPrimitiveRestartNV, [], :void]
+    ]
   end
 end
 

@@ -1,11 +1,19 @@
 module Roglew
   module DeferredContext
+    def deferred?
+      true
+    end
+
     def finished
       return unless self.calls.empty?
       bind
-      self.calls.each { |method, args| method.(*args) }.clear
+      self.calls.each { |target, method, args| send(target).public_send(method, *args) }.clear
       unbind
       nil
+    end
+
+    def immediate?
+      false
     end
 
     private
@@ -13,9 +21,8 @@ module Roglew
       @calls ||= []
     end
 
-    def make_call(method, *args)
-      self.calls << [context.public_method(method), args]
-      nil
+    def make_call(target, method, *args)
+      self.calls << [target, method, args]
     end
 
     def run

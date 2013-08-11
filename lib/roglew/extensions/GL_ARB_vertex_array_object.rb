@@ -5,22 +5,28 @@ module Roglew
 end
 
 module GL_ARB_vertex_array_object
+  module RenderHandle
+    include Roglew::RenderHandleExtension
+
+    functions [
+        [:glBindVertexArray, [ :uint ], :void],
+        [:glDeleteVertexArrays, [ :int, :pointer ], :void],
+        [:glGenVertexArrays, [ :int, :pointer ], :void],
+        [:glIsVertexArray, [ :uint ], :uchar]
+    ]
+  end
+
   module RenderContext
-    include Roglew::GLExtension
+    include Roglew::RenderContextExtension
 
     def create_vertex_array
-      Roglew::VertexArray.new(self)
+      Roglew::VertexArray.new(@rh)
     end
-
-    functions [:glBindVertexArray, [ :uint ], :void],
-              [:glDeleteVertexArrays, [ :int, :pointer ], :void],
-              [:glGenVertexArrays, [ :int, :pointer ], :void],
-              [:glIsVertexArray, [ :uint ], :uchar]
 
     def_object :VertexArrays
   end
 end
 
 %w'
-vertex_array
+  vertex_array
 '.each { |f| require "#{File.expand_path(__FILE__)[0..-4]}/#{f}" }

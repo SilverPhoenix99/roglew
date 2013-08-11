@@ -30,43 +30,45 @@ module Roglew
 end
 
 module GL_EXT_gpu_shader4
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glBindFragDataLocationEXT, [ :uint, :uint, :string ], :void],
-              [:glGetFragDataLocationEXT, [ :uint, :string ], :int],
-              [:glGetUniformuivEXT, [ :uint, :int, :pointer ], :void],
-              [:glGetVertexAttribIivEXT, [ :uint, :uint, :pointer ], :void],
-              [:glGetVertexAttribIuivEXT, [ :uint, :uint, :pointer ], :void],
-              [:glUniform1uiEXT, [ :int, :uint ], :void],
-              [:glUniform1uivEXT, [ :int, :int, :pointer ], :void],
-              [:glUniform2uiEXT, [ :int, :uint, :uint ], :void],
-              [:glUniform2uivEXT, [ :int, :int, :pointer ], :void],
-              [:glUniform3uiEXT, [ :int, :uint, :uint, :uint ], :void],
-              [:glUniform3uivEXT, [ :int, :int, :pointer ], :void],
-              [:glUniform4uiEXT, [ :int, :uint, :uint, :uint, :uint ], :void],
-              [:glUniform4uivEXT, [ :int, :int, :pointer ], :void],
-              [:glVertexAttribI1iEXT, [ :uint, :int ], :void],
-              [:glVertexAttribI1ivEXT, [ :uint, :pointer ], :void],
-              [:glVertexAttribI1uiEXT, [ :uint, :uint ], :void],
-              [:glVertexAttribI1uivEXT, [ :uint, :pointer ], :void],
-              [:glVertexAttribI2iEXT, [ :uint, :int, :int ], :void],
-              [:glVertexAttribI2ivEXT, [ :uint, :pointer ], :void],
-              [:glVertexAttribI2uiEXT, [ :uint, :uint, :uint ], :void],
-              [:glVertexAttribI2uivEXT, [ :uint, :pointer ], :void],
-              [:glVertexAttribI3iEXT, [ :uint, :int, :int, :int ], :void],
-              [:glVertexAttribI3ivEXT, [ :uint, :pointer ], :void],
-              [:glVertexAttribI3uiEXT, [ :uint, :uint, :uint, :uint ], :void],
-              [:glVertexAttribI3uivEXT, [ :uint, :pointer ], :void],
-              [:glVertexAttribI4bvEXT, [ :uint, :pointer ], :void],
-              [:glVertexAttribI4iEXT, [ :uint, :int, :int, :int, :int ], :void],
-              [:glVertexAttribI4ivEXT, [ :uint, :pointer ], :void],
-              [:glVertexAttribI4svEXT, [ :uint, :pointer ], :void],
-              [:glVertexAttribI4ubvEXT, [ :uint, :pointer ], :void],
-              [:glVertexAttribI4uiEXT, [ :uint, :uint, :uint, :uint, :uint ], :void],
-              [:glVertexAttribI4uivEXT, [ :uint, :pointer ], :void],
-              [:glVertexAttribI4usvEXT, [ :uint, :pointer ], :void],
-              [:glVertexAttribIPointerEXT, [ :uint, :int, :uint, :int, :pointer ], :void]
+    functions [
+        [:glBindFragDataLocationEXT, [ :uint, :uint, :string ], :void],
+        [:glGetFragDataLocationEXT, [ :uint, :string ], :int],
+        [:glGetUniformuivEXT, [ :uint, :int, :pointer ], :void],
+        [:glGetVertexAttribIivEXT, [ :uint, :uint, :pointer ], :void],
+        [:glGetVertexAttribIuivEXT, [ :uint, :uint, :pointer ], :void],
+        [:glUniform1uiEXT, [ :int, :uint ], :void],
+        [:glUniform1uivEXT, [ :int, :int, :pointer ], :void],
+        [:glUniform2uiEXT, [ :int, :uint, :uint ], :void],
+        [:glUniform2uivEXT, [ :int, :int, :pointer ], :void],
+        [:glUniform3uiEXT, [ :int, :uint, :uint, :uint ], :void],
+        [:glUniform3uivEXT, [ :int, :int, :pointer ], :void],
+        [:glUniform4uiEXT, [ :int, :uint, :uint, :uint, :uint ], :void],
+        [:glUniform4uivEXT, [ :int, :int, :pointer ], :void],
+        [:glVertexAttribI1iEXT, [ :uint, :int ], :void],
+        [:glVertexAttribI1ivEXT, [ :uint, :pointer ], :void],
+        [:glVertexAttribI1uiEXT, [ :uint, :uint ], :void],
+        [:glVertexAttribI1uivEXT, [ :uint, :pointer ], :void],
+        [:glVertexAttribI2iEXT, [ :uint, :int, :int ], :void],
+        [:glVertexAttribI2ivEXT, [ :uint, :pointer ], :void],
+        [:glVertexAttribI2uiEXT, [ :uint, :uint, :uint ], :void],
+        [:glVertexAttribI2uivEXT, [ :uint, :pointer ], :void],
+        [:glVertexAttribI3iEXT, [ :uint, :int, :int, :int ], :void],
+        [:glVertexAttribI3ivEXT, [ :uint, :pointer ], :void],
+        [:glVertexAttribI3uiEXT, [ :uint, :uint, :uint, :uint ], :void],
+        [:glVertexAttribI3uivEXT, [ :uint, :pointer ], :void],
+        [:glVertexAttribI4bvEXT, [ :uint, :pointer ], :void],
+        [:glVertexAttribI4iEXT, [ :uint, :int, :int, :int, :int ], :void],
+        [:glVertexAttribI4ivEXT, [ :uint, :pointer ], :void],
+        [:glVertexAttribI4svEXT, [ :uint, :pointer ], :void],
+        [:glVertexAttribI4ubvEXT, [ :uint, :pointer ], :void],
+        [:glVertexAttribI4uiEXT, [ :uint, :uint, :uint, :uint, :uint ], :void],
+        [:glVertexAttribI4uivEXT, [ :uint, :pointer ], :void],
+        [:glVertexAttribI4usvEXT, [ :uint, :pointer ], :void],
+        [:glVertexAttribIPointerEXT, [ :uint, :int, :uint, :int, :pointer ], :void]
+    ]
   end
 end
 

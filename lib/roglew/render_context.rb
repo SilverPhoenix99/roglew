@@ -13,35 +13,20 @@ module Roglew
       end
 
       def peek
-        stack.peek
+        stack.last
       end
     end
 
     def initialize(rh)
       @rh = rh
-    end
 
-    checks_current
-    def begin(mode)
-      @rh.glBegin(mode)
-      return unless block_given?
-      yield
-      @rh.glEnd
-    end
-
-    %w'
-      points
-      lines
-      line_strip
-      line_loop
-      triangles
-      triangle_strip
-      triangle_fan
-      quads
-      quad_strip
-      polygon'.
-    each do |v|
-      class_eval("def #{v}(&block) self.begin(GL::#{v.upcase}, &block) end")
+      c = singleton_class
+      @rh.loaded_extensions.each do |ext|
+        next unless Object.const_defined?(ext)
+        mod = Object.const_get(ext)
+        next unless mod.const_defined?(:RenderContext)
+        c.send(:include, mod.const_get(:RenderContext))
+      end
     end
 
     def bind
@@ -52,19 +37,43 @@ module Roglew
     end
 
     checks_current
+    def blend_func(src, dst)
+      @rh.glBlendFunc(src, dst)
+    end
+
+    checks_current
     def clear(*flags)
       @rh.glClear(flags.reduce(&:|))
     end
 
     checks_current
-    def create_texture2d(*args)
-      Texture2d.new(@rh, *args)
+    def clear_color=(c)
+      @rh.glClearColor(*c)
+    end
+
+    checks_current
+    def clear_depth=(v)
+      @rh.glClearDepth(v)
+    end
+
+    checks_current
+    def clear_stencil=(v)
+      @rh.glClearStencil(v)
+    end
+
+    checks_current
+    def color_mask(r, g, b, a)
+      @rh.glColorMask(r, g, b, a)
     end
 
     def_object :Textures
 
+    def create_texture2d(*args)
+      Roglew::Texture2d.new(@rh, *args)
+    end
+
     def current?
-      self.class.current == self
+      RenderContext.current == self
     end
 
     checks_current
@@ -73,15 +82,13 @@ module Roglew
       a1 = attribs.dup
 
       caps = Set[*caps] & attribs
-      caps.each do |cap|
-        @rh.glDisable(cap)
-        attribs.delete(cap)
-      end
+      caps.each { |cap| @rh.glDisable(cap) }
+      attribs.subtract(caps)
       return unless block_given?
       yield
 
-      disable(*(attribs - a1))
-      enable(*(a1 - attribs))
+      disable *(attribs - a1)
+      enable  *(a1 - attribs)
     end
 
     checks_current
@@ -95,18 +102,18 @@ module Roglew
       return unless block_given?
       yield
 
-      disable(*(attribs - a1))
-      enable(*(a1 - attribs))
+      disable *(attribs - a1)
+      enable  *(a1 - attribs)
     end
 
     checks_current 'finished out of order: context must be current'
     def finished
-      stack = self.class.send(:stack)
+      stack = RenderContext.send(:stack)
       stack.pop
       if stack.empty?
         @rh.send(:remove_current)
-      else
-        stack.peek.first.make_current
+      elsif stack.last.last != self
+        stack.last.first.make_current
       end
       nil
     end
@@ -123,7 +130,10 @@ module Roglew
     checks_current
     def get_function(function_name, parameters, return_type)
       ptr = get_proc_address(function_name.to_s)
-      return if ptr.null?
+      if ptr.null?
+        puts "WARNING: couldn't find function: #{return_type} #{function_name}(#{parameters.join(', ')})"
+        return
+      end
       return_type = GL.find_type(return_type) || return_type
       parameters = parameters.map { |p| GL.find_type(p) || p }
       FFI::Function.new(return_type, parameters, ptr, convention: :stdcall)
@@ -140,6 +150,10 @@ module Roglew
     checks_current
     def get_proc_address(function_name)
       @rh.send(:get_proc_address, function_name)
+    end
+
+    def num_extensions
+      get_integers(GL::NUM_EXTENSIONS)
     end
 
     def render_handle
@@ -159,5 +173,8 @@ module Roglew
       ptr.send("write_array_of_#{type}", params)
       @rh.send("glTexParameter#{type[0]}v", target, pname, ptr)
     end
+
+    alias_method :handle, :render_handle
+    alias_method :rh, :render_handle
   end
 end

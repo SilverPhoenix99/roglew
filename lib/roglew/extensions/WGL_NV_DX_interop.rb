@@ -7,16 +7,18 @@ module Roglew
 end
 
 module WGL_NV_DX_interop
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:wglDXCloseDeviceNV, [ :pointer ], :bool ],
-              [:wglDXLockObjectsNV, [ :pointer, :int, :pointer ], :bool ],
-              [:wglDXObjectAccessNV, [ :pointer, :uint ], :bool ],
-              [:wglDXOpenDeviceNV, [ :pointer ], :pointer ],
-              [:wglDXRegisterObjectNV, [ :pointer, :pointer, :uint, :uint, :uint ], :pointer ],
-              [:wglDXSetResourceShareHandleNV, [ :pointer, :pointer ], :bool ],
-              [:wglDXUnlockObjectsNV, [ :pointer, :int, :pointer ], :bool ],
-              [:wglDXUnregisterObjectNV, [ :pointer, :pointer ], :bool ]
+    functions [
+      [:wglDXCloseDeviceNV, [ :pointer ], :bool ],
+      [:wglDXLockObjectsNV, [ :pointer, :int, :pointer ], :bool ],
+      [:wglDXObjectAccessNV, [ :pointer, :uint ], :bool ],
+      [:wglDXOpenDeviceNV, [ :pointer ], :pointer ],
+      [:wglDXRegisterObjectNV, [ :pointer, :pointer, :uint, :uint, :uint ], :pointer ],
+      [:wglDXSetResourceShareHandleNV, [ :pointer, :pointer ], :bool ],
+      [:wglDXUnlockObjectsNV, [ :pointer, :int, :pointer ], :bool ],
+      [:wglDXUnregisterObjectNV, [ :pointer, :pointer ], :bool ]
+    ]
   end
 end

@@ -1,7 +1,9 @@
 module GL_MESA_resize_buffers
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glResizeBuffersMESA, [  ], :void]
+    functions [
+        [:glResizeBuffersMESA, [], :void]
+    ]
   end
 end

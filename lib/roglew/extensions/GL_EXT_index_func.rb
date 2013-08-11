@@ -1,7 +1,9 @@
 module GL_EXT_index_func
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glIndexFuncEXT, [ :uint, :float ], :void]
+    functions [
+        [:glIndexFuncEXT, [ :uint, :float ], :void]
+    ]
   end
 end

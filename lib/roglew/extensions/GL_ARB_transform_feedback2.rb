@@ -8,16 +8,18 @@ module Roglew
 end
 
 module GL_ARB_transform_feedback2
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glBindTransformFeedback, [ :uint, :uint ], :void],
-              [:glDeleteTransformFeedbacks, [ :int, :pointer ], :void],
-              [:glDrawTransformFeedback, [ :uint, :uint ], :void],
-              [:glGenTransformFeedbacks, [ :int, :pointer ], :void],
-              [:glIsTransformFeedback, [ :uint ], :uchar],
-              [:glPauseTransformFeedback, [  ], :void],
-              [:glResumeTransformFeedback, [  ], :void]
+    functions [
+        [:glBindTransformFeedback, [ :uint, :uint ], :void],
+        [:glDeleteTransformFeedbacks, [ :int, :pointer ], :void],
+        [:glDrawTransformFeedback, [ :uint, :uint ], :void],
+        [:glGenTransformFeedbacks, [ :int, :pointer ], :void],
+        [:glIsTransformFeedback, [ :uint ], :uchar],
+        [:glPauseTransformFeedback, [  ], :void],
+        [:glResumeTransformFeedback, [  ], :void]
+    ]
   end
 end
 

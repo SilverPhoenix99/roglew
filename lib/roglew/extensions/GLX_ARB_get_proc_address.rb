@@ -1,7 +1,10 @@
-module Roglew
-  module GLX
-    #void ( * glXGetProcAddressARB (const GLubyte *procName)) (void)
-    func = attach_function :GetProcAddressARB, :glXGetProcAddressARB, [:string], :pointer
-    RenderContext.send(:define_method, :glXGetProcAddressARB) { |*parms| func.call(*parms) }
+module GLX_ARB_get_proc_address
+  module RenderHandle
+    include Roglew::RenderHandleExtension
+
+    functions :ffi, [
+        #void ( * glXGetProcAddressARB (const GLubyte *procName)) (void)
+        [:glXGetProcAddressARB, [:string], :pointer]
+    ]
   end
 end

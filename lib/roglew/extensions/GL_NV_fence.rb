@@ -7,16 +7,18 @@ module Roglew
 end
 
 module GL_NV_fence
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glDeleteFencesNV, [ :int, :pointer ], :void],
-              [:glFinishFenceNV, [ :uint ], :void],
-              [:glGenFencesNV, [ :int, :pointer ], :void],
-              [:glGetFenceivNV, [ :uint, :uint, :pointer ], :void],
-              [:glIsFenceNV, [ :uint ], :uchar],
-              [:glSetFenceNV, [ :uint, :uint ], :void],
-              [:glTestFenceNV, [ :uint ], :uchar]
+    functions [
+        [:glDeleteFencesNV, [ :int, :pointer ], :void],
+        [:glFinishFenceNV, [ :uint ], :void],
+        [:glGenFencesNV, [ :int, :pointer ], :void],
+        [:glGetFenceivNV, [ :uint, :uint, :pointer ], :void],
+        [:glIsFenceNV, [ :uint ], :uchar],
+        [:glSetFenceNV, [ :uint, :uint ], :void],
+        [:glTestFenceNV, [ :uint ], :uchar]
+    ]
   end
 end
 

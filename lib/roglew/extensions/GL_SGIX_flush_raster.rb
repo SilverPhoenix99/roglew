@@ -1,7 +1,9 @@
 module GL_SGIX_flush_raster
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glFlushRasterSGIX, [  ], :void]
+    functions [
+      [:glFlushRasterSGIX, [  ], :void]
+    ]
   end
 end

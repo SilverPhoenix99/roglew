@@ -11,10 +11,12 @@ module Roglew
 end
 
 module GL_AMD_vertex_shader_tessellator
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glTessellationFactorAMD, [ :float ], :void],
-              [:glTessellationModeAMD, [ :uint ], :void]
+    functions [
+        [:glTessellationFactorAMD, [ :float ], :void],
+        [:glTessellationModeAMD, [ :uint ], :void]
+    ]
   end
 end

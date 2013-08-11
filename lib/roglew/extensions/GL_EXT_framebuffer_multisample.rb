@@ -7,10 +7,12 @@ module Roglew
 end
 
 module GL_EXT_framebuffer_multisample
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glRenderbufferStorageMultisampleEXT, [ :uint, :int, :uint, :int, :int ], :void]
+    functions [
+        [:glRenderbufferStorageMultisampleEXT, [ :uint, :int, :uint, :int, :int ], :void]
+    ]
   end
 end
 

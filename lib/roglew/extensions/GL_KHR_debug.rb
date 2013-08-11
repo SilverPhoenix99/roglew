@@ -46,19 +46,21 @@ module Roglew
 end
 
 module GL_KHR_debug
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glDebugMessageCallback, [ Roglew::GL::GLDEBUGPROC, :pointer ], :void],
-              [:glDebugMessageControl, [ :uint, :uint, :uint, :int, :pointer, :uchar ], :void],
-              [:glDebugMessageInsert, [ :uint, :uint, :uint, :uint, :int, :string ], :void],
-              [:glGetDebugMessageLog, [ :uint, :int, :pointer, :pointer, :pointer, :pointer, :pointer, :string ], :uint],
-              [:glGetObjectLabel, [ :uint, :uint, :int, :pointer, :string ], :void],
-              [:glGetObjectPtrLabel, [ :pointer, :int, :pointer, :string ], :void],
-              [:glGetPointerv, [ :uint, :pointer ], :void],
-              [:glObjectLabel, [ :uint, :uint, :int, :string ], :void],
-              [:glObjectPtrLabel, [ :pointer, :int, :string ], :void],
-              [:glPushDebugGroup, [ :uint, :uint, :int, :string ], :void]
+    functions [
+        [:glDebugMessageCallback, [ Roglew::GL::GLDEBUGPROC, :pointer ], :void],
+        [:glDebugMessageControl, [ :uint, :uint, :uint, :int, :pointer, :uchar ], :void],
+        [:glDebugMessageInsert, [ :uint, :uint, :uint, :uint, :int, :string ], :void],
+        [:glGetDebugMessageLog, [ :uint, :int, :pointer, :pointer, :pointer, :pointer, :pointer, :string ], :uint],
+        [:glGetObjectLabel, [ :uint, :uint, :int, :pointer, :string ], :void],
+        [:glGetObjectPtrLabel, [ :pointer, :int, :pointer, :string ], :void],
+        [:glGetPointerv, [ :uint, :pointer ], :void],
+        [:glObjectLabel, [ :uint, :uint, :int, :string ], :void],
+        [:glObjectPtrLabel, [ :pointer, :int, :string ], :void],
+        [:glPushDebugGroup, [ :uint, :uint, :int, :string ], :void]
+    ]
   end
 end
 

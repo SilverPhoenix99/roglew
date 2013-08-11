@@ -1,13 +1,11 @@
 module Roglew
-  class RenderContextError < StandardError; end
-
   module RenderContextExtension
     module ClassMethods
       def def_gen(name, function)
         checks_current
         define_method "gen_#{name}", ->(count = 1) do
           p = FFI::MemoryPointer.new(:uint, count)
-          send(function, count, p)
+          @rh.send(function, count, p)
           ids = p.read_array_of_uint(count)
           count == 1 ? ids[0] : ids
         end
@@ -38,9 +36,9 @@ module Roglew
         return unless @checks_current
         msg = remove_instance_variable :@checks_current
         m = instance_method(name)
-        define_method(name) do |*args|
+        define_method(name) do |*args, &block|
           raise RenderContextError, msg unless @rh.current?
-          m.bind(self).(*args)
+          m.bind(self).(*args, &block)
         end
       end
     end

@@ -7,22 +7,24 @@ module Roglew
 end
 
 module GL_NV_shader_buffer_load
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glGetBufferParameterui64vNV, [ :uint, :uint, :pointer ], :void],
-              [:glGetIntegerui64vNV, [ :uint, :pointer ], :void],
-              [:glGetNamedBufferParameterui64vNV, [ :uint, :uint, :pointer ], :void],
-              [:glIsBufferResidentNV, [ :uint ], :uchar],
-              [:glIsNamedBufferResidentNV, [ :uint ], :uchar],
-              [:glMakeBufferNonResidentNV, [ :uint ], :void],
-              [:glMakeBufferResidentNV, [ :uint, :uint ], :void],
-              [:glMakeNamedBufferNonResidentNV, [ :uint ], :void],
-              [:glMakeNamedBufferResidentNV, [ :uint, :uint ], :void],
-              [:glProgramUniformui64NV, [ :uint, :int, :uint64 ], :void],
-              [:glProgramUniformui64vNV, [ :uint, :int, :int, :pointer ], :void],
-              [:glUniformui64NV, [ :int, :uint64 ], :void],
-              [:glUniformui64vNV, [ :int, :int, :pointer ], :void]
+    functions [
+        [:glGetBufferParameterui64vNV, [ :uint, :uint, :pointer ], :void],
+        [:glGetIntegerui64vNV, [ :uint, :pointer ], :void],
+        [:glGetNamedBufferParameterui64vNV, [ :uint, :uint, :pointer ], :void],
+        [:glIsBufferResidentNV, [ :uint ], :uchar],
+        [:glIsNamedBufferResidentNV, [ :uint ], :uchar],
+        [:glMakeBufferNonResidentNV, [ :uint ], :void],
+        [:glMakeBufferResidentNV, [ :uint, :uint ], :void],
+        [:glMakeNamedBufferNonResidentNV, [ :uint ], :void],
+        [:glMakeNamedBufferResidentNV, [ :uint, :uint ], :void],
+        [:glProgramUniformui64NV, [ :uint, :int, :uint64 ], :void],
+        [:glProgramUniformui64vNV, [ :uint, :int, :int, :pointer ], :void],
+        [:glUniformui64NV, [ :int, :uint64 ], :void],
+        [:glUniformui64vNV, [ :int, :int, :pointer ], :void]
+    ]
   end
 end
 

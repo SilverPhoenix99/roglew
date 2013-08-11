@@ -8,10 +8,12 @@ module Roglew
 end
 
 module GL_ARB_blend_func_extended
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glBindFragDataLocationIndexed, [ :uint, :uint, :uint, :string ], :void],
-              [:glGetFragDataIndex, [ :uint, :string ], :int]
+    functions [
+        [:glBindFragDataLocationIndexed, [ :uint, :uint, :uint, :string ], :void],
+        [:glGetFragDataIndex, [ :uint, :string ], :int]
+    ]
   end
 end

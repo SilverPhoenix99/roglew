@@ -7,10 +7,13 @@ module Roglew
 end
 
 module GLX_EXT_swap_control
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-              #void glXSwapIntervalEXT(Display* dpy, GLXDrawable drawable, int interval)
-    functions [:glXSwapIntervalEXT, [:pointer, :int, :int], :void]
+
+    functions [
+      #void glXSwapIntervalEXT(Display* dpy, GLXDrawable drawable, int interval)
+      [:glXSwapIntervalEXT, [:pointer, :int, :int], :void]
+    ]
   end
 end

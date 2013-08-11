@@ -1,8 +1,10 @@
 module GL_SGIX_framezoom
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glFrameZoomSGIX, [ :int ], :void]
+    functions [
+      [:glFrameZoomSGIX, [ :int ], :void]
+    ]
   end
 end
 

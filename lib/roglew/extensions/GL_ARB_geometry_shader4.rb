@@ -23,12 +23,14 @@ module Roglew
 end
 
 module GL_ARB_geometry_shader4
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glFramebufferTextureARB, [ :uint, :uint, :uint, :int ], :void],
-              [:glFramebufferTextureFaceARB, [ :uint, :uint, :uint, :int, :uint ], :void],
-              [:glFramebufferTextureLayerARB, [ :uint, :uint, :uint, :int, :int ], :void],
-              [:glProgramParameteriARB, [ :uint, :uint, :int ], :void]
+    functions [
+        [:glFramebufferTextureARB, [ :uint, :uint, :uint, :int ], :void],
+        [:glFramebufferTextureFaceARB, [ :uint, :uint, :uint, :int, :uint ], :void],
+        [:glFramebufferTextureLayerARB, [ :uint, :uint, :uint, :int, :int ], :void],
+        [:glProgramParameteriARB, [ :uint, :uint, :int ], :void]
+    ]
   end
 end

@@ -9,13 +9,15 @@ module Roglew
 end
 
 module GLX_SUN_video_resize
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-              #int glXGetVideoResizeSUN(Display* display, GLXDrawable window, float* factor)
-    functions [:glXGetVideoResizeSUN, [:pointer, :int, :pointer], :int],
+    functions [
+      #int glXGetVideoResizeSUN(Display* display, GLXDrawable window, float* factor)
+      [:glXGetVideoResizeSUN, [:pointer, :int, :pointer], :int],
 
-              #int glXVideoResizeSUN(Display* display, GLXDrawable window, float factor)
-              [:glXVideoResizeSUN, [:pointer, :int, :float], :int]
+      #int glXVideoResizeSUN(Display* display, GLXDrawable window, float factor)
+      [:glXVideoResizeSUN, [:pointer, :int, :float], :int]
+    ]
   end
 end

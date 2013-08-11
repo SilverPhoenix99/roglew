@@ -2,18 +2,18 @@ module Roglew
   class FramebufferEXT
     include Roglew::Contextual(FramebufferContextEXT)
 
-    attr_reader :context, :id
+    attr_reader :handle, :id
 
-    def initialize(context)
-      @context = context
-      @id = context.gen_framebuffersEXT
-      ObjectSpace.define_finalizer(self, self.class.finalize(@context, @id))
+    def initialize(handle)
+      @handle = context
+      @id = handle.bind { |context| context.gen_framebuffersEXT }
+      ObjectSpace.define_finalizer(self, self.class.finalize(@handle, @id))
     end
 
-    def self.finalize(ctx, id)
+    def self.finalize(handle, id)
       proc do
         puts "releasing framebuffer #{id}"
-        ctx.delete_framebuffersEXT(id)
+        handle.bind { |context| context.delete_framebuffersEXT(id) }
       end
     end
 

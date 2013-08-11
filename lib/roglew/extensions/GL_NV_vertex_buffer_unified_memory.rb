@@ -29,21 +29,23 @@ module Roglew
 end
 
 module GL_NV_vertex_buffer_unified_memory
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glBufferAddressRangeNV, [ :uint, :uint, :uint64, :int64 ], :void],
-              [:glColorFormatNV, [ :int, :uint, :int ], :void],
-              [:glEdgeFlagFormatNV, [ :int ], :void],
-              [:glFogCoordFormatNV, [ :uint, :int ], :void],
-              [:glGetIntegerui64i_vNV, [ :uint, :uint, :int64 ], :void],
-              [:glIndexFormatNV, [ :uint, :int ], :void],
-              [:glNormalFormatNV, [ :uint, :int ], :void],
-              [:glSecondaryColorFormatNV, [ :int, :uint, :int ], :void],
-              [:glTexCoordFormatNV, [ :int, :uint, :int ], :void],
-              [:glVertexAttribFormatNV, [ :uint, :int, :uint, :uchar, :int ], :void],
-              [:glVertexAttribIFormatNV, [ :uint, :int, :uint, :int ], :void],
-              [:glVertexFormatNV, [ :int, :uint, :int ], :void]
+    functions [
+        [:glBufferAddressRangeNV, [ :uint, :uint, :uint64, :int64 ], :void],
+        [:glColorFormatNV, [ :int, :uint, :int ], :void],
+        [:glEdgeFlagFormatNV, [ :int ], :void],
+        [:glFogCoordFormatNV, [ :uint, :int ], :void],
+        [:glGetIntegerui64i_vNV, [ :uint, :uint, :int64 ], :void],
+        [:glIndexFormatNV, [ :uint, :int ], :void],
+        [:glNormalFormatNV, [ :uint, :int ], :void],
+        [:glSecondaryColorFormatNV, [ :int, :uint, :int ], :void],
+        [:glTexCoordFormatNV, [ :int, :uint, :int ], :void],
+        [:glVertexAttribFormatNV, [ :uint, :int, :uint, :uchar, :int ], :void],
+        [:glVertexAttribIFormatNV, [ :uint, :int, :uint, :int ], :void],
+        [:glVertexFormatNV, [ :int, :uint, :int ], :void]
+    ]
   end
 end
 

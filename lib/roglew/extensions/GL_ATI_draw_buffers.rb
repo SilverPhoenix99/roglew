@@ -21,10 +21,12 @@ module Roglew
 end
 
 module GL_ATI_draw_buffers
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glDrawBuffersATI, [ :int, :pointer ], :void]
+    functions [
+        [:glDrawBuffersATI, [ :int, :pointer ], :void]
+    ]
   end
 end
 

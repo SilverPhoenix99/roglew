@@ -7,12 +7,14 @@ module Roglew
 end
 
 module GL_ATI_element_array
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glDrawElementArrayATI, [ :uint, :int ], :void],
-              [:glDrawRangeElementArrayATI, [ :uint, :uint, :uint, :int ], :void],
-              [:glElementPointerATI, [ :uint, :pointer ], :void]
+    functions [
+        [:glDrawElementArrayATI, [ :uint, :int ], :void],
+        [:glDrawRangeElementArrayATI, [ :uint, :uint, :uint, :int ], :void],
+        [:glElementPointerATI, [ :uint, :pointer ], :void]
+    ]
   end
 end
 

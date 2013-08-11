@@ -6,15 +6,17 @@ module Roglew
 end
 
 module GL_NV_texture_multisample
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glTexImage2DMultisampleCoverageNV, [ :uint, :int, :int, :int, :int, :int, :uchar ], :void],
-              [:glTexImage3DMultisampleCoverageNV, [ :uint, :int, :int, :int, :int, :int, :int, :uchar ], :void],
-              [:glTextureImage2DMultisampleCoverageNV, [ :uint, :uint, :int, :int, :int, :int, :int, :uchar ], :void],
-              [:glTextureImage2DMultisampleNV, [ :uint, :uint, :int, :int, :int, :int, :uchar ], :void],
-              [:glTextureImage3DMultisampleCoverageNV, [ :uint, :uint, :int, :int, :int, :int, :int, :int, :uchar ], :void],
-              [:glTextureImage3DMultisampleNV, [ :uint, :uint, :int, :int, :int, :int, :int, :uchar ], :void]
+    functions [
+        [:glTexImage2DMultisampleCoverageNV, [ :uint, :int, :int, :int, :int, :int, :uchar ], :void],
+        [:glTexImage3DMultisampleCoverageNV, [ :uint, :int, :int, :int, :int, :int, :int, :uchar ], :void],
+        [:glTextureImage2DMultisampleCoverageNV, [ :uint, :uint, :int, :int, :int, :int, :int, :uchar ], :void],
+        [:glTextureImage2DMultisampleNV, [ :uint, :uint, :int, :int, :int, :int, :uchar ], :void],
+        [:glTextureImage3DMultisampleCoverageNV, [ :uint, :uint, :int, :int, :int, :int, :int, :int, :uchar ], :void],
+        [:glTextureImage3DMultisampleNV, [ :uint, :uint, :int, :int, :int, :int, :int, :uchar ], :void]
+    ]
   end
 end
 

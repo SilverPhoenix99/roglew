@@ -24,12 +24,14 @@ module Roglew
 end
 
 module GL_EXT_geometry_shader4
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glFramebufferTextureEXT, [ :uint, :uint, :uint, :int ], :void],
-              [:glFramebufferTextureFaceEXT, [ :uint, :uint, :uint, :int, :uint ], :void],
-              [:glProgramParameteriEXT, [ :uint, :uint, :int ], :void]
+    functions [
+        [:glFramebufferTextureEXT, [ :uint, :uint, :uint, :int ], :void],
+        [:glFramebufferTextureFaceEXT, [ :uint, :uint, :uint, :int, :uint ], :void],
+        [:glProgramParameteriEXT, [ :uint, :uint, :int ], :void]
+    ]
   end
 end
 

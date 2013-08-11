@@ -1,7 +1,9 @@
 module GL_GREMEDY_frame_terminator
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glFrameTerminatorGREMEDY, [  ], :void]
+    functions [
+        [:glFrameTerminatorGREMEDY, [], :void]
+    ]
   end
 end

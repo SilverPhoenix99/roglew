@@ -8,10 +8,12 @@ module Roglew
 end
 
 module GL_NV_framebuffer_multisample_coverage
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glRenderbufferStorageMultisampleCoverageNV, [ :uint, :int, :int, :uint, :int, :int ], :void]
+    functions [
+        [:glRenderbufferStorageMultisampleCoverageNV, [ :uint, :int, :int, :uint, :int, :int ], :void]
+    ]
   end
 end
 

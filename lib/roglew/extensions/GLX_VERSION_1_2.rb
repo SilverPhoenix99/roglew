@@ -1,8 +1,10 @@
 module GLX_VERSION_1_2
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-              #Display* glXGetCurrentDisplay (void)
-    functions [:glXGetCurrentDisplay, [], :pointer]
+    functions [
+      #Display* glXGetCurrentDisplay (void)
+      [:glXGetCurrentDisplay, [], :pointer]
+    ]
   end
 end

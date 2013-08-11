@@ -7,12 +7,14 @@ module Roglew
 end
 
 module WGL_I3D_image_buffer
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:wglAssociateImageBufferEventsI3D, [ :pointer, :pointer, :pointer, :pointer, :uint ], :bool ],
-              [:wglCreateImageBufferI3D, [ :pointer, :uint, :uint ], :pointer ],
-              [:wglDestroyImageBufferI3D, [ :pointer, :pointer ], :bool ],
-              [:wglReleaseImageBufferEventsI3D, [ :pointer, :pointer, :uint ], :bool ]
+    functions [
+      [:wglAssociateImageBufferEventsI3D, [ :pointer, :pointer, :pointer, :pointer, :uint ], :bool ],
+      [:wglCreateImageBufferI3D, [ :pointer, :uint, :uint ], :pointer ],
+      [:wglDestroyImageBufferI3D, [ :pointer, :pointer ], :bool ],
+      [:wglReleaseImageBufferEventsI3D, [ :pointer, :pointer, :uint ], :bool ]
+    ]
   end
 end

@@ -16,26 +16,28 @@ module Roglew
 end
 
 module GL_ARB_gpu_shader_fp64
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glGetUniformdv, [ :uint, :int, :pointer ], :void],
-              [:glUniform1d, [ :int, :double ], :void],
-              [:glUniform1dv, [ :int, :int, :pointer ], :void],
-              [:glUniform2d, [ :int, :double, :double ], :void],
-              [:glUniform2dv, [ :int, :int, :pointer ], :void],
-              [:glUniform3d, [ :int, :double, :double, :double ], :void],
-              [:glUniform3dv, [ :int, :int, :pointer ], :void],
-              [:glUniform4d, [ :int, :double, :double, :double, :double ], :void],
-              [:glUniform4dv, [ :int, :int, :pointer ], :void],
-              [:glUniformMatrix2dv, [ :int, :int, :uchar, :pointer ], :void],
-              [:glUniformMatrix2x3dv, [ :int, :int, :uchar, :pointer ], :void],
-              [:glUniformMatrix2x4dv, [ :int, :int, :uchar, :pointer ], :void],
-              [:glUniformMatrix3dv, [ :int, :int, :uchar, :pointer ], :void],
-              [:glUniformMatrix3x2dv, [ :int, :int, :uchar, :pointer ], :void],
-              [:glUniformMatrix3x4dv, [ :int, :int, :uchar, :pointer ], :void],
-              [:glUniformMatrix4dv, [ :int, :int, :uchar, :pointer ], :void],
-              [:glUniformMatrix4x2dv, [ :int, :int, :uchar, :pointer ], :void],
-              [:glUniformMatrix4x3dv, [ :int, :int, :uchar, :pointer ], :void]
+    functions [
+        [:glGetUniformdv, [ :uint, :int, :pointer ], :void],
+        [:glUniform1d, [ :int, :double ], :void],
+        [:glUniform1dv, [ :int, :int, :pointer ], :void],
+        [:glUniform2d, [ :int, :double, :double ], :void],
+        [:glUniform2dv, [ :int, :int, :pointer ], :void],
+        [:glUniform3d, [ :int, :double, :double, :double ], :void],
+        [:glUniform3dv, [ :int, :int, :pointer ], :void],
+        [:glUniform4d, [ :int, :double, :double, :double, :double ], :void],
+        [:glUniform4dv, [ :int, :int, :pointer ], :void],
+        [:glUniformMatrix2dv, [ :int, :int, :uchar, :pointer ], :void],
+        [:glUniformMatrix2x3dv, [ :int, :int, :uchar, :pointer ], :void],
+        [:glUniformMatrix2x4dv, [ :int, :int, :uchar, :pointer ], :void],
+        [:glUniformMatrix3dv, [ :int, :int, :uchar, :pointer ], :void],
+        [:glUniformMatrix3x2dv, [ :int, :int, :uchar, :pointer ], :void],
+        [:glUniformMatrix3x4dv, [ :int, :int, :uchar, :pointer ], :void],
+        [:glUniformMatrix4dv, [ :int, :int, :uchar, :pointer ], :void],
+        [:glUniformMatrix4x2dv, [ :int, :int, :uchar, :pointer ], :void],
+        [:glUniformMatrix4x3dv, [ :int, :int, :uchar, :pointer ], :void]
+    ]
   end
 end

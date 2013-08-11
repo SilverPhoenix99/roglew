@@ -9,15 +9,17 @@ module Roglew
 end
 
 module GL_EXT_texture_object
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glAreTexturesResidentEXT, [ :int, :pointer, :pointer ], :uchar],
-              [:glBindTextureEXT, [ :uint, :uint ], :void],
-              [:glDeleteTexturesEXT, [ :int, :pointer ], :void],
-              [:glGenTexturesEXT, [ :int, :pointer ], :void],
-              [:glIsTextureEXT, [ :uint ], :uchar],
-              [:glPrioritizeTexturesEXT, [ :int, :pointer, :pointer ], :void]
+    functions [
+        [:glAreTexturesResidentEXT, [ :int, :pointer, :pointer ], :uchar],
+        [:glBindTextureEXT, [ :uint, :uint ], :void],
+        [:glDeleteTexturesEXT, [ :int, :pointer ], :void],
+        [:glGenTexturesEXT, [ :int, :pointer ], :void],
+        [:glIsTextureEXT, [ :uint ], :uchar],
+        [:glPrioritizeTexturesEXT, [ :int, :pointer, :pointer ], :void]
+    ]
   end
 end
 

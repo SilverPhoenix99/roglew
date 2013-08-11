@@ -1,11 +1,13 @@
 module GLX_SGIX_swap_barrier
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-              #void glXBindSwapBarrierSGIX(Display *dpy, GLXDrawable drawable, int barrier)
-    functions [:glXBindSwapBarrierSGIX, [:pointer, ], :void],
+    functions [
+      #void glXBindSwapBarrierSGIX(Display *dpy, GLXDrawable drawable, int barrier)
+      [:glXBindSwapBarrierSGIX, [:pointer, ], :void],
 
-              #Bool glXQueryMaxSwapBarriersSGIX(Display *dpy, int screen, int *max)
-              [:glXQueryMaxSwapBarriersSGIX, [:pointer, ], :bool]
+      #Bool glXQueryMaxSwapBarriersSGIX(Display *dpy, int screen, int *max)
+      [:glXQueryMaxSwapBarriersSGIX, [:pointer, ], :bool]
+    ]
   end
 end

@@ -49,11 +49,13 @@ module Roglew
 end
 
 module WGL_EXT_pixel_format
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:wglChoosePixelFormatEXT, [ :pointer, :pointer, :pointer, :uint, :pointer, :pointer ], :bool ],
-              [:wglGetPixelFormatAttribfvEXT, [ :pointer, :int, :int, :uint, :pointer, :pointer ], :bool ],
-              [:wglGetPixelFormatAttribivEXT, [ :pointer, :int, :int, :uint, :pointer, :pointer ], :bool ]
+    functions [
+      [:wglChoosePixelFormatEXT, [ :pointer, :pointer, :pointer, :uint, :pointer, :pointer ], :bool ],
+      [:wglGetPixelFormatAttribfvEXT, [ :pointer, :int, :int, :uint, :pointer, :pointer ], :bool ],
+      [:wglGetPixelFormatAttribivEXT, [ :pointer, :int, :int, :uint, :pointer, :pointer ], :bool ]
+    ]
   end
 end

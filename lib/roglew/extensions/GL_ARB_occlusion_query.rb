@@ -9,16 +9,18 @@ module Roglew
 end
 
 module GL_ARB_occlusion_query
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glBeginQueryARB, [ :uint, :uint ], :void],
-              [:glDeleteQueriesARB, [ :int, :pointer ], :void],
-              [:glEndQueryARB, [ :uint ], :void],
-              [:glGenQueriesARB, [ :int, :pointer ], :void],
-              [:glGetQueryivARB, [ :uint, :uint, :pointer ], :void],
-              [:glGetQueryObjectivARB, [ :uint, :uint, :pointer ], :void],
-              [:glGetQueryObjectuivARB, [ :uint, :uint, :pointer ], :void],
-              [:glIsQueryARB, [ :uint ], :uchar]
+    functions [
+        [:glBeginQueryARB, [ :uint, :uint ], :void],
+        [:glDeleteQueriesARB, [ :int, :pointer ], :void],
+        [:glEndQueryARB, [ :uint ], :void],
+        [:glGenQueriesARB, [ :int, :pointer ], :void],
+        [:glGetQueryivARB, [ :uint, :uint, :pointer ], :void],
+        [:glGetQueryObjectivARB, [ :uint, :uint, :pointer ], :void],
+        [:glGetQueryObjectuivARB, [ :uint, :uint, :pointer ], :void],
+        [:glIsQueryARB, [ :uint ], :uchar]
+    ]
   end
 end

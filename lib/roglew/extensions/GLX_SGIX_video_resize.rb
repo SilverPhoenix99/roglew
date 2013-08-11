@@ -6,22 +6,24 @@ module Roglew
 end
 
 module GLX_SGIX_video_resize
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-              #int glXBindChannelToWindowSGIX(Display* display, int screen, int channel, Window window)
-    functions [:glXBindChannelToWindowSGIX, [:pointer, :int, :int, :int], :int],
+    functions [
+      #int glXBindChannelToWindowSGIX(Display* display, int screen, int channel, Window window)
+      [:glXBindChannelToWindowSGIX, [:pointer, :int, :int, :int], :int],
 
-              #int glXChannelRectSGIX(Display* display, int screen, int channel, int x, int y, int w, int h)
-              [:glXChannelRectSGIX, [:pointer, :int, :int, :int, :int, :int, :int], :int],
+      #int glXChannelRectSGIX(Display* display, int screen, int channel, int x, int y, int w, int h)
+      [:glXChannelRectSGIX, [:pointer, :int, :int, :int, :int, :int, :int], :int],
 
-              #int glXChannelRectSyncSGIX(Display* display, int screen, int channel, GLenum synctype)
-              [:glXChannelRectSyncSGIX, [:pointer, :int, :int, :uint], :int],
+      #int glXChannelRectSyncSGIX(Display* display, int screen, int channel, GLenum synctype)
+      [:glXChannelRectSyncSGIX, [:pointer, :int, :int, :uint], :int],
 
-              #int glXQueryChannelDeltasSGIX(Display* display, int screen, int channel, int *x, int *y, int *w, int *h)
-              [:glXQueryChannelDeltasSGIX, [:pointer, :int, :int, :pointer, :pointer, :pointer, :pointer], :int],
+      #int glXQueryChannelDeltasSGIX(Display* display, int screen, int channel, int *x, int *y, int *w, int *h)
+      [:glXQueryChannelDeltasSGIX, [:pointer, :int, :int, :pointer, :pointer, :pointer, :pointer], :int],
 
-              #int glXQueryChannelRectSGIX(Display* display, int screen, int channel, int *dx, int *dy, int *dw, int *dh)
-              [:glXQueryChannelRectSGIX, [:pointer, :int, :int, :pointer, :pointer, :pointer, :pointer], :int]
+      #int glXQueryChannelRectSGIX(Display* display, int screen, int channel, int *dx, int *dy, int *dw, int *dh)
+      [:glXQueryChannelRectSGIX, [:pointer, :int, :int, :pointer, :pointer, :pointer, :pointer], :int]
+    ]
   end
 end

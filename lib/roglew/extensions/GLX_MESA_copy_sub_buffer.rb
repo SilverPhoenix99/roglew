@@ -1,8 +1,10 @@
 module  GLX_MESA_copy_sub_buffer
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-              #void glXCopySubBufferMESA(Display* dpy, GLXDrawable drawable, int x, int y, int width, int height)
-    functions [:glXCopySubBufferMESA, [:pointer, :int, :int, :int, :int, :int], :void]
+    functions [
+      #void glXCopySubBufferMESA(Display* dpy, GLXDrawable drawable, int x, int y, int width, int height)
+      [:glXCopySubBufferMESA, [:pointer, :int, :int, :int, :int, :int], :void]
+    ]
   end
 end

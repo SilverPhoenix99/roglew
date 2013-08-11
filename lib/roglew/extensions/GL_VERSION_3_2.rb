@@ -27,17 +27,19 @@ module Roglew
 end
 
 module GL_VERSION_3_2
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glFramebufferTexture, [ :uint, :uint, :uint, :int ], :void],
-              [:glGetBufferParameteri64v, [ :uint, :uint, :pointer ], :void],
-              [:glGetInteger64i_v, [ :uint, :uint, :pointer ], :void]
+    functions [
+        [ :glFramebufferTexture, [ :uint, :uint, :uint, :int ], :void ],
+        [ :glGetBufferParameteri64v, [ :uint, :uint, :pointer ], :void ],
+        [ :glGetInteger64i_v, [ :uint, :uint, :pointer ], :void ]
+    ]
   end
 end
 
-#GL_VERSION_4_0 implicit requires
-#GL_ARB_draw_elements_base_vertex
-#GL_ARB_provoking_vertex
-#GL_ARB_sync
-#GL_ARB_texture_multisample
+#GL_VERSION_3_2 implicitly requires:
+#  GL_ARB_draw_elements_base_vertex
+#  GL_ARB_provoking_vertex
+#  GL_ARB_sync
+#  GL_ARB_texture_multisample

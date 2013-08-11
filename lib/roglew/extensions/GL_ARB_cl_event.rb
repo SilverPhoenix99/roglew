@@ -6,9 +6,11 @@ module Roglew
 end
 
 module GL_ARB_cl_event
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glCreateSyncFromCLeventARB, [ :pointer, :pointer, :uint ], :pointer]
+    functions [
+        [:glCreateSyncFromCLeventARB, [ :pointer, :pointer, :uint ], :pointer]
+    ]
   end
 end

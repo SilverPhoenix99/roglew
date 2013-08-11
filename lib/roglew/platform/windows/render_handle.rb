@@ -5,7 +5,9 @@ module Roglew
 
       initialize_pixel_format
 
-      @hrc, old_hrc = wglCreateContext(@hdc), nil
+      @hrc, old_hrc = WGL.CreateContext(@hdc), nil
+
+      @loaded_extensions = Set.new
 
       bind do
         #check version
@@ -15,33 +17,35 @@ module Roglew
         raise ArgumentError, "unsupported version: #{version.join('.')}" if version && (max_version <=> version < 0)
 
         @version = version || max_version
-        @loaded_extensions = Set.new
         extension_list(:core).each { |ext| load_extension(ext) }
         old_hrc, @hrc = @hrc, upgrade_context if @version[0] > 2
         extension_list(:gl, :platform).each { |ext| load_extension(ext) }
       end
 
       @attribs = Set[GL::DITHER]
-      @attribs << GL::MULTISAMPLE if @version <=> [1, 3] >= 0
+      @attribs << GL::MULTISAMPLE if (@version <=> [1, 3]) >= 0
 
-      wglDeleteContext(old_hrc) if old_hrc
+      WGL.DeleteContext(old_hrc) if old_hrc
 
-      ObjectSpace.define_finalizer(self, self.class.finalize(@hrc))
+      ObjectSpace.define_finalizer(self, self.class.send(:finalize, @hrc))
     end
 
     private #-------------------------------------------------------------------------
 
     def extension_list_platform
-      if (func = get_function(:wglGetExtensionsStringARB, [:pointer], :string))
+      rc = RenderContext.current
+      if (func = rc.get_function(:wglGetExtensionsStringARB, [:pointer], :string))
         func.(@hdc)
-      elsif (func = get_function(:wglGetExtensionsStringEXT, [], :string))
+      elsif (func = rc.get_function(:wglGetExtensionsStringEXT, [], :string))
         func.()
       else
         ''
       end.split.map!(&:to_sym)
     end
 
-    alias_method :get_proc_address, :wglGetProcAddress
+    def get_proc_address(function_name)
+      WGL.GetProcAddress(function_name)
+    end
 
     def initialize_pixel_format
       pfd = Gdi32::PIXELFORMATDESCRIPTOR.new
@@ -61,11 +65,11 @@ module Roglew
     end
 
     def make_current
-      wglMakeCurrent(@hdc, @hrc)
+      WGL.MakeCurrent(@hdc, @hrc)
     end
 
     def remove_current
-      wglMakeCurrent(nil, nil)
+      WGL.MakeCurrent(nil, nil)
     end
 
     def swap_buffers

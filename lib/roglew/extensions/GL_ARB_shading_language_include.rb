@@ -7,14 +7,16 @@ module Roglew
 end
 
 module GL_ARB_shading_language_include
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glCompileShaderIncludeARB, [ :uint, :int, :pointer, :pointer ], :void],
-              [:glDeleteNamedStringARB, [ :int, :string ], :void],
-              [:glGetNamedStringARB, [ :int, :string, :int, :pointer, :string ], :void],
-              [:glGetNamedStringivARB, [ :int, :string, :uint, :pointer ], :void],
-              [:glIsNamedStringARB, [ :int, :string ], :uchar],
-              [:glNamedStringARB, [ :uint, :int, :string, :int, :string ], :void]
+    functions [
+        [:glCompileShaderIncludeARB, [ :uint, :int, :pointer, :pointer ], :void],
+        [:glDeleteNamedStringARB, [ :int, :string ], :void],
+        [:glGetNamedStringARB, [ :int, :string, :int, :pointer, :string ], :void],
+        [:glGetNamedStringivARB, [ :int, :string, :uint, :pointer ], :void],
+        [:glIsNamedStringARB, [ :int, :string ], :uchar],
+        [:glNamedStringARB, [ :uint, :int, :string, :int, :string ], :void]
+    ]
   end
 end

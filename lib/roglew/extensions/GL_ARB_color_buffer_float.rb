@@ -9,9 +9,11 @@ module Roglew
 end
 
 module GL_ARB_color_buffer_float
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glClampColorARB, [ :uint, :uint ], :void]
+    functions [
+        [:glClampColorARB, [ :uint, :uint ], :void]
+    ]
   end
 end

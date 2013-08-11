@@ -53,68 +53,83 @@ module Roglew
 end
 
 module GL_VERSION_1_5
+  module RenderHandle
+    include Roglew::RenderHandleExtension
+
+    functions [
+        [:glBeginQuery, [ :uint, :uint ], :void],
+        [:glBindBuffer, [ :uint, :uint ], :void],
+        [:glBufferData, [ :uint, :size_t, :pointer, :uint ], :void],
+        [:glBufferSubData, [ :uint, :size_t, :size_t, :pointer ], :void],
+        [:glDeleteBuffers, [ :int, :pointer ], :void],
+        [:glDeleteQueries, [ :int, :pointer ], :void],
+        [:glEndQuery, [ :uint ], :void],
+        [:glGenBuffers, [ :int, :pointer ], :void],
+        [:glGenQueries, [ :int, :pointer ], :void],
+        [:glGetBufferParameteriv, [ :uint, :uint, :pointer ], :void],
+        [:glGetBufferPointerv, [ :uint, :uint, :pointer ], :void],
+        [:glGetBufferSubData, [ :uint, :size_t, :size_t, :pointer ], :void],
+        [:glGetQueryiv, [ :uint, :uint, :pointer ], :void],
+        [:glGetQueryObjectiv, [ :uint, :uint, :pointer ], :void],
+        [:glGetQueryObjectuiv, [ :uint, :uint, :pointer ], :void],
+        [:glIsBuffer, [ :uint ], :uchar],
+        [:glIsQuery, [ :uint ], :uchar],
+        [:glMapBuffer, [ :uint, :uint ], :pointer],
+        [:glUnmapBuffer, [ :uint ], :uchar]
+    ]
+
+    functions :compatibility, [
+        [ :glGetTexGendv, [ :uint, :uint, :pointer ], :void ]
+    ]
+  end
+
   module RenderContext
-    include Roglew::GLExtension
-
-    def create_buffer
-      Roglew::Buffer.new(self)
-    end
-
-    def create_query
-      Roglew::Query.new(context)
-    end
-
-    functions [:glBeginQuery, [ :uint, :uint ], :void],
-              [:glBindBuffer, [ :uint, :uint ], :void],
-              [:glBufferData, [ :uint, :size_t, :pointer, :uint ], :void],
-              [:glBufferSubData, [ :uint, :size_t, :size_t, :pointer ], :void],
-              [:glDeleteBuffers, [ :int, :pointer ], :void],
-              [:glDeleteQueries, [ :int, :pointer ], :void],
-              [:glEndQuery, [ :uint ], :void],
-              [:glGenBuffers, [ :int, :pointer ], :void],
-              [:glGenQueries, [ :int, :pointer ], :void],
-              [:glGetBufferParameteriv, [ :uint, :uint, :pointer ], :void],
-              [:glGetBufferPointerv, [ :uint, :uint, :pointer ], :void],
-              [:glGetBufferSubData, [ :uint, :size_t, :size_t, :pointer ], :void],
-              [:glGetQueryiv, [ :uint, :uint, :pointer ], :void],
-              [:glGetQueryObjectiv, [ :uint, :uint, :pointer ], :void],
-              [:glGetQueryObjectuiv, [ :uint, :uint, :pointer ], :void],
-              [:glIsBuffer, [ :uint ], :uchar],
-              [:glIsQuery, [ :uint ], :uchar],
-              [:glMapBuffer, [ :uint, :uint ], :pointer],
-              [:glUnmapBuffer, [ :uint ], :uchar]
+    include Roglew::RenderContextExtension
 
     def_object :Buffers
     def_object :Queries
 
-    def buffer_data(target, usage, buffer = nil, type = nil)
-      glBufferData(target, *if buffer.is_a?(Array) && buffer.size > 0
-        p = FFI::MemoryPointer.new(type, buffer.size)
-        p.send("write_array_of_#{type}", buffer)
-        [p.size, p]
-      else
-        size = buffer.respond_to?(:to_i) ? buffer.to_i : 0
-        size *= if size > 0 && type
-          type = FFI.find_type(type) if type.is_a?(Symbol)
-          type.size
-        else
-          1
-        end
-
-        [size, nil]
-      end, usage)
+    checks_current
+    def create_buffer
+      Roglew::Buffer.new(@rh)
     end
 
+    checks_current
+    def create_query
+      Roglew::Query.new(@rh)
+    end
+
+    checks_current
+    def buffer_data(target, usage, buffer = nil, type = nil)
+      size, pointer = if buffer.is_a?(Array) && buffer.size > 0
+                        p = FFI::MemoryPointer.new(type, buffer.size)
+                        p.send("write_array_of_#{type}", buffer)
+                        [p.size, p]
+                      else
+                        size = buffer.respond_to?(:to_i) ? buffer.to_i : 0
+                        size *= if size > 0 && type
+                                  type = FFI.find_type(type) if type.is_a?(Symbol)
+                                  type.size
+                                else
+                                  1
+                                end
+                        [size, nil]
+                      end
+
+      @rh.glBufferData(target, size, pointer, usage)
+    end
+
+    checks_current
     def buffer_sub_data(target, offset, type, buffer)
       pointer = FFI::MemoryPointer.new(type, buffer.size)
       pointer.send("write_array_of_#{type}", buffer)
-      glBufferSubData(target, offset, buffer.size, pointer)
+      @rh.glBufferSubData(target, offset, buffer.size, pointer)
     end
   end
 end
 
 %w'
-buffer_context
-buffer
-query
+  buffer_context
+  buffer
+  query
 '.each { |f| require "#{File.expand_path(__FILE__)[0..-4]}/#{f}" }

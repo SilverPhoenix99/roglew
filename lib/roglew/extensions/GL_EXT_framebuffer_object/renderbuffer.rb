@@ -2,18 +2,18 @@ module Roglew
   class RenderbufferEXT
     include Roglew::Contextual(RenderbufferContextEXT)
 
-    attr_reader :context, :id
+    attr_reader :handle, :id
 
-    def initialize(context)
-      @context = context
-      @id = context.gen_renderbuffersEXT
-      ObjectSpace.define_finalizer(self, self.class.finalize(@context, @id))
+    def initialize(handle)
+      @handle = handle
+      @id = handle.bind { |context| context.gen_renderbuffersEXT }
+      ObjectSpace.define_finalizer(self, self.class.finalize(@handle, @id))
     end
 
-    def self.finalize(ctx, id)
+    def self.finalize(handle, id)
       proc do
         puts "releasing renderbuffer #{id}"
-        ctx.delete_renderbuffersEXT(id)
+        handle.bind { |context| context.delete_renderbuffersEXT(id) }
       end
     end
 

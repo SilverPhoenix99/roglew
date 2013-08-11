@@ -20,13 +20,15 @@ module Roglew
 end
 
 module GL_ARB_ES2_compatibility
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glClearDepthf, [ :float ], :void],
-              [:glDepthRangef, [ :float, :float ], :void],
-              [:glGetShaderPrecisionFormat, [ :uint, :uint, :pointer, :pointer ], :void],
-              [:glReleaseShaderCompiler, [  ], :void],
-              [:glShaderBinary, [ :int, :pointer, :uint, :pointer, :int ], :void]
+    functions [
+        [:glClearDepthf, [ :float ], :void],
+        [:glDepthRangef, [ :float, :float ], :void],
+        [:glGetShaderPrecisionFormat, [ :uint, :uint, :pointer, :pointer ], :void],
+        [:glReleaseShaderCompiler, [  ], :void],
+        [:glShaderBinary, [ :int, :pointer, :uint, :pointer, :int ], :void]
+    ]
   end
 end

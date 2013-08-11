@@ -1,8 +1,10 @@
 module GL_AMD_multi_draw_indirect
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glMultiDrawArraysIndirectAMD, [ :uint, :pointer, :int, :int ], :void],
-              [:glMultiDrawElementsIndirectAMD, [ :uint, :uint, :pointer, :int, :int ], :void]
+    functions [
+        [:glMultiDrawArraysIndirectAMD, [ :uint, :pointer, :int, :int ], :void],
+        [:glMultiDrawElementsIndirectAMD, [ :uint, :uint, :pointer, :int, :int ], :void]
+    ]
   end
 end

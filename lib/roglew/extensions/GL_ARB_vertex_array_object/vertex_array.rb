@@ -1,26 +1,26 @@
 module Roglew
   class VertexArray
 
-    attr_reader :context, :id
+    attr_reader :handle, :id
 
-    def initialize(context)
-      @context = context
-      @id = context.gen_vertex_arrays
-      ObjectSpace.define_finalizer(self, self.class.finalize(@context, @id))
+    def initialize(handle)
+      @handle = handle
+      @id = handle.bind { |rc| rc.gen_vertex_arrays }
+      ObjectSpace.define_finalizer(self, self.class.finalize(@handle, @id))
     end
 
-    def self.finalize(ctx, id)
+    def self.finalize(handle, id)
       proc do
         puts "releasing vertex array #{id}"
-        ctx.delete_vertex_arrays(id)
+        handle.bind { |rc| rc.delete_vertex_arrays(id) }
       end
     end
 
     def bind
-      @context.glBindVertexArray(@id)
+      @handle.glBindVertexArray(@id)
       if block_given?
         yield
-        @context.glBindVertexArray(0)
+        @handle.glBindVertexArray(0)
       end
       self
     end

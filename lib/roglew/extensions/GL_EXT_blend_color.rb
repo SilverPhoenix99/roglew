@@ -9,10 +9,12 @@ module Roglew
 end
 
 module GL_EXT_blend_color
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glBlendColorEXT, [ :float, :float, :float, :float ], :void]
+    functions [
+        [:glBlendColorEXT, [ :float, :float, :float, :float ], :void]
+    ]
   end
 end
 

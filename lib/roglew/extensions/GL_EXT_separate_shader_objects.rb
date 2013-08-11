@@ -5,12 +5,14 @@ module Roglew
 end
 
 module GL_EXT_separate_shader_objects
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glActiveProgramEXT, [ :uint ], :void],
-              [:glCreateShaderProgramEXT, [ :uint, :string ], :uint],
-              [:glUseShaderProgramEXT, [ :uint, :uint ], :void]
+    functions [
+        [:glActiveProgramEXT, [ :uint ], :void],
+        [:glCreateShaderProgramEXT, [ :uint, :string ], :uint],
+        [:glUseShaderProgramEXT, [ :uint, :uint ], :void]
+    ]
   end
 end
 

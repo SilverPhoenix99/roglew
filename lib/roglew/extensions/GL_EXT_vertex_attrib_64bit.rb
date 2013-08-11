@@ -16,20 +16,22 @@ module Roglew
 end
 
 module GL_EXT_vertex_attrib_64bit
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glGetVertexAttribLdvEXT, [ :uint, :uint, :pointer ], :void],
-              [:glVertexArrayVertexAttribLOffsetEXT, [ :uint, :uint, :uint, :int, :uint, :int, :int64 ], :void],
-              [:glVertexAttribL1dEXT, [ :uint, :double ], :void],
-              [:glVertexAttribL1dvEXT, [ :uint, :pointer ], :void],
-              [:glVertexAttribL2dEXT, [ :uint, :double, :double ], :void],
-              [:glVertexAttribL2dvEXT, [ :uint, :pointer ], :void],
-              [:glVertexAttribL3dEXT, [ :uint, :double, :double, :double ], :void],
-              [:glVertexAttribL3dvEXT, [ :uint, :pointer ], :void],
-              [:glVertexAttribL4dEXT, [ :uint, :double, :double, :double, :double ], :void],
-              [:glVertexAttribL4dvEXT, [ :uint, :pointer ], :void],
-              [:glVertexAttribLPointerEXT, [ :uint, :int, :uint, :int, :pointer ], :void]
+    functions [
+        [:glGetVertexAttribLdvEXT, [ :uint, :uint, :pointer ], :void],
+        [:glVertexArrayVertexAttribLOffsetEXT, [ :uint, :uint, :uint, :int, :uint, :int, :int64 ], :void],
+        [:glVertexAttribL1dEXT, [ :uint, :double ], :void],
+        [:glVertexAttribL1dvEXT, [ :uint, :pointer ], :void],
+        [:glVertexAttribL2dEXT, [ :uint, :double, :double ], :void],
+        [:glVertexAttribL2dvEXT, [ :uint, :pointer ], :void],
+        [:glVertexAttribL3dEXT, [ :uint, :double, :double, :double ], :void],
+        [:glVertexAttribL3dvEXT, [ :uint, :pointer ], :void],
+        [:glVertexAttribL4dEXT, [ :uint, :double, :double, :double, :double ], :void],
+        [:glVertexAttribL4dvEXT, [ :uint, :pointer ], :void],
+        [:glVertexAttribLPointerEXT, [ :uint, :int, :uint, :int, :pointer ], :void]
+    ]
   end
 end
 

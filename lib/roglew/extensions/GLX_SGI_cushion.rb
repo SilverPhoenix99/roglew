@@ -1,8 +1,10 @@
 module GLX_SGI_cushion
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-              #void glXCushionSGI(Display* dpy, Window window, float cushion)
-    functions [:glXCushionSGI, [:pointer, :int, :float], :void]
+    functions [
+      #void glXCushionSGI(Display* dpy, Window window, float cushion)
+      [:glXCushionSGI, [:pointer, :int, :float], :void]
+    ]
   end
 end

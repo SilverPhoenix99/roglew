@@ -6,10 +6,12 @@ module Roglew
 end
 
 module GL_EXT_blend_equation_separate
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glBlendEquationSeparateEXT, [ :uint, :uint ], :void]
+    functions [
+        [:glBlendEquationSeparateEXT, [ :uint, :uint ], :void]
+    ]
   end
 end
 

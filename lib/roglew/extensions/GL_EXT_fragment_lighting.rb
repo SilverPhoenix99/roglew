@@ -18,27 +18,29 @@ module Roglew
 end
 
 module GL_EXT_fragment_lighting
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glFragmentColorMaterialEXT, [ :uint, :uint ], :void],
-              [:glFragmentLightfEXT, [ :uint, :uint, :float ], :void],
-              [:glFragmentLightfvEXT, [ :uint, :uint, :pointer ], :void],
-              [:glFragmentLightiEXT, [ :uint, :uint, :int ], :void],
-              [:glFragmentLightivEXT, [ :uint, :uint, :pointer ], :void],
-              [:glFragmentLightModelfEXT, [ :uint, :float ], :void],
-              [:glFragmentLightModelfvEXT, [ :uint, :pointer ], :void],
-              [:glFragmentLightModeliEXT, [ :uint, :int ], :void],
-              [:glFragmentLightModelivEXT, [ :uint, :pointer ], :void],
-              [:glFragmentMaterialfEXT, [ :uint, :uint, :float ], :void],
-              [:glFragmentMaterialfvEXT, [ :uint, :uint, :pointer ], :void],
-              [:glFragmentMaterialiEXT, [ :uint, :uint, :int ], :void],
-              [:glFragmentMaterialivEXT, [ :uint, :uint, :pointer ], :void],
-              [:glGetFragmentLightfvEXT, [ :uint, :uint, :pointer ], :void],
-              [:glGetFragmentLightivEXT, [ :uint, :uint, :pointer ], :void],
-              [:glGetFragmentMaterialfvEXT, [ :uint, :uint, :pointer ], :void],
-              [:glGetFragmentMaterialivEXT, [ :uint, :uint, :pointer ], :void],
-              [:glLightEnviEXT, [ :uint, :int ], :void]
+    functions [
+        [:glFragmentColorMaterialEXT, [ :uint, :uint ], :void],
+        [:glFragmentLightfEXT, [ :uint, :uint, :float ], :void],
+        [:glFragmentLightfvEXT, [ :uint, :uint, :pointer ], :void],
+        [:glFragmentLightiEXT, [ :uint, :uint, :int ], :void],
+        [:glFragmentLightivEXT, [ :uint, :uint, :pointer ], :void],
+        [:glFragmentLightModelfEXT, [ :uint, :float ], :void],
+        [:glFragmentLightModelfvEXT, [ :uint, :pointer ], :void],
+        [:glFragmentLightModeliEXT, [ :uint, :int ], :void],
+        [:glFragmentLightModelivEXT, [ :uint, :pointer ], :void],
+        [:glFragmentMaterialfEXT, [ :uint, :uint, :float ], :void],
+        [:glFragmentMaterialfvEXT, [ :uint, :uint, :pointer ], :void],
+        [:glFragmentMaterialiEXT, [ :uint, :uint, :int ], :void],
+        [:glFragmentMaterialivEXT, [ :uint, :uint, :pointer ], :void],
+        [:glGetFragmentLightfvEXT, [ :uint, :uint, :pointer ], :void],
+        [:glGetFragmentLightivEXT, [ :uint, :uint, :pointer ], :void],
+        [:glGetFragmentMaterialfvEXT, [ :uint, :uint, :pointer ], :void],
+        [:glGetFragmentMaterialivEXT, [ :uint, :uint, :pointer ], :void],
+        [:glLightEnviEXT, [ :uint, :int ], :void]
+    ]
   end
 end
 

@@ -32,20 +32,22 @@ module Roglew
 end
 
 module GL_ARB_vertex_buffer_object
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glBindBufferARB, [ :uint, :uint ], :void],
-              [:glBufferDataARB, [ :uint, :size_t, :pointer, :uint ], :void],
-              [:glBufferSubDataARB, [ :uint, :size_t, :size_t, :pointer ], :void],
-              [:glDeleteBuffersARB, [ :int, :pointer ], :void],
-              [:glGenBuffersARB, [ :int, :pointer ], :void],
-              [:glGetBufferParameterivARB, [ :uint, :uint, :pointer ], :void],
-              [:glGetBufferPointervARB, [ :uint, :uint, :pointer ], :void],
-              [:glGetBufferSubDataARB, [ :uint, :size_t, :size_t, :pointer ], :void],
-              [:glIsBufferARB, [ :uint ], :uchar],
-              [:glMapBufferARB, [ :uint, :uint ], :pointer],
-              [:glUnmapBufferARB, [ :uint ], :uchar]
+    functions [
+        [:glBindBufferARB, [ :uint, :uint ], :void],
+        [:glBufferDataARB, [ :uint, :size_t, :pointer, :uint ], :void],
+        [:glBufferSubDataARB, [ :uint, :size_t, :size_t, :pointer ], :void],
+        [:glDeleteBuffersARB, [ :int, :pointer ], :void],
+        [:glGenBuffersARB, [ :int, :pointer ], :void],
+        [:glGetBufferParameterivARB, [ :uint, :uint, :pointer ], :void],
+        [:glGetBufferPointervARB, [ :uint, :uint, :pointer ], :void],
+        [:glGetBufferSubDataARB, [ :uint, :size_t, :size_t, :pointer ], :void],
+        [:glIsBufferARB, [ :uint ], :uchar],
+        [:glMapBufferARB, [ :uint, :uint ], :pointer],
+        [:glUnmapBufferARB, [ :uint ], :uchar]
+    ]
   end
 end
 

@@ -6,13 +6,15 @@ module Roglew
 end
 
 module WGL_NV_video_capture
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:wglBindVideoCaptureDeviceNV, [ :uint, :pointer ], :bool ],
-              [:wglEnumerateVideoCaptureDevicesNV, [ :pointer, :pointer ], :uint ],
-              [:wglLockVideoCaptureDeviceNV, [ :pointer, :pointer ], :bool ],
-              [:wglQueryVideoCaptureDeviceNV, [ :pointer, :pointer, :int, :pointer ], :bool ],
-              [:wglReleaseVideoCaptureDeviceNV, [ :pointer, :pointer ], :bool ]
+    functions [
+      [:wglBindVideoCaptureDeviceNV, [ :uint, :pointer ], :bool ],
+      [:wglEnumerateVideoCaptureDevicesNV, [ :pointer, :pointer ], :uint ],
+      [:wglLockVideoCaptureDeviceNV, [ :pointer, :pointer ], :bool ],
+      [:wglQueryVideoCaptureDeviceNV, [ :pointer, :pointer, :int, :pointer ], :bool ],
+      [:wglReleaseVideoCaptureDeviceNV, [ :pointer, :pointer ], :bool ]
+    ]
   end
 end

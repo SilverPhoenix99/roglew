@@ -8,10 +8,12 @@ module Roglew
 end
 
 module GL_EXT_framebuffer_blit
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glBlitFramebufferEXT, [ :int, :int, :int, :int, :int, :int, :int, :int, :uint, :uint ], :void]
+    functions [
+        [:glBlitFramebufferEXT, [ :int, :int, :int, :int, :int, :int, :int, :int, :uint, :uint ], :void]
+    ]
   end
 end
 

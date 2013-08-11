@@ -20,10 +20,12 @@ module Roglew
 end
 
 module GL_ARB_shader_storage_buffer_object
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glShaderStorageBlockBinding, [ :uint, :uint, :uint ], :void]
+    functions [
+        [:glShaderStorageBlockBinding, [ :uint, :uint, :uint ], :void]
+    ]
   end
 end
 

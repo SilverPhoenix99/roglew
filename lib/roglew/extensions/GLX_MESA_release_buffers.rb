@@ -1,8 +1,10 @@
 module GLX_MESA_release_buffers
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-              #Bool glXReleaseBuffersMESA(Display* dpy, GLXDrawable d)
-    functions [:glXReleaseBuffersMESA, [:pointer, :int], :bool]
+    functions [
+      #Bool glXReleaseBuffersMESA(Display* dpy, GLXDrawable d)
+      [:glXReleaseBuffersMESA, [:pointer, :int], :bool]
+    ]
   end
 end

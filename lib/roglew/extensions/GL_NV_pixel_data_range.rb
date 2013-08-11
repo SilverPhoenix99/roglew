@@ -10,11 +10,13 @@ module Roglew
 end
 
 module GL_NV_pixel_data_range
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glFlushPixelDataRangeNV, [ :uint ], :void],
-              [:glPixelDataRangeNV, [ :uint, :int, :pointer ], :void]
+    functions [
+        [:glFlushPixelDataRangeNV, [ :uint ], :void],
+        [:glPixelDataRangeNV, [ :uint, :int, :pointer ], :void]
+    ]
   end
 end
 

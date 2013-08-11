@@ -22,10 +22,12 @@ module Roglew
 end
 
 module GL_ARB_compute_shader
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glDispatchCompute, [ :uint, :uint, :uint ], :void],
-              [:glDispatchComputeIndirect, [ :int64 ], :void]
+    functions [
+        [:glDispatchCompute, [ :uint, :uint, :uint ], :void],
+        [:glDispatchComputeIndirect, [ :int64 ], :void]
+    ]
   end
 end

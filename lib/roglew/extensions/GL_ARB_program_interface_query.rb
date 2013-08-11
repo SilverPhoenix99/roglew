@@ -51,14 +51,16 @@ module Roglew
 end
 
 module GL_ARB_program_interface_query
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glGetProgramInterfaceiv, [ :uint, :uint, :uint, :pointer ], :void],
-              [:glGetProgramResourceIndex, [ :uint, :uint, :string ], :uint],
-              [:glGetProgramResourceiv, [ :uint, :uint, :uint, :int, :pointer, :int, :pointer, :pointer ], :void],
-              [:glGetProgramResourceLocation, [ :uint, :uint, :string ], :int],
-              [:glGetProgramResourceLocationIndex, [ :uint, :uint, :string ], :int],
-              [:glGetProgramResourceName, [ :uint, :uint, :uint, :int, :pointer, :string ], :void]
+    functions [
+        [:glGetProgramInterfaceiv, [ :uint, :uint, :uint, :pointer ], :void],
+        [:glGetProgramResourceIndex, [ :uint, :uint, :string ], :uint],
+        [:glGetProgramResourceiv, [ :uint, :uint, :uint, :int, :pointer, :int, :pointer, :pointer ], :void],
+        [:glGetProgramResourceLocation, [ :uint, :uint, :string ], :int],
+        [:glGetProgramResourceLocationIndex, [ :uint, :uint, :string ], :int],
+        [:glGetProgramResourceName, [ :uint, :uint, :uint, :int, :pointer, :string ], :void]
+    ]
   end
 end

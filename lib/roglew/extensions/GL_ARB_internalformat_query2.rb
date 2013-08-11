@@ -116,9 +116,11 @@ module Roglew
 end
 
 module GL_ARB_internalformat_query2
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glGetInternalformati64v, [ :uint, :uint, :uint, :int, :pointer ], :void]
+    functions [
+        [:glGetInternalformati64v, [ :uint, :uint, :uint, :int, :pointer ], :void]
+    ]
   end
 end

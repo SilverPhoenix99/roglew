@@ -37,17 +37,19 @@ module Roglew
 end
 
 module GL_EXT_vertex_array
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glArrayElementEXT, [ :int ], :void],
-              [:glColorPointerEXT, [ :int, :uint, :int, :int, :pointer ], :void],
-              [:glDrawArraysEXT, [ :uint, :int, :int ], :void],
-              [:glEdgeFlagPointerEXT, [ :int, :int, :pointer ], :void],
-              [:glIndexPointerEXT, [ :uint, :int, :int, :pointer ], :void],
-              [:glNormalPointerEXT, [ :uint, :int, :int, :pointer ], :void],
-              [:glTexCoordPointerEXT, [ :int, :uint, :int, :int, :pointer ], :void],
-              [:glVertexPointerEXT, [ :int, :uint, :int, :int, :pointer ], :void]
+    functions [
+        [:glArrayElementEXT, [ :int ], :void],
+        [:glColorPointerEXT, [ :int, :uint, :int, :int, :pointer ], :void],
+        [:glDrawArraysEXT, [ :uint, :int, :int ], :void],
+        [:glEdgeFlagPointerEXT, [ :int, :int, :pointer ], :void],
+        [:glIndexPointerEXT, [ :uint, :int, :int, :pointer ], :void],
+        [:glNormalPointerEXT, [ :uint, :int, :int, :pointer ], :void],
+        [:glTexCoordPointerEXT, [ :int, :uint, :int, :int, :pointer ], :void],
+        [:glVertexPointerEXT, [ :int, :uint, :int, :int, :pointer ], :void]
+    ]
   end
 end
 

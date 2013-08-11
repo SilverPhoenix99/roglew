@@ -14,13 +14,15 @@ module Roglew
 end
 
 module WGL_NV_gpu_affinity
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:wglCreateAffinityDCNV, [ :pointer ], :pointer ],
-              [:wglDeleteDCNV, [ :pointer ],  ],
-              [:wglEnumGpuDevicesNV, [ :pointer, :uint, Roglew::GL::GPU_DEVICE.ptr ], :bool ],
-              [:wglEnumGpusFromAffinityDCNV, [ :pointer, :uint, :pointer ], :bool ],
-              [:wglEnumGpusNV, [ :uint, :pointer ], :bool ]
+    functions [
+      [:wglCreateAffinityDCNV, [ :pointer ], :pointer ],
+      [:wglDeleteDCNV, [ :pointer ],  ],
+      [:wglEnumGpuDevicesNV, [ :pointer, :uint, Roglew::GL::GPU_DEVICE.ptr ], :bool ],
+      [:wglEnumGpusFromAffinityDCNV, [ :pointer, :uint, :pointer ], :bool ],
+      [:wglEnumGpusNV, [ :uint, :pointer ], :bool ]
+    ]
   end
 end

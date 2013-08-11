@@ -15,16 +15,18 @@ module Roglew
 end
 
 module GL_ARB_texture_compression
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glCompressedTexImage1DARB, [ :uint, :int, :uint, :int, :int, :int, :pointer ], :void],
-              [:glCompressedTexImage2DARB, [ :uint, :int, :uint, :int, :int, :int, :int, :pointer ], :void],
-              [:glCompressedTexImage3DARB, [ :uint, :int, :uint, :int, :int, :int, :int, :int, :pointer ], :void],
-              [:glCompressedTexSubImage1DARB, [ :uint, :int, :int, :int, :uint, :int, :pointer ], :void],
-              [:glCompressedTexSubImage2DARB, [ :uint, :int, :int, :int, :int, :int, :uint, :int, :pointer ], :void],
-              [:glCompressedTexSubImage3DARB, [ :uint, :int, :int, :int, :int, :int, :int, :int, :uint, :int, :pointer ], :void],
-              [:glGetCompressedTexImageARB, [ :uint, :int, :pointer ], :void]
+    functions [
+        [:glCompressedTexImage1DARB, [ :uint, :int, :uint, :int, :int, :int, :pointer ], :void],
+        [:glCompressedTexImage2DARB, [ :uint, :int, :uint, :int, :int, :int, :int, :pointer ], :void],
+        [:glCompressedTexImage3DARB, [ :uint, :int, :uint, :int, :int, :int, :int, :int, :pointer ], :void],
+        [:glCompressedTexSubImage1DARB, [ :uint, :int, :int, :int, :uint, :int, :pointer ], :void],
+        [:glCompressedTexSubImage2DARB, [ :uint, :int, :int, :int, :int, :int, :uint, :int, :pointer ], :void],
+        [:glCompressedTexSubImage3DARB, [ :uint, :int, :int, :int, :int, :int, :int, :int, :uint, :int, :pointer ], :void],
+        [:glGetCompressedTexImageARB, [ :uint, :int, :pointer ], :void]
+    ]
   end
 end
 

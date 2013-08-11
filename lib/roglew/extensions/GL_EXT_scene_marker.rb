@@ -1,8 +1,10 @@
 module GL_EXT_scene_marker
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glBeginSceneEXT, [  ], :void],
-              [:glEndSceneEXT, [  ], :void]
+    functions [
+        [:glBeginSceneEXT, [], :void],
+        [:glEndSceneEXT, [], :void]
+    ]
   end
 end

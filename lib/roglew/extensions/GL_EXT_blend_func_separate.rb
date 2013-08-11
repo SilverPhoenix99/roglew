@@ -8,10 +8,12 @@ module Roglew
 end
 
 module GL_EXT_blend_func_separate
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glBlendFuncSeparateEXT, [ :uint, :uint, :uint, :uint ], :void]
+    functions [
+        [:glBlendFuncSeparateEXT, [ :uint, :uint, :uint, :uint ], :void]
+    ]
   end
 end
 

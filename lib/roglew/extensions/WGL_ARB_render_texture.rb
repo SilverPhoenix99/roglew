@@ -37,11 +37,13 @@ module Roglew
 end
 
 module WGL_ARB_render_texture
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:wglBindTexImageARB, [ :pointer, :int ], :bool ],
-              [:wglReleaseTexImageARB, [ :pointer, :int ], :bool ],
-              [:wglSetPbufferAttribARB, [ :pointer, :pointer ], :bool ]
+    functions [
+      [:wglBindTexImageARB, [ :pointer, :int ], :bool ],
+      [:wglReleaseTexImageARB, [ :pointer, :int ], :bool ],
+      [:wglSetPbufferAttribARB, [ :pointer, :pointer ], :bool ]
+    ]
   end
 end

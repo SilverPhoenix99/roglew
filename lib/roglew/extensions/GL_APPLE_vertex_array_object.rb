@@ -5,12 +5,14 @@ module Roglew
 end
 
 module GL_APPLE_vertex_array_object
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glBindVertexArrayAPPLE, [ :uint ], :void],
-              [:glDeleteVertexArraysAPPLE, [ :int, :pointer ], :void],
-              [:glGenVertexArraysAPPLE, [ :int, :pointer ], :void],
-              [:glIsVertexArrayAPPLE, [ :uint ], :uchar]
+    functions [
+        [:glBindVertexArrayAPPLE, [ :uint ], :void],
+        [:glDeleteVertexArraysAPPLE, [ :int, :pointer ], :void],
+        [:glGenVertexArraysAPPLE, [ :int, :pointer ], :void],
+        [:glIsVertexArrayAPPLE, [ :uint ], :uchar]
+    ]
   end
 end

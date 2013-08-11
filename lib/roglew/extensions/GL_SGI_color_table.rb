@@ -20,16 +20,18 @@ module Roglew
 end
 
 module GL_SGI_color_table
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glColorTableParameterfvSGI, [ :uint, :uint, :pointer ], :void],
-              [:glColorTableParameterivSGI, [ :uint, :uint, :pointer ], :void],
-              [:glColorTableSGI, [ :uint, :uint, :int, :uint, :uint, :pointer ], :void],
-              [:glCopyColorTableSGI, [ :uint, :uint, :int, :int, :int ], :void],
-              [:glGetColorTableParameterfvSGI, [ :uint, :uint, :pointer ], :void],
-              [:glGetColorTableParameterivSGI, [ :uint, :uint, :pointer ], :void],
-              [:glGetColorTableSGI, [ :uint, :uint, :uint, :pointer ], :void]
+    functions [
+        [:glColorTableParameterfvSGI, [ :uint, :uint, :pointer ], :void],
+        [:glColorTableParameterivSGI, [ :uint, :uint, :pointer ], :void],
+        [:glColorTableSGI, [ :uint, :uint, :int, :uint, :uint, :pointer ], :void],
+        [:glCopyColorTableSGI, [ :uint, :uint, :int, :int, :int ], :void],
+        [:glGetColorTableParameterfvSGI, [ :uint, :uint, :pointer ], :void],
+        [:glGetColorTableParameterivSGI, [ :uint, :uint, :pointer ], :void],
+        [:glGetColorTableSGI, [ :uint, :uint, :uint, :pointer ], :void]
+    ]
   end
 end
 

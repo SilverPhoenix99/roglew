@@ -9,12 +9,14 @@ module Roglew
 end
 
 module GL_NV_parameter_buffer_object
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glProgramBufferParametersfvNV, [ :uint, :uint, :uint, :int, :pointer ], :void],
-              [:glProgramBufferParametersIivNV, [ :uint, :uint, :uint, :int, :pointer ], :void],
-              [:glProgramBufferParametersIuivNV, [ :uint, :uint, :uint, :int, :pointer ], :void]
+    functions [
+        [:glProgramBufferParametersfvNV, [ :uint, :uint, :uint, :int, :pointer ], :void],
+        [:glProgramBufferParametersIivNV, [ :uint, :uint, :uint, :int, :pointer ], :void],
+        [:glProgramBufferParametersIuivNV, [ :uint, :uint, :uint, :int, :pointer ], :void]
+    ]
   end
 end
 

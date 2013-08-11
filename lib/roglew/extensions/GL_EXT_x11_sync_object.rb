@@ -5,10 +5,12 @@ module Roglew
 end
 
 module GL_EXT_x11_sync_object
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glImportSyncEXT, [ :uint, :int64, :uint ], :pointer]
+    functions [
+        [:glImportSyncEXT, [ :uint, :int64, :uint ], :pointer]
+    ]
   end
 end
 

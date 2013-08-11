@@ -14,17 +14,19 @@ module Roglew
 end
 
 module WGL_AMD_gpu_association
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:wglBlitContextFramebufferAMD, [ :pointer, :int, :int, :int, :int, :int, :int, :int, :int, :uint, :uint ], :void ],
-              [:wglCreateAssociatedContextAMD, [ :uint ], :pointer ],
-              [:wglCreateAssociatedContextAttribsAMD, [ :uint, :pointer, :pointer ], :pointer ],
-              [:wglDeleteAssociatedContextAMD, [ :pointer ], :bool ],
-              [:wglGetContextGPUIDAMD, [ :pointer ], :uint ],
-              [:wglGetCurrentAssociatedContextAMD, [ ], :pointer ],
-              [:wglGetGPUIDsAMD, [ :uint, :pointer ], :uint ],
-              [:wglGetGPUInfoAMD, [ :uint, :int, :uint, :uint, :pointer ], :int ],
-              [:wglMakeAssociatedContextCurrentAMD, [ :pointer ], :bool ]
+    functions [
+      [:wglBlitContextFramebufferAMD, [ :pointer, :int, :int, :int, :int, :int, :int, :int, :int, :uint, :uint ], :void ],
+      [:wglCreateAssociatedContextAMD, [ :uint ], :pointer ],
+      [:wglCreateAssociatedContextAttribsAMD, [ :uint, :pointer, :pointer ], :pointer ],
+      [:wglDeleteAssociatedContextAMD, [ :pointer ], :bool ],
+      [:wglGetContextGPUIDAMD, [ :pointer ], :uint ],
+      [:wglGetCurrentAssociatedContextAMD, [ ], :pointer ],
+      [:wglGetGPUIDsAMD, [ :uint, :pointer ], :uint ],
+      [:wglGetGPUInfoAMD, [ :uint, :int, :uint, :uint, :pointer ], :int ],
+      [:wglMakeAssociatedContextCurrentAMD, [ :pointer ], :bool ]
+    ]
   end
 end

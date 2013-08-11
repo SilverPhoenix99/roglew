@@ -9,13 +9,15 @@ module Roglew
 end
 
 module GL_INTEL_parallel_arrays
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glColorPointervINTEL, [ :int, :uint, :pointer ], :void],
-              [:glNormalPointervINTEL, [ :uint, :pointer ], :void],
-              [:glTexCoordPointervINTEL, [ :int, :uint, :pointer ], :void],
-              [:glVertexPointervINTEL, [ :int, :uint, :pointer ], :void]
+    functions [
+        [:glColorPointervINTEL, [ :int, :uint, :pointer ], :void],
+        [:glNormalPointervINTEL, [ :uint, :pointer ], :void],
+        [:glTexCoordPointervINTEL, [ :int, :uint, :pointer ], :void],
+        [:glVertexPointervINTEL, [ :int, :uint, :pointer ], :void]
+    ]
   end
 end
 

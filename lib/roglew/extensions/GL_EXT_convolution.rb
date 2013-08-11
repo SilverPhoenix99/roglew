@@ -24,22 +24,24 @@ module Roglew
 end
 
 module GL_EXT_convolution
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glConvolutionFilter1DEXT, [ :uint, :uint, :int, :uint, :uint, :pointer ], :void],
-              [:glConvolutionFilter2DEXT, [ :uint, :uint, :int, :int, :uint, :uint, :pointer ], :void],
-              [:glConvolutionParameterfEXT, [ :uint, :uint, :float ], :void],
-              [:glConvolutionParameterfvEXT, [ :uint, :uint, :pointer ], :void],
-              [:glConvolutionParameteriEXT, [ :uint, :uint, :int ], :void],
-              [:glConvolutionParameterivEXT, [ :uint, :uint, :pointer ], :void],
-              [:glCopyConvolutionFilter1DEXT, [ :uint, :uint, :int, :int, :int ], :void],
-              [:glCopyConvolutionFilter2DEXT, [ :uint, :uint, :int, :int, :int, :int ], :void],
-              [:glGetConvolutionFilterEXT, [ :uint, :uint, :uint, :pointer ], :void],
-              [:glGetConvolutionParameterfvEXT, [ :uint, :uint, :pointer ], :void],
-              [:glGetConvolutionParameterivEXT, [ :uint, :uint, :pointer ], :void],
-              [:glGetSeparableFilterEXT, [ :uint, :uint, :uint, :pointer, :pointer, :pointer ], :void],
-              [:glSeparableFilter2DEXT, [ :uint, :uint, :int, :int, :uint, :uint, :pointer, :pointer ], :void]
+    functions [
+        [:glConvolutionFilter1DEXT, [ :uint, :uint, :int, :uint, :uint, :pointer ], :void],
+        [:glConvolutionFilter2DEXT, [ :uint, :uint, :int, :int, :uint, :uint, :pointer ], :void],
+        [:glConvolutionParameterfEXT, [ :uint, :uint, :float ], :void],
+        [:glConvolutionParameterfvEXT, [ :uint, :uint, :pointer ], :void],
+        [:glConvolutionParameteriEXT, [ :uint, :uint, :int ], :void],
+        [:glConvolutionParameterivEXT, [ :uint, :uint, :pointer ], :void],
+        [:glCopyConvolutionFilter1DEXT, [ :uint, :uint, :int, :int, :int ], :void],
+        [:glCopyConvolutionFilter2DEXT, [ :uint, :uint, :int, :int, :int, :int ], :void],
+        [:glGetConvolutionFilterEXT, [ :uint, :uint, :uint, :pointer ], :void],
+        [:glGetConvolutionParameterfvEXT, [ :uint, :uint, :pointer ], :void],
+        [:glGetConvolutionParameterivEXT, [ :uint, :uint, :pointer ], :void],
+        [:glGetSeparableFilterEXT, [ :uint, :uint, :uint, :pointer, :pointer, :pointer ], :void],
+        [:glSeparableFilter2DEXT, [ :uint, :uint, :int, :int, :uint, :uint, :pointer, :pointer ], :void]
+    ]
   end
 end
 

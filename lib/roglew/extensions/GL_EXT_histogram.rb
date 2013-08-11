@@ -17,19 +17,21 @@ module Roglew
 end
 
 module GL_EXT_histogram
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glGetHistogramEXT, [ :uint, :uchar, :uint, :uint, :pointer ], :void],
-              [:glGetHistogramParameterfvEXT, [ :uint, :uint, :pointer ], :void],
-              [:glGetHistogramParameterivEXT, [ :uint, :uint, :pointer ], :void],
-              [:glGetMinmaxEXT, [ :uint, :uchar, :uint, :uint, :pointer ], :void],
-              [:glGetMinmaxParameterfvEXT, [ :uint, :uint, :pointer ], :void],
-              [:glGetMinmaxParameterivEXT, [ :uint, :uint, :pointer ], :void],
-              [:glHistogramEXT, [ :uint, :int, :uint, :uchar ], :void],
-              [:glMinmaxEXT, [ :uint, :uint, :uchar ], :void],
-              [:glResetHistogramEXT, [ :uint ], :void],
-              [:glResetMinmaxEXT, [ :uint ], :void]
+    functions [
+        [:glGetHistogramEXT, [ :uint, :uchar, :uint, :uint, :pointer ], :void],
+        [:glGetHistogramParameterfvEXT, [ :uint, :uint, :pointer ], :void],
+        [:glGetHistogramParameterivEXT, [ :uint, :uint, :pointer ], :void],
+        [:glGetMinmaxEXT, [ :uint, :uchar, :uint, :uint, :pointer ], :void],
+        [:glGetMinmaxParameterfvEXT, [ :uint, :uint, :pointer ], :void],
+        [:glGetMinmaxParameterivEXT, [ :uint, :uint, :pointer ], :void],
+        [:glHistogramEXT, [ :uint, :int, :uint, :uchar ], :void],
+        [:glMinmaxEXT, [ :uint, :uint, :uchar ], :void],
+        [:glResetHistogramEXT, [ :uint ], :void],
+        [:glResetMinmaxEXT, [ :uint ], :void]
+    ]
   end
 end
 

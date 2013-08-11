@@ -17,19 +17,21 @@ module Roglew
 end
 
 module GL_ARB_viewport_array
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glDepthRangeArrayv, [ :uint, :int, :pointer ], :void],
-              [:glDepthRangeIndexed, [ :uint, :double, :double ], :void],
-              [:glGetDoublei_v, [ :uint, :uint, :pointer ], :void],
-              [:glGetFloati_v, [ :uint, :uint, :pointer ], :void],
-              [:glScissorArrayv, [ :uint, :int, :pointer ], :void],
-              [:glScissorIndexed, [ :uint, :int, :int, :int, :int ], :void],
-              [:glScissorIndexedv, [ :uint, :pointer ], :void],
-              [:glViewportArrayv, [ :uint, :int, :pointer ], :void],
-              [:glViewportIndexedf, [ :uint, :float, :float, :float, :float ], :void],
-              [:glViewportIndexedfv, [ :uint, :pointer ], :void]
+    functions [
+        [:glDepthRangeArrayv, [ :uint, :int, :pointer ], :void],
+        [:glDepthRangeIndexed, [ :uint, :double, :double ], :void],
+        [:glGetDoublei_v, [ :uint, :uint, :pointer ], :void],
+        [:glGetFloati_v, [ :uint, :uint, :pointer ], :void],
+        [:glScissorArrayv, [ :uint, :int, :pointer ], :void],
+        [:glScissorIndexed, [ :uint, :int, :int, :int, :int ], :void],
+        [:glScissorIndexedv, [ :uint, :pointer ], :void],
+        [:glViewportArrayv, [ :uint, :int, :pointer ], :void],
+        [:glViewportIndexedf, [ :uint, :float, :float, :float, :float ], :void],
+        [:glViewportIndexedfv, [ :uint, :pointer ], :void]
+    ]
   end
 end
 

@@ -5,15 +5,17 @@ module Roglew
 end
 
 module GL_SGIX_async
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glAsyncMarkerSGIX, [ :uint ], :void],
-              [:glDeleteAsyncMarkersSGIX, [ :uint, :int ], :void],
-              [:glFinishAsyncSGIX, [ :pointer ], :int],
-              [:glGenAsyncMarkersSGIX, [ :int ], :uint],
-              [:glIsAsyncMarkerSGIX, [ :uint ], :uchar],
-              [:glPollAsyncSGIX, [ :pointer ], :int]
+    functions [
+      [:glAsyncMarkerSGIX, [ :uint ], :void],
+      [:glDeleteAsyncMarkersSGIX, [ :uint, :int ], :void],
+      [:glFinishAsyncSGIX, [ :pointer ], :int],
+      [:glGenAsyncMarkersSGIX, [ :int ], :uint],
+      [:glIsAsyncMarkerSGIX, [ :uint ], :uchar],
+      [:glPollAsyncSGIX, [ :pointer ], :int]
+    ]
   end
 end
 

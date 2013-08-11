@@ -14,13 +14,15 @@ module Roglew
 end
 
 module GL_ARB_matrix_palette
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glCurrentPaletteMatrixARB, [ :int ], :void],
-              [:glMatrixIndexPointerARB, [ :int, :uint, :int, :pointer ], :void],
-              [:glMatrixIndexubvARB, [ :int, :pointer ], :void],
-              [:glMatrixIndexuivARB, [ :int, :pointer ], :void],
-              [:glMatrixIndexusvARB, [ :int, :pointer ], :void]
+    functions [
+        [:glCurrentPaletteMatrixARB, [ :int ], :void],
+        [:glMatrixIndexPointerARB, [ :int, :uint, :int, :pointer ], :void],
+        [:glMatrixIndexubvARB, [ :int, :pointer ], :void],
+        [:glMatrixIndexuivARB, [ :int, :pointer ], :void],
+        [:glMatrixIndexusvARB, [ :int, :pointer ], :void]
+    ]
   end
 end

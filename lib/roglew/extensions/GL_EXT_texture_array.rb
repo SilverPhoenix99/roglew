@@ -12,10 +12,12 @@ module Roglew
 end
 
 module GL_EXT_texture_array
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glFramebufferTextureLayerEXT, [ :uint, :uint, :uint, :int, :int ], :void]
+    functions [
+        [:glFramebufferTextureLayerEXT, [ :uint, :uint, :uint, :int, :int ], :void]
+    ]
   end
 end
 

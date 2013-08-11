@@ -8,12 +8,14 @@ module Roglew
 end
 
 module GL_NV_depth_buffer_float
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glClearDepthdNV, [ :double ], :void],
-              [:glDepthBoundsdNV, [ :double, :double ], :void],
-              [:glDepthRangedNV, [ :double, :double ], :void]
+    functions [
+        [:glClearDepthdNV, [ :double ], :void],
+        [:glDepthBoundsdNV, [ :double, :double ], :void],
+        [:glDepthRangedNV, [ :double, :double ], :void]
+    ]
   end
 end
 

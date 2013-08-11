@@ -8,9 +8,11 @@ module Roglew
 end
 
 module WGL_3DL_stereo_control
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:wglSetStereoEmitterState3DL, [ :pointer, :uint ], :bool ]
+    functions [
+      [:wglSetStereoEmitterState3DL, [ :pointer, :uint ], :bool ]
+    ]
   end
 end

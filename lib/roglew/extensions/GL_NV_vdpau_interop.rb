@@ -8,19 +8,21 @@ module Roglew
 end
 
 module GL_NV_vdpau_interop
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glVDPAUFiniNV, [  ], :void],
-              [:glVDPAUGetSurfaceivNV, [ :int64, :uint, :int, :pointer, :pointer ], :void],
-              [:glVDPAUInitNV, [ :pointer, :pointer ], :void],
-              [:glVDPAUIsSurfaceNV, [ :int64 ], :void],
-              [:glVDPAUMapSurfacesNV, [ :int, :pointer ], :void],
-              [:glVDPAURegisterOutputSurfaceNV, [ :pointer, :uint, :int, :pointer ], :int64],
-              [:glVDPAURegisterVideoSurfaceNV, [ :pointer, :uint, :int, :pointer ], :int64],
-              [:glVDPAUSurfaceAccessNV, [ :int64, :uint ], :void],
-              [:glVDPAUUnmapSurfacesNV, [ :int, :pointer ], :void],
-              [:glVDPAUUnregisterSurfaceNV, [ :int64 ], :void]
+    functions [
+        [:glVDPAUFiniNV, [], :void],
+        [:glVDPAUGetSurfaceivNV, [ :int64, :uint, :int, :pointer, :pointer ], :void],
+        [:glVDPAUInitNV, [ :pointer, :pointer ], :void],
+        [:glVDPAUIsSurfaceNV, [ :int64 ], :void],
+        [:glVDPAUMapSurfacesNV, [ :int, :pointer ], :void],
+        [:glVDPAURegisterOutputSurfaceNV, [ :pointer, :uint, :int, :pointer ], :int64],
+        [:glVDPAURegisterVideoSurfaceNV, [ :pointer, :uint, :int, :pointer ], :int64],
+        [:glVDPAUSurfaceAccessNV, [ :int64, :uint ], :void],
+        [:glVDPAUUnmapSurfacesNV, [ :int, :pointer ], :void],
+        [:glVDPAUUnregisterSurfaceNV, [ :int64 ], :void]
+    ]
   end
 end
 

@@ -1,11 +1,13 @@
 module GLX_NV_vertex_array_range
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-              #void * glXAllocateMemoryNV(GLsizei size, GLfloat readFrequency, GLfloat writeFrequency, GLfloat priority)
-    functions [:glXAllocateMemoryNV, [:int, :float, :float, :float], :pointer],
+    functions [
+      #void * glXAllocateMemoryNV(GLsizei size, GLfloat readFrequency, GLfloat writeFrequency, GLfloat priority)
+      [:glXAllocateMemoryNV, [:int, :float, :float, :float], :pointer],
 
-              #void glXFreeMemoryNV(void *pointer)
-              [:glXFreeMemoryNV, [:pointer], :pointer]
+      #void glXFreeMemoryNV(void *pointer)
+      [:glXFreeMemoryNV, [:pointer], :pointer]
+    ]
   end
 end

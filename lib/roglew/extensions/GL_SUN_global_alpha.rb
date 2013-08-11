@@ -6,17 +6,19 @@ module Roglew
 end
 
 module GL_SUN_global_alpha
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glGlobalAlphaFactorbSUN, [ :char ], :void],
-              [:glGlobalAlphaFactordSUN, [ :double ], :void],
-              [:glGlobalAlphaFactorfSUN, [ :float ], :void],
-              [:glGlobalAlphaFactoriSUN, [ :int ], :void],
-              [:glGlobalAlphaFactorsSUN, [ :short ], :void],
-              [:glGlobalAlphaFactorubSUN, [ :uchar ], :void],
-              [:glGlobalAlphaFactoruiSUN, [ :uint ], :void],
-              [:glGlobalAlphaFactorusSUN, [ :ushort ], :void]
+    functions [
+      [:glGlobalAlphaFactorbSUN, [ :char ], :void],
+      [:glGlobalAlphaFactordSUN, [ :double ], :void],
+      [:glGlobalAlphaFactorfSUN, [ :float ], :void],
+      [:glGlobalAlphaFactoriSUN, [ :int ], :void],
+      [:glGlobalAlphaFactorsSUN, [ :short ], :void],
+      [:glGlobalAlphaFactorubSUN, [ :uchar ], :void],
+      [:glGlobalAlphaFactoruiSUN, [ :uint ], :void],
+      [:glGlobalAlphaFactorusSUN, [ :ushort ], :void]
+    ]
   end
 end
 

@@ -12,13 +12,15 @@ module Roglew
 end
 
 module GL_EXT_fog_coord
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glFogCoorddEXT, [ :double ], :void],
-              [:glFogCoorddvEXT, [ :pointer ], :void],
-              [:glFogCoordfEXT, [ :float ], :void],
-              [:glFogCoordfvEXT, [ :pointer ], :void]
+    functions [
+        [:glFogCoorddEXT, [ :double ], :void],
+        [:glFogCoorddvEXT, [ :pointer ], :void],
+        [:glFogCoordfEXT, [ :float ], :void],
+        [:glFogCoordfvEXT, [ :pointer ], :void]
+    ]
   end
 end
 

@@ -29,27 +29,29 @@ module Roglew
 end
 
 module GLX_SGIX_pbuffer
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-              #GLXPbuffer glXCreateGLXPbufferSGIX(
-              #   Display* dpy,
-              #   GLXFBConfig config,
-              #   unsigned int width,
-              #   unsigned int height,
-              #   int *attrib_list)
-    functions [:glXCreateGLXPbufferSGIX, [:pointer, :pointer, :uint, :uint, :pointer], :int],
+    functions [
+      #GLXPbuffer glXCreateGLXPbufferSGIX(
+      #   Display* dpy,
+      #   GLXFBConfig config,
+      #   unsigned int width,
+      #   unsigned int height,
+      #   int *attrib_list)
+      [:glXCreateGLXPbufferSGIX, [:pointer, :pointer, :uint, :uint, :pointer], :int],
 
-              #void glXDestroyGLXPbufferSGIX(Display* dpy, GLXPbuffer pbuf)
-              [:glXDestroyGLXPbufferSGIX, [:pointer, :int], :void],
+      #void glXDestroyGLXPbufferSGIX(Display* dpy, GLXPbuffer pbuf)
+      [:glXDestroyGLXPbufferSGIX, [:pointer, :int], :void],
 
-              #void glXGetSelectedEventSGIX(Display* dpy, GLXDrawable drawable, unsigned long *mask)
-              [:glXGetSelectedEventSGIX, [:pointer, :int, :pointer], :void],
+      #void glXGetSelectedEventSGIX(Display* dpy, GLXDrawable drawable, unsigned long *mask)
+      [:glXGetSelectedEventSGIX, [:pointer, :int, :pointer], :void],
 
-              #void glXQueryGLXPbufferSGIX(Display* dpy, GLXPbuffer pbuf, int attribute, unsigned int *value)
-              [:glXQueryGLXPbufferSGIX, [:pointer, :int, :int, :pointer], :void],
+      #void glXQueryGLXPbufferSGIX(Display* dpy, GLXPbuffer pbuf, int attribute, unsigned int *value)
+      [:glXQueryGLXPbufferSGIX, [:pointer, :int, :int, :pointer], :void],
 
-              #void glXSelectEventSGIX(Display* dpy, GLXDrawable drawable, unsigned long mask)
-              [:glXSelectEventSGIX, [:pointer, :int, :uint], :void]
+      #void glXSelectEventSGIX(Display* dpy, GLXDrawable drawable, unsigned long mask)
+      [:glXSelectEventSGIX, [:pointer, :int, :uint], :void]
+    ]
   end
 end

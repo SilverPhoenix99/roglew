@@ -27,14 +27,16 @@ module Roglew
 end
 
 module GL_VERSION_2_1
-  module RenderContext
-    include Roglew::GLExtension
+  module RenderHandle
+    include Roglew::RenderHandleExtension
 
-    functions [:glUniformMatrix2x3fv, [ :int, :int, :uchar, :pointer ], :void],
-              [:glUniformMatrix2x4fv, [ :int, :int, :uchar, :pointer ], :void],
-              [:glUniformMatrix3x2fv, [ :int, :int, :uchar, :pointer ], :void],
-              [:glUniformMatrix3x4fv, [ :int, :int, :uchar, :pointer ], :void],
-              [:glUniformMatrix4x2fv, [ :int, :int, :uchar, :pointer ], :void],
-              [:glUniformMatrix4x3fv, [ :int, :int, :uchar, :pointer ], :void]
+    functions [
+      [ :glUniformMatrix2x3fv, [ :int, :int, :uchar, :pointer ], :void],
+      [ :glUniformMatrix2x4fv, [ :int, :int, :uchar, :pointer ], :void],
+      [ :glUniformMatrix3x2fv, [ :int, :int, :uchar, :pointer ], :void],
+      [ :glUniformMatrix3x4fv, [ :int, :int, :uchar, :pointer ], :void],
+      [ :glUniformMatrix4x2fv, [ :int, :int, :uchar, :pointer ], :void],
+      [ :glUniformMatrix4x3fv, [ :int, :int, :uchar, :pointer ], :void]
+    ]
   end
 end
