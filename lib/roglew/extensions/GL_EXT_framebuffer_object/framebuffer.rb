@@ -12,7 +12,7 @@ module Roglew
 
     def self.finalize(handle, id)
       proc do
-        puts "releasing framebuffer #{id}"
+        #puts "releasing framebuffer #{id}"
         handle.bind { |context| context.delete_framebuffersEXT(id) }
       end
     end

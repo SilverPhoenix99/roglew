@@ -12,7 +12,7 @@ module Roglew
 
     def self.finalize(handle, id)
       proc do
-        puts "releasing texture #{id}"
+        #puts "releasing texture #{id}"
         handle.glDeleteTextures(id)
       end
     end

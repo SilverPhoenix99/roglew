@@ -13,7 +13,7 @@ module Roglew
 
     def self.finalize(id, handle)
       proc do
-        puts "releasing shader #{id}"
+        #puts "releasing shader #{id}"
         handle.bind { handle.glDeleteShader(id) }
       end
     end

@@ -13,7 +13,7 @@ module Roglew
 
     def self.finalize(handle, id)
       proc do
-        puts "releasing buffer #{id}"
+        #puts "releasing buffer #{id}"
         handle.bind { |context| context.delete_buffers(id) }
       end
     end

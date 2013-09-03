@@ -14,7 +14,7 @@ module Roglew
 
       def finalize(*args)
         proc do
-          puts 'releasing a render context'
+          #puts 'releasing a render context'
           GL.platform_module.delete_context(*args)
         end
       end

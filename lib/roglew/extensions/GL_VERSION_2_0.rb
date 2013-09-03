@@ -197,7 +197,10 @@ module GL_VERSION_2_0
       return program unless shaders
       shaders = case shaders
         when Hash
-          shaders.map { |type, source| create_shader(type, source) }
+          shaders.map do |type, source|
+            type = type.is_a?(Integer) ? type : Roglew::GL.const_get("#{type.to_s.upcase}_SHADER")
+            create_shader(type, source)
+          end
         when Array
           shaders
         else
@@ -246,6 +249,11 @@ module GL_VERSION_2_0
       pl = FFI::MemoryPointer.new(:int, srcs.length)
       pl.write_array_of_int(srcs.map { |src| src.length })
       @rh.glShaderSource(shader, srcs.length, ps, pl)
+    end
+
+    private
+    def map_type(type)
+
     end
   end
 end

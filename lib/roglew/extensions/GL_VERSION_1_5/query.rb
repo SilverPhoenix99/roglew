@@ -11,7 +11,7 @@ module Roglew
 
     def self.finalize(handle, id)
       proc do
-        puts "releasing query #{id}"
+        #puts "releasing query #{id}"
         handle.bind { |context| context.delete_queries(id) }
       end
     end

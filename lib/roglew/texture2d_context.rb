@@ -83,6 +83,7 @@ module Roglew
     end
 
     private
+
     def bind
       handle.glBindTexture(@target, texture.id)
     end

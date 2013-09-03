@@ -14,7 +14,7 @@ module Roglew
 
     def self.finalize(id, handle)
       proc do
-        puts "releasing program #{id}"
+        #puts "releasing program #{id}"
         handle.bind { handle.glDeleteProgram(id) }
       end
     end

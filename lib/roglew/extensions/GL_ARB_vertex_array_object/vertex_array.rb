@@ -11,7 +11,7 @@ module Roglew
 
     def self.finalize(handle, id)
       proc do
-        puts "releasing vertex array #{id}"
+        #puts "releasing vertex array #{id}"
         handle.bind { |rc| rc.delete_vertex_arrays(id) }
       end
     end
