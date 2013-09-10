@@ -120,7 +120,7 @@ module Roglew
       if stack.empty?
         @rh.send(:remove_current)
       elsif stack.last.last != self
-        stack.last.first.make_current
+        stack.last.first.send(:make_current)
       end
       nil
     end

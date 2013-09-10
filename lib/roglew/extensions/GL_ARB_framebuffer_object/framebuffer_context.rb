@@ -46,9 +46,9 @@ module Roglew
       glBlitFramebuffer(srcX0, srcY0, srcX1, srcY1, dstX0, dstY0, dstX1, dstY1, mask, filter)
     end
 
-    def texture_layer(target, attachment, texture, level, layer)
-      raise ArgumentError, "third parameter isn't of type Texture3d" unless texture.is_a? Texture2d
-      glFramebufferTextureLayer(target, attachment, texture.id, level, layer)
+    def texture_layer(texture, attachment, layer, level = 0)
+      raise ArgumentError, "first parameter isn't of type Texture3d" unless texture.is_a? Texture3d
+      glFramebufferTextureLayer(@target, attachment, texture.id, level, layer)
     end
 
     private
