@@ -137,9 +137,10 @@ module Roglew
     end
 
     def extension_list_core
-      Dir["#{File.expand_path('../extensions', __FILE__)}/GL_VERSION_*.rb"].
-          map! { |f| File.basename(f, '.rb') }.
-          select! { |f| (f.gsub('GL_VERSION_', '').split('_', 2).map!(&:to_i) <=> @version) <= 0 }
+      dirs = Dir["#{File.expand_path('../extensions', __FILE__)}/GL_VERSION_*.rb"]
+      dirs.map! { |f| File.basename(f, '.rb') }
+      dirs.select! { |f| (f.gsub('GL_VERSION_', '').split('_', 2).map!(&:to_i) <=> @version) <= 0 }
+      dirs
     end
 
     def extension_list_gl
