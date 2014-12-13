@@ -102,14 +102,14 @@ module Roglew
           modrh.functions.each do |options, list|
             list.each do |name, parameters, ret_type|
               function = if options.include?(:ffi)
-                if name =~ /^(glX|wgl)/
-                  GL.platform_module.attach_function(name[3..-1], name, parameters, ret_type)
-                else
-                  GL.attach_function(name[2..-1], name, parameters, ret_type)
-                end
-              else
-                rc.get_function(name, parameters, ret_type)
-              end
+                           if name =~ /^(glX|wgl)/
+                             GL.platform_module.attach_function(name[3..-1], name, parameters, ret_type)
+                           else
+                             GL.attach_function(name[2..-1], name, parameters, ret_type)
+                           end
+                         else
+                           rc.get_function(name, parameters, ret_type)
+                         end
               define_singleton_method(name) { |*a| function.(*a) } if function
             end if !options.include?(:compatibility) || ((@version <=> [3, 0]) <= 0)
           end if modrh.respond_to?(:functions)
@@ -137,9 +137,10 @@ module Roglew
     end
 
     def extension_list_core
-      Dir["#{File.expand_path('../extensions', __FILE__)}/GL_VERSION_*.rb"].
-          map! { |f| File.basename(f, '.rb') }.
-          select! { |f| (f.gsub('GL_VERSION_', '').split('_', 2).map!(&:to_i) <=> @version) <= 0 }
+      dirs = Dir["#{File.expand_path('../extensions', __FILE__)}/GL_VERSION_*.rb"]
+      dirs.map! { |f| File.basename(f, '.rb') }
+      dirs.select! { |f| (f.gsub('GL_VERSION_', '').split('_', 2).map!(&:to_i) <=> @version) <= 0 }
+      dirs
     end
 
     def extension_list_gl

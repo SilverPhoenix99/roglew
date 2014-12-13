@@ -9,7 +9,7 @@ module Roglew
     R32F           ||= 0x822E
     R32I           ||= 0x8235
     R32UI          ||= 0x8236
-    R8             ||= 0x8229
+    R8             ||= 0x8229 # opengl > 3.0
     R8I            ||= 0x8231
     R8UI           ||= 0x8232
     RG             ||= 0x8227
