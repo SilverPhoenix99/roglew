@@ -12,9 +12,6 @@
 '.each { |f| require f }
 
 module Roglew
-  VERSION = '0.3.0'.freeze
-  VERSION_CODENAME = 'Caravaggio'.freeze
-
   PLATFORM = case
                when Platform.local.windows? then 'windows'
                when Platform.local.linux?   then 'linux'
@@ -24,6 +21,7 @@ end
 
 #internal files
 %W'
+  version
   ext/ffi_struct_ext
   contexts/base
   contexts/deferred
