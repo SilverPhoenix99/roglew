@@ -2,4 +2,4 @@
    gdi32
    wgl
    render_handle
-'.each { |f| require "roglew/platform/windows/#{f}" }
+'.each { |f| require_relative "windows/#{f}" }

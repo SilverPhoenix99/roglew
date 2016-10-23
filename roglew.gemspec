@@ -1,7 +1,4 @@
-lib = File.expand_path('../lib/', __FILE__)
-$:.unshift lib unless $:.include?(lib)
-
-require 'roglew/version'
+require_relative 'lib/roglew/version'
 
 Gem::Specification.new do |s|
   s.name          = 'roglew'
@@ -14,30 +11,7 @@ Gem::Specification.new do |s|
   s.homepage      = 'https://github.com/SilverPhoenix99/roglew'
   s.require_paths = %w'lib'
   s.files         = Dir['{lib/**/*.rb,*.md}']
-  s.add_dependency('facets', '~> 2.9')
-  s.add_dependency('ffi', '~> 1.2')
-  s.add_dependency('method_decorators', '~> 0.9')
-  s.post_install_message = <<-eos
-+----------------------------------------------------------------------------+
-  Thank you for choosing Roglew.
-
-  ==========================================================================
-  #{Roglew::VERSION} Codename #{Roglew::VERSION_CODENAME}
-
-  Changes:
-    - Separated rendering into RenderHandle (native layer) and RenderContext
-      (Ruby layer).
-    - WARNING: Ruby layer is incompatible with previous versions. Native
-      layer can still be called through RenderHandle.
-  ==========================================================================
-
-  If you like what you see, support us on Pledgie:
-    http://www.pledgie.com/campaigns/18830
-
-  If you find any bugs, please report them on
-    https://github.com/SilverPhoenix99/roglew/issues
-
-+----------------------------------------------------------------------------+
-eos
-
+  s.add_dependency 'facets', '~> 3'
+  s.add_dependency 'ffi', '~> 1'
+  s.add_dependency 'method_decorators', '~> 0'
 end

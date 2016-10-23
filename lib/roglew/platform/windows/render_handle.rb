@@ -5,21 +5,20 @@ module Roglew
 
       initialize_pixel_format
 
-      @hrc, old_hrc = WGL.CreateContext(@hdc), nil
-
-      @loaded_extensions = Set.new
+      @hrc, @loaded_extensions, old_hrc = WGL.CreateContext(@hdc), Set.new, nil
 
       bind do
         #check version
         max_version = glGetString(GL::VERSION).split('.', 2).map!(&:to_i)
 
-        #if max OpelGL version is less than requested, give error
+        #if max OpenGL version is less than requested, give error
         raise ArgumentError, "unsupported version: #{version.join('.')}" if version && (max_version <=> version < 0)
 
         @version = version || max_version
-        extension_list(:core).each { |ext| load_extension(ext) }
+        extension_list_core.each { |ext| load_extension(ext) }
         old_hrc, @hrc = @hrc, upgrade_context if @version[0] > 2
-        extension_list(:gl, :platform).each { |ext| load_extension(ext) }
+        extension_list_gl.each { |ext| load_extension(ext) }
+        extension_list_platform.each { |ext| load_extension(ext) }
       end
 
       @attribs = Set[GL::DITHER]
@@ -55,13 +54,13 @@ module Roglew
       pfd.cDepthBits = 32
 
       pxfmt = Gdi32.ChoosePixelFormat(@hdc, pfd)
-      raise InvalidPixelFormatError,
-            "(ChoosePixelFormat) GetLastError returned #{Kernel32.GetLastError}" if pxfmt == 0
+      raise InvalidPixelFormatError, "(ChoosePixelFormat) GetLastError returned #{Kernel32.GetLastError}" if pxfmt == 0
 
       #NOTE: Don't use DescribePixelFormat.
 
-      raise InvalidPixelFormatError,
-            "(SetPixelFormat) GetLastError returned #{Kernel32.GetLastError}" unless Gdi32.SetPixelFormat(@hdc, pxfmt, pfd)
+      return if Gdi32.SetPixelFormat(@hdc, pxfmt, pfd)
+
+      raise InvalidPixelFormatError, "(SetPixelFormat) GetLastError returned #{Kernel32.GetLastError}"
     end
 
     def make_current

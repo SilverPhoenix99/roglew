@@ -37,4 +37,4 @@ end
   texture2d_context
   texture2d
   render_context
-'.each { |f| require "roglew/#{f}" }
+'.each { |f| require_relative "roglew/#{f}" }
