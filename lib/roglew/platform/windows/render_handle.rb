@@ -12,6 +12,7 @@ module Roglew
       bind do
         #check version
         max_version = glGetString(GL::VERSION).split('.', 2).map!(&:to_i)
+        LOGGER.info("OpenGL #{max_version.join('.')}")
 
         #if max OpelGL version is less than requested, give error
         raise ArgumentError, "unsupported version: #{version.join('.')}" if version && (max_version <=> version < 0)

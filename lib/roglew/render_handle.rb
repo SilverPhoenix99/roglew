@@ -82,7 +82,7 @@ module Roglew
     end
 
     def load_extension(ext)
-      #puts "load_extension: #{ext}"
+      LOGGER.debug "load_extension: #{ext}"
       ext = ext.to_sym
       @loaded_extensions << ext
 

@@ -146,7 +146,7 @@ module Roglew
     def get_function(function_name, parameters, return_type)
       ptr = get_proc_address(function_name.to_s)
       if ptr.null?
-        puts "WARNING: couldn't find function: #{return_type} #{function_name}(#{parameters.join(', ')})"
+        LOGGER.warn "couldn't find function: #{return_type} #{function_name}(#{parameters.join(', ')})"
         return
       end
       return_type = GL.find_type(return_type) || return_type

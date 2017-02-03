@@ -1,4 +1,5 @@
 #Raw Glue - the Ruby OpenGL and Extensions Wrapper
+require 'logger'
 
 #external dependencies
 %w'
@@ -12,11 +13,12 @@
 '.each { |f| require f }
 
 module Roglew
+  LOGGER = Logger.new(STDOUT)
   PLATFORM = case
                when Platform.local.windows? then 'windows'
                when Platform.local.linux?   then 'linux'
                else raise 'Unknown platform'
-             end
+  end
 end
 
 #internal files
@@ -38,3 +40,5 @@ end
   texture2d
   render_context
 '.each { |f| require "roglew/#{f}" }
+
+Roglew::LOGGER.info("Roglew v#{Roglew::VERSION} on #{Roglew::PLATFORM}")

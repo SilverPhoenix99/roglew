@@ -4,6 +4,8 @@ module Roglew
 
     ENCODING = 'W'
 
+    WGL_SWAPMULTIPLE_MAX = 16
+
     class RECT < FFI::Struct
       layout :left,   :long,
              :top,    :long,
@@ -81,52 +83,52 @@ module Roglew
     end
 
     [
-      #HGLRC WINAPI wglCreateContext(HDC hdc)
+      # HGLRC WINAPI wglCreateContext(HDC hdc)
       [ :CreateContext, [:pointer], :pointer ],
 
-      #HGLRC wglCreateLayerContext(HDC hdc, int iLayerPlane)
+      # HGLRC wglCreateLayerContext(HDC hdc, int iLayerPlane)
       [ :CreateLayerContext, [:pointer, :int], :pointer ],
 
-      #BOOL wglCopyContext(HGLRC hglrcSrc, HGLRC hglrcDst, UINT mask)
+      # BOOL wglCopyContext(HGLRC hglrcSrc, HGLRC hglrcDst, UINT mask)
       [ :CopyContext, [:pointer, :pointer, :uint], :bool ],
 
-      #BOOL wglDeleteContext(HGLRC hglrc)
+      # BOOL wglDeleteContext(HGLRC hglrc)
       [ :DeleteContext, [:pointer], :bool ],
 
-      #BOOL wglDescribeLayerPlane(HDC hdc, int iPixelFormat, int iLayerPlane, UINT nBytes, LPLAYERPLANEDESCRIPTOR plpd)
+      # BOOL wglDescribeLayerPlane(HDC hdc, int iPixelFormat, int iLayerPlane, UINT nBytes, LPLAYERPLANEDESCRIPTOR plpd)
       [ :DescribeLayerPlane, [:pointer, :int, :int, :uint, LAYERPLANEDESCRIPTOR.ptr], :bool ],
 
-      #HGLRC wglGetCurrentContext()
+      # HGLRC wglGetCurrentContext()
       [ :GetCurrentContext, [], :pointer ],
 
-      #HDC wglGetCurrentDC()
+      # HDC wglGetCurrentDC()
       [ :GetCurrentDC, [], :pointer ],
 
-      #int wglGetLayerPaletteEntries(HDC hdc, int iLayerPlane, int iStart, int cEntries, COLORREF *pcr)
+      # int wglGetLayerPaletteEntries(HDC hdc, int iLayerPlane, int iStart, int cEntries, COLORREF *pcr)
       [ :GetLayerPaletteEntries, [:pointer, :int, :int, :int, :pointer], :int ],
 
-      #PROC wglGetProcAddress(LPCSTR lpszProc)
+      # PROC wglGetProcAddress(LPCSTR lpszProc)
       [ :GetProcAddress, [:string], :pointer ],
 
-      #BOOL wglMakeCurrent(HDC hdc, HGLRC hglrc)
+      # BOOL wglMakeCurrent(HDC hdc, HGLRC hglrc)
       [ :MakeCurrent, [:pointer, :pointer], :bool ],
 
-      #BOOL wglRealizeLayerPalette(HDC hdc, int iLayerPlane, BOOL bRealize)
+      # BOOL wglRealizeLayerPalette(HDC hdc, int iLayerPlane, BOOL bRealize)
       [ :RealizeLayerPalette, [:pointer, :int, :bool], :bool ],
 
-      #int wglSetLayerPaletteEntries(HDC hdc, int iLayerPlane, int iStart, int cEntries, const COLORREF *pcr)
+      # int wglSetLayerPaletteEntries(HDC hdc, int iLayerPlane, int iStart, int cEntries, const COLORREF *pcr)
       [ :SetLayerPaletteEntries, [:pointer, :int, :int, :int, :pointer], :int ],
 
-      #BOOL wglShareLists(HGLRC hglrc1, HGLRC hglrc2)
+      # BOOL wglShareLists(HGLRC hglrc1, HGLRC hglrc2)
       [ :ShareLists, [:pointer, :pointer], :bool ],
 
-      #BOOL wglSwapLayerBuffers(HDC hdc, UINT fuPlanes)
+      # BOOL wglSwapLayerBuffers(HDC hdc, UINT fuPlanes)
       [ :SwapLayerBuffers, [:pointer, :uint], :bool ],
 
-      #BOOL wglUseFontBitmaps(HDC hdc, DWORD first, DWORD count, DWORD listBase)
+      # BOOL wglUseFontBitmaps(HDC hdc, DWORD first, DWORD count, DWORD listBase)
       [ :UseFontBitmaps, "wglUseFontBitmaps#{ENCODING}", [:pointer, :uint, :uint, :uint], :bool ],
 
-      #BOOL wglUseFontOutlines(HDC hdc, DWORD first, DWORD count, DWORD listBase, FLOAT deviation, FLOAT extrusion, int format, LPGLYPHMETRICSFLOAT lpgmf)
+      # BOOL wglUseFontOutlines(HDC hdc, DWORD first, DWORD count, DWORD listBase, FLOAT deviation, FLOAT extrusion, int format, LPGLYPHMETRICSFLOAT lpgmf)
       [ :UseFontOutlines, "wglUseFontOutlines#{ENCODING}", [:pointer, :uint, :uint, :uint, :float, :float, :int, GLYPHMETRICSFLOAT.ptr], :bool ]
     ].each do |args|
       args[1, 0] = "wgl#{args[0]}" if args.length == 3

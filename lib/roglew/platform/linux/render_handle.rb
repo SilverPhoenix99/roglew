@@ -43,7 +43,7 @@ module Roglew
       major, minor = FFI::MemoryPointer.new(:int), FFI::MemoryPointer.new(:int)
       GLX.QueryVersion(@display, major, minor)
       version = major.read_int, minor.read_int
-      puts "GLX Version #{version.join('.')}"
+      LOGGER.info "GLX Version #{version.join('.')}"
 
       list = Dir["#{File.expand_path('../../../extensions', __FILE__)}/GLX_VERSION_*.rb"].
           map! { |f| File.basename(f, '.rb') }

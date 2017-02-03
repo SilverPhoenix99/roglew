@@ -14,8 +14,8 @@ Gem::Specification.new do |s|
   s.homepage      = 'https://github.com/SilverPhoenix99/roglew'
   s.require_paths = %w'lib'
   s.files         = Dir['{lib/**/*.rb,*.md}']
-  s.add_dependency('facets', '~> 2.9')
-  s.add_dependency('ffi', '~> 1.9')
+  s.add_dependency('facets', '~> 3')
+  s.add_dependency('ffi')
   s.add_dependency('method_decorators', '~> 0.9')
   s.post_install_message = <<-eos
 +----------------------------------------------------------------------------+
