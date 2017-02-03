@@ -1,7 +1,4 @@
-lib = File.expand_path('../lib/', __FILE__)
-$:.unshift lib unless $:.include?(lib)
-
-require 'roglew/version'
+require_relative 'lib/roglew/version'
 
 Gem::Specification.new do |s|
   s.name          = 'roglew'

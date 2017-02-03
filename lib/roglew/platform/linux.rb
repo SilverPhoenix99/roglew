@@ -1,3 +1,3 @@
 %w'glx
    render_handle
-'.each { |f| require "roglew/platform/linux/#{f}" }
+'.each { |f| require_relative "linux/#{f}" }
